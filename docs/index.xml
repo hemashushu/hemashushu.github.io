@@ -1,0 +1,25 @@
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+ <channel>
+   <title>河马蜀黍真是的</title>
+   <link>https://hemashushu.github.io/</link>
+   <description>Recent content on 河马蜀黍真是的</description>
+   <generator>Hugo -- gohugo.io</generator>
+   <language>en-us</language>
+   <copyright>Copyright &amp;copy; 2022 - Hippospark</copyright>
+   <lastBuildDate>Sun, 07 Aug 2022 20:52:23 +0800</lastBuildDate>
+   
+       <atom:link href="https://hemashushu.github.io/index.xml" rel="self" type="application/rss+xml" />
+   
+   
+     <item>
+       <title>Intro</title>
+       <link>https://hemashushu.github.io/posts/2022-08-07_intro/</link>
+       <pubDate>Sun, 07 Aug 2022 20:52:23 +0800</pubDate>
+       
+       <guid>https://hemashushu.github.io/posts/2022-08-07_intro/</guid>
+       <description>&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;</description>
+     </item>
+   
+ </channel>
+</rss>
