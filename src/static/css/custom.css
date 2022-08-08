@@ -1,0 +1,54 @@
+body {
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, "Liberation Sans", "Microsoft Yahei", "PingFang SC", "Noto Sans CJK SC", "Wenquanyi Micro Hei", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+}
+
+#container footer h6 img {
+    border-width: 0;
+    width: auto;
+    height: auto;
+}
+
+.block-image {
+    width: auto;
+    box-shadow: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-200px {
+    width: 200px;
+}
+
+/* .zoom-out-25 {
+    width: 25%;
+} */
+
+/* .zoom-out-50 {
+    transform: scale(.5);
+} */
+
+#container header h1 a {
+    color: #fb7dc1;
+}
+
+#container nav a {
+    color: deeppink;
+}
+
+#container nav ul li a.active {
+    border-bottom-color: #c7ebf7;
+  }
+
+#container nav {
+    border-bottom-color: #c7ebf7;
+}
+
+#container main section h2 {
+    color: #666;
+}
+
+#container main article h1 {
+    color: #666
+}
+

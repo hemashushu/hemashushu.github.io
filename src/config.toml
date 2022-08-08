@@ -13,3 +13,4 @@ publishDir = "../docs"
 [params]
     tagline = "一起发现好玩有趣的计算机知识"
     description = "记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件"
+    customCSS = ["/css/custom.css"]
