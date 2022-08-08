@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: "Noto Sans", "Helvetica Neue", Helvetica, "Liberation Sans", "Microsoft Yahei", "PingFang SC", "Noto Sans CJK SC", "Wenquanyi Micro Hei", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+  font-family: "Roboto Slab", serif;
   color: #ffffff;
   background: #2A2829;
 }

@@ -1,5 +1,18 @@
 body {
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, "Liberation Sans", "Microsoft Yahei", "PingFang SC", "Noto Sans CJK SC", "Wenquanyi Micro Hei", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+}
+
+#container>* {
+    width: 900px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 900px) {
+    #container>* {
+        width: 100%;
+    }
 }
 
 #container footer h6 img {
@@ -17,16 +30,8 @@ body {
 }
 
 .image-200px {
-    width: 200px;
+    max-width: 200px;
 }
-
-/* .zoom-out-25 {
-    width: 25%;
-} */
-
-/* .zoom-out-50 {
-    transform: scale(.5);
-} */
 
 #container header h1 a {
     color: #fb7dc1;
@@ -38,17 +43,41 @@ body {
 
 #container nav ul li a.active {
     border-bottom-color: #c7ebf7;
-  }
+}
 
 #container nav {
     border-bottom-color: #c7ebf7;
 }
 
+#container main article h1,
+#container main section h1 {
+    color: #666
+}
+
+#container main article h2,
 #container main section h2 {
     color: #666;
 }
 
-#container main article h1 {
-    color: #666
+
+#container main section a,
+#container main article a {
+    color: deeppink;
 }
 
+#container main section .featured_image,
+#container main article .featured_image {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+}
+
+#container main section .featured_image img,
+#container main article .featured_image img {
+    display: block;
+    position: absolute;
+    filter: saturate(.8) opacity(.8);
+    transform: translateY(-50%);
+    top: 50%;
+}
