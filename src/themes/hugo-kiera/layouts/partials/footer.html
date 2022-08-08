@@ -3,6 +3,9 @@
         <ul>
             <li>
                 <h6>{{ if .Site.Copyright }}{{ .Site.Copyright | markdownify }} | {{ end }}
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans" alt="cc by-nc-sa">
+                        <img src="https://licensebuttons.net/l/by-nc/3.0/88x31.png"/> CC BY-NC-SA
+                    </a>
                     {{ T "rendered" }} <a href="https://gohugo.io" title="Hugo">Hugo</a> |
                     <a href="{{.Site.BaseURL}}index.xml">{{ T "subscribe" }} </a></h6>
             </li>
