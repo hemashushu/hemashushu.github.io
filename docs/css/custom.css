@@ -33,6 +33,10 @@ body {
     max-width: 200px;
 }
 
+.image-480px {
+    max-width: 480px;
+}
+
 #container header h1 a {
     color: #fb7dc1;
 }

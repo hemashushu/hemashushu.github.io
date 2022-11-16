@@ -5,6 +5,11 @@ title = '河马蜀黍真是的'
 theme = "hugo-kiera"
 publishDir = "../docs"
 
+# summary settings
+# https://gohugobrasil.netlify.app/content-management/summaries/
+hasCJKLanguage = true
+summaryLength = 255
+
 [author]
     name = "hemashushu"
     github = "hemashushu"

@@ -3,19 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hemashushu.github.io/posts/</loc>
-    <lastmod>2022-08-07T20:52:23+08:00</lastmod>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/categories/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/tags/riscv/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/tags/scratch/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/tags/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/categories/tutorial/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
   </url><url>
     <loc>https://hemashushu.github.io/about/</loc>
     <lastmod>2022-08-07T20:53:01+08:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-08-08_intro/</loc>
-    <lastmod>2022-08-07T20:52:23+08:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/</loc>
-    <lastmod>2022-08-07T20:52:23+08:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/categories/</loc>
-  </url><url>
-    <loc>https://hemashushu.github.io/tags/</loc>
   </url>
 </urlset>

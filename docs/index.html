@@ -85,15 +85,37 @@
     
 
     <li class="first" >
-      <h1><a href="https://hemashushu.github.io/posts/2022-08-08_intro/" title="Intro">Intro</a></h1>
+      <h1><a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始一步一步构建现代计算机系统 - 刨根问底的开始">从零开始一步一步构建现代计算机系统 - 刨根问底的开始</a></h1>
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2022-08-07T20:52:23&#43;08:00">Aug 7, 2022</time>
+            <time class="post-date" datetime="2022-10-31T14:34:52&#43;08:00">Oct 31, 2022</time>
         </li>
         
         
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/tutorial">tutorial</a>
+                
+            </em>
+        </li>
+        
 
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/riscv">#riscv</a>
+                
+                    , 
+                    <a href="/tags/scratch">#scratch</a>
+                
+            </em>
+        </li>
         
 
         <li>One minute read</li>
@@ -102,15 +124,19 @@
 
       
 <div class="featured_image">
-    <a href="https://hemashushu.github.io/posts/2022-08-08_intro/" title="Intro">
-        <img src="/posts/2022-08-08_intro/mcus.jpg">
+    <a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始一步一步构建现代计算机系统 - 刨根问底的开始">
+        <img src="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg">
     </a>
 </div>
 
 
-      <p>hello
-world
-link</p>
+      <p>前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、玩具编程语言，甚至还有很冲动地买了一大堆 FPGA 开发板和电子零件，然后跟着教程用 HDL（硬件描述语言）编写自己的玩具 RISC-V CPU。
+无论你是哪种，刚开始时肯定既激动又兴奋，就像一个在新的异世界开始冒险的勇者那样。不过估计翻到教程的第二章，大部分朋友就开始眉头紧锁，然后咬着牙又翻了几章，经过一翻挣扎最后还是只能放弃。这时候你可能很疑惑：“明明我已经写了几年的程序，各种算法题早已不放在眼里，怎么就不明白这些教程到底在说什么呢？！&quot;
+显然这是因为缺少对系统的 底层技术（或者说 计算机基础技术，不过这个名称容易引起专业外的人误解，至于另一个名称 核心技术 又显得太营销，所以后面还是使用 底层技术 这个名称）的了解，你可能会反驳：”我在计算机基础课程里早就学过了，考试也通过了！“。是的，在计算机专业的课程里都设置了诸如 组成原理、编译原理、操作系统 等课程，而且还循序渐进地一门一门地学。不过把这些科目分开学习是错误的，计算机的底层技术实际上是相互交叉的。也就是说，这些科目是在系统搭建起来之后，后来的人对各种技术进行分门别类和归纳总结，逐渐形成各个领域，而在系统搭建的起初，它们并没有区分得那么清楚。不妨把每一个领域想象成一根根立起来的柱子，正确的学习路径是围绕着这些柱子螺旋式地逐渐往上爬，而不是一口气爬完一根柱子，然后滑下来再爬另一根柱子。
+TODO image
+计算机系统包括了 语言、处理器 和 操作系统 三个基本组成部分。如果从远距离来看，处理器和操作系统是同一回事，它们共同构建了一种人类文明当中最复杂的机器 ———— 计算机，处理器负责实现功能不变的部分，操作系统是处理器的自然延伸，负责实现功能需要变化的部分。而语言一方面用于描述这种机器的运作逻辑，另一方面用于表达、封装和抽象机器的功能，使得机器和人类之间能交流。可见计算机系统的基本组成部分是 同一个目的 ———— 让机器解决问题 的不同侧面，分开学习自然无法理解其中的联系和缘由。</p>
+      
+      <a href="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/">Read more…</a>
       
     </li>
     
@@ -126,7 +152,7 @@ link</p>
         <ul>
             <li>
                 <h6>Copyright © 2022 - Hippospark | 
-                    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"><img alt="cc by-nc-nd" src="/images/cc-by_nc_nd-88x31.png" /></a> |
+                    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">cc by-nc-nd</a> |
                     Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
                     <a href="https://hemashushu.github.io/index.xml">Subscribe </a></h6>
             </li>
