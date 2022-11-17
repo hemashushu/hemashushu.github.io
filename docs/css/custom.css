@@ -13,13 +13,23 @@ body {
     #container>* {
         width: 100%;
     }
+
+    #container main {
+        font-size: 1.1em;
+    }
 }
 
-/* #container footer h6 img {
+/* @media only screen and (max-width: 420px) {
+    #container main {
+        font-size: 1em;
+    }
+} */
+
+#container footer h6 img {
     border-width: 0;
     width: auto;
     height: auto;
-} */
+}
 
 article img {
     width: 100%;
@@ -38,7 +48,7 @@ article img + em {
 }
 
 .block-image {
-    width: auto;
+    /* width: auto; */
     box-shadow: none;
     display: block;
     margin-left: auto;
@@ -82,7 +92,7 @@ article img + em {
 
 #container main section a,
 #container main article a {
-    color: deeppink;
+    color: hotpink;
 }
 
 #container main section .featured_image,

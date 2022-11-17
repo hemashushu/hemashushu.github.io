@@ -1,0 +1,3 @@
+[submodule "src/themes/hugo-kiera"]
+	path = src/themes/hugo-kiera
+	url = https://github.com/hemashushu/hugo-kiera.git
