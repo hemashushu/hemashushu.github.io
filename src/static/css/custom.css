@@ -15,10 +15,26 @@ body {
     }
 }
 
-#container footer h6 img {
+/* #container footer h6 img {
     border-width: 0;
     width: auto;
     height: auto;
+} */
+
+article img {
+    width: 100%;
+    box-shadow: none;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+article img + em {
+    display: block;
+    color: rgba(0, 0, 0, .5);
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: .8em;
+    font-style: normal;
 }
 
 .block-image {

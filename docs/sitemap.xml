@@ -28,5 +28,15 @@
   </url><url>
     <loc>https://hemashushu.github.io/about/</loc>
     <lastmod>2022-08-07T20:53:01+08:00</lastmod>
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme/</loc>
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme.zh-hans/</loc>
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-11-07-build-minimal-risc-v-program/readme/</loc>
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-11-07-build-minimal-risc-v-program/readme.zh-hans/</loc>
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-11-08-qemu-and-debug/readme.zh-hans/</loc>
   </url>
 </urlset>

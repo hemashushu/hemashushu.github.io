@@ -1,6 +1,8 @@
-# 河马蜀黍的个人主页
+# Hemashushu Blog
 
-- 主页的地址是
-  - [https://hemashushu.github.io/](https://hemashushu.github.io/)
-  - [http://hemashushuzsd.gitee.io/](http://hemashushuzsd.gitee.io/)
-- 帖子和文章的源文件 [src/content](src/content)
+Access URL:
+
+- [https://hemashushu.github.io/](https://hemashushu.github.io/)
+- [http://hemashushuzsd.gitee.io/](http://hemashushuzsd.gitee.io/) (mirror)
+
+The source files and attachments for the post are located at [src/content](src/content)

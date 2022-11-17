@@ -118,7 +118,7 @@
         </li>
         
 
-        <li>9 minute read</li>
+        <li>10 minute read</li>
     </ul>
 </aside>
 
@@ -130,9 +130,130 @@
 </div>
 
 
-      <p>前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、玩具编程语言，甚至还有很冲动地买了一大堆 FPGA 开发板和电子零件，然后跟着教程用 HDL（硬件描述语言）编写自己的玩具 RISC-V CPU。 无论你是哪种，刚开始时肯定既激动又兴奋，就像一个在新的异世界开始冒险的勇者那样。不过估计翻到教程的第二章，大部分朋友就开始眉头紧锁，然后咬着牙又翻了几章，经过一翻挣扎最后还是只能放弃。这时候你可能很疑惑：“明明我已经写了几年的程序，各种算法题早已不放在眼里，怎么就不明白这些教程</p>
+      <p>前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。 无论你是哪种，刚开始时肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能大部分朋友就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，怎么在这里就翻车了呢？！&quot; 显然这是因为缺少对 系统的底层技术 的了解</p>
       
       <a href="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
+      <h1><a href="https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme/" title=""></a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="0001-01-01T00:00:00Z">Jan 1, 0001</time>
+        </li>
+        
+        
+
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>RISC-V GCC Quick Start </p>
+      
+    </li>
+    
+
+    <li >
+      <h1><a href="https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme.zh-hans/" title=""></a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="0001-01-01T00:00:00Z">Jan 1, 0001</time>
+        </li>
+        
+        
+
+        
+
+        <li>21 minute read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>RISC-V GCC 快速入门 XiaoXuan Assembler 需要其它编译器的编译结果作为参照物，而 RISC-V GCC 是比较完善和成熟的 RISC-V 编译器，因此 XiaoXuan Assembler 默认选用它对编译、汇编和链接的结果进行参考、验证和测试。 本篇文章将会构建两个非常简单的程序：一个 &ldquo;Hello World!&rdquo; 程序和一个裸机程序，通过构建的过程以简单了解 RISC-V GCC 的基本使用方法。 RISC-V GCC 介绍 QEMU 模拟器 第一个程序 编译 可执行文件 二进制工具 size readelf objdump 运行 分阶段编译 常用的编译参数 裸机程序 程序的组成 基础库 计算库 主程序 启动器 编译 打包目标文件 链接 运行 RISC-V GCC 介绍 假设我们工作环境的架构是 x86_64，现在需要把程序（的源代码）编译成可以在 RISC-V 架构上运行的程序</p>
+      
+      <a href="/posts/2022-11-06-risc-v-gcc-quick-start/readme.zh-hans/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
+      <h1><a href="https://hemashushu.github.io/posts/2022-11-07-build-minimal-risc-v-program/readme/" title=""></a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="0001-01-01T00:00:00Z">Jan 1, 0001</time>
+        </li>
+        
+        
+
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>Building RISC-V Program from Assembly Code </p>
+      
+    </li>
+    
+
+    <li >
+      <h1><a href="https://hemashushu.github.io/posts/2022-11-07-build-minimal-risc-v-program/readme.zh-hans/" title=""></a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="0001-01-01T00:00:00Z">Jan 1, 0001</time>
+        </li>
+        
+        
+
+        
+
+        <li>19 minute read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>构建最小的 RISC-V 程序 在上一篇文章我们简单地了解了交叉编译工具 RISC-V GCC 的基本使用方法。这篇文章将会以纯汇编构建两个程序：一个最小的裸机程序和一个最小的 Linux 应用程序。一般情况下我们不需要直接使用汇编写程序，但通过这种方式可以排除不相关的内容，以了解一个 RISC-V 程序的最根本的组成和运行的原理。 最小的裸机程序 源代码 汇编 目标文件 文件类型 符号列表 段 段的大小 反汇编 链接 可执行文件 文件类型 符号列表 段 Program Headers 段大小 第一次运行 链接脚本 第二次运行 给程序减肥 第三次运行 最小的 Linux 程序 系统调用 系统调用的实现 程序的源代码 编译 运行 最小的裸机程序 本章演示的是一个</p>
+      
+      <a href="/posts/2022-11-07-build-minimal-risc-v-program/readme.zh-hans/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
+      <h1><a href="https://hemashushu.github.io/posts/2022-11-08-qemu-and-debug/readme.zh-hans/" title=""></a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="0001-01-01T00:00:00Z">Jan 1, 0001</time>
+        </li>
+        
+        
+
+        
+
+        <li>16 minute read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>QEMU 模拟器及程序的调试 在上一篇文章我们了解了一个 RISC-V 程序的组成和运行原理，其中程序都是在 QEMU 里运行的，这篇文章将会讲解 QEMU 的详细使用方法，OpenSBI 的作用，以及通过 QEMU 调试裸机程序的方法。 QEMU 全系统模式 运行程序的原理 加载应用程序 RISC-V 系统的特权级别 QEMU 其它常用参数 真实 RISC-V 硬件 OpenSBI 调用 SBI 服务 裸机程序的调试 GDB 的调试方式 调试裸机程序 QEMU 全系统模式 前面的文章提到，QEMU 有两种工作模式：一种是 全系统模式，此时 QEMU 会模拟一整套计算机硬件，包括 CPU、内存、磁盘、网络接口、USB 接口等组件；另外一种是 用户模式，用于直接运行目标架构为 RISC-V 的可</p>
+      
+      <a href="/posts/2022-11-08-qemu-and-debug/readme.zh-hans/">Read more…</a>
       
     </li>
     
