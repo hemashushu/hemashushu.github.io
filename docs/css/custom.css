@@ -25,9 +25,9 @@ body {
     }
 } */
 
-#container footer h6 img {
+#container footer img.license {
     border-width: 0;
-    width: auto;
+    width: 80px;
     height: auto;
 }
 
@@ -38,6 +38,7 @@ article img {
     margin-bottom: 24px;
 }
 
+/* figure caption */
 article img + em {
     display: block;
     color: rgba(0, 0, 0, .5);
@@ -48,7 +49,6 @@ article img + em {
 }
 
 .block-image {
-    /* width: auto; */
     box-shadow: none;
     display: block;
     margin-left: auto;
