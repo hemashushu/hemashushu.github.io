@@ -597,17 +597,16 @@ $ riscv64-elf-as -o put_char.o put_char.S
 
 下面的命令将 `liba.o` 和 `libb.o` 打包为 `libmath.a`：
 
-`$ riscv64-elf-ar -crs libmath.a liba.o libb.o`
+`$ riscv64-elf-ar rs libmath.a liba.o libb.o`
 
-参数：
+`ar` 命令后面跟着 _一个操作码_ 以及 _零或多个修饰符_：
 
-- `-c` 如果静态库文件已存在也不发出警告提示。
-- `-r` 表示替换静态库中已存在的源目标文件，或者插入新的源目标文件。
-- `-s` 表示为静态库创建索引，相当于创建完静态库之后执行了一次 `$ riscv64-elf-ranlib libmath.a` 命令。
+- 操作码 `r` 表示插入新的源目标文件，或者替换静态库中已存在的源目标文件。
+- 修饰符 `s` 表示为静态库创建索引，相当于创建完静态库之后执行了一次 `$ riscv64-elf-ranlib libmath.a` 命令。
 
 命令运行之后将得到包文件 `libmath.a`（一般称为 _静态库_）。程序 `riscv64-elf-ar` 除了可以创建包文件，还可以查看或者修改包文件，比如下面的命令用于查看包文件里含有哪些目标文件：
 
-`$ riscv64-elf-ar -t libmath.a`
+`$ riscv64-elf-ar t libmath.a`
 
 输出结果如下：
 

@@ -3,16 +3,16 @@
 <html lang="en-us">
 
 <head>
-  <title>河马蜀黍真是的</title>
+  <title>My blog</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件" />
+<meta name="description" content="Write down some low level computer knowledge, programming skills, learning notes, and release some softwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="" />
 <meta property="og:description" content="RISC-V GCC 快速入门 XiaoXuan Assembler 需要其它编译器的编译结果作为参照物，而 RISC-V GCC 是比较完善和成熟的 RISC-V 编译器，因此 XiaoXuan Assembler 默认选用它对编译、汇编和链接的结果进行参考、验证和测试。 本篇文章将会构建两个非常简单的程序：一个 &ldquo;Hello World!&rdquo; 程序和一个裸机程序，通过构建的过程以简单了解 RISC-V GCC 的基本使用方法。 RISC-V GCC 介绍 QEMU 模拟器 第一个程序 编译 可执行文件 二进制工具 size readelf objdump 运行 分阶段编译 常用的编译参数 裸机程序 程序的组成 基础库 计算库 主程序 启动器 编译 打包目标文件 链接 运行 RISC-V GCC 介绍 假设我们工作环境的架构是 x86_64，现在需要把程序（的源代码）编译成可以在 RISC-V 架构上运行的程序" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme.zh-hans/" /><meta property="article:section" content="posts" />
 
-
+<meta property="og:site_name" content="My blog" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -35,7 +35,7 @@
     <header>
       
       <h1>
-        <a href="/">河马蜀黍真是的</a>
+        <a href="/">My blog</a>
       </h1>
 
       <ul id="social-media">
@@ -51,7 +51,7 @@
              </li>
       </ul>
       
-      <p><em>一起发现那些好玩有趣的计算机知识</em></p>
+      <p><em>Fun and interesting computer technology</em></p>
       
     </header>
 
@@ -558,15 +558,14 @@
 <h3 id="打包目标文件">打包目标文件</h3>
 <p>可以打包多个 <em>目标文件</em> 以形成一个 <em>库</em> 文件，这样可以方便以后使用。</p>
 <p>下面的命令将 <code>liba.o</code> 和 <code>libb.o</code> 打包为 <code>libmath.a</code>：</p>
-<p><code>$ riscv64-elf-ar -crs libmath.a liba.o libb.o</code></p>
-<p>参数：</p>
+<p><code>$ riscv64-elf-ar rs libmath.a liba.o libb.o</code></p>
+<p><code>ar</code> 命令后面跟着 <em>一个操作码</em> 以及 <em>零或多个修饰符</em>：</p>
 <ul>
-<li><code>-c</code> 如果静态库文件已存在也不发出警告提示。</li>
-<li><code>-r</code> 表示替换静态库中已存在的源目标文件，或者插入新的源目标文件。</li>
-<li><code>-s</code> 表示为静态库创建索引，相当于创建完静态库之后执行了一次 <code>$ riscv64-elf-ranlib libmath.a</code> 命令。</li>
+<li>操作码 <code>r</code> 表示插入新的源目标文件，或者替换静态库中已存在的源目标文件。</li>
+<li>修饰符 <code>s</code> 表示为静态库创建索引，相当于创建完静态库之后执行了一次 <code>$ riscv64-elf-ranlib libmath.a</code> 命令。</li>
 </ul>
 <p>命令运行之后将得到包文件 <code>libmath.a</code>（一般称为 <em>静态库</em>）。程序 <code>riscv64-elf-ar</code> 除了可以创建包文件，还可以查看或者修改包文件，比如下面的命令用于查看包文件里含有哪些目标文件：</p>
-<p><code>$ riscv64-elf-ar -t libmath.a</code></p>
+<p><code>$ riscv64-elf-ar t libmath.a</code></p>
 <p>输出结果如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>liba.o
 </span></span><span style="display:flex;"><span>libb.o
