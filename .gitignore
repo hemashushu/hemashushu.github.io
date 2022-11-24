@@ -1,1 +1,8 @@
 /TODO
+*.o
+*.out
+*.elf
+*.bin
+*.a
+*.so
+*.so.1
