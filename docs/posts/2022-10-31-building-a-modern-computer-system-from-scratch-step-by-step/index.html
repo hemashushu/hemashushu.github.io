@@ -3,23 +3,25 @@
 <html lang="en-us">
 
 <head>
-  <title>从零开始一步一步构建现代计算机系统 - 刨根问底的开始 - My blog</title>
+  <title>Building a Modern Computer System from Scratch Using Our Own Tools Step by Step - Hemashushu Blog</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Write down some low level computer knowledge, programming skills, learning notes, and release some softwares" />
-<meta name="author" content="hemashushu" /><meta property="og:title" content="从零开始一步一步构建现代计算机系统 - 刨根问底的开始" />
-<meta property="og:description" content="前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。 无论你是哪种，刚开始时肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能大部分朋友就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，怎么在这里就翻车了呢？！&quot; 显然这是因为缺少对 系统的底层技术 的了解" />
+<meta name="description" content="Share some low level computer technology, programming skills, learning notes, and some softwares" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="Building a Modern Computer System from Scratch Using Our Own Tools Step by Step" />
+<meta property="og:description" content="Preface RISC-V has been a popular computer instruction set for the last few years, and I&rsquo;m sure many of you have already tried to compile a RISC-V version Linux kernel, or followed a tutorial to write a toy operating system, create a toy programming language, or even write a toy CPU in HDL (hardware description language).
+At the beginning you must have been excited, like a hero starting a new adventure in an Isekai (異世界, otherworld)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-31T14:34:52+08:00" />
-<meta property="article:modified_time" content="2022-10-31T14:34:52+08:00" /><meta property="og:site_name" content="My blog" />
+<meta property="article:modified_time" content="2022-10-31T14:34:52+08:00" /><meta property="og:site_name" content="Hemashushu Blog" />
 
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"/>
 
-<meta name="twitter:title" content="从零开始一步一步构建现代计算机系统 - 刨根问底的开始"/>
-<meta name="twitter:description" content="前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。 无论你是哪种，刚开始时肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能大部分朋友就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，怎么在这里就翻车了呢？！&quot; 显然这是因为缺少对 系统的底层技术 的了解"/>
+<meta name="twitter:title" content="Building a Modern Computer System from Scratch Using Our Own Tools Step by Step"/>
+<meta name="twitter:description" content="Preface RISC-V has been a popular computer instruction set for the last few years, and I&rsquo;m sure many of you have already tried to compile a RISC-V version Linux kernel, or followed a tutorial to write a toy operating system, create a toy programming language, or even write a toy CPU in HDL (hardware description language).
+At the beginning you must have been excited, like a hero starting a new adventure in an Isekai (異世界, otherworld)."/>
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
     
@@ -37,10 +39,17 @@
     <header>
       
       <h1>
-        <a href="/">My blog</a>
+        <a href="/">Hemashushu Blog</a>
       </h1>
 
       <ul id="social-media">
+        
+        
+          <li>
+            <a href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/">中文</a>
+          </li>
+        
+        
              <li>
                <a href="https://github.com/hemashushu" title="GitHub">
                <i class="fab fa-github fa-lg"></i>
@@ -84,7 +93,7 @@
 
 <article>
 
-    <h1>从零开始一步一步构建现代计算机系统 - 刨根问底的开始</h1>
+    <h1>Building a Modern Computer System from Scratch Using Our Own Tools Step by Step</h1>
 
     
       <aside>
@@ -119,7 +128,7 @@
         </li>
         
 
-        <li>11 minute read</li>
+        <li>12 minute read</li>
     </ul>
 </aside>
 
@@ -128,7 +137,7 @@
     
       
 <div class="featured_image">
-    <a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始一步一步构建现代计算机系统 - 刨根问底的开始">
+    <a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="Building a Modern Computer System from Scratch Using Our Own Tools Step by Step">
         <img src="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg">
     </a>
 </div>
@@ -137,189 +146,163 @@
     
 
     <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="前言">前言</h2>
-<p>RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。</p>
-<p>无论你是哪种，刚开始时肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能大部分朋友就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，怎么在这里就翻车了呢？！&quot;</p>
-<p>显然这是因为缺少对 <em>系统的底层技术</em> 的了解（<em>系统的底层技术</em> 也就是 <em>计算机基础技术</em>，不过这个名称经常引起理工科之外的人误解，下面简称 <em>系统技术</em>），你可能会反驳：”系统技术嘛，在计算机基础课程里我早就学过了，考试也通过了！“。是的，在计算机专业的课程设置里都有诸如 <em>组成原理</em>、<em>编译原理</em>、<em>操作系统</em> 等课程，而且还担心你吸收不了于是一门一门地分几个学期教学。不过<strong>把这些科目分开学习是错误的</strong>，计算机的系统技术相互交叉。</p>
-<p><img src="images/path.png" alt="path">
-<em>螺旋式的学习路径</em></p>
-<p>计算机系统包括了 <em>语言</em>、<em>处理器</em> 和 <em>操作系统</em> 三个基本组成部分。如果从远距离来看，处理器和操作系统是同一回事，它们共同构建了一种人类文明当中最复杂的机器 ———— 计算机。处理器负责实现不变的逻辑运算，操作系统是处理器的自然延伸，负责实现需要变化的部分，而语言用于表达、封装和抽象机器的功能，使得机器和人类之间的交流成为可能。可见计算机系统的基本组成部分是 <strong>同一个目的 ———— 让机器解决问题</strong> 的不同侧面，分开学习自然无法理解其中的联系和缘由。不妨把每一个领域想象成一根根立起来的柱子，正确的学习路径是围绕着这些柱子<strong>螺旋式地逐渐往上爬</strong>，而不是一口气爬完一根柱子，然后滑下来再爬另一根柱子。</p>
-<p>其次学习方式也存在问题，计算机系统技术大部分是工程师们在不断地解决问题之后得出的总结和积累，也就是说，这些技术当中理论并不是占主导作用，更多是为了解决问题而通过各种尝试后得出的 <em>最佳实践</em>。因此较好的的学习方式应该是先从探索和实践开始入手，然后<strong>边实践边试错、边领会边总结</strong>，而不是先学一大堆原理，做完一堆习题，再来实践。</p>
-<p><img src="images/way.png" alt="way"></p>
-<p>总的来说，虽然我们几乎都学过跟计算机系统相关的科目，但因为跟系统的构建方式和过程都相差甚远，所以实际上并没有真正掌握到这些技术。不妨试试在没有网络的帮助下，能否自己设计一套最简的指令集，然后手画微架构（microarchitecture）的大致数据通路（data path）；或者给定一个目标架构，编写一个冷启动的引导程序；又或者不依赖任何库，从零开始手写一个简单的语法解析器。</p>
-<h2 id="特点">特点</h2>
-<p>实际上我们在平时的工作和学习当中已经积累了一定的系统知识，只是它们在脑海里或者是松散或者是游离的状态，我希望能通过一系列文章，把这些知识有序地连接起来，从而成为你掌握的技术。这系列文章有如下特点：</p>
+<h2 id="preface">Preface</h2>
+<p>RISC-V has been a popular computer instruction set for the last few years, and I&rsquo;m sure many of you have already tried to compile a RISC-V version Linux kernel, or followed a tutorial to write a toy operating system, create a toy programming language, or even write a toy CPU in HDL (hardware description language).</p>
+<p>At the beginning you must have been excited, like a hero starting a new adventure in an Isekai (<em>異世界</em>, otherworld). But when you get to the second chapter of the tutorial, you may start to feel confused and finally have to give up. You may be wondering: &ldquo;I&rsquo;ve been writing programs for years and solving all kinds of algorithm problems easily. Why don&rsquo;t I understand these tutorials?&rdquo;</p>
+<p>Obviously this is because of the lack of understanding of the <em>system technology</em>. You may disagree: &ldquo;Well, system technology, I learned it long ago in my basic computer course and passed the exam! &ldquo;. Yes, there are courses such as <em>Computer Organization and Design</em>, <em>Compilers Principles</em>, <em>Operating Systems</em> etc., and of course they are studied in several semesters. However, it is a mistake to study these subjects separately, because the system technologies of computers are intertwined.</p>
+<p><img src="images/path.en.png" alt="path">
+<em>The progressive learning path</em></p>
+<p>A computer system consists of three basic parts: <em>programming language</em>, <em>processor</em>, and <em>operating system</em>. If viewed from far away, the processor and the operating system are the same thing, they build together one of the most complex machines in history &ndash; computers. The processor implements the constant logical and operations, the operating system is an extension of the processor and implements the parts that need to be changed, and the language is used to express, encapsulate and abstract the functions of the machine, making communication between the machine and humans possible. It can be seen that they are &ldquo;the different aspects of the same purpose &ndash; to let machines solve problems&rdquo;. Learning them separately is hard to understand the connections of them. Consider thinking of each subject as a pillar. The correct learning path is to stepping upward in a spiral around these pillars, instead of climbing one pillar, then sliding down and climbing another.</p>
+<p>In addition, there are also problems with the learning way, as computer system technologies are mostly the result of engineers&rsquo; continuous problem solving. In other words, the theory is not the main thing, these techniques are the <em>best practices</em> derived through trial and error. Therefore, a better way to learn is to start with exploring and practice, and then summarize by trial and error, rather than learning a lot of principles, doing a lot of exercises.</p>
+<p><img src="images/way.en.png" alt="way"></p>
+<p>In general, although we have almost all studied subjects related to computer systems, we have not really mastered these techniques because we are so far from how systems are built. Try designing a minimal instruction set and drawing the data path of a microarchitecture by hand without the help of the Internet, or writing a cold-boot bootloader for a target architecture, or writing a simple syntax parser from scratch without any libraries, and you will find it very difficult.</p>
+<h2 id="features">Features</h2>
+<p>We have learned a lot of computer system knowledge in our normal work and study, only they are loose and incomplete in our mind, I want to connect these knowledge through a series of articles, so that you can master it. There are many features in this series:</p>
 <ul>
-<li>不再是 “讲原理然后做项目”，而是从探索和实践入手，在实践和试错过程中再穿插原理（为了给你解闷，有时还会穿插一些我知道的小典故小故事）。而且跟很多 “老师傅” 编写的实践型教程（常见于电子类的教程）不一样，这系列不单讲 <strong>如何做</strong>，还会为每一个操作步骤讲解 <strong>为什么这样做</strong>。而很多实践型教程往往忽视了第二点，它们一般是哗啦啦地把每个操作步骤、输入的参数等详细地罗列出来，你必须严格按照指引一步一步走才能最后成功。这种教程虽然你也学会了做出 “成果”，不过对其中的缘由非常模糊，对环境或者工具非常依赖。常常因为硬件环境的变化或者工具的版本跟教程不一致，其中某些步骤有细微变化而导致无法成功。</li>
-<li>不再根据学科分类，而是根据系统的构建过程以及我们能理解的程度，把整个系列切分为多个小阶段。每个小阶会同时涉及多个领域（学科）的知识，每个领域都是够用为止，不会过度深入，完成一个阶段再进入下一个阶段。</li>
-<li><strong>不需要任何专门的 IDE、SDK 或者库</strong>，从零开始构建。开始阶段只需几个通用的开源免费的编译器和工具，后面则使用自己的工具，因此可以彻底弄明白每一个技术细节（毕竟就连工具都是自己构建的）。</li>
-<li><strong>不需要任何专门的软件和硬件</strong>，只使用几个通用的开源免费的软件，和几个最广泛使用的（久经考验的）最廉价的硬件模块，即可以完成到最后一章。很多专业的系统技术教程或者培训需要各种昂贵的高大上的专业软件和硬件，而我们这个系列只有硬件模块需要开销，而且一共只需一两百来块钱，最重要的是这个系列不是为了让你成为某个软件或者硬件的操作工和应用者，而是让你创造工具、构建系统。（为打消你的疑虑我先说明哈，这系列文章是免费的，文章当中也不会有任何广告或者推广链接）</li>
-<li>不是科普或者走马观花式的观摩，而是深入地对计算机系统的完整实践。通过这一系列文章你会对系统有正确的认识和理解，可以不被那些广泛流传的实则错误的 “知识” 所迷惑（比如很多人认为计算机核心技术只有芯片制造机器，似乎解决这一项其它都不是问题，而事实上这是完全错误的，制造机器处于末端环节，跟系统真正的核心和源头相差十万八千里）。</li>
+<li>
+<p>No more &ldquo;talk about the principle first, then do some small projects&rdquo;, but start from exploration and practice, and then derive the principle in the process of practice. And unlike many hands-on tutorials, this series not only talks about &ldquo;how to do&rdquo;, but also explains &ldquo;why&rdquo; for each step. Many hands-on tutorials tend to ignore the second point, they generally list each instruction and input parameters, you must follow the instructions carefully in order to finally succeed. Follow these tutorials although you can also make &ldquo;works&rdquo;, but the principle of which is certainly very vague. And these operating guidelines are very dependent on the environment and tools, often because of changes in the hardware and software environment or updates to the version of the tool, resulting in some of these steps have subtle changes, inconsistent with the tutorial, and in the end can not be successful.</p>
+</li>
+<li>
+<p>No more learning by subject. The entire series is split into small stages based on the building process of the system. Each stage will cover multiple subjects at the same time, but each subject will not be covered in depth. You will complete one stage before moving on to the next.</p>
+</li>
+<li>
+<p><strong>Build from scratch without any specified IDE, SDK or library.</strong> We only need a few generic open source compilers and tools, and later we will use our own tools. Because even the tools are built by us, we can thoroughly figure out every detail.</p>
+</li>
+<li>
+<p>Does not rely on any specified software and hardware, using only a few general open source software and a few of the most widely used and low-cost hardware modules, that can be completed to the last chapter. While many professional system technology tutorials or training require a variety of expensive software and hardware, this series costs less than a hundred dollars in total (of course, the series is free and there will be no promotional links in the articles). The most important thing is that this series is not designed to make you an operator of some particular software or hardware, but to let you create your own tools and build the system.</p>
+</li>
+<li>
+<p>It is not a walk-through, but an in-depth and complete practice of computer systems. After completing this series, you will have a clear understanding of the system and can be free from all the trendy &ldquo;knowledge&rdquo;.</p>
+</li>
 </ul>
-<p>这一系列文章会以 RISC-V 指令集作为学习和实现的目标架构，之所以选择 RISC-V 原因有：</p>
+<p>This series will use the RISC-V instruction set as the target architecture for learning and implementation, the reasons for choosing RISC-V are.</p>
 <ul>
-<li>它的指令集相对比较简单，这使得我们自己动手实现 &ldquo;最小的能工作的&rdquo; 汇编器及处理器成为可能；</li>
-<li>有大量相关的开源免费的工具和文档，可以享用现有的工具来检查和验证我们的 &ldquo;作品&rdquo; 是否正确，这对摸索和学习过程非常重要；</li>
-<li>最后如果我们做出了产品，也无需顾忌授权问题。</li>
+<li>
+<p>It&rsquo;s relatively a simple instruction set, which makes it possible to implement our own &ldquo;minimal working&rdquo; compiler and processor.</p>
+</li>
+<li>
+<p>There are a large number of relevant open source tools and documentation. Using tools to check and verify that our &ldquo;work&rdquo; is correct, which is important for both learning and implementing.</p>
+</li>
+<li>
+<p>Finally, if we make a product, we don&rsquo;t need to worry about the licensing issues.</p>
+</li>
 </ul>
-<h2 id="内容简介">内容简介</h2>
-<p>无可否认计算机系统的内容非常之多，它是几十年以来成千上万全球最顶尖工程师的总结和积累，无论是知识面广度和深度都几乎逼近人脑的极限，从某个角度甚至可以说，它是一群思维<strong>远超越我们当前时代</strong>的人的作品。河马蜀黍知道无法简单地通过几篇文章就能讲完，所以准备了四个系列（series），每个系列分为若干部（part），每部含若干篇文章（chapter），一共也就百来篇长文。一句话描述这一系列文章的主要内容就是：<strong>学习现有的工具和系统 -&gt; 制作自己的工具 -&gt; 打造新的系统</strong>。</p>
-<p><img src="images/content.png" alt="content"></p>
-<p>其中的内容非常多，不过你不用担心难度过高而无法完成，因为每一个部分虽然名堂很大，但都是仅实现最基本的程度，也就是 &ldquo;刚好能用&rdquo; 的程度即止。最主要的是，系统技术的<strong>每一个小环节只要单独拿出来分析和实践都出乎意料地简单</strong>，所以只需一步步跟着来，一般不会发生在中途就被卡住的情况。</p>
-<p>不过我也会在 “简陋” 和 “实用” 之间平衡，让每一部的 “作品” 都有实用价值。现代主流的计算机系统都有沉重的历史包袱，比如 GCC 已有三十多年的历史，Linux 内核也修修补补三十年，导致无论是阅读理解、修改、扩充都非常繁杂，而且很多新观念无法整合。而我们的系统因为是从零开始，完全没有包袱，所以实现起来相对会简单轻松，有些顽固问题也可以从根本上解决；新理念（严格来说并不是新的，只是因为没有融入现有系统而鲜有人认识）也能无所顾忌地加入，比如：</p>
+<h2 id="introduction">Introduction</h2>
+<p>The knowledge of computer systems is very large, it is the accumulation of thousands of the world&rsquo;s best engineers over the decades, both the width and depth of knowledge are almost close to the limits of the human brain. It can even be said that it is the work of a group of people who are &ldquo;far beyond our current era&rdquo;. <em>Hemashushu</em> certainly know that we can not simply complete through a few articles. So I&rsquo;m going to write four series, each series contains several parts, each part contains several of chapters, a total of about a hundred long articles 😅.</p>
+<p>The main content of this series can be described in one sentence: <strong>Learning existing tools and systems, making your own tools, building a new system</strong>.</p>
+<p><img src="images/content.en.png" alt="content"></p>
+<p>The number of topics is very large, but you don&rsquo;t have to worry about it is too difficult to achieve. Because in each part we will only get to the basics, that is, the level that just works. What&rsquo;s more, each small part of the system technology is surprisingly easy to learn if you take it out separately. So just follow step by step and you won&rsquo;t get stuck in the process.</p>
+<p>But I also balance &ldquo;simplicity&rdquo; and &ldquo;practicality&rdquo;, so that each &ldquo;small project&rdquo; has its own value. Modern mainstream computer systems have heavy historical burden, for example, GCC is more than thirty years old, as well as the Linux kernel has been developed for thirty years, which makes it very difficult for the newcomer to read, understand, modify and expand, and many new ideas cannot be integrated. Our system, on the other hand, because it starts from scratch and has no burden at all, will be relatively simple and easy to implement, and some problems can be solved from the root, new ideas (which are not actually new, just because few people know about them) can be integrated without any worries. Some features:</p>
 <ul>
-<li>使用同一门语言实现硬件开发、底层开发、后端开发和前端开发；</li>
-<li>设计一门阅读友好的汇编语言；</li>
-<li>设计一门描述型的链接脚本语言；</li>
-<li>使用微内核，驱动能像普通程序一样轻松开发、调试；</li>
-<li>系统永不需关机和重启，可回滚的更新；</li>
-<li>系统基于能力（capability）而不是 <em>用户和组</em> 的安全模型；</li>
-<li>结构化数据的 Shell；</li>
+<li>A language that can both be used for hardware, low-level, back-end and front-end development.</li>
+<li>An assembly language that is human-readable.</li>
+<li>A functional linker scripting language.</li>
+<li>A microkernel system in which drivers can be develop, debug, install and distribute as easy as general applications.</li>
+<li>A system that never needs to be shut down and reboot, with a rollbackable update mechanism.</li>
+<li>A security model based on capability rather than <em>user and group</em>.</li>
+<li>A <em>Shell</em> with structured data.</li>
 </ul>
-<p>当然还有很多特性，到具体章节时再详细列举。所以这套系统有相当多的特点和优点，特别是<strong>我们会制作和使用自己的工具</strong>，即使你能看到类似 “从零开始构建系统” 的书籍或文章，我们这个系列仍让你感到耳目一新 😁。</p>
-<h2 id="点赞转发打赏">点赞、转发、打赏</h2>
-<p>虽然这系列文章的大部分内容我都已经实践过，不过我发现要把它们从头到尾讲解起来相当有挑战性：庞大而交叉的内容如何组织才能做到由易到难，如何挑选实践的内容，如何做到篇章之间内容的自然过渡和衔接，如何确保内容的准确，如何保证读者看得明白不卡顿等等，单单第一个系列的前两部共 8 篇文章，前前后后反复琢磨和修改，居然用了四个多月的时间。我不知道还要多少年时间才能把最后一章写完。</p>
-<p>而另一方面，虽然从宏观上来说计算机系统技术承载着科学技术的传承和创新，承载者现代工业的基础等重要意义，但对于个人来说，却很 &ldquo;现实地&rdquo; 几乎没有任何用处（💰），毕竟几乎所有企业都从事应用层面的开发，系统技术无论是对普通人还是对开发人员都太过遥远了。虽然作者很努力地想写好每一篇文章，但阅读的人显然是寥寥可数的，这是极其少数人才会感兴趣的内容。因此，如果你碰巧看到这一系列文章，如果觉得有收获，请毫不犹豫地打赏作者吧 😄！你的一瓶可乐一杯冰红茶的打赏就是下一篇文章的写作动力 😭。</p>
+<p>There are more features that will be listed in specific chapters, but of course the main feature is that <strong>we will make and use our own tools</strong>. Even if you can see other books or articles like &ldquo;Building System from Scratch&rdquo;, this series will still be a refreshing experience for you 😁.</p>
+<h2 id="like-share-donate">Like, Share, Donate</h2>
+<p>Although I have completed most of the projects in this series, I find it quite challenging to explain them. For example, how to organize the huge and intersecting contents, how to select the practical topics, how to make the transition between chapters, how to ensure the correctness of the contents, how to make it easier for the readers to read, and so on.</p>
+<p>The first 8 articles in the first series took more than four months to complete, after repeated writing and revising. I don&rsquo;t know how many years it will take to finish the last chapter. On the other side, although computer system technology holds the importance of technology inheritance and innovation, and holds the basis of modern industry, but it is &ldquo;realistically&rdquo; almost useless (💰) for individuals, because almost all companies are engaged in application-level development, and the system technology is too far away from a typical developer.</p>
+<p>Although I try hard to write every article, it is obvious that only a few people will read it, and only a very few of them will be interested. So, if you happen to read this series of articles and find it helpful, please donate to me without hesitation! Your donation of a cup of coffee is my motivation to write the next article. 😄</p>
 
 
 <div>
-    <img src="/images/subscribe-and-donate.png" class="block-image image-480px"/>
+    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
 </div>
 
-<p>最后，虽然系统技术没有现实上的用处，但它可以很好地满足人类原始的 “好奇、探索、创造” 的本能。试想一下，还有什么比 “独自一人徒手征服人类文明史上最复杂的机器” 更酷的事情呢？！当你完成最后一章时，相信会看到一个不同的世界。点击下面的目录标题开始异世界之旅吧！</p>
+<p>Finally, while systems technology is not realistically useful, it can be a good way to satisfy your &ldquo;curiosity, exploration and creation&rdquo;. What could be cooler than &ldquo;conquering the most complex machine in the history of mankind, alone and with bare hands&rdquo;? When you finish the last chapter, I believe you will find a different world. Click on the title of the table of contents below to start your journey to the Isekai!</p>
 <hr>
-<h2 id="目录">目录</h2>
 <blockquote>
-<p><strong>note</strong> 此目录会持续更新&hellip;</p>
+<p><strong>note</strong> This list will be continuously updated</p>
 </blockquote>
-<p><strong>系列 1: 一步一步深入 RISC-V 系统</strong></p>
+<p><strong>Series 1: Dive into RISC-V System Step by Step</strong></p>
 <ul>
 <li>
-<p>第一部：了解编译器、链接器、调试器以及一些常用二进制工具的使用方法，了解程序的组成，构建最小独立式可执行程序（freestanding，也叫 <em>裸机程序</em>）等；</p>
-<ul>
-<li><a href="risc-v-gcc-quick-start/">S01C01 RISC-V GCC 快速入门</a></li>
-<li><a href="build-minimal-risc-v-program/">S01C02 构建最小的 RISC-V 程序</a></li>
-<li><a href="qemu-and-debug/">S01C03 QEMU 模拟器及程序的调试</a></li>
-</ul>
+<p>Part I: Understanding the usage of compiler, linker, debugger and some common binary tools, understanding the organization of program, building minimal freestanding (also called <em>bare metal programs</em>) executable programs.</p>
 </li>
 <li>
-<p>第二部：通过微控制器（MCU）来简单地了解软件和硬件之间的交互原理，通过不使用 SDK 或者硬件抽象库（HAL），而是直接读写寄存器的方式编写裸机程序（固件），控制电信号的输入输出（GPIO），实现串口通信等；</p>
-<ul>
-<li>.</li>
-</ul>
+<p>Part II: A brief look at the principles of interaction between software and hardware through microcontroller (MCU). Writing bare-metal program (firmware) without SDK or HAL (hardware abstraction library), directly reading and writing registers, controlling the electrical signal of input and output pin (GPIO), implementing serial communications.</p>
 </li>
 <li>
-<p>第三部：了解现代系统的程序加载、动态链接的原理，了解 RISC-V 的函数调用规程以及基本指令，使用汇编语言编写简单的程序；</p>
-<ul>
-<li>.</li>
-</ul>
+<p>Part III: Understanding the principles of program loading, dynamic linking in modern systems, understanding the function call conventions of RISC-V and the basic instructions, writing simple programs in assembly language.</p>
 </li>
 <li>
-<p>第四部：设计一门目标架构为 RISC-V 的汇编语言，实现其汇编器，同时了解简单的语法解析器的原理；</p>
-<ul>
-<li>.</li>
-</ul>
+<p>Part IV: Design an assembly language with a target architecture of RISC-V, implement its assembler and syntax parser.</p>
 </li>
 <li>
-<p>第五部：设计一门链接脚本语言，实现其链接器，同时了解脚本解析器的原理。</p>
-<ul>
-<li>.</li>
-</ul>
+<p>Part V: Designing a functional linker script language and implementing a script interpreter.</p>
 </li>
 </ul>
-<p><strong>系列 2: 一步一步实现一门现代语言及其编译器</strong></p>
+<p><strong>Series 2: Implementing a Modern Language and Compiler Step by Step</strong></p>
 <ul>
-<li>第一部：设计一门中间语言（IR），实现从中间语言到汇编语言的代码生成器（code generator）；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part I: Designing an IR (intermediate language) and implementing a code generator from IR to assembly language.</p>
 </li>
-<li>第二部：设计一门现代的静态类型的语言，实现高级语言到中间语言的代码生成器，至此完成了一个 <em>简单的完整的编译系统</em>；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part II: Designing a modern statically typed language, implementing a code generator from high-level language to IR, so that we have a <em>simple but complete compilation system</em>.</p>
 </li>
-<li>第三部：实现 <a href="https://webassembly.org/">WASM</a> 虚拟机（VM），然后实现中间语言到 WASM 的代码生成器。实现 WASM VM 的同时可以大致地认识一个处理器是如何工作的，另一方面有了 WASM 代码生成器，意味着我们的语言能在浏览器中运行；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part III: Implement the <a href="https://webassembly.org/">WASM</a> virtual machine (VM) and then implement the code generator for the IR to WASM. With the WASM VM we can get a basic idea of how a processor works, while having the WASM code generator means that our language can run in a browser.</p>
 </li>
-<li>第四部：实现中间语言到 <a href="https://llvm.org/docs/LangRef.html">LLVM IR</a> 的代码生成器，让我们的语言能生成目标架构为 <code>x86</code> 和 <code>arm</code> 的程序。
-<ul>
-<li>.</li>
-</ul>
-</li>
-<li>第五部：实现项目构建器及包管理器，这是任何现代语言都必备的。
-<ul>
-<li>.</li>
-</ul>
-</li>
-<li>第六部：用当前语言重写编译器，实现语言自托管（self-hosting），即编译器可以编译自己的源代码，从此我们开始使用自己的工具来构建系统。
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part IV: Implementing the IR to the <a href="https://llvm.org/docs/LangRef.html">LLVM IR</a> code generator, which allows our language to generate programs for <code>x86</code> and <code>arm</code> target architectures.</p>
 </li>
 </ul>
-<p><strong>系列 3: 一步一步实现一个实用型的 RISC-V CPU</strong></p>
+<p><img src="images/compilation-system.png" alt="compilation system"></p>
 <ul>
-<li>第一部：设计一个最小的指令集，实现数字累加和内存加载和存储功能；然后通过数字电路仿真软件实现一个最简处理器，该处理器包含了 ROM、RAM、寄存器堆（register file）、译码器、控制器及算术逻辑单元（ALU）等基本处理器要素，能执行我们的指令集。通过这一部来了解处理器的基本运作原理，以及软件如何变成电信号。
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part V: Implementing the project construction tool and package manager, which is a necessary part of any modern language.</p>
 </li>
-<li>第二部：从我们的语言派生出一门 HDL 语言，实现该门语言的数字逻辑电路模拟器以及测试（验证）框架；实现从这门语言到 <a href="https://en.wikipedia.org/wiki/SystemVerilog">SystemVerilog</a> 的代码生成器，然后用这门语言重新实现上一部的基础组件以及处理器，并下载到 FPGA 硬件上通电测试；
-<ul>
-<li>.</li>
-</ul>
-</li>
-<li>第三部：使用自己的 HDL 语言实现一个多时钟周期的 RV64I 处理器，并下载到 FPGA 硬件上通电测试；
-<ul>
-<li>.</li>
-</ul>
-</li>
-<li>第四部：实现常见的通信协议（比如 UART、$I^2C$、SPI），书写常见的外设（比如 GPIO 接口、SPI Flash、SD 卡、SSD 1306 显示屏等）的驱动。整合我们的处理器，实现一个完整的硬件系统；
-<ul>
-<li>.</li>
-</ul>
-</li>
-<li>第五部：将处理器微架构升级为多级流水线设计。
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part VI: Rewriting the compiler in our language to achieve <em>self-hosting</em> (i.e., the compiler can compile its own source code), and from now we start using our own tools to build the system.</p>
 </li>
 </ul>
-<p><strong>系列 4: 一步一步实现一个实用的微内核操作系统</strong></p>
+<p><strong>Series 3: Implementing a Functional RISC-V CPU Step by Step</strong></p>
 <ul>
-<li>第一部：为我们的处理器添加内存管理单元（MMU）以及特权相关的模块；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part I: Designing a minimal instruction set that enables numeric accumulation and memory loading and storing, implement a minimal processor with digital circuit simulation software that contains the basic processor elements, such as ROM, RAM, register file, decoder, controller and ALU (arithmetic logic unit), which can execute our instruction set.</p>
 </li>
-<li>第二部：实现最小的内核，即实现基本的串口输入输出，多级页表，内存管理，程序的加载及进程的简单分时切换，以及消息机制等；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part II: Deriving an HDL language from our language, implement a digital circuit simulator and a test framework, implement a code generator from this HDL to <a href="https://en.wikipedia.org/wiki/SystemVerilog">SystemVerilog</a>. Re-implement the previous processor with our HDL and download it to the FPGA hardware for power-on testing.</p>
 </li>
-<li>第三部：实现简化版的 <code>ext4</code> 文件系统；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part III: Implementing a multi-cycle RV64I processor using our HDL language and download it to the FPGA hardware for power-on testing.</p>
 </li>
-<li>第四部：实现简单的用户交互界面（shell）以及一个包管理器；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part IV: Implementing some common protocols (e.g. UART, (I^2C), SPI), write drivers for common peripherals (e.g. GPIO, SPI Flash, SD card, SSD 1306 display etc.). Integrating into our processors to achieve a complete hardware system.</p>
 </li>
-<li>第五部：实现一个简单的图形加速协处理器（coprocessor）；
-<ul>
-<li>.</li>
-</ul>
+<li>
+<p>Part V: Upgrade the microarchitecture of the processor to a multi-stage pipeline design.</p>
 </li>
-<li>第六部：实现一个简单的图形库，实现一个复古风格的横向卷轴动作游戏。
-<ul>
-<li>.</li>
 </ul>
+<p><strong>Series 4: Implementing a Functional Microkernel OS Step by Step</strong></p>
+<ul>
+<li>
+<p>Part I: Adding a MMU (memory management unit) to our processor, as well as a privileged module.</p>
+</li>
+<li>
+<p>Part II: Implementing the minimal kernel, i.e. implementing basic serial text sending and receiving, page tables, memory management, program loader, process switch and message mechanisms.</p>
+</li>
+<li>
+<p>Part II: Implementing the most simplified <em>ext4</em> like file system.</p>
+</li>
+<li>
+<p>Part IV: Implementing a simple <em>Shell</em>.</p>
+</li>
+<li>
+<p>Part V: Implementing a simple network interface.</p>
+</li>
+<li>
+<p>Part VI: Implementing a package manager.</p>
+</li>
+<li>
+<p>Part VII: Implementing a simple graphics acceleration coprocessor.</p>
+</li>
+<li>
+<p>Part VIII: Implementing a simple graphics library, and make a retro action game.</p>
 </li>
 </ul>
 
@@ -330,8 +313,6 @@
 <section class="post-nav">
     <ul>
         <li>
-        
-            <a href="https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme/"><i class="fa fa-chevron-circle-left"></i> </a>
         
         </li>
         <li>
@@ -361,6 +342,7 @@
             
             
         </ul>
+        
     </footer>
 </div>
 <script src="/js/scripts.js"></script>

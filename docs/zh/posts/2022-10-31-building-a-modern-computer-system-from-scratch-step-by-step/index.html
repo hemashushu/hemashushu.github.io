@@ -1,0 +1,305 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>从零开始使用自己的工具一步一步构建现代计算机系统 - 简介 - 河马蜀黍真是的</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="从零开始使用自己的工具一步一步构建现代计算机系统 - 简介" />
+<meta property="og:description" content="前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。 无论是哪种，刚开始时你肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能你就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，为什么还是看不懂这些教程呢？！&quot; 显然这是因为缺少对 完整的系统技术 的了解（" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-31T14:34:52+08:00" />
+<meta property="article:modified_time" content="2022-10-31T14:34:52+08:00" /><meta property="og:site_name" content="河马蜀黍真是的" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"/>
+
+<meta name="twitter:title" content="从零开始使用自己的工具一步一步构建现代计算机系统 - 简介"/>
+<meta name="twitter:description" content="前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。 无论是哪种，刚开始时你肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能你就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，为什么还是看不懂这些教程呢？！&quot; 显然这是因为缺少对 完整的系统技术 的了解（"/>
+
+<meta name="generator" content="Hugo 0.102.0-DEV" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
+  
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
+
+<body>
+  <div id="container">
+    <header>
+      
+      <h1>
+        <a href="/zh/">河马蜀黍真是的</a>
+      </h1>
+
+      <ul id="social-media">
+        
+        
+          <li>
+            <a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/">English</a>
+          </li>
+        
+        
+             <li>
+               <a href="https://github.com/hemashushu" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/hemashushu" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>一起发现那些好玩有趣的计算机知识</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="active" href="/zh/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>文章</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/zh/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>从零开始使用自己的工具一步一步构建现代计算机系统 - 简介</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2022-10-31T14:34:52&#43;08:00">Oct 31, 2022</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/zh/categories/tutorial">tutorial</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/zh/tags/riscv">#riscv</a>
+                
+                    , 
+                    <a href="/zh/tags/scratch">#scratch</a>
+                
+            </em>
+        </li>
+        
+
+        <li>10 minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+      
+<div class="featured_image">
+    <a href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始使用自己的工具一步一步构建现代计算机系统 - 简介">
+        <img src="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg">
+    </a>
+</div>
+
+
+    
+
+    <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="前言">前言</h2>
+<p>RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。</p>
+<p>无论是哪种，刚开始时你肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能你就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，为什么还是看不懂这些教程呢？！&quot;</p>
+<p>显然这是因为缺少对 <em>完整的系统技术</em> 的了解（也就是 <em>计算机基础技术</em>，有时也叫 <em>底层技术</em> 或者 <em>核心技术</em>，下面统一简称为 <em>系统技术</em>），你可能会反驳：”系统技术嘛，在计算机基础课程里我早就学过了，考试也通过了！“。是的，在计算机专业的课程里都设置有诸如 <em>组成原理</em>、<em>编译原理</em>、<em>操作系统</em> 等课程，还因为担心你吸收不了而一门一门地分好几个学期教学。不过<strong>把这些科目分开学习是错误的</strong>，因为计算机的系统技术是相互交叉的。</p>
+<p><img src="images/path.zh.png" alt="path">
+<em>螺旋式的学习路径</em></p>
+<p>计算机系统包括了 <em>语言</em>、<em>处理器</em> 和 <em>操作系统</em> 三个基本组成部分。如果从远距离来看，处理器和操作系统会是同一回事，它们共同构建了一种人类文明当中最复杂的机器 ———— 计算机。处理器负责实现不变的逻辑运算，操作系统是处理器的自然延伸，负责实现需要变化的部分。而语言则用于表达、封装和抽象机器的功能，使得机器和人类之间的交流成为可能。可见它们是 <strong>同一个目的 ———— 让机器解决问题</strong> 的不同侧面，分开学习自然无法理解其中的联系和缘由。不妨把每一个领域想象成一根根立起来的柱子，正确的学习路径是围绕着这些柱子<strong>螺旋式地逐渐地往上爬</strong>，而不是一口气爬完一根柱子，然后滑下来再爬另一根柱子。</p>
+<p>其次学习方式也存在问题，计算机系统技术大部分是工程师们在不断地解决问题之后得出的总结及其积累，也就是说，在这些技术当中理论并不是占主导作用，更多是为了解决问题而通过各种尝试后得出的 <em>最佳实践</em>。因此较好的的学习方式应该是先从探索和尝试开始入手，然后<strong>边实践边试错、边领会边总结</strong>，而不是先学一大堆原理，做完一堆习题，再来实践。</p>
+<p><img src="images/way.zh.png" alt="way"></p>
+<p>总的来说，虽然我们几乎都学过跟计算机系统相关的科目，但因为跟系统的构建方式和过程都相差甚远，所以实际上并没有真正掌握到这些技术。不妨试试在没有网络的帮助下，看看能否自己设计一套最简的指令集，然后动手画画微架构（microarchitecture）的大致数据通路（data path）；或者给定一个目标架构，编写一个冷启动的引导程序；又或者不依赖任何库，从零开始手写一个简单的语法解析器，你会发现这都很困难。</p>
+<h2 id="特点">特点</h2>
+<p>实际上我们在平时的工作和学习当中已经积累了一定的系统知识，只是它们在脑海里是松散的或者不完整的，我希望能通过一系列文章，把这些知识有序地连接起来，从而成为你真正掌握的知识和技术。这系列文章有如下特点：</p>
+<ul>
+<li>不再是 “先讲原理然后做项目”，而是从探索和尝试入手，在实践和试错过程中再穿插原理（有时我还会穿插一些小典故）。而且跟很多实践型教程不一样，这系列不单单讲 <strong>如何做</strong>，还会为每一个操作步骤讲 <strong>为什么要这样做</strong>。很多实践型教程往往忽视了第二点，它们一般是哗啦啦地把每个操作步骤、输入的每个参数等详细地罗列出来，你必须严格跟着指引一步一步走才能最后成功。跟着这些教程虽然你也能做出 “作品”，不过对其中的缘由肯定非常模糊。而且这些操作指引对环境和工具非常依赖，常常因为软硬件环境的变化或者工具的版本的更新，导致其中某些步骤有细微变化，跟教程不一致，而最后无法成功。</li>
+<li>不再分学科，而是根据系统的构建过程以及我们能理解的程度，把整个系列切分为多个小阶段。每个小阶都会同时涉及多个学科的知识，但同时都是够用为止，不会过度深入，只有完成一个阶段之后再进入下一个阶段。</li>
+<li><strong>不需要任何专门的 IDE、SDK 或者库</strong>，从零开始构建。开始阶段只需几个通用的开源免费的编译器和工具，后面则会使用自己的工具。因为连工具都是自己构建的，因此可以彻底弄明白每一个技术细节而不会留有死角。</li>
+<li><strong>不需要任何专门的软件和硬件</strong>，只使用几个通用的开源免费的软件，和几个最广泛使用的（久经考验的）最廉价的硬件模块，即可以完成到最后一章。很多专业的系统技术教程或者培训需要各种高大上的昂贵的专业软件和硬件，而我们这个系列一共只需一两百来块钱（当然这系列的文章是免费的，文章当中也不会有任何广告或者推广链接）。最重要的是这个系列不是为了让你成为某个软件或者硬件的操作工和使用者，而是让你自己创造工具、构建系统。</li>
+<li>不是科普，不是走马观花式的观摩，而是真正深入地对计算机系统的完整实践。通过这一系列文章，你会对系统有正确的认识和理解，可以不被那些流传广泛而实则错误的各种时髦 “知识” 所迷惑（比如很多人认为计算机核心技术只有芯片制造机器，似乎解决这一项其它都不是问题，而事实上这是完全错误的）。</li>
+</ul>
+<p>这一系列文章会以 RISC-V 指令集作为学习和实现的目标架构，之所以选择 RISC-V 原因有：</p>
+<ul>
+<li>它的指令集相对比较简单，这使得我们自己动手实现 &ldquo;最小的能工作的&rdquo; 编译器及处理器成为可能；</li>
+<li>有大量相关的开源免费的工具和文档，可以享用现有的工具来检查和验证我们的 &ldquo;作品&rdquo; 是否正确，这对摸索和学习过程非常重要；</li>
+<li>最后如果我们做出了产品，也无需顾虑授权问题。</li>
+</ul>
+<h2 id="内容简介">内容简介</h2>
+<p>无可否认计算机系统的内容非常之多，它是几十年以来成千上万个全球最顶尖工程师的总结和积累，无论是知识的广度和深度都几乎逼近人脑的极限，甚至可以说它是<strong>远超越我们当前时代</strong>的一群人的作品。河马蜀黍知道无法简单地通过几篇文章就能讲完，所以准备了四个系列（series），每个系列分为若干部（part），每部含若干篇文章（chapter）。好吧，一共也就百来篇长文。用一句话描述这一系列文章的主要内容就是：<strong>学习现有的工具和系统，制作自己的工具，打造新的系统</strong>。</p>
+<p><img src="images/content.zh.png" alt="content"></p>
+<p>虽然内容非常多，不过你不用担心难度过高而无法完成，因为每一个部分虽然名堂很大，但都是仅实现最基本的 &ldquo;刚好能用&rdquo; 的程度即止。最主要的是，系统技术的<strong>每一个小环节只要单独拿出来分析和实践都会出乎意料地简单</strong>，所以只需一步步跟着来，就不会发生在中途就被卡住的情况。</p>
+<p>当然我也会在 “简陋” 和 “实用” 之间平衡，让每一部的 “作品” 都有实用价值。现代主流的计算机系统都有沉重的历史包袱，比如 GCC 已有三十多年的历史，Linux 内核也持续开发三十年，对于新手来说，无论是阅读理解、修改、扩充都非常困难，而且很多新观念无法整合。而我们的系统因为是从零开始，完全没有包袱，所以实现起来相对会简单轻松，有些顽固问题也可以从根本上解决；新理念（严格来说并不是新的，只是鲜有人知而已）也能无所顾忌地加入，比如：</p>
+<ul>
+<li>同一门语言可以同时用于硬件开发、底层开发、后端开发和前端开发；</li>
+<li>一门阅读友好的汇编语言；</li>
+<li>一门函数型的链接脚本语言；</li>
+<li>使用微内核的系统，驱动程序能像普通程序一样轻松开发、调试、安装和发布；</li>
+<li>系统永不需关机和重启，可回滚的更新机制；</li>
+<li>基于能力（capability）而不是 <em>用户和组</em> 的系统安全模型；</li>
+<li>数据结构化的 Shell；</li>
+</ul>
+<p>当然还有很多特性，在具体章节里会再详细列举。所以这套系统有相当多的特点和优点，特别是<strong>我们会制作和使用自己的工具</strong>，所以即使你能看到类似 “从零开始构建系统” 的书籍或文章，我们这个系列仍会让你感到耳目一新 😁。</p>
+<h2 id="点赞转发打赏">点赞、转发、打赏</h2>
+<p>虽然这系列文章的大部分内容我都已经实践过，不过我发现要把它们从头到尾讲解起来相当有挑战性：庞大而交叉的内容如何组织，如何挑选实践的内容，如何做到篇章之间的自然过渡和衔接，如何确保知识的准确性，如何让读者看得轻松明白等等，单单第一个系列的前 8 篇文章，经过反复琢磨和修改，前前后后居然用了四个多月的时间。我不知道还要多少年时间才能把最后一章写完。</p>
+<p>而另一方面，虽然从宏观上来说计算机系统技术承载着科学技术的传承和创新，承载者现代工业的基础等重要意义，但对于个人来说，却很 &ldquo;现实地&rdquo; 几乎没有任何用处（💰），毕竟几乎所有企业都从事应用层面的开发，系统技术无论是对普通人还是对开发人员都太过遥远了。虽然作者努力地写好每一篇文章，但显然，阅读的人肯定是寥寥可数的，这其中又只有极其少数人才会感兴趣。因此，如果你碰巧看到这一系列文章，如果觉得有收获，请毫不犹豫地打赏作者吧！你的一瓶可乐一杯咖啡的打赏就是我下一篇文章的写作动力 😄。</p>
+
+
+<div>
+    <img src="/images/subscribe-and-donate.zh.png" class="block-image image-480px"/>
+</div>
+
+<p>最后，虽然系统技术没有现实上的用处，但它却能可以很好地满足你的 “好奇心、探索欲，以及创造的冲动”。试想一下，还有什么比 “独自一人徒手征服人类史上最复杂的机器” 更酷的事情呢？！当你完成最后一章时，相信会看到一个不同的世界。点击下面的目录标题开始异世界之旅吧！</p>
+<hr>
+<h2 id="目录">目录</h2>
+<blockquote>
+<p><strong>note</strong> 此目录会持续更新</p>
+</blockquote>
+<p><strong>系列 1: 一步一步深入 RISC-V 系统</strong></p>
+<ul>
+<li>
+<p>第一部：了解编译器、链接器、调试器以及一些常用二进制工具的使用方法，了解程序的组成，构建最小独立式可执行程序（freestanding，也叫 <em>裸机程序</em>）等；</p>
+<ul>
+<li><a href="risc-v-gcc-quick-start/">S01C01 RISC-V GCC 快速入门</a></li>
+<li><a href="build-minimal-risc-v-program/">S01C02 构建最小的 RISC-V 程序</a></li>
+<li><a href="qemu-and-debug/">S01C03 QEMU 模拟器及程序的调试</a></li>
+</ul>
+</li>
+<li>
+<p>第二部：通过微控制器（MCU）来简单地了解软件和硬件之间的交互原理，通过不使用 SDK 或者硬件抽象库（HAL），而是直接读写寄存器的方式编写裸机程序（固件），控制电信号的输入输出（GPIO），实现串口通信等；</p>
+</li>
+<li>
+<p>第三部：了解现代系统的程序加载、动态链接的原理，了解 RISC-V 的函数调用规程以及基本指令，使用汇编语言编写简单的程序；</p>
+</li>
+<li>
+<p>第四部：设计一门目标架构为 RISC-V 的汇编语言，实现其汇编器，同时了解简单的语法解析器的原理；</p>
+</li>
+<li>
+<p>第五部：设计一门链接脚本语言，实现其链接器，同时了解脚本解析器的原理。</p>
+</li>
+</ul>
+<p><strong>系列 2: 一步一步实现一门现代语言及其编译器</strong></p>
+<ul>
+<li>第一部：设计一门中间语言（IR），实现从中间语言到汇编语言的代码生成器（code generator）；</li>
+<li>第二部：设计一门现代的静态类型的语言，实现高级语言到中间语言的代码生成器，至此完成了一个 <em>简单的完整的编译系统</em>；</li>
+<li>第三部：实现 <a href="https://webassembly.org/">WASM</a> 虚拟机（VM），然后实现中间语言到 WASM 的代码生成器。实现 WASM VM 的同时可以大致地认识一个处理器是如何工作的，另一方面有了 WASM 代码生成器，意味着我们的语言能在浏览器中运行；</li>
+<li>第四部：实现中间语言到 <a href="https://llvm.org/docs/LangRef.html">LLVM IR</a> 的代码生成器，让我们的语言能生成目标架构为 <code>x86</code> 和 <code>arm</code> 的程序。</li>
+</ul>
+<p><img src="images/compilation-system.png" alt="compilation system"></p>
+<ul>
+<li>第五部：实现项目构建器及包管理器，这是任何现代语言都必备的。</li>
+<li>第六部：用当前语言重写编译器，实现语言自托管（self-hosting），即编译器可以编译自己的源代码，从此我们开始使用自己的工具来构建系统。</li>
+</ul>
+<p><strong>系列 3: 一步一步实现一个实用型的 RISC-V CPU</strong></p>
+<ul>
+<li>第一部：设计一个最小的指令集，实现数字累加和内存加载和存储功能；然后通过数字电路仿真软件实现一个最简处理器，该处理器包含了 ROM、RAM、寄存器堆（register file）、译码器、控制器及算术逻辑单元（ALU）等基本处理器要素，能执行我们的指令集。通过这一部来了解处理器的基本运作原理，以及软件如何变成电信号。</li>
+<li>第二部：从我们的语言派生出一门 HDL 语言，实现该门语言的数字逻辑电路模拟器以及测试（验证）框架；实现从这门语言到 <a href="https://en.wikipedia.org/wiki/SystemVerilog">SystemVerilog</a> 的代码生成器，然后用这门语言重新实现上一部的基础组件以及处理器，并下载到 FPGA 硬件上通电测试；</li>
+<li>第三部：使用自己的 HDL 语言实现一个多时钟周期的 RV64I 处理器，并下载到 FPGA 硬件上通电测试；</li>
+<li>第四部：实现常见的通信协议（比如 UART、$I^2C$、SPI），书写常见的外设（比如 GPIO 接口、SPI Flash、SD 卡、SSD 1306 显示屏等）的驱动。整合我们的处理器，实现一个完整的硬件系统；</li>
+<li>第五部：将处理器微架构升级为多级流水线设计。</li>
+</ul>
+<p><strong>系列 4: 一步一步实现一个实用的微内核操作系统</strong></p>
+<ul>
+<li>第一部：为我们的处理器添加内存管理单元（MMU）以及特权相关的模块；</li>
+<li>第二部：实现最小的内核，即实现基本的串口输入输出，多级页表，内存管理，程序的加载及进程的简单分时切换，以及消息机制等；</li>
+<li>第三部：实现简化版的 <code>ext4</code> 文件系统；</li>
+<li>第四部：实现简单的用户交互界面（shell）；</li>
+<li>第五部：实现简单的网络接口；</li>
+<li>第六部 实现一个包管理器；</li>
+<li>第七部：实现一个简单的图形加速协处理器（coprocessor）；</li>
+<li>第八部：实现一个简单的图形库，实现一个复古风格的横向卷轴动作游戏。</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        <li>
+        
+        </li>
+        <li>
+        
+            <a href="https://hemashushu.github.io/zh/posts/2022-11-06-risc-v-gcc-quick-start/">GCC 交叉编译速通 <i class="fa fa-chevron-circle-right"></i> </a>
+        
+        </li>
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <ul>
+            <li>
+                <h6>Copyright © 2022 - Hippospark | 
+                    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"><img alt="cc by-nc-nd" class="license" src="/images/cc-by-nc-nd.png" /></a> |
+                    Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+                    Theme <a href="https://github.com/funkydan2/hugo-kiera" title="Kiera">Kiera</a> |
+                    <a href="https://hemashushu.github.io/index.xml">Subscribe </a></h6>
+            </li>
+            
+            
+        </ul>
+        
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+
+</body>
+
+</html>
+

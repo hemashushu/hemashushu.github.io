@@ -8,7 +8,7 @@ meta: "false"
 
 Hi! I'm _Hemashushu_.
 
-Here I share some fun and interesting computer technology, programming skills and learning notes, and also publish some of my software. These articles will also be synchronized to my _WeChat Subscription_, welcome to subscribe, if you find my articles or software useful to you, thanks for donating 😋
+Here I share some fun and interesting computer technology, programming skills and learning notes, and also publish some of my software. Follow me on Twitter [@hemashushu](https://twitter.com/hemashushu) and Github [Hema Shushu](https://github.com/hemashushu) for updates. Please consider donating to me if you find my articles or software is helpful to you 😋
 
 {{< rawhtml >}}
 <div>

@@ -4,6 +4,29 @@
   <url>
     <loc>https://hemashushu.github.io/posts/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/posts/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/</loc>
+    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/"
+                />
   </url><url>
     <loc>https://hemashushu.github.io/categories/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>
@@ -33,9 +56,29 @@
   </url><url>
     <loc>https://hemashushu.github.io/tags/riscv/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/riscv/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/riscv/"
+                />
   </url><url>
     <loc>https://hemashushu.github.io/tags/scratch/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/scratch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/scratch/"
+                />
   </url><url>
     <loc>https://hemashushu.github.io/tags/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>
@@ -52,21 +95,28 @@
   </url><url>
     <loc>https://hemashushu.github.io/categories/tutorial/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/categories/tutorial/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/categories/tutorial/"
+                />
   </url><url>
     <loc>https://hemashushu.github.io/about/</loc>
     <lastmod>2022-08-07T20:53:01+08:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme/</loc>
-  </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-11-06-risc-v-gcc-quick-start/readme.zh-hans/</loc>
-  </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-11-07-build-minimal-risc-v-program/readme/</loc>
-  </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-11-07-build-minimal-risc-v-program/readme.zh-hans/</loc>
-  </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-11-08-qemu-and-debug/readme.zh-hans/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/about/"
+                />
   </url>
 </urlset>

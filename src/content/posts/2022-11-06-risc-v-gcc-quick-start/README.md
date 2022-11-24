@@ -1,1 +1,0 @@
-# RISC-V GCC Quick Start
