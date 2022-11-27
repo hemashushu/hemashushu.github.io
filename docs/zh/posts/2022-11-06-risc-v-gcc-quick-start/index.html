@@ -3,11 +3,11 @@
 <html lang="en-us">
 
 <head>
-  <title>GCC 交叉编译速通 - 河马蜀黍真是的</title>
+  <title>GCC 交叉编译第一个程序 - 河马蜀黍真是的</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件" />
-<meta name="author" content="hemashushu" /><meta property="og:title" content="GCC 交叉编译速通" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="GCC 交叉编译第一个程序" />
 <meta property="og:description" content="XiaoXuan Assembler 需要其它编译器的编译结果作为参照物，而 RISC-V GCC 是比较完善和成熟的 RISC-V 编译器，因此 XiaoXuan Assembler 默认选用它对编译、汇编和链接的结果进行参考、验证和测试。 本篇文章将会构建两个非常简单的程序：一个 &ldquo;Hello World!&rdquo; 程序和一个裸机程序，通过构建的过程以简单了解 RISC-V GCC 的基本使用方法。 RISC-V GCC 介绍 QEMU 模拟器 第一个程序 编译 可执行文件 二进制工具 size readelf objdump 运行 分阶段编译 常用的编译参数 裸机程序 程序的组成 基础库 计算库 主程序 启动器 编译 打包目标文件 链接 运行 RISC-V GCC 介绍 假设我们工作环境的架构是 x86_64，现在需要把程序（的源代码）编译成可以在 RISC-V 架构上运行的程序，这种编译叫" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/zh/posts/2022-11-06-risc-v-gcc-quick-start/" /><meta property="article:section" content="posts" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="GCC 交叉编译速通"/>
+<meta name="twitter:title" content="GCC 交叉编译第一个程序"/>
 <meta name="twitter:description" content="XiaoXuan Assembler 需要其它编译器的编译结果作为参照物，而 RISC-V GCC 是比较完善和成熟的 RISC-V 编译器，因此 XiaoXuan Assembler 默认选用它对编译、汇编和链接的结果进行参考、验证和测试。 本篇文章将会构建两个非常简单的程序：一个 &ldquo;Hello World!&rdquo; 程序和一个裸机程序，通过构建的过程以简单了解 RISC-V GCC 的基本使用方法。 RISC-V GCC 介绍 QEMU 模拟器 第一个程序 编译 可执行文件 二进制工具 size readelf objdump 运行 分阶段编译 常用的编译参数 裸机程序 程序的组成 基础库 计算库 主程序 启动器 编译 打包目标文件 链接 运行 RISC-V GCC 介绍 假设我们工作环境的架构是 x86_64，现在需要把程序（的源代码）编译成可以在 RISC-V 架构上运行的程序，这种编译叫"/>
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
@@ -83,7 +83,7 @@
 
 <article>
 
-    <h1>GCC 交叉编译速通</h1>
+    <h1>GCC 交叉编译第一个程序</h1>
 
     
       <aside>
@@ -461,7 +461,8 @@
 </span></span><span style="display:flex;"><span>    [VIRT_DRAM] <span style="color:#f92672">=</span>         { <span style="color:#ae81ff">0x80000000</span>,           <span style="color:#ae81ff">0x0</span> },
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><p>其中串口通信 UART 被映射到 <code>0x1000_0000</code>，这表明只需向该内存地址写入一个 byte 类型整数，该整数对应的 ASCII 字符就会被重定向到虚拟终端。</p>
+</span></span></code></pre></div><p><a href="https://github.com/michaeljclark/riscv-probe/blob/master/libfemto/drivers/ns16550a.c">https://github.com/michaeljclark/riscv-probe/blob/master/libfemto/drivers/ns16550a.c</a></p>
+<p>其中串口通信 UART 被映射到 <code>0x1000_0000</code>，这表明只需向该内存地址写入一个 byte 类型整数，该整数对应的 ASCII 字符就会被重定向到虚拟终端。</p>
 <blockquote>
 <p>并非所有的硬件读写都是这种方式，后续的文章会详细讲解如何用汇编写驱动，比如 GPIO，I2C 等控制。</p>
 </blockquote>
@@ -694,7 +695,7 @@
     <ul>
         <li>
         
-            <a href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/"><i class="fa fa-chevron-circle-left"></i> 从零开始使用自己的工具一步一步构建现代计算机系统 - 简介</a>
+            <a href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/"><i class="fa fa-chevron-circle-left"></i> S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序</a>
         
         </li>
         <li>

@@ -40,12 +40,18 @@ body {
 }
 
 #container main article>pre {
-    background-color: #a0a04b;
-    box-shadow: 0 -1px 0 #bbbbbb inset;
+    background-color: #443b39;
+    /* box-shadow: 0 -1px 0 #bbbbbb inset; */
 }
 
-#container main article p code {
-    background-color: #d03232;
+#container main article .highlight pre {
+    color: #e3dcd4 !important;
+    background-color: #191a17 !important;
+}
+
+#container main article p code,
+#container main article li code {
+    background-color: #f28fb13b;
 }
 
 #container main article p kbd {
@@ -218,11 +224,11 @@ table thead {
 }
 
 blockquote {
-    border-left-color: solid 0.1em #797979;
+    border-left-color: #715b54;
     background-color: #3e3b3c;
-    box-shadow: 0 -1px 0 #797979 inset;
+    /* box-shadow: 0 -1px 0 #797979 inset; */
 }
 
 blockquote::before {
-    color: rgba(192, 192, 192, 0.3);
+    color: rgba(213, 186, 186, 0.1);
 }

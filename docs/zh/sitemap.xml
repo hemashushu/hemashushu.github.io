@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hemashushu.github.io/zh/posts/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -16,7 +16,7 @@
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/categories/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -29,19 +29,13 @@
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/categories/dirv/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/gdb/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/opensbi/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/qemu/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
+    <loc>https://hemashushu.github.io/zh/tags/gcc/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/riscv/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -53,8 +47,11 @@
                 href="https://hemashushu.github.io/zh/tags/riscv/"
                 />
   </url><url>
+    <loc>https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://hemashushu.github.io/zh/tags/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -66,11 +63,8 @@
                 href="https://hemashushu.github.io/zh/tags/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/uboot/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://hemashushu.github.io/zh/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -81,21 +75,6 @@
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/"
                 />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/posts/2022-11-08-qemu-and-debug/</loc>
-    <lastmod>2022-11-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/assembly/</loc>
-    <lastmod>2022-11-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/posts/2022-11-07-build-minimal-risc-v-program/</loc>
-    <lastmod>2022-11-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/gcc/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/posts/2022-11-06-risc-v-gcc-quick-start/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/scratch/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>

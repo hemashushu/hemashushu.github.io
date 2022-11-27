@@ -138,7 +138,7 @@ Finally, while systems technology is not realistically useful, it can be a good 
 
 - Part II: Implementing the minimal kernel, i.e. implementing basic serial text sending and receiving, page tables, memory management, program loader, process switch and message mechanisms.
 
-- Part II: Implementing the most simplified _ext4_ like file system.
+- Part III: Implementing the most simplified _ext4_ like file system.
 
 - Part IV: Implementing a simple _Shell_.
 
@@ -146,6 +146,10 @@ Finally, while systems technology is not realistically useful, it can be a good 
 
 - Part VI: Implementing a package manager.
 
-- Part VII: Implementing a simple graphics acceleration coprocessor.
+- Part VII: Adding a floating point module to the processor, and a matrix algorithm coprocessor.
 
-- Part VIII: Implementing a simple graphics library, and make a retro action game.
+- Part VIII: implementing a simple machine learning library and then implementing a handwritten number recognition program.
+
+- Part IX: Implementing a simple graphics acceleration coprocessor.
+
+- Part X: Implementing a simple graphics library, and make a retro action game.

@@ -92,114 +92,11 @@
     
 
     <li class="first" >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-08-qemu-and-debug/" title="玩转 QEMU 模拟器">玩转 QEMU 模拟器</a></h1>
+      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/" title="S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序">S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序</a></h1>
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2022-11-08T00:00:00Z">Nov 8, 2022</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="/zh/categories/dirv">dirv</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="/zh/tags/riscv">#riscv</a>
-                
-                    , 
-                    <a href="/zh/tags/qemu">#qemu</a>
-                
-                    , 
-                    <a href="/zh/tags/opensbi">#opensbi</a>
-                
-                    , 
-                    <a href="/zh/tags/uboot">#uboot</a>
-                
-                    , 
-                    <a href="/zh/tags/gdb">#gdb</a>
-                
-            </em>
-        </li>
-        
-
-        <li>16 minute read</li>
-    </ul>
-</aside>
-
-      
-
-      <p>在上一篇文章我们了解了一个 RISC-V 程序的组成和运行原理，其中程序都是在 QEMU 里运行的，这篇文章将会讲解 QEMU 的详细使用方法，OpenSBI 的作用，以及通过 QEMU 调试裸机程序的方法。 QEMU 全系统模式 运行程序的原理 加载应用程序 RISC-V 系统的特权级别 QEMU 其它常用参数 真实 RISC-V 硬件 OpenSBI 调用 SBI 服务 裸机程序的调试 GDB 的调试方式 调试裸机程序 QEMU 全系统模式 前面的文章提到，QEMU 有两种工作模式：一种是 全系统模式，此时 QEMU 会模拟一整套计算机硬件，包括 CPU、内存、磁盘、网络接口、USB 接口等组件；另外一种是 用户模式，用于直接运行目标架构为 RISC-V 的可执行文件。 因为 用户模</p>
-      
-      <a href="/zh/posts/2022-11-08-qemu-and-debug/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-07-build-minimal-risc-v-program/" title="构建最小的 RISC-V 程序">构建最小的 RISC-V 程序</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2022-11-07T00:00:00Z">Nov 7, 2022</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="/zh/categories/dirv">dirv</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="/zh/tags/riscv">#riscv</a>
-                
-                    , 
-                    <a href="/zh/tags/assembly">#assembly</a>
-                
-            </em>
-        </li>
-        
-
-        <li>19 minute read</li>
-    </ul>
-</aside>
-
-      
-
-      <p>在上一篇文章我们简单地了解了交叉编译工具 RISC-V GCC 的基本使用方法。这篇文章将会以纯汇编构建两个程序：一个最小的裸机程序和一个最小的 Linux 应用程序。一般情况下我们不需要直接使用汇编写程序，但通过这种方式可以排除不相关的内容，以了解一个 RISC-V 程序的最根本的组成和运行的原理。 最小的裸机程序 源代码 汇编 目标文件 文件类型 符号列表 段 段的大小 反汇编 链接 可执行文件 文件类型 符号列表 段 Program Headers 段大小 第一次运行 链接脚本 第二次运行 给程序减肥 第三次运行 最小的 Linux 程序 系统调用 系统调用的实现 程序的源代码 编译 运行 最小的裸机程序 本章演示的是一个最终只有大约 30 个</p>
-      
-      <a href="/zh/posts/2022-11-07-build-minimal-risc-v-program/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-06-risc-v-gcc-quick-start/" title="GCC 交叉编译速通">GCC 交叉编译速通</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2022-11-06T00:00:00Z">Nov 6, 2022</time>
+            <time class="post-date" datetime="2022-11-05T00:00:00Z">Nov 5, 2022</time>
         </li>
         
         
@@ -228,15 +125,21 @@
         </li>
         
 
-        <li>21 minute read</li>
+        <li>18 minute read</li>
     </ul>
 </aside>
 
       
+<div class="featured_image">
+    <a href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/" title="S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序">
+        <img src="/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png">
+    </a>
+</div>
 
-      <p>XiaoXuan Assembler 需要其它编译器的编译结果作为参照物，而 RISC-V GCC 是比较完善和成熟的 RISC-V 编译器，因此 XiaoXuan Assembler 默认选用它对编译、汇编和链接的结果进行参考、验证和测试。 本篇文章将会构建两个非常简单的程序：一个 &ldquo;Hello World!&rdquo; 程序和一个裸机程序，通过构建的过程以简单了解 RISC-V GCC 的基本使用方法。 RISC-V GCC 介绍 QEMU 模拟器 第一个程序 编译 可执行文件 二进制工具 size readelf objdump 运行 分阶段编译 常用的编译参数 裸机程序 程序的组成 基础库 计算库 主程序 启动器 编译 打包目标文件 链接 运行 RISC-V GCC 介绍 假设我们工作环境的架构是 x86_64，现在需要把程序（的源代码）编译成可以在 RISC-V 架构上运行的程序，这种编译叫</p>
+
+      <p>这是 《从零开始使用自己的工具一步一步构建现代计算机系统》 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。 这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。 在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指</p>
       
-      <a href="/zh/posts/2022-11-06-risc-v-gcc-quick-start/">Read more…</a>
+      <a href="/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/">Read more…</a>
       
     </li>
     

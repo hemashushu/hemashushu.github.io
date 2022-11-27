@@ -1,7 +1,7 @@
 ---
-title: "GCC 交叉编译速通"
+title: "GCC 交叉编译第一个程序"
 date: 2022-11-06
-draft: false
+draft: true
 tags: ["riscv", "gcc"]
 categories: ["dirv"]
 ---
@@ -446,6 +446,8 @@ static const MemMapEntry virt_memmap[] = {
     ...
 };
 ```
+
+https://github.com/michaeljclark/riscv-probe/blob/master/libfemto/drivers/ns16550a.c
 
 其中串口通信 UART 被映射到 `0x1000_0000`，这表明只需向该内存地址写入一个 byte 类型整数，该整数对应的 ASCII 字符就会被重定向到虚拟终端。
 

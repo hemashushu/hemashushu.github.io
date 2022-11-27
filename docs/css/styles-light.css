@@ -170,26 +170,39 @@ time {
 }
 
 #container main article>pre {
-    background-color: #ffffcc;
+    background-color: #eef7d2;
     overflow-x: auto;
     padding: 0.8em;
     font-size: 0.9em;
-    box-shadow: 0 -1px 0 #bbbbbb inset;
+    /* box-shadow: 0 -1px 0 #bbbbbb inset; */
+}
+
+#container main article .highlight {
+    overflow: hidden;
+    border-radius: 6px;
 }
 
 #container main article .highlight pre {
     overflow-x: auto;
     font-size: 0.9em;
     padding: 0.8em;
+    margin: 0;
+}
+
+#container main article .highlight pre code[data-lang="text"] {
+    white-space: normal;
+    word-break: break-word;
 }
 
 #container main article pre code {
     font-size: 0.9em;
 }
 
-#container main article p code {
-    padding: 0.2em;
-    background-color: #ffcccc;
+#container main article p code,
+#container main article li code {
+    padding: 0.1em 0.4em 0.2em;
+    border-radius: 6px;
+    background-color: #ff88882b;
     font-size: 0.9em;
 }
 
@@ -504,7 +517,7 @@ article img+em {
     text-align: center;
     margin-bottom: 24px;
     font-size: .8em;
-    font-style: normal;
+    font-style: italic;
 }
 
 table {
@@ -522,7 +535,7 @@ blockquote {
     padding: 0.5em 2em;
     position: relative;
     background-color: #efefef;
-    box-shadow: 0 -1px 0 #bbbbbb inset;
+    /* box-shadow: 0 -1px 0 #bbbbbb inset; */
 }
 
 blockquote::before {
@@ -532,8 +545,16 @@ blockquote::before {
     font-size: 3em;
     color: rgba(192, 192, 192, 0.3);
     position: absolute;
-    left: 6px;
+    left: 16px;
     top: 0;
+}
+
+hr {
+    height: 1px;
+    border-style: none;
+    background-color: #999;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 @media only screen and (max-width: 900px) {

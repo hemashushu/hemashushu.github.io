@@ -1,7 +1,7 @@
 ---
 title: "玩转 QEMU 模拟器"
 date: 2022-11-08
-draft: false
+draft: true
 tags: ["riscv", "qemu", "opensbi", "uboot", "gdb"]
 categories: ["dirv"]
 ---
