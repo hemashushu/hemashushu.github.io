@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hemashushu.github.io/posts/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -13,6 +13,97 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://hemashushu.github.io/posts/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/categories/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/categories/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/categories/dirv/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/categories/dirv/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/categories/dirv/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/tags/gcc/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/gcc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/gcc/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/tags/riscv/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/riscv/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/riscv/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/tags/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/</loc>
@@ -28,45 +119,6 @@
                 href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/categories/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/categories/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/tags/riscv/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/tags/riscv/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/tags/riscv/"
-                />
-  </url><url>
     <loc>https://hemashushu.github.io/tags/scratch/</loc>
     <lastmod>2022-10-31T14:34:52+08:00</lastmod>
     <xhtml:link
@@ -78,19 +130,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://hemashushu.github.io/tags/scratch/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/tags/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/tags/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/categories/tutorial/</loc>
