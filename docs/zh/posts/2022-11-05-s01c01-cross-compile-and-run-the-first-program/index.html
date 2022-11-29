@@ -221,15 +221,15 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 <p>如果没有另外的说明，整个系列文章的操作都是在 Linux 系统环境里完成的，当然你也可以在自己平常使用的系统上操作，不过如果你决心要深入学习系统技术的话，建议还是使用 Linux 系统环境，除了比较方便之外，更重要的是 Linux 系统（特别是内核）就像一个开放的图书馆，里面充满了宝藏，放着宝藏不要那实在太浪费了。</p>
 </blockquote>
 <h2 id="交叉编译第一个程序">交叉编译第一个程序</h2>
-<p>&ldquo;Hello World!&rdquo; 程序就像编程世界里的史莱姆一般的存在，作为交叉编译的第一个实践对象当然不会放过它。</p>
+<p>&ldquo;Hello, World!&rdquo; 程序就像编程世界里的史莱姆一般的存在，作为交叉编译的第一个实践对象当然不会放过它。</p>
 <p>在任意位置新建一个名为 <code>hello-world</code> 的目录，然后创建名为 <code>app.c</code> 的文件，内容如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Hello World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>程序的功能非常简单：向屏幕打印一行文字 &ldquo;Hello World!&quot;，然后结束程序，程序的返回值为 <code>0</code>。所谓 <em>返回值</em> 即 <em>exit code</em>，是一个 <code>uint32</code> 数字，需注意的是在 POSIX 环境里 <em>返回值</em> 只有其二进制的最小 8 位是有效的，因此有效值的范围是从 0 到 255。可以通过命令 <code>$ echo $?</code> 显示上一个结束的程序的返回值。</p>
+</span></span></code></pre></div><p>程序的功能非常简单：向屏幕打印一行文字 &ldquo;Hello, World!&quot;，然后结束程序，程序的返回值为 <code>0</code>。所谓 <em>返回值</em> 即 <em>exit code</em>，是一个 <code>uint32</code> 数字，需注意的是在 POSIX 环境里 <em>返回值</em> 只有其二进制的最小 8 位是有效的，因此有效值的范围是从 0 到 255。可以通过命令 <code>$ echo $?</code> 显示上一个结束的程序的返回值。</p>
 <blockquote>
 <p>每篇文章里面的源代码我都会存放一份在文章目录里面一个名为 <code>resources</code> 的文件夹里，有需要的可以到 <a href="https://github.com/hemashushu/hemashushu.github.io/tree/main/src/content/posts">文章的 Github 源代码仓库</a> 下载。</p>
 </blockquote>
@@ -291,7 +291,7 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 <p>QEMU 出自一位颇具传奇色彩的程序员 <a href="https://bellard.org/">Fabrice Bellard</a> 之手，他写的 <a href="http://ffmpeg.org/">FFmpeg</a> 几乎存在每一台计算机里（尽管可能很多人都不知道，但却是真的），大部分媒体播放器软件及视频编辑软件都依赖它，另外还写了 TCC、QuickJS 等程序。</p>
 </blockquote>
 <h3 id="尝试运行程序">尝试运行程序</h3>
-<p>如果使用全系统模式运行我们的程序，还需要给虚拟机配置系统引导器、一个包含有 RISC-V 架构版本的 Linux 系统的虚拟磁盘，另外还需要把应用程序传送进去等。所以为了快速把上面写的 &ldquo;Hello World!&rdquo; 程序跑起来，下面使用用户模式来运行：</p>
+<p>如果使用全系统模式运行我们的程序，还需要给虚拟机配置系统引导器、一个包含有 RISC-V 架构版本的 Linux 系统的虚拟磁盘，另外还需要把应用程序传送进去等。所以为了快速把上面写的 &ldquo;Hello, World!&rdquo; 程序跑起来，下面使用用户模式来运行：</p>
 <p><code>$ qemu-riscv64 app.out</code></p>
 <p>运行的结果是：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>qemu-riscv64: Could not open &#39;/lib/ld-linux-riscv64-lp64d.so.1&#39;: No such file or directory
@@ -302,7 +302,7 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 <li><code>$ qemu-riscv64 -L /usr/riscv64-linux-gnu/ app.out</code></li>
 <li><code>$ QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/ qemu-riscv64 app.out</code></li>
 </ul>
-<p>如无意外，上面两个命令都能正确运行，能看到程序输出的 &ldquo;Hello World!&rdquo; 文本。</p>
+<p>如无意外，上面两个命令都能正确运行，能看到程序输出的 &ldquo;Hello, World!&rdquo; 文本。</p>
 <h3 id="编译为静态链接类型的程序">编译为静态链接类型的程序</h3>
 <p>除了通过指定 <em>QEMU 用户模式</em> 的程序动态链接器来正确运行程序之外，还有另外一个方法，就是让 GCC 生成静态链接类型的可执行文件。</p>
 <p>所谓静态链接程序，就是把外部函数的二进制代码（即指令序列）在编译时复制到目标可执行文件里，这样程序在运行时就不再需要动态链接其它共享库了，当然也就不再需要动态链接器 <code>ld.so</code> 了。在 GCC 编译命令里添加 <code>-static</code> 参数可指示 GCC 生成静态链接的程序，修改后的编译命令如下：</p>
@@ -314,7 +314,7 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 </span></span></code></pre></div><p>可见原先的 &ldquo;dynamically linked&rdquo; 已经变为 &ldquo;statically linked&rdquo;。</p>
 <p>然后用 <code>qemu-riscv64</code> 运行这个静态链接的可执行文件：</p>
 <p><code>$ qemu-riscv64 app-static.out</code></p>
-<p>同样可以得到了预期的结果：程序输出一行 &ldquo;Hello World!&rdquo; 文本。</p>
+<p>同样可以得到了预期的结果：程序输出一行 &ldquo;Hello, World!&rdquo; 文本。</p>
 <p>然后看看同一个程序的动态链接类型和静态链接类型的文件大小：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ ls -lh
 </span></span><span style="display:flex;"><span>total 668K
@@ -403,7 +403,7 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 </blockquote>
 <p>如果将编译任务分为 <em>编译</em> 和 <em>链接</em> 两步，则在编译阶段只需指定 <code>-I</code> 参数，而链接阶段只需指定 <code>-L</code> 和 <code>-l</code> 参数，因为头文件仅供预处理使用的，对链接无意义，而库文件则仅供链接使用，对编译无意义。</p>
 <h2 id="总结">总结</h2>
-<p>这章主要讲解什么是交叉编译，以及交叉编译了一个 &ldquo;Hello World!&rdquo; 程序，然后使用 QEMU 模拟一个不同架构的 Linux 环境来运行交叉编译得到的可执行文件。通过这一章你会发现其实交叉编译也没任何特别的地方，操作方法跟普通编译几乎一样，只是编译出来的结果（可执行文件）我们无法在当前机器上直接运行而已。</p>
+<p>这章主要讲解什么是交叉编译，以及交叉编译了一个 &ldquo;Hello, World!&rdquo; 程序，然后使用 QEMU 模拟一个不同架构的 Linux 环境来运行交叉编译得到的可执行文件。通过这一章你会发现其实交叉编译也没什么特别的地方，操作方法跟普通编译几乎一样，只是编译出来的结果（可执行文件）我们无法在当前机器上直接运行而已。</p>
 <p>这章是我们漫长的几个系列文章当中的第一个系列的第一章，如果你觉得这章的内容太难了，可能只是因为对 C 语言和 Linux 环境不是很熟悉，你可以适当停下来，然后随便找一些相关的文章或者教程看看。请记住计算机的每门科目都不需要一下子从头到尾看完，每次看一两章就可以停下来，然后去做点别的事情，让你的大脑在背后慢慢地消化，回来再看一下这系列文章，说不定一下子就全都看得懂了。</p>
 <p>好了，如果觉得没问题那就点击下一章吧。下一章将会构建一个简单的无需操作系统就可以独自运行的程序。</p>
 

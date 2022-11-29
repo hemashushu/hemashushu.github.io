@@ -9,7 +9,7 @@ _start:
     addi a7, zero, SYSCALL_WRITE
     addi a0, zero, STDOUT_FD
     la a1, hello_world
-    addi a2, zero, 13  # the length of "Hello world!\n"
+    addi a2, zero, 14  # the length of "Hello, World!\n"
     ecall
 
     # void exit(int status)
@@ -19,4 +19,4 @@ _start:
 
 .section .rodata
 hello_world:
-    .ascii "Hello world!\n"
+    .ascii "Hello, World!\n"

@@ -2,5 +2,5 @@
 
 void bare_main()
 {
-    print_string("Hello World!\n");
+    print_string("Hello, World!\n");
 }

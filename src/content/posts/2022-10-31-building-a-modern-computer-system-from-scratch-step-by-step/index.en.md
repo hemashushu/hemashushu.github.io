@@ -94,6 +94,9 @@ Finally, while systems technology is not realistically useful, it can be a good 
 
 - Part I: Understanding the usage of compiler, linker, debugger and some common binary tools, understanding the organization of program, building minimal freestanding (also called _bare metal programs_) executable programs.
 
+  - [S01C01 What is cross-compilation? Let's cross-compile and run our first program](../2022-11-05-s01c01-cross-compile-and-run-the-first-program)
+  - [S01C02 Write a Hello World program that can run alone without an OS](../2022-11-06-s01c02-write-a-program-run-alone-without-os)
+
 - Part II: A brief look at the principles of interaction between software and hardware through microcontroller (MCU). Writing bare-metal program (firmware) without SDK or HAL (hardware abstraction library), directly reading and writing registers, controlling the electrical signal of input and output pin (GPIO), implementing serial communications.
 
 - Part III: Understanding the principles of program loading, dynamic linking in modern systems, understanding the function call conventions of RISC-V and the basic instructions, writing simple programs in assembly language.
