@@ -195,6 +195,121 @@ TODO::
 
 > GCC 工具链里很多程序会提供相似的功能，比如列符号表的程序 `nm app.o`，其实也可以使用 `objdump -t app.o` 列出，还可以使用 `readelf --syms app.o` 列出。后面还会看到更多这样的情况，我们根据自己的喜好和习惯选择即可。
 
+<!--
+### 二进制工具
+
+在安装 RISC-V GCC 时，还同时安装了 RISC-V Binutils，这套工具链提供了跟 [GNU Binutils](https://www.gnu.org/software/binutils/) 对应的工具。
+
+#### `size`
+
+首先是查看程序大小的工具 `size`：
+
+`$ riscv64-linux-gnu-size app.out`
+
+输出结果如下：
+
+```text
+   text    data     bss     dec     hex filename
+   1123     584       8    1715     6b3 app.out
+```
+
+- `text` 表示程序的指令序列；
+- `data` 表示程序的初始数据；
+- `bss` 表示未初始化的（或者初始值为 `0` 的）全局变量。
+- `dec` 和 `hex` 是前面三项内容的大小（单位为字节）的总和的十进制和十六进制。
+
+需要注意的是 `bss` 的数值用于在内存里提前分配空间，除了一个整数之外，本身不占文件任何空间，但在统计时，仍然把它也加上了。
+
+根据上面显示的数值可知，编译器在我们写的应用程序里塞入了不少的额外的内容，毕竟当前程序只有一个只包含一条 `printf` 语句的函数，这样的一条语句不太可能对应 1000 多个字节的指令，而且文本内容 "Hello world!\n" 也没有 500 多字节。
+
+#### `readelf`
+
+工具 `readelf` 可以查看该 ELF 文件的详细信息：
+
+`$ riscv64-linux-gnu-readelf -l app.out`
+
+输出的（部分）结果如下：
+
+```text
+Elf file type is DYN (Position-Independent Executable file)
+Entry point 0x5b0
+There are 10 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x00000000000006e4 0x00000000000006e4  R E    0x1000
+  LOAD           0x0000000000000e08 0x0000000000001e08 0x0000000000001e08
+                 0x0000000000000248 0x0000000000000250  RW     0x1000
+
+ Section to Segment mapping:
+  Segment Sections...
+   03     .interp .note.gnu.build-id .note.ABI-tag .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .plt .text .rodata .eh_frame_hdr .eh_frame
+   04     .preinit_array .init_array .fini_array .dynamic .data .got .bss
+```
+
+下面简单讲解上面的内容：
+
+- `LOAD` 表示将会被加载进内存的 segment（因为 `segment` 和 `section` 在中文里都叫作 `段`，所以这里直接使用英文名称。一般情况下 `段` 是指 `section`），下方的 `Section to Segment mapping` 列举了每个 segment 由哪些 section 组成。
+
+   ELF 文件的主要内容由多个段（section）组成，这些段可以形成两个视图：从程序加载器的角度看，有一个叫 `segments` 的视图；从编译器、链接器角度看有一个叫 `sections` 的视图。
+
+- `LOAD` 项目显示了 segment 的文件偏移地址、虚拟地址、物理地址、在文件中的大小、在内存中的大小、标记等信息（这些内容会在本项目的其它文章种讲解）。这些信息会决定程序加载器如何处理 segment，比如 `RE` 标记表示这段内容在内存中具有 "read, execute" 权限，`RW` 标记表示这段内容在内存中具有 "read, write" 权限。
+
+> 在现代的 CPU 内存管理单元里，物理内存被虚拟化，并以固定的大小（比如 4KB）划分为一个个区块（叫作 _页面_），每个内存页面都可以有不同的权限，比如有些内存页面只可读、有些可读写、有些可执行。
+
+- `Entry point 0x5b0` 表示程序的入口，即程序第一个会被执行的指令，位于地址 `0x5b0`，。
+
+#### `objdump`
+
+工具 `objdump` 可以反汇编可执行文件当中的代码段，查看位置 `0x5b0` 的内容：
+
+`$ riscv64-linux-gnu-objdump -d app.out`
+
+输出（部分）结果如下：
+
+```text
+Disassembly of section .text:
+
+...
+00000000000005b0 <_start>:
+ 5b0:   022000ef                jal     ra,5d2 <load_gp>
+ 5b4:   87aa                    mv      a5,a0
+ 5b6:   00002517                auipc   a0,0x2
+ 5ba:   a8253503                ld      a0,-1406(a0) # 2038 <_GLOBAL_OFFSET_TABLE_+0x10>
+ 5be:   6582                    ld      a1,0(sp)
+ 5c0:   0030                    addi    a2,sp,8
+ 5c2:   ff017113                andi    sp,sp,-16
+ 5c6:   4681                    li      a3,0
+ 5c8:   4701                    li      a4,0
+ 5ca:   880a                    mv      a6,sp
+ 5cc:   fc5ff0ef                jal     ra,590 <__libc_start_main@plt>
+ 5d0:   9002                    ebreak
+```
+
+看到这里你可能感到很惊讶，原来程序的入口（即最先开始执行的指令）并不是 `main` 函数，而是一个名为 `_start` 的过程（大部分 C 语言的教科书或者教程都跟我们说：程序的入口是 `main` 函数，这是一个善意的谎言）。`_start` 过程会做一系列的初始化工作，然后才会调用 `main` 函数，在 `main` 函数执行完毕之后，它还会做一些清理工作。
+
+在上一个输出的结果里往下翻，就可以找到函数 `main` 的内容：
+
+```text
+0000000000000668 <main>:
+ 668:   1141                    addi    sp,sp,-16
+ 66a:   e406                    sd      ra,8(sp)
+ 66c:   e022                    sd      s0,0(sp)
+ 66e:   0800                    addi    s0,sp,16
+ 670:   00000517                auipc   a0,0x0
+ 674:   02050513                addi    a0,a0,32 # 690 <_IO_stdin_used+0x8>
+ 678:   f29ff0ef                jal     ra,5a0 <puts@plt>
+ 67c:   0001                    nop
+ 67e:   60a2                    ld      ra,8(sp)
+ 680:   6402                    ld      s0,0(sp)
+ 682:   0141                    addi    sp,sp,16
+ 684:   8082                    ret
+```
+
+该段指令包含了普通函数的 _开场白_ 和 _收场白_ 模板代码，以及一句对函数 `puts` 的调用。
+-->
 
 
 #### `size`
@@ -695,6 +810,9 @@ Program Headers:
 ```
 
 从上面的信息可见程序的入口以及虚拟内存地址均为 `0x80000000`，加载的大小为 `0x1c` 字节，刚好就是代码段的大小。
+
+
+有关链接脚本的具体内容可以参阅 [Linker Scripts](https://sourceware.org/binutils/docs/ld/Scripts.html) 或者 [中文翻译版](https://blog.csdn.net/m0_47799526/article/details/108765403) 。
 
 ### 第二次运行
 

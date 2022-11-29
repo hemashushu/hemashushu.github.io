@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序" />
-<meta property="og:description" content="这是 《从零开始使用自己的工具一步一步构建现代计算机系统》 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。 这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。 在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指" />
+<meta property="og:description" content="这是 《从零开始使用自己的工具一步一步构建现代计算机系统》 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。 在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-05T00:00:00+00:00" />
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png"/>
 
 <meta name="twitter:title" content="S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序"/>
-<meta name="twitter:description" content="这是 《从零开始使用自己的工具一步一步构建现代计算机系统》 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。 这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。 在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指"/>
+<meta name="twitter:description" content="这是 《从零开始使用自己的工具一步一步构建现代计算机系统》 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。 在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指"/>
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
     
@@ -106,7 +106,10 @@
             <em>
                 
                     
-                    <a href="/zh/categories/dirv">dirv</a>
+                    <a href="/zh/categories/craft-system">craft-system</a>
+                
+                    , 
+                    <a href="/zh/categories/dive-into-riscv">dive-into-riscv</a>
                 
             </em>
         </li>
@@ -121,6 +124,9 @@
                 
                     , 
                     <a href="/zh/tags/gcc">#gcc</a>
+                
+                    , 
+                    <a href="/zh/tags/qemu">#qemu</a>
                 
             </em>
         </li>
@@ -143,8 +149,7 @@
 
     
 
-    <p>这是 <a href="../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step">《从零开始使用自己的工具一步一步构建现代计算机系统》</a> 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。</p>
-<p>这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。</p>
+    <p>这是 <a href="../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step">《从零开始使用自己的工具一步一步构建现代计算机系统》</a> 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。</p>
 <p>在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指令的等，然后才开始设计和编写程序。编程语言主要使用 <a href="https://www.rust-lang.org/">Rust</a>，它很适合底层程序的开发，能让我们避免很多低级错误，同时像很多现代语言一样拥有很多方便的工具；</p>
 <blockquote>
 <p>很多跟编译器和内核开发相关的文章、教程和项目都选择 C 语言作为编程语言，这是因为在几年之前用 C 语言的确是最合适的。不过现在有了更好的选择，所以这个系列我会用 Rust 来写汇编器和脚本解析器，这并不是为了追赶时髦，而是为了让我们避免一些不必要的挫折。当然在前面讲述基本原理的章节里，还是会用到 C 语言，毕竟它非常直接明了，能够很好地跟汇编对应上。顺带一提，很多人认为 Rust 是 C++ 的替代品，实际上并不是，从应用场景来看，它更偏向 C 语言这一类。</p>
@@ -170,7 +175,7 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 <ul>
 <li><a href="#%E5%AE%89%E8%A3%85-qemu">安装 QEMU</a></li>
 <li><a href="#%E5%B0%9D%E8%AF%95%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F">尝试运行程序</a></li>
-<li><a href="#%E6%8C%87%E5%AE%9A-_qemu-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F_-%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%99%A8">指定 <em>QEMU 用户模式</em> 的程序动态链接器</a></li>
+<li><a href="#%E6%8C%87%E5%AE%9A-qemu-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%99%A8">指定 QEMU 用户模式的程序动态链接器</a></li>
 <li><a href="#%E7%BC%96%E8%AF%91%E4%B8%BA%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%A8%8B%E5%BA%8F">编译为静态链接类型的程序</a></li>
 <li><a href="#%E6%8C%87%E5%AE%9A%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%99%A8">指定程序的动态链接器</a></li>
 </ul>
@@ -291,7 +296,7 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 <p>运行的结果是：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>qemu-riscv64: Could not open &#39;/lib/ld-linux-riscv64-lp64d.so.1&#39;: No such file or directory
 </span></span></code></pre></div><p>显然程序并没有正确地运行。GCC 默认产生动态链接类型的程序，这种程序在运行时需要一个 <em>运行时动态链接器</em> 加载程序所需的共享库，以及进行一系列的初始化工作（动态链接器即 <code>ld.so</code>，在当前的例子里，它是错误信息里显示的那个 <code>/lib/ld-linux-riscv64-lp64d.so.1</code>）。然而 GCC 默认产生的程序是假定在 &ldquo;普通 Linux 环境&rdquo; 里运行，而不是 <em>QEMU 用户模式</em> 这种特殊的环境。当前主机系统存在动态链接器 <code>/lib/ld-linux-x86-64.so.2</code>，但不存在 <code>/lib/ld-linux-riscv64-lp64d.so.1</code>，所以就出错了。</p>
-<h3 id="指定-_qemu-用户模式_-的程序动态链接器">指定 <em>QEMU 用户模式</em> 的程序动态链接器</h3>
+<h3 id="指定-qemu-用户模式的程序动态链接器">指定 QEMU 用户模式的程序动态链接器</h3>
 <p>如果你的系统是 <em>Arch Linux</em>，会发现文件 <code>ld-linux-riscv64-lp64d.so.1</code> 的真正路径是 <code>/usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1</code>，按照 <code>qemu-riscv64</code> 的说明，通过参数 <code>-L</code> 或者环境变量 <code>QEMU_LD_PREFIX</code> 传入一个路径，QEMU 就会把这个路径作为前缀添加到 ELF 的 <code>interpreter</code> 指定的程序的前面。例如：</p>
 <ul>
 <li><code>$ qemu-riscv64 -L /usr/riscv64-linux-gnu/ app.out</code></li>
@@ -398,9 +403,15 @@ the linker writers in the world could probably fit in one room</em>）。看来�
 </blockquote>
 <p>如果将编译任务分为 <em>编译</em> 和 <em>链接</em> 两步，则在编译阶段只需指定 <code>-I</code> 参数，而链接阶段只需指定 <code>-L</code> 和 <code>-l</code> 参数，因为头文件仅供预处理使用的，对链接无意义，而库文件则仅供链接使用，对编译无意义。</p>
 <h2 id="总结">总结</h2>
-<p>这章主要讲解什么是交叉编译，交叉编译的作用，以及尝试交叉编译一个 &ldquo;Hello World!&rdquo; 程序，然后使用 QEMU 模拟一个不同架构的 Linux 环境来运行交叉编译得到的可执行文件。</p>
+<p>这章主要讲解什么是交叉编译，以及交叉编译了一个 &ldquo;Hello World!&rdquo; 程序，然后使用 QEMU 模拟一个不同架构的 Linux 环境来运行交叉编译得到的可执行文件。通过这一章你会发现其实交叉编译也没任何特别的地方，操作方法跟普通编译几乎一样，只是编译出来的结果（可执行文件）我们无法在当前机器上直接运行而已。</p>
 <p>这章是我们漫长的几个系列文章当中的第一个系列的第一章，如果你觉得这章的内容太难了，可能只是因为对 C 语言和 Linux 环境不是很熟悉，你可以适当停下来，然后随便找一些相关的文章或者教程看看。请记住计算机的每门科目都不需要一下子从头到尾看完，每次看一两章就可以停下来，然后去做点别的事情，让你的大脑在背后慢慢地消化，回来再看一下这系列文章，说不定一下子就全都看得懂了。</p>
 <p>好了，如果觉得没问题那就点击下一章吧。下一章将会构建一个简单的无需操作系统就可以独自运行的程序。</p>
+
+
+<div>
+    <img src="/images/subscribe-and-donate.zh.png" class="block-image image-480px"/>
+</div>
+
 
 
 </article>
@@ -414,6 +425,8 @@ the linker writers in the world could probably fit in one room</em>）。看来�
         
         </li>
         <li>
+        
+            <a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/">S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序 <i class="fa fa-chevron-circle-right"></i> </a>
         
         </li>
     </ul>

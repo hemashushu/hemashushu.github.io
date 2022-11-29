@@ -1,15 +1,11 @@
-+++
-title = "从零开始使用自己的工具一步一步构建现代计算机系统 - 简介"
-date = 2022-10-31T14:34:52+08:00
-images = ["/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"]
-tags = ["riscv", "scratch"]
-categories = ["tutorial"]
-draft = false
-+++
-
-<!--
-# 从零开始使用自己的工具一步一步构建现代计算机系统 - 简介
--->
+---
+title: "从零开始使用自己的工具一步一步构建现代计算机系统 - 简介"
+date: 2022-10-31T14:34:52+08:00
+images: ["/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"]
+tags: ["riscv"]
+categories: ["craft-system"]
+draft: false
+---
 
 ## 前言
 

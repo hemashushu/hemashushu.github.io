@@ -92,6 +92,62 @@
     
 
     <li class="first" >
+      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/" title="S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序">S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2022-11-06T00:00:00Z">Nov 6, 2022</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/zh/categories/craft-system">craft-system</a>
+                
+                    , 
+                    <a href="/zh/categories/dive-into-riscv">dive-into-riscv</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/zh/tags/riscv">#riscv</a>
+                
+                    , 
+                    <a href="/zh/tags/bare-metal">#bare-metal</a>
+                
+            </em>
+        </li>
+        
+
+        <li>11 minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/" title="S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序">
+        <img src="/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/images/bare-metal.png">
+    </a>
+</div>
+
+
+      <p>上一章 我们写了一个 &ldquo;Hello World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。这一章将会编写一个无需操作系统即可独自运行的 &ldquo;Hello World!&rdquo; 程序，然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。以此了解一个计算机在通电之后是怎样开始运行程序的，以及了解一个裸机程序应该怎样编写。 什么是裸机程序？ 如何启动裸机程序 裸机版的 &ldquo;Hello World!&rdquo; 程序 如何直接访问硬件？ 通过串口发送字符 实现 print_string 函数 主程序 程序启动器 编译 链接 运行 打包静态库 总结 什么是裸机程序？ 裸机程序 是指在 &ldquo;无操作系统&rdquo; 的环境中运行的程序，初一听起来可能会觉得很神奇：一个机器不用</p>
+      
+      <a href="/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
       <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/" title="S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序">S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序</a></h1>
       <aside>
     <ul>
@@ -105,7 +161,10 @@
             <em>
                 
                     
-                    <a href="/zh/categories/dirv">dirv</a>
+                    <a href="/zh/categories/craft-system">craft-system</a>
+                
+                    , 
+                    <a href="/zh/categories/dive-into-riscv">dive-into-riscv</a>
                 
             </em>
         </li>
@@ -120,6 +179,9 @@
                 
                     , 
                     <a href="/zh/tags/gcc">#gcc</a>
+                
+                    , 
+                    <a href="/zh/tags/qemu">#qemu</a>
                 
             </em>
         </li>
@@ -137,7 +199,7 @@
 </div>
 
 
-      <p>这是 《从零开始使用自己的工具一步一步构建现代计算机系统》 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。 这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。 在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指</p>
+      <p>这是 《从零开始使用自己的工具一步一步构建现代计算机系统》 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。这个系列的目标是实现一个 RISC-V 汇编器和链接器，以及一门有特色的汇编语言和链接脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件）了，这是我们制作自己的工具的基础。 在实现这个目标之前我们有必要先了解一些现有的、被广泛使用的基本工具（主要是编译和调试工具），然后我们还要了解现有的系统的基本原理，比如程序是如何组成的、程序是如何运行的、软件和硬件之间是如何交互的，以及汇编语言是怎样被转换为指</p>
       
       <a href="/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/">Read more…</a>
       
@@ -158,7 +220,7 @@
             <em>
                 
                     
-                    <a href="/zh/categories/tutorial">tutorial</a>
+                    <a href="/zh/categories/craft-system">craft-system</a>
                 
             </em>
         </li>
@@ -170,9 +232,6 @@
                 
                     
                     <a href="/zh/tags/riscv">#riscv</a>
-                
-                    , 
-                    <a href="/zh/tags/scratch">#scratch</a>
                 
             </em>
         </li>

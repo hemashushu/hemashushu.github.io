@@ -1,13 +1,11 @@
-+++
-title = "Building a Modern Computer System from Scratch Using Our Own Tools Step by Step"
-date = 2022-10-31T14:34:52+08:00
-images = ["/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"]
-tags = ["riscv", "scratch"]
-categories = ["tutorial"]
-draft = false
-+++
-
-<!-- # Building a modern computer system from scratch using your own tools step by step -->
+---
+title: "Building a modern computer system from scratch using your own tools step by step"
+date: 2022-10-31T14:34:52+08:00
+images: ["/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"]
+tags: ["riscv"]
+categories: ["craft-system"]
+draft: false
+---
 
 ## Preface
 
@@ -26,7 +24,7 @@ In addition, there are also problems with the learning way, as computer system t
 
 ![way](images/way.en.png)
 
-In general, although we have almost all studied subjects related to computer systems, we have not really mastered these techniques because we are so far from how systems are built. Try designing a minimal instruction set and drawing the data path of a microarchitecture by hand without the help of the Internet, or writing a cold-boot bootloader for a target architecture, or writing a simple syntax parser from scratch without any libraries, and you will find it very difficult.
+In general, although you have almost all studied subjects related to computer systems, you have not really mastered these techniques because they are so far from how systems are built. Try designing a minimal instruction set and drawing the data path of a microarchitecture by hand without the help of the Internet, or writing a cold-boot bootloader for a target architecture, or writing a simple syntax parser from scratch without any libraries, and you will find it very difficult.
 
 ## Features
 
@@ -36,7 +34,7 @@ We have learned a lot of computer system knowledge in our normal work and study,
 
 - No more learning by subject. The entire series is split into small stages based on the building process of the system. Each stage will cover multiple subjects at the same time, but each subject will not be covered in depth. You will complete one stage before moving on to the next.
 
-- **Build from scratch without any specified IDE, SDK or library.** We only need a few generic open source compilers and tools, and later we will use our own tools. Because even the tools are built by us, we can thoroughly figure out every detail.
+- **Build from scratch without any specified IDE, SDK or library.** Only a few generic open source compilers and tools is need, and later you will use your own tools. Because even the tools are built by us, you can thoroughly figure out every detail.
 
 - Does not rely on any specified software and hardware, using only a few general open source software and a few of the most widely used and low-cost hardware modules, that can be completed to the last chapter. While many professional system technology tutorials or training require a variety of expensive software and hardware, this series costs less than a hundred dollars in total (of course, the series is free and there will be no promotional links in the articles). The most important thing is that this series is not designed to make you an operator of some particular software or hardware, but to let you create your own tools and build the system.
 
@@ -44,21 +42,21 @@ We have learned a lot of computer system knowledge in our normal work and study,
 
 This series will use the RISC-V instruction set as the target architecture for learning and implementation, the reasons for choosing RISC-V are.
 
-- It's relatively a simple instruction set, which makes it possible to implement our own "minimal working" compiler and processor.
+- It's relatively a simple instruction set, which makes it possible to implement your own "minimal working" compiler and processor.
 
-- There are a large number of relevant open source tools and documentation. Using tools to check and verify that our "work" is correct, which is important for both learning and implementing.
+- There are a large number of relevant open source tools and documentation. Using tools to check and verify that your "work" is correct, which is important for both learning and implementing.
 
-- Finally, if we make a product, we don't need to worry about the licensing issues.
+- Finally, if you make a product, you don't need to worry about the licensing issues.
 
 ## Introduction
 
-The knowledge of computer systems is very large, it is the accumulation of thousands of the world's best engineers over the decades, both the width and depth of knowledge are almost close to the limits of the human brain. It can even be said that it is the work of a group of people who are "far beyond our current era". _Hemashushu_ certainly know that we can not simply complete through a few articles. So I'm going to write four series, each series contains several parts, each part contains several of chapters, a total of about a hundred long articles 😅.
+The knowledge of computer systems is very large, it is the accumulation of thousands of the world's best engineers over the decades, both the width and depth of knowledge are almost close to the limits of the human brain. It can even be said that it is the work of a group of people who are "far beyond our current era". _Hemashushu_ certainly know that it is impossible to complete through a few articles. So I'm going to write four series, each series contains several parts, each part contains several of chapters, a total of about a hundred long articles 😅.
 
 The main content of this series can be described in one sentence: **Learning existing tools and systems, making your own tools, building a new system**.
 
 ![content](images/content.en.png)
 
-The number of topics is very large, but you don't have to worry about it is too difficult to achieve. Because in each part we will only get to the basics, that is, the level that just works. What's more, each small part of the system technology is surprisingly easy to learn if you take it out separately. So just follow step by step and you won't get stuck in the process.
+The topic is very large, but you don't have to worry about it is too difficult to achieve. Because in each part you will only get to the level that just works. What's more, each small part of the system technology is surprisingly easy to learn if you take it out separately. So just follow step by step and you won't get stuck in the process.
 
 But I also balance "simplicity" and "practicality", so that each "small project" has its own value. Modern mainstream computer systems have heavy historical burden, for example, GCC is more than thirty years old, as well as the Linux kernel has been developed for thirty years, which makes it very difficult for the newcomer to read, understand, modify and expand, and many new ideas cannot be integrated. Our system, on the other hand, because it starts from scratch and has no burden at all, will be relatively simple and easy to implement, and some problems can be solved from the root, new ideas (which are not actually new, just because few people know about them) can be integrated without any worries. Some features:
 
@@ -70,7 +68,7 @@ But I also balance "simplicity" and "practicality", so that each "small project"
 - A security model based on capability rather than _user and group_.
 - A _Shell_ with structured data.
 
-There are more features that will be listed in specific chapters, but of course the main feature is that **we will make and use our own tools**. Even if you can see other books or articles like "Building System from Scratch", this series will still be a refreshing experience for you 😁.
+There are more features that will be listed in specific chapters, but of course the main feature is that **you will make and use your own tools**. Even if you can see other books or articles like "Building System from Scratch", this series will still be a refreshing experience for you 😁.
 
 ## Like, Share, Donate
 
@@ -92,7 +90,7 @@ Finally, while systems technology is not realistically useful, it can be a good 
 
 > **note** This list will be continuously updated
 
-**Series 1: Dive into RISC-V System Step by Step**
+**Series 1: Dive into RISC-V system step by step**
 
 - Part I: Understanding the usage of compiler, linker, debugger and some common binary tools, understanding the organization of program, building minimal freestanding (also called _bare metal programs_) executable programs.
 
@@ -104,37 +102,37 @@ Finally, while systems technology is not realistically useful, it can be a good 
 
 - Part V: Designing a functional linker script language and implementing a script interpreter.
 
-**Series 2: Implementing a Modern Language and Compiler Step by Step**
+**Series 2: Implementing a modern language and compiler step by step**
 
 - Part I: Designing an IR (intermediate language) and implementing a code generator from IR to assembly language.
 
-- Part II: Designing a modern statically typed language, implementing a code generator from high-level language to IR, so that we have a _simple but complete compilation system_.
+- Part II: Designing a modern statically typed language, implementing a code generator from high-level language to IR, now you have a _simple but complete compilation system_.
 
-- Part III: Implement the [WASM](https://webassembly.org/) virtual machine (VM) and then implement the code generator for the IR to WASM. With the WASM VM we can get a basic idea of how a processor works, while having the WASM code generator means that our language can run in a browser.
+- Part III: Implement the [WASM](https://webassembly.org/) virtual machine (VM) and then implement the code generator for the IR to WASM. With the WASM VM you can get a basic idea of how a processor works, while having the WASM code generator means that the language can run in a browser.
 
-- Part IV: Implementing the IR to the [LLVM IR](https://llvm.org/docs/LangRef.html) code generator, which allows our language to generate programs for `x86` and `arm` target architectures.
+- Part IV: Implementing the IR to the [LLVM IR](https://llvm.org/docs/LangRef.html) code generator, which allows the language to generate programs for `x86` and `arm` target architectures.
 
 ![compilation system](images/compilation-system.png)
 
 - Part V: Implementing the project construction tool and package manager, which is a necessary part of any modern language.
 
-- Part VI: Rewriting the compiler in our language to achieve _self-hosting_ (i.e., the compiler can compile its own source code), and from now we start using our own tools to build the system.
+- Part VI: Rewriting the compiler in the language to achieve _self-hosting_ (i.e., the compiler can compile its own source code), and from now you start using your own tools to build the system.
 
-**Series 3: Implementing a Functional RISC-V CPU Step by Step**
+**Series 3: Implementing a functional RISC-V CPU step by step**
 
-- Part I: Designing a minimal instruction set that enables numeric accumulation and memory loading and storing, implement a minimal processor with digital circuit simulation software that contains the basic processor elements, such as ROM, RAM, register file, decoder, controller and ALU (arithmetic logic unit), which can execute our instruction set.
+- Part I: Designing a minimal instruction set that enables numeric accumulation and memory loading and storing, implement a minimal processor with digital circuit simulation software that contains the basic processor elements, such as ROM, RAM, register file, decoder, controller and ALU (arithmetic logic unit), which can execute the instruction set.
 
-- Part II: Deriving an HDL language from our language, implement a digital circuit simulator and a test framework, implement a code generator from this HDL to [SystemVerilog](https://en.wikipedia.org/wiki/SystemVerilog). Re-implement the previous processor with our HDL and download it to the FPGA hardware for power-on testing.
+- Part II: Deriving an HDL language from the language, implement a digital circuit simulator and a test framework, implement a code generator from this HDL to [SystemVerilog](https://en.wikipedia.org/wiki/SystemVerilog). Re-implement the previous processor with the HDL and download it to the FPGA hardware for power-on testing.
 
-- Part III: Implementing a multi-cycle RV64I processor using our HDL language and download it to the FPGA hardware for power-on testing.
+- Part III: Implementing a multi-cycle RV64I processor using the HDL language and download it to the FPGA hardware for power-on testing.
 
-- Part IV: Implementing some common protocols (e.g. UART, \(I^2C\), SPI), write drivers for common peripherals (e.g. GPIO, SPI Flash, SD card, SSD 1306 display etc.). Integrating into our processors to achieve a complete hardware system.
+- Part IV: Implementing some common protocols (e.g. UART, \(I^2C\), SPI), write drivers for common peripherals (e.g. GPIO, SPI Flash, SD card, SSD 1306 display etc.). Integrating into the processor to achieve a complete hardware system.
 
 - Part V: Upgrade the microarchitecture of the processor to a multi-stage pipeline design.
 
-**Series 4: Implementing a Functional Microkernel OS Step by Step**
+**Series 4: Implementing a functional microkernel OS step by step**
 
-- Part I: Adding a MMU (memory management unit) to our processor, as well as a privileged module.
+- Part I: Adding a MMU (memory management unit) to the processor, as well as a privileged module.
 
 - Part II: Implementing the minimal kernel, i.e. implementing basic serial text sending and receiving, page tables, memory management, program loader, process switch and message mechanisms.
 

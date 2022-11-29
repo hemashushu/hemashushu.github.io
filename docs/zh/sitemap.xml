@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hemashushu.github.io/zh/posts/</loc>
-    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -15,8 +15,21 @@
                 href="https://hemashushu.github.io/zh/posts/"
                 />
   </url><url>
+    <loc>https://hemashushu.github.io/zh/tags/bare-metal/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/bare-metal/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/bare-metal/"
+                />
+  </url><url>
     <loc>https://hemashushu.github.io/zh/categories/</loc>
-    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -28,17 +41,82 @@
                 href="https://hemashushu.github.io/zh/categories/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/categories/dirv/</loc>
-    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <loc>https://hemashushu.github.io/zh/categories/craft-system/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hemashushu.github.io/categories/dirv/"
+                href="https://hemashushu.github.io/categories/craft-system/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://hemashushu.github.io/zh/categories/dirv/"
+                href="https://hemashushu.github.io/zh/categories/craft-system/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/categories/dive-into-riscv/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/categories/dive-into-riscv/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/categories/dive-into-riscv/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/tags/riscv/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/riscv/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/riscv/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/tags/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/gcc/</loc>
@@ -54,17 +132,17 @@
                 href="https://hemashushu.github.io/zh/tags/gcc/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/riscv/</loc>
+    <loc>https://hemashushu.github.io/zh/tags/qemu/</loc>
     <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hemashushu.github.io/tags/riscv/"
+                href="https://hemashushu.github.io/tags/qemu/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://hemashushu.github.io/zh/tags/riscv/"
+                href="https://hemashushu.github.io/zh/tags/qemu/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/</loc>
@@ -78,58 +156,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/</loc>
-    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/tags/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/</loc>
-    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/scratch/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/tags/scratch/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/tags/scratch/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/categories/tutorial/</loc>
-    <lastmod>2022-10-31T14:34:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/categories/tutorial/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/categories/tutorial/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/</loc>
