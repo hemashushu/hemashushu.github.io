@@ -1,5 +1,5 @@
 ---
-title: "Building a modern computer system from scratch using your own tools step by step"
+title: "Making your own tools and building modern computer system from scratch, step by step"
 date: 2022-10-31T14:34:52+08:00
 images: ["/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"]
 tags: ["riscv"]
@@ -58,6 +58,8 @@ The main content of this series can be described in one sentence: **Learning exi
 
 The topic is very large, but you don't have to worry about it is too difficult to achieve. Because in each part you will only get to the level that just works. What's more, each small part of the system technology is surprisingly easy to learn if you take it out separately. So just follow step by step and you won't get stuck in the process.
 
+> Sometimes it's not that the technology itself is really hard, it's that you encounter bad textbooks or don't meet good teacher. I think that well-written, classic textbooks though rare, but are always there and easily available, just often overshadowed by huge amounts of poor quality information. It is important to choose the right textbook.
+
 But I also balance "simplicity" and "practicality", so that each "small project" has its own value. Modern mainstream computer systems have heavy historical burden, for example, GCC is more than thirty years old, as well as the Linux kernel has been developed for thirty years, which makes it very difficult for the newcomer to read, understand, modify and expand, and many new ideas cannot be integrated. Our system, on the other hand, because it starts from scratch and has no burden at all, will be relatively simple and easy to implement, and some problems can be solved from the root, new ideas (which are not actually new, just because few people know about them) can be integrated without any worries. Some features:
 
 - A language that can both be used for hardware, low-level, back-end and front-end development.
@@ -96,6 +98,7 @@ Finally, while systems technology is not realistically useful, it can be a good 
 
   - [S01C01 What is cross-compilation? Let's cross-compile and run our first program](../2022-11-05-s01c01-cross-compile-and-run-the-first-program)
   - [S01C02 Write a Hello World program that can run alone without an OS](../2022-11-06-s01c02-write-a-program-run-alone-without-os)
+  - [S01C03 Uncovering the ELF executable file, making a minimal Hello World program only 70 bytes](../2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program)
 
 - Part II: A brief look at the principles of interaction between software and hardware through microcontroller (MCU). Writing bare-metal program (firmware) without SDK or HAL (hardware abstraction library), directly reading and writing registers, controlling the electrical signal of input and output pin (GPIO), implementing serial communications.
 

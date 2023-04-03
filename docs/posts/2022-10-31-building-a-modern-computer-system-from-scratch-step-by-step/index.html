@@ -3,23 +3,23 @@
 <html lang="en-us">
 
 <head>
-  <title>Building a modern computer system from scratch using your own tools step by step - Hemashushu Blog</title>
+  <title>Making your own tools and building modern computer system from scratch, step by step - Hemashushu Homepage &amp; Blog</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Share some low level computer technology, programming skills, learning notes, and some softwares" />
-<meta name="author" content="hemashushu" /><meta property="og:title" content="Building a modern computer system from scratch using your own tools step by step" />
+<meta name="description" content="Share some low level computer technology, programming skills, learning notes, some softwares and hardwares" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="Making your own tools and building modern computer system from scratch, step by step" />
 <meta property="og:description" content="Preface RISC-V has been a popular computer instruction set for the last few years, and I&rsquo;m sure many of you have already tried to compile a RISC-V version Linux kernel, or followed a tutorial to write a toy operating system, create a toy programming language, or even write a toy CPU in HDL (hardware description language).
 At the beginning you must have been excited, like a hero starting a new adventure in an Isekai (異世界, otherworld)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-31T14:34:52+08:00" />
-<meta property="article:modified_time" content="2022-10-31T14:34:52+08:00" /><meta property="og:site_name" content="Hemashushu Blog" />
+<meta property="article:modified_time" content="2022-10-31T14:34:52+08:00" /><meta property="og:site_name" content="Hemashushu Homepage &amp; Blog" />
 
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"/>
 
-<meta name="twitter:title" content="Building a modern computer system from scratch using your own tools step by step"/>
+<meta name="twitter:title" content="Making your own tools and building modern computer system from scratch, step by step"/>
 <meta name="twitter:description" content="Preface RISC-V has been a popular computer instruction set for the last few years, and I&rsquo;m sure many of you have already tried to compile a RISC-V version Linux kernel, or followed a tutorial to write a toy operating system, create a toy programming language, or even write a toy CPU in HDL (hardware description language).
 At the beginning you must have been excited, like a hero starting a new adventure in an Isekai (異世界, otherworld)."/>
 
@@ -39,7 +39,7 @@ At the beginning you must have been excited, like a hero starting a new adventur
     <header>
       
       <h1>
-        <a href="/">Hemashushu Blog</a>
+        <a href="/">Hemashushu Homepage &amp; Blog</a>
       </h1>
 
       <ul id="social-media">
@@ -62,7 +62,7 @@ At the beginning you must have been excited, like a hero starting a new adventur
              </li>
       </ul>
       
-      <p><em>Fun and interesting computer technology</em></p>
+      <p><em>Curiosity, exploration, discovery and creation</em></p>
       
     </header>
 
@@ -93,7 +93,7 @@ At the beginning you must have been excited, like a hero starting a new adventur
 
 <article>
 
-    <h1>Building a modern computer system from scratch using your own tools step by step</h1>
+    <h1>Making your own tools and building modern computer system from scratch, step by step</h1>
 
     
       <aside>
@@ -134,7 +134,7 @@ At the beginning you must have been excited, like a hero starting a new adventur
     
       
 <div class="featured_image">
-    <a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="Building a modern computer system from scratch using your own tools step by step">
+    <a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="Making your own tools and building modern computer system from scratch, step by step">
         <img src="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg">
     </a>
 </div>
@@ -188,6 +188,9 @@ At the beginning you must have been excited, like a hero starting a new adventur
 <p>The main content of this series can be described in one sentence: <strong>Learning existing tools and systems, making your own tools, building a new system</strong>.</p>
 <p><img src="images/content.en.png" alt="content"></p>
 <p>The topic is very large, but you don&rsquo;t have to worry about it is too difficult to achieve. Because in each part you will only get to the level that just works. What&rsquo;s more, each small part of the system technology is surprisingly easy to learn if you take it out separately. So just follow step by step and you won&rsquo;t get stuck in the process.</p>
+<blockquote>
+<p>Sometimes it&rsquo;s not that the technology itself is really hard, it&rsquo;s that you encounter bad textbooks or don&rsquo;t meet good teacher. I think that well-written, classic textbooks though rare, but are always there and easily available, just often overshadowed by huge amounts of poor quality information. It is important to choose the right textbook.</p>
+</blockquote>
 <p>But I also balance &ldquo;simplicity&rdquo; and &ldquo;practicality&rdquo;, so that each &ldquo;small project&rdquo; has its own value. Modern mainstream computer systems have heavy historical burden, for example, GCC is more than thirty years old, as well as the Linux kernel has been developed for thirty years, which makes it very difficult for the newcomer to read, understand, modify and expand, and many new ideas cannot be integrated. Our system, on the other hand, because it starts from scratch and has no burden at all, will be relatively simple and easy to implement, and some problems can be solved from the root, new ideas (which are not actually new, just because few people know about them) can be integrated without any worries. Some features:</p>
 <ul>
 <li>A language that can both be used for hardware, low-level, back-end and front-end development.</li>
@@ -221,6 +224,7 @@ At the beginning you must have been excited, like a hero starting a new adventur
 <ul>
 <li><a href="../2022-11-05-s01c01-cross-compile-and-run-the-first-program">S01C01 What is cross-compilation? Let&rsquo;s cross-compile and run our first program</a></li>
 <li><a href="../2022-11-06-s01c02-write-a-program-run-alone-without-os">S01C02 Write a Hello World program that can run alone without an OS</a></li>
+<li><a href="../2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program">S01C03 Uncovering the ELF executable file, making a minimal Hello World program only 70 bytes</a></li>
 </ul>
 </li>
 <li>

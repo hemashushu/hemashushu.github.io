@@ -16,8 +16,6 @@ defaultContentLanguage = "en"
     twitter = "hemashushu"
 
 [params]
-    # tagline = "一起发现那些好玩有趣的计算机知识"
-    # description = "记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件"
     customCSS = ["/css/custom.css"]
 
 [languages]
@@ -32,13 +30,13 @@ defaultContentLanguage = "en"
     summaryLength = 255
 
     [languages.zh.params]
-      tagline = "一起发现那些好玩有趣的计算机知识"
-      description = "记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件"
+      tagline = "好奇、探索、发现、创造"
+      description = "记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件"
 
   [languages.en]
-    title = "Hemashushu Blog"
+    title = "Hemashushu Homepage & Blog"
     weight = 2
     languageName = "English"
     [languages.en.params]
-      tagline = "Fun and interesting computer technology"
-      description = "Share some low level computer technology, programming skills, learning notes, and some softwares"
+      tagline = "Curiosity, exploration, discovery and creation"
+      description = "Share some low level computer technology, programming skills, learning notes, some softwares and hardwares"

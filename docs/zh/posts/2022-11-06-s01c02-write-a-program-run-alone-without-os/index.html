@@ -6,9 +6,9 @@
   <title>S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序 - 河马蜀黍真是的</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件" />
+<meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序" />
-<meta property="og:description" content="上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。这一章将会编写一个无需操作系统即可独自运行的 &ldquo;Hello, World!&rdquo; 程序，然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。 什么是裸机程序？ 如何启动裸机程序 裸机版的 &ldquo;Hello, World!&rdquo; 程序 如何直接访问硬件？ 通过串口发送字符 实现 print_string 函数 主程序 程序启动器 编译 链接 运行 打包静态库 总结 什么是裸机程序？ 裸机程序 是指在 &ldquo;无操作系统&rdquo; 的环境中运行的程序，初一听起来可能会觉得很神奇：“一个机器不用安装操作系统也能运行程序？没有操作系统我怎样输入程序的名称，怎样启动程序？” 但仔细" />
+<meta property="og:description" content="上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 &ldquo;Hello, World!&rdquo; 程序（这种程序叫 裸机程序），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。 什么是裸机程序？ 如何启动裸机程序 裸机版的 &ldquo;Hello, World!&rdquo; 程序 如何直接访问硬件？ 通过串口发送字符 实现 print_string 函数 主程序 程序启动器 编译 链接 运" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/images/bare-metal.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-06T00:00:00+00:00" />
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/images/bare-metal.png"/>
 
 <meta name="twitter:title" content="S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序"/>
-<meta name="twitter:description" content="上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。这一章将会编写一个无需操作系统即可独自运行的 &ldquo;Hello, World!&rdquo; 程序，然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。 什么是裸机程序？ 如何启动裸机程序 裸机版的 &ldquo;Hello, World!&rdquo; 程序 如何直接访问硬件？ 通过串口发送字符 实现 print_string 函数 主程序 程序启动器 编译 链接 运行 打包静态库 总结 什么是裸机程序？ 裸机程序 是指在 &ldquo;无操作系统&rdquo; 的环境中运行的程序，初一听起来可能会觉得很神奇：“一个机器不用安装操作系统也能运行程序？没有操作系统我怎样输入程序的名称，怎样启动程序？” 但仔细"/>
+<meta name="twitter:description" content="上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 &ldquo;Hello, World!&rdquo; 程序（这种程序叫 裸机程序），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。 什么是裸机程序？ 如何启动裸机程序 裸机版的 &ldquo;Hello, World!&rdquo; 程序 如何直接访问硬件？ 通过串口发送字符 实现 print_string 函数 主程序 程序启动器 编译 链接 运"/>
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
     
@@ -60,7 +60,7 @@
              </li>
       </ul>
       
-      <p><em>一起发现那些好玩有趣的计算机知识</em></p>
+      <p><em>好奇、探索、发现、创造</em></p>
       
     </header>
 
@@ -129,7 +129,7 @@
         </li>
         
 
-        <li>13 minute read</li>
+        <li>15 minute read</li>
     </ul>
 </aside>
 
@@ -146,7 +146,7 @@
 
     
 
-    <p><a href="../2022-11-05-s01c01-cross-compile-and-run-the-first-program">上一章</a> 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。这一章将会编写一个无需操作系统即可独自运行的 &ldquo;Hello, World!&rdquo; 程序，然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。</p>
+    <p><a href="../2022-11-05-s01c01-cross-compile-and-run-the-first-program">上一章</a> 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 &ldquo;Hello, World!&rdquo; 程序（这种程序叫 <em>裸机程序</em>），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
@@ -179,7 +179,7 @@
 <h2 id="裸机版的-hello-world-程序">裸机版的 &ldquo;Hello, World!&rdquo; 程序</h2>
 <p>下面要实现是一个 &ldquo;裸机&rdquo; 版的 &ldquo;Hello, World!&rdquo; 程序，该程序将会在 <em>QEMU 全系统模式</em> 的 <em>RISC-V 64</em> 机器（也就是程序 <code>qemu-system-riscv64</code>）里运行。</p>
 <h3 id="如何直接访问硬件">如何直接访问硬件？</h3>
-<p>传统的 &ldquo;Hello, World!&rdquo; 的程序很简单，主要就是调用 <code>printf</code> 函数向屏幕输出 &ldquo;Hello, World!&rdquo; 字符串。可现在的问题是在裸机环境里没有标准库，所以无法直接调用 <code>printf</code> 函数，甚至因为没有操作系统，所以连底层的 <code>write</code> <em>系统调用</em>（<em>syscall</em>）都无法使用。为了向屏幕输出文字信息，只能硬着头皮直接跟硬件打交道了。</p>
+<p>传统的 &ldquo;Hello, World!&rdquo; 的程序很简单，主要就是调用 <code>printf</code> 函数向屏幕输出 &ldquo;Hello, World!&rdquo; 字符串。可是现在因为机器里没有操作系统，没法使用底层的 <code>write</code> <em>系统调用</em>（<em>syscall</em>），当然也无法直接调用 <code>printf</code> 函数。为了向屏幕输出文字信息，只能硬着头皮直接跟硬件打交道了。</p>
 <p>幸好跟硬件打交道并不算太复杂，硬件主要就是数字电路，你可以粗略地把它看作由一系列 &ldquo;小开关&rdquo; 构成的电路。其中有些开关供外部设置，有些开关用于向外部反映状态。这些开关实际上对应着数字电路中的 <em>寄存器</em> 元件（注意这里的寄存器不是指处理器里面那组寄存器，而是一般数字电路当中的寄存器），这些寄存器的输入端或者输出端会通过复用器映射到内存空间的某个地址。于是当我们向这些内存地址写入比特 0 或者 1 时，就可以设置相应寄存器的状态（即低电平和高电平，分别用 0 和 1 表示），反之，读取这些内存地址，就能获得相应寄存器的状态。于是跟硬件打交道就简化为 <strong>向指定内存地址写入或者读取数字</strong>。</p>
 <h3 id="通过串口发送字符">通过串口发送字符</h3>
 <p>虚拟机 <em>QEMU RISC-V 64 Virt</em> 里有一个虚拟的硬件 <a href="https://www.qemu.org/docs/master/system/riscv/virt.html">NS16550</a>，它是一个实现了 <a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART 通信协议</a> （也就是我们常说的串口通信）的芯片。当向这个芯片读入数据时，数据会通过 RS-232 接口和电缆传送到另一端的设备，在 <em>QEMU RISC-V 64 Virt</em> 里，这个 <em>另一端的设备</em> 就是运行 QEMU 程序的虚拟终端。</p>
@@ -199,7 +199,7 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p>也就是说，NS16550 芯片的寄存器组的在内存中的基址为 <code>0x10000000</code>，那么寄存器 <code>THR</code> 的实际地址就是 <code>0x10000000</code> + <code>0</code>，寄存器 <code>LSR</code>（Line Status Register）的实际地址为 <code>0x10000000</code> + <code>0x5</code>：</p>
 <p>综合以上信息，如果要向串口发送一个字符，只需向地址 <code>0x1000_0000</code> 写入字符对应的 ASCII 数值（一个 uint8 类型整数），然后这个字符就会被重定向到正在运行 QEMU 程序的虚拟终端。</p>
-<p>所以要实现打印单个字符的函数是很简单的，源代码文件是 <code>put_char.S</code>, 内容如下：</p>
+<p>所以要实现打印单个字符的函数是很简单的，在任意目录新建一个名为 <code>bare-metal</code> 的目录，然后创建名为 <code>put_char.S</code> 的文件, 内容如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-S" data-lang="S"><span style="display:flex;"><span>.equ VIRT_UART0, <span style="color:#ae81ff">0x10000000</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>.section .text.put_char
@@ -211,17 +211,24 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span><span style="display:flex;"><span>    mv s2, a0
 </span></span><span style="display:flex;"><span>    sb s2, <span style="color:#ae81ff">0</span>(s1)
 </span></span><span style="display:flex;"><span>    ret
-</span></span></code></pre></div><p>上面汇编源代码定义了一个名为 <code>put_char</code> 的函数，其中的代码的大致作用是：</p>
+</span></span></code></pre></div><blockquote>
+<p>源代码可以到 <a href="https://github.com/hemashushu/hemashushu.github.io/tree/main/src/content/posts">文章的 Github 源代码仓库</a> 下载。</p>
+</blockquote>
+<p>上面汇编源代码定义了一个名为 <code>put_char</code> 的函数，其中的代码的大致作用如下：</p>
 <ol>
+<li><code>.equ VIRT_UART0, 0x10000000</code> 定义了一个名字为 <code>VIRT_UART0</code> 的常量；</li>
+<li><code>put_char:</code> 定义了一个名字为 <code>put_char</code> 的 <em>标签</em>，所谓 <em>标签</em> 就是一个内存地址，因为函数通常由一个标签开始，并且由 <code>.globl</code> 指令导出，导出之后叫 <em>导出符号</em>，所以表示函数开始的标签也可以简单称为 <em>符号</em>。除了函数名称，符号还可以是全局变量、静态变量等的名称；</li>
 <li><code>li s1, VIRT_UART0</code> 将常量 <code>VIRT_UART0</code> 的值加载进寄存器 <code>s1</code>；</li>
 <li><code>mv s2, a0</code> 将寄存器 <code>a0</code> 的值，也就是函数的第一个参数的值，复制到寄存器 <code>s2</code>；</li>
-<li>将 <code>s2</code> 的值写到内存地址 <code>s1 + 0</code>。</li>
+<li>将 <code>s2</code> 的值写到内存地址 <code>s1 + 0</code>，简单来说，上面 3 句的作用就是把第一个参数的值写到内存 <code>0x10000000</code>；</li>
+<li><code>ret</code> 返回到函数调用者，</li>
+<li><code>.globl put_char</code> 导出符号 <code>put_char</code>，导出的符号用于供外部使用。</li>
 </ol>
 <blockquote>
-<p>有关 RISC-V 汇编的内容在后面的章节会详细讲解，在这里只需大概的作用即可。</p>
+<p>RISC-V 汇编的内容会在后面的章节陆陆续续出现，在这里只需知道大概的作用即可。对于这里没有说明的语句，会在后面的章节讲解。</p>
 <p>如果你之前了解过汇编，会发现 RISC-V 的 <a href="https://en.wikipedia.org/wiki/X86_assembly_language#Syntax">汇编源代码的语法</a> 是 Intel 风格，而不是 GNU 默认采用的 AT&amp;T 风格，包括后面将会接触的 ARM thumb 汇编，也是 Intel 风格。</p>
 </blockquote>
-<p><code>put_char</code> 函数也可以用 C 语言实现，两个版本随意选一个即可，源代码文件是 <code>put_char.c</code>，其内容如下：</p>
+<p><code>put_char</code> 函数也可以用 C 语言实现，两个版本随意选一个即可。新建名为 <code>put_char.c</code> 的文件，其内容如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define VIRT_UART0 0x10000000
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">const</span> VIRT_UART0_PTR <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)VIRT_UART0;
@@ -230,11 +237,13 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>VIRT_UART0_PTR <span style="color:#f92672">=</span> c;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><blockquote>
+</span></span></code></pre></div><p>上面是一段很普通的 C 语言代码，其中关键字 <code>volatile</code> 可能比较陌生。关键字 <code>volatile</code> 用于标记变量的值可能会在程序之外被改变，通常情况是该变量的值来自内存某个地址，加了这个关键字之后可以防止编译器对它进行优化。</p>
+<p>比如在源代码里有 <strong>连续多次读取</strong> 同一个变量的语句，如果没有标记为 <code>volatile</code>，编译器会把它优化为 <strong>只读取一次</strong>。因为显而易见后面的几次读取都是同样的值，所以生成汇编时只会生成 &ldquo;从内存读取&rdquo; 的指令一次。如果这语句用于读取 UART 的接收到的字符，那么就会出错，因为这个变量的值会在程序外部被改变的。这时就必须为变量加上 <code>volatile</code> 关键字，让编译器不要对它进行优化，而是原原本本地生成多条 &ldquo;从内存读取&rdquo; 的指令。</p>
+<blockquote>
 <p>为了简单起见，这里忽略了 UART 发送所需的延迟。如果是在真实硬件上编写发送字符的程序，应该检查 UART TX FIFO 的值，仅当上一个字符发送完毕之后（即 TX 空闲之后）再发送下一个字符。完整的发送/接收代码可以参考这个文件 <a href="https://github.com/michaeljclark/riscv-probe/blob/master/libfemto/drivers/ns16550a.c">ns16550a.c</a></p>
 </blockquote>
 <h3 id="实现-print_string-函数">实现 print_string 函数</h3>
-<p>在函数 <code>put_char</code> 基础之上，可以实现打印字符串函数 <code>print_string</code>。源代码文件为 <code>libprint.c</code>，其内容如下：</p>
+<p>在函数 <code>put_char</code> 基础之上，可以实现打印字符串函数 <code>print_string</code>。新建名为 <code>libprint.c</code> 的文件，其内容如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;put_char.h&#34;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print_string</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str)
@@ -246,7 +255,7 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="主程序">主程序</h3>
-<p>主程序很简单，源代码文件为 <code>app.c</code>，其内容如下：</p>
+<p>主程序很简单，新建名为 <code>app.c</code> 的文件，其内容如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;libprint.h&#34;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bare_main</span>()
@@ -255,7 +264,7 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>因为这个是裸机程序，为了跟标准程序区分，这里把平常的主函数 <code>main</code> 命名为 <code>bare_main</code>（随意的取一个名字都可以）。</p>
 <h3 id="程序启动器">程序启动器</h3>
-<p>学习过 C 语言编程的大概都知道程序最先被执行的是 <code>main</code> 函数，可实际上程序的入口（即最先被开始执行的指令）是由编译器自动生成的 <code>_start</code> 过程，该过程会做一些初始化工作，比如设置栈顶地址等，然后才跳转到函数 <code>main</code>。不过仅在编译和链接为标准 Linux 的程序时，编译器才会自动添加 <code>_start</code> 过程，现在我们写的是裸机程序，所以需要自己手写类似的入口过程。源代码文件为 <code>startup.S</code>，其内容如下：</p>
+<p>学习过 C 语言编程的大概都知道程序最先被执行的是 <code>main</code> 函数，可实际上程序的入口（即最先被开始执行的指令）是由编译器自动生成的 <code>_start</code> 过程，该过程会做一些初始化工作，比如设置栈顶地址等，然后才跳转到函数 <code>main</code>。不过仅在编译和链接为标准 Linux 的程序时，编译器才会自动添加 <code>_start</code> 过程，现在我们写的是裸机程序，所以需要自己手写类似的入口过程。新建名为 <code>startup.S</code> 的文件，其内容如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-S" data-lang="S"><span style="display:flex;"><span>.section .text.entry
 </span></span><span style="display:flex;"><span>.globl _start
 </span></span><span style="display:flex;"><span>
@@ -266,11 +275,17 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span><span style="display:flex;"><span>_loop<span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>    nop
 </span></span><span style="display:flex;"><span>    j _loop
-</span></span></code></pre></div><p>其中的代码的大致作用是：</p>
+</span></span></code></pre></div><p>其中的代码的大致作用如下：</p>
 <ol>
-<li><code>la sp, stack_top</code> 因为程序有嵌套的函数调用，所以需要用到 <em>栈</em>。在 RISC-V 体系里，通过向 <code>sp</code>（stack pointer）寄存器写入一个地址即可设置栈顶地址，这样就把 <em>栈</em> 搭建好了。（注意代码中的 <code>stack_top</code> 来自下面的链接脚本 <code>app.ld</code> 导出的符号）</li>
-<li><code>call bare_main</code> 调用主函数 <code>bare_main</code>，当 <code>bare_main</code> 函数执行完毕并返回后，就执行由 <code>_loop ... j _loop</code> 组成的死循环。之所以需要这样的一个死循环，是因为物理机器里可没有类似 &ldquo;退出程序&rdquo; 的指令，CPU 要么被挂起，要么就一直忙着执行指令。为了防止从函数 <code>bare_main</code> 返回之后往下执行内存中乱七八糟的数据，所以设置这样的一段小程序让 CPU 在原地打转（虽然不优雅却管用）。注意，当 QEMU 执行到这里时，你的电脑风扇也会飞快地旋转起来，不过不用担心，只需结束 QEMU 程序就好了。</li>
+<li><code>la sp, stack_top</code> 因为程序有嵌套的函数调用，所以需要用到 <em>栈</em>。在 RISC-V 体系里，通过向 <code>sp</code>（stack pointer）寄存器写入一个地址即可设置栈顶地址，这样就把 <em>栈</em> 搭建好了；（注意代码中的 <code>stack_top</code> 来自下面的链接脚本 <code>app.ld</code> 导出的符号）</li>
+<li><code>_loop:</code> 定义一个名字为 <code>_loop</code> 的符号，这个符号没有导出，所以它是内部使用的；</li>
+<li><code>nop</code> 这是一个伪指令，对应的真实指令是 <code>addi zero, zero, 0</code>，这个指令的作用是将寄存器 <code>zero</code> 的值加 0，显然这是无作用的指令，通常用于表示什么都不做。</li>
+<li><code>j _loop</code> 无条件跳转到符号 <code>_loop</code>。这 3 行形成了一个死循环。</li>
+<li><code>call bare_main</code> 调用主函数 <code>bare_main</code>。当 <code>bare_main</code> 函数执行完毕并返回后，就执行由 <code>_loop ... j _loop</code> 组成的死循环。</li>
 </ol>
+<blockquote>
+<p>注意在汇编里没有函数或者过程的概念，如果没有遇到跳转或者分支指令或者错误，CPU 会一直往下执行。上面的一段程序之所以需要一个死循环，是为了防止从函数 <code>bare_main</code> 返回之后 CPU 继续往下执行内存中那些乱七八糟的数据（硬件通电后内存中的数据是随机的），所以设置这样的一段小程序让 CPU 在原地打转（虽然不优雅却管用）。注意，当 QEMU 执行到这里时，你的电脑风扇也会飞快地旋转起来，不过不用担心，只需结束 QEMU 程序就好了。</p>
+</blockquote>
 <h2 id="编译">编译</h2>
 <p>编译各个源文件，但暂时不需要链接：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-elf-as -o startup.o startup.S
@@ -289,13 +304,38 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 <li>当加载的是 ELF 格式文件时，它会按照 ELF 的结构信息加载到指定的位置；</li>
 <li>当加载的是纯二进制数据是，可以通过参数 <code>-device loader,file=FILENAME,addr=0x80000000</code> 指定加载地址。</li>
 </ul>
-<p>下面采用的是第一种方法，只需在链接时指定一个链接脚本，就可以让链接器按照脚本的描述来组织和生成可执行文件。下面是链接脚本 <code>app.ld</code> 的部分内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>BASE_ADDRESS = 0x80000000;
+<p>下面采用的是第一种方法，只需在链接时指定一个链接脚本，就可以让链接器按照脚本的描述来组织和生成可执行文件。新建名为 <code>app.ld</code> 的文件，其内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>OUTPUT_ARCH(riscv)
+</span></span><span style="display:flex;"><span>ENTRY(_start)
+</span></span><span style="display:flex;"><span>BASE_ADDRESS = 0x80000000;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>SECTIONS
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  . = BASE_ADDRESS;
-</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .text : {
+</span></span><span style="display:flex;"><span>    *(.text.entry)
+</span></span><span style="display:flex;"><span>    *(.text .text.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .rodata : {
+</span></span><span style="display:flex;"><span>    *(.rodata .rodata.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .data : {
+</span></span><span style="display:flex;"><span>    *(.data .data.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .bss :{
+</span></span><span style="display:flex;"><span>    *(.bss .bss.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  . = ALIGN(8);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  /* a 4KB stack */
+</span></span><span style="display:flex;"><span>  stack_bottom = .;
+</span></span><span style="display:flex;"><span>  . += 4096;
+</span></span><span style="display:flex;"><span>  stack_top = .;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>其中 <code>. = BASE_ADDRESS</code> 语句用于指定程序的第一个段的加载地址，相当于指定了程序的加载位置。</p>
 <blockquote>
@@ -323,8 +363,14 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span></code></pre></div><p>上面命令有两个新的参数：</p>
 <ul>
 <li><code>-Wl,-T,app.ld</code> 这个参数用于 &ldquo;传递参数给链接器 <code>ld</code>&quot;，相当于 <code>$ ld ... -T app.ld ...</code>。当需要把参数从 GCC 传递给链接器时，可以构造这种以逗号分隔的字符串。</li>
-<li><code>-nostdlib</code> 表示不需要自动往目标程序添加 <code>_start</code> 启动过程以及链接标准库，上一章我们知道 GCC 会自动往目标程序添加很多内容，而参数 <code>-nostdlib</code> 告诉它整个程序的内容都由我们自己的代码提供，这是构建裸机程序必须的。</li>
+<li><code>-nostdlib</code> 表示不需要自动往目标程序添加 <code>_start</code> 启动过程以及链接 C 的标准库（标准库提供了诸如 <code>printf</code> 等函数），上一章我们知道 GCC 会自动往目标程序添加很多内容，而参数 <code>-nostdlib</code> 用于告诉链接器：整个程序的内容都由我们自己的代码提供，这是构建裸机程序必须的。</li>
 </ul>
+<blockquote>
+<p>还有跟 <code>-nostdlib</code> 参数类似的几个链接参数：<code>-nostartfiles</code>、<code>-nodefaultlibs</code> 和 <code>-nolibc</code>。它们分别表示不需要添加启动过程、不要链接默认的库（如 <code>libgcc</code>）以及不要链接 C 标准库（<code>libc</code>）。参数 <code>-nostdlib</code> 相当于前两个参数的组合，一般编译裸机程序只需添加这个链接参数即可，另外如果仅仅想自己指定启动函数，则只添加 <code>-nostartfiles</code>，另外两个参数的使用场合较少。详细的可以参阅 <a href="https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html">GCC 链接参数说明</a>。</p>
+</blockquote>
+<blockquote>
+<p>有时目标架构缺少某些指令（比如 rv32i 缺少乘法和除法指令），GCC 编译器会使用其它指令的组合来代替，如果使用了 <code>-nostdlib</code> 链接参数，则需要手动加上 <code>-lgcc</code> 参数。<code>gcc</code> 库跟 <code>libc</code> 库的不同地方在于，前者提供的函数主要用于解决编译问题，后者则用于跟操作系统打交道以及提供常用函数。所以前者一般也称为 <em>编译器的私有库</em>，我们写程序时是不会直接调用到这个库，相反，<code>libc</code> 则高频地被我们的程序代码所调用。</p>
+</blockquote>
 <h2 id="运行">运行</h2>
 <p>下面使用 QEMU 的 <em>全系统模式</em> 程序 <code>qemu-system-riscv64</code> 运行该文件：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
@@ -332,12 +378,12 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios none <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel app.out
-</span></span></code></pre></div><p>如无意外，应该能看到正确的输出结果 &ldquo;Hello, World!&quot;：</p>
+</span></span></code></pre></div><p>如无意外，应该能看到正确的输出结果 &ldquo;Hello, World!&quot;。</p>
 <p><img src="images/qemu-system.png" alt="qemu system"></p>
 <p>这时你的主机（通常称为 <em>host</em>）可能会有一个核心（core）的负载率高达 100%，这是因为 &ldquo;Hello, World!&rdquo; 程序从 <em>bare_main</em> 函数返回之后，来到了一个死循环（即 <code>startup.S</code> 里的 <code>_loop</code>），你需要结束 QEMU 程序才能让 CPU 平静下来。</p>
-<p>请注意你需要按 <code>Ctrl+a</code> 然后再按 <code>x</code> 来结束 QEMU 程序，而不是平常的 <code>Ctrl+c</code>，这个奇怪的组合键可能跟 VIM 的退出方法一样，会让你手忙脚乱一阵子。</p>
+<p>请注意你需要按 <code>Ctrl+a</code> 然后松开 <code>Ctrl</code> 键再按 <code>x</code> 来结束 QEMU 程序，而不是平常的 <code>Ctrl+c</code>，这个奇怪的组合键可能跟 VIM 的退出方法一样，会让你手忙脚乱一阵子。</p>
 <blockquote>
-<p>QEMU 不使用 <code>Ctrl+c</code> 退出自身是有原因的，因为在 QEMU 里运行的是一个系统（通常称为 <em>guest</em>），比如一个完整的 Linux 系统，或者一个 Linux 桌面，QEMU 需要保留 <code>Ctrl+x</code> 这个常用的组合键给 guest 里面的程序，所以虚拟机本身当然不能用 <code>Ctrl+c</code> 来退出了。有些串口通信程序也是使用这样 &ldquo;奇怪&rdquo; 的组合键来结束程序本身，比如 <a href="https://github.com/npat-efault/picocom">picocom</a> 和 <a href="https://salsa.debian.org/minicom-team/minicom">minicom</a> 也是使用 <code>Ctrl+a, x</code>，都是基于同样的原因。</p>
+<p>QEMU 不使用 <code>Ctrl+c</code> 退出自身是有原因的，因为在 QEMU 里运行的是一个系统（通常称为 <em>guest</em>），比如一个完整的 Linux 系统，或者一个 Linux 桌面，QEMU 需要保留 <code>Ctrl+x</code> 这个常用的组合键给 guest 里面的程序，所以虚拟机本身当然不能用 <code>Ctrl+c</code> 来退出了。有些串口通信程序也是使用这样 &ldquo;奇怪&rdquo; 的组合键来结束程序本身，比如 <a href="https://github.com/npat-efault/picocom">picocom</a> 和 <a href="https://salsa.debian.org/minicom-team/minicom">minicom</a> 使用 <code>Ctrl+a, Ctrl+x</code>（或者按住 <code>Ctrl</code> 键，然后依次按 <code>a</code> 键和 <code>x</code> 键）。还有 SSH 连接被动断开时，需要使用 <code>Ctrl+D</code> 或者 <code>~.</code>（即先按 <code>Shift+~</code> 再按 <code>.</code>）这些不寻常的组合键，都是基于同样的原因。</p>
 </blockquote>
 <h2 id="打包静态库">打包静态库</h2>
 <p>多写几个裸机程序之后，你可能会发现诸如 <code>startup.S</code>、<code>libprint.c</code> 和 <code>put_char.S</code> 等基础功能会经常被不同的程序所引用，我们可以把这些基础功能的代码编译并打包为一个库，就像 C 标准库 <code>libc</code> 一样，这样可以方便以后使用。</p>
@@ -372,7 +418,7 @@ Register），从名称可以大概知道它是用于存放待发送的数据。
 <p>工具 <a href="https://en.wikipedia.org/wiki/Ar_(Unix)">ar</a> 实际上是一个通用的打包程序，只是后来被 <code>tar</code> 替换了，目前 <code>ar</code> 主要用于创建静态库。顺便一提，<em>Debian</em> 的包文件 <code>*.deb</code> 也是 ar 格式。</p>
 </blockquote>
 <h2 id="总结">总结</h2>
-<p>这章我们创建了一种无需操作系统就可以独自运行的程序，并了解了机器通电后是如何一步步地加载并运行我们的程序，同时也知道操作系统的内核其实是一个 &ldquo;大号&rdquo; 的裸机程序，而上面写的裸机程序实际上可以看作是一个功能弱到爆的 <em>系统内核</em>。希望通过这章的学习和实践，能够破除内核的神秘感，同时能解开诸如 “机器通电后经历会做些什么？” 这些长期存在我们心中的困惑。</p>
+<p>这章我们创建了一种无需操作系统、无需任何库，就可以独自运行的程序，并了解了机器通电后是如何一步步地加载并运行我们的程序，同时也知道操作系统的内核其实是一个 &ldquo;大号&rdquo; 的裸机程序，而这章写的裸机程序也可以粗略地看作是一个功能弱到爆的 <em>系统内核</em>。希望通过这章的学习和实践，能够破除内核的神秘感，同时能解开诸如 “机器通电后经历会做些什么？” 这些长期存在我们心中的困惑。</p>
 <p>下一章将会深入剖析 <em>可执行文件</em> 的组成和结构，让我们看看 &ldquo;Hello, World!&rdquo; 在 &ldquo;物理&rdquo; 层面究竟是什么样子的。</p>
 
 

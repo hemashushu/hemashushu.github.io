@@ -3,11 +3,11 @@
 <html lang="en-us">
 
 <head>
-  <title>从零开始使用自己的工具一步一步构建现代计算机系统 - 简介 - 河马蜀黍真是的</title>
+  <title>从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介 - 河马蜀黍真是的</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件" />
-<meta name="author" content="hemashushu" /><meta property="og:title" content="从零开始使用自己的工具一步一步构建现代计算机系统 - 简介" />
+<meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介" />
 <meta property="og:description" content="前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。 无论是哪种，刚开始时你肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能你就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，为什么还是看不懂这些教程呢？！&quot; 显然这是因为缺少对 完整的系统技术 的了解（" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg" /><meta property="article:section" content="posts" />
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"/>
 
-<meta name="twitter:title" content="从零开始使用自己的工具一步一步构建现代计算机系统 - 简介"/>
+<meta name="twitter:title" content="从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介"/>
 <meta name="twitter:description" content="前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写玩具操作系统、制作玩具编程语言，甚至还有用 HDL（硬件描述语言）编写自己的玩具 CPU。 无论是哪种，刚开始时你肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过翻到教程的第二章，可能你就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，为什么还是看不懂这些教程呢？！&quot; 显然这是因为缺少对 完整的系统技术 的了解（"/>
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
@@ -60,7 +60,7 @@
              </li>
       </ul>
       
-      <p><em>一起发现那些好玩有趣的计算机知识</em></p>
+      <p><em>好奇、探索、发现、创造</em></p>
       
     </header>
 
@@ -91,7 +91,7 @@
 
 <article>
 
-    <h1>从零开始使用自己的工具一步一步构建现代计算机系统 - 简介</h1>
+    <h1>从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介</h1>
 
     
       <aside>
@@ -123,7 +123,7 @@
         </li>
         
 
-        <li>11 minute read</li>
+        <li>12 minute read</li>
     </ul>
 </aside>
 
@@ -132,7 +132,7 @@
     
       
 <div class="featured_image">
-    <a href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始使用自己的工具一步一步构建现代计算机系统 - 简介">
+    <a href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介">
         <img src="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg">
     </a>
 </div>
@@ -169,6 +169,9 @@
 <p>无可否认计算机系统的内容非常之多，它是几十年以来成千上万个全球最顶尖工程师的总结和积累，无论是知识的广度和深度都几乎逼近人脑的极限，甚至可以说它是<strong>远超越我们当前时代</strong>的一群人的作品。河马蜀黍知道无法简单地通过几篇文章就能讲完，所以准备了四个系列（series），每个系列分为若干部（part），每部含若干篇文章（chapter）。好吧，一共也就百来篇长文。用一句话描述这一系列文章的主要内容就是：<strong>学习现有的工具和系统，制作自己的工具，打造新的系统</strong>。</p>
 <p><img src="images/content.zh.png" alt="content"></p>
 <p>虽然内容非常多，不过你不用担心难度过高而无法完成，因为每一个部分虽然名堂很大，但都是仅实现最基本的 &ldquo;刚好能用&rdquo; 的程度即止。最主要的是，系统技术的<strong>每一个小环节只要单独拿出来分析和实践都会出乎意料地简单</strong>，所以只需一步步跟着来，就不会发生在中途就被卡住的情况。</p>
+<blockquote>
+<p>有时并不是技术本身真的很难，而是你遇到了糟糕的教材，或者没有遇到好老师。我认为编写优秀的经典的教材虽然很少，但却是一直存在的，而且也很容易获得，只是往往会被巨量而劣质的信息所掩盖。选择对的教材很重要。</p>
+</blockquote>
 <p>当然我也会在 “简陋” 和 “实用” 之间平衡，让每一部的 “作品” 都有实用价值。现代主流的计算机系统都有沉重的历史包袱，比如 GCC 已有三十多年的历史，Linux 内核也持续开发三十年，对于新手来说，无论是阅读理解、修改、扩充都非常困难，而且很多新观念无法整合。而我们的系统因为是从零开始，完全没有包袱，所以实现起来相对会简单轻松，有些顽固问题也可以从根本上解决；新理念（严格来说并不是新的，只是鲜有人知而已）也能无所顾忌地加入，比如：</p>
 <ul>
 <li>同一门语言可以同时用于硬件开发、底层开发、后端开发和前端开发；</li>
@@ -196,12 +199,17 @@
 <p><strong>note</strong> 此目录会持续更新</p>
 </blockquote>
 <p><strong>系列 1: 一步一步深入 RISC-V 系统</strong></p>
+<p>我们知道现代的计算机技术无比庞大，无比复杂，各式各样的领域和框架、层出不穷的工具、转瞬即逝的新旧迭代速度，让人眼花缭乱，我们穷其一生都未必能学完。不过如果我们抛开表层而不断地向底层研究，就会发现事情会变得越来越单纯，越来越简单（当然过程是艰苦的），到最后终点站时，我们就会犹如来到大爆炸的那一刻，之前那些让人头晕脑胀的表层技术一下子就变得无比简单了。第一个系列正是这样的一个 “透过现象看本质” 的过程，主要的目的是为了认识计算机技术当中最底层也是最简单的原理。</p>
+<blockquote>
+<p>很多人都看过 <a href="https://en.wikipedia.org/wiki/Mandelbrot_set"><em>曼德博集合</em></a>（Mandelbrot set）的<a href="https://en.wikipedia.org/wiki/Fractal">分形图形</a>，这种图形可以无限地放大和移动，而且总会有不重复的图形产生。我们可以像浏览我们宇宙的星系一样，花上一整天的时间来遨游这个美丽的世界而不会觉得枯燥。但让人难以接受的是，这个无比庞大、无比复杂的宇宙其实只是一条无比简单的数学函数产生的：$y = x^2 + z$，只需把 $y$ 的值不断代入 $x$，大爆炸就此产生了。</p>
+</blockquote>
 <ul>
 <li>
 <p>第一部：了解编译器、链接器、调试器以及一些常用二进制工具的使用方法，了解程序的组成，构建最小独立式可执行程序（freestanding，也叫 <em>裸机程序</em>）等；</p>
 <ul>
 <li><a href="../2022-11-05-s01c01-cross-compile-and-run-the-first-program">S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序</a></li>
 <li><a href="../2022-11-06-s01c02-write-a-program-run-alone-without-os">S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序</a></li>
+<li><a href="../2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program">S01C03 揭秘 ELF 可执行文件，制作一个只有 70 字节的最小 Hello World 程序</a></li>
 </ul>
 </li>
 <li>

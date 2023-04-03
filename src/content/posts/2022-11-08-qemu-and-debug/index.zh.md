@@ -387,9 +387,13 @@ GDB 程序可以分为 _服务端_ 和 _客户端_，其中服务端负责加载
 
 这种方式常见于调试 MCU 或者 FPGA 的情况，之所以需要 OpenOCD 作为中间媒介，是因为目标机器根本无法运行 GDB Server，它只提供原始的或者有限的调试能力。OpenOCD 起到一个 _适配器_ 的作用，把原始的信号或者有限的调试能力转换为大家熟悉的 GDB 界面（技术来说，OpenOCD 提供了 GDB Server Protocol）。QEMU 的调试功能其工作原理跟 OpenOCD 类似。
 
-> 注意图中的 [JTAG](https://www.fpga4fun.com/JTAG1.html) 和 [SWD](https://wiki.segger.com/SWD) 是下载器跟 MCU 之间的通信协议（也可以理解为下载器跟 MCU 之间的电线连接方式），而常见的 `ST-Link`，`J-Link` 等一般是指下载器（也叫调试器、仿真器、烧录器、探针 `probe` 等等古灵精怪的名称）硬件的名称。`CMSIS-DAP` 和 `DAPLink` 是 ARM 的开发的用于连接电脑（USB）和下载器之间的固件（`固件` 可以简单理解为 `程序`）。简单来说，如果你需要一个下载器硬件，除了购买现成的，还可以使用开源的 `DAPLink` 固件和一个 STM32F103 MCU 自己动手制作，详细可参阅 [DAPLink.io](https://daplink.io/)。OpenOCD 支持的下载器列表可以参阅 [OpenOCD - Debug Adapter Hardware](https://openocd.org/doc/html/Debug-Adapter-Hardware.html)
+> 注意图中的 [JTAG](https://www.fpga4fun.com/JTAG1.html) 和 [SWD](https://wiki.segger.com/SWD) 是下载器跟 MCU 之间的通信协议（也可以理解为下载器跟 MCU 之间的电线连接方式），而常见的 `ST-Link`，`J-Link` 等一般是指下载器（也叫调试器、编程器、仿真器、烧录器、探针 `probe` 等等古灵精怪的名称）硬件的名称。`CMSIS-DAP` 和 `DAPLink` 是 ARM 的开发的用于连接电脑（USB）和下载器之间的固件。简单来说，如果你需要一个下载器硬件，除了购买现成的，还可以使用开源的 `DAPLink` 固件和一个 STM32F103 MCU 自己动手制作，详细可参阅 [DAPLink.io](https://daplink.io/)。OpenOCD 支持的下载器列表可以参阅 [OpenOCD - Debug Adapter Hardware](https://openocd.org/doc/html/Debug-Adapter-Hardware.html)
 
-> 有些 MCU 开发板自带了下载器，比如 _micro:bit_，通过 USB 连接到电脑之后会出现一个 U 盘，然后把 _HEX/BIN_ 文件往里面拖放就可以完成烧录，其实这是 `DAPLink` 的功能，具体可以参阅[这里](https://tech.microbit.org/software/daplink-interface/)。至于 _STM32 Nucleo_ 系列开发板因为集成了 `ST-Link` 所以连接电脑之后也会出现一个 U 盘。当然还有一些比如 _Raspberry Pi Pico_ 开发板，按住板上的 `BOOTSEL` 按钮再连接 USB 接线也会在电脑上出现一个 U 盘，这是 一个名字叫 [UF2 Bootloader](https://github.com/microsoft/uf2) 用于简化下载固件工作的工具，它不具有调试功能，不过官方倒是提供了一个 [Pico 版 DAPLink 固件](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#debugging-using-another-raspberry-pi-pico)，它可以让 Pico 变成一个下载器。
+> 所谓 `固件` 可以简单理解为运行于微控制器当中的程序，有些教材说固件是介乎软件和硬件之间的一种东西，那是瞎扯，固件就是软件。
+
+> 有些 MCU 开发板自带了下载器，比如 _micro:bit_，通过 USB 连接到电脑之后会出现一个 U 盘，然后把 _HEX/BIN_ 文件往里面拖放就可以完成烧录，其实这是 `DAPLink` 的功能，具体可以参阅[这里](https://tech.microbit.org/software/daplink-interface/)。_STM32 Nucleo_ 系列开发板因为集成了 `ST-Link` 硬件，而 `ST-Link` 的固件也包含了 `DAPLink`，所以连接电脑之后也会出现一个 U 盘。
+
+> 不过有一些比如 _Raspberry Pi Pico_ 开发板，按住板上的 `BOOTSEL` 按钮再连接 USB 接线也会在电脑上出现一个 U 盘，这不是 `DAPLink`，而是一个名字叫 [UF2 Bootloader](https://github.com/microsoft/uf2) 用于简化下载固件工作的工具，它不具有调试功能。官方倒是提供了一个 [Pico 版 DAPLink 固件](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#debugging-using-another-raspberry-pi-pico)，它可以让 Pico 变成一个下载器。
 
 使用 OpenOCD 连接 MCU 开发板时，需要指定 `interface/*.cfg` 文件，该文件主要内容就是用于指定下载器（驱动）的名称，详细可参阅 [OpenOCD - Debug Adapter Configuration](https://openocd.org/doc/html/Debug-Adapter-Configuration.html)。需要注意的是，虽然大部分开发板都带有 USB 接口，但这个接口一般只用于供电、烧录（也叫下载）、和串口通信（UART），不一定支持调试功能。至于 STM32 系列的芯片，它内置了 USB 通信功能，有些核心板（也就是除了 MCU 芯片之外没有任何其它芯片的开发板）把 USB 接口直接连接到芯片的 USB 端口，但因为默认情况下没有相应的程序，所以它只能用于供电，除此没有任何功能。
 

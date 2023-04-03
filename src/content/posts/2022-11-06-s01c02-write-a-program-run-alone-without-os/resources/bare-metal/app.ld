@@ -16,12 +16,10 @@ SECTIONS
   }
 
   .data : {
-    *(.sdata .sdata.*)
     *(.data .data.*)
   }
 
   .bss :{
-    *(.sbss .sbss.*)
     *(.bss .bss.*)
   }
 

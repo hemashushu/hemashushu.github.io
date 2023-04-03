@@ -1,0 +1,786 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>S01C03 揭秘 ELF 可执行文件，制作一个只有 70 字节的最小 Hello World 程序 - 河马蜀黍真是的</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="S01C03 揭秘 ELF 可执行文件，制作一个只有 70 字节的最小 Hello World 程序" />
+<meta property="og:description" content="在上一章我们制作了一种无需操作系统，无需任何库就可以独自运行的 “裸机程序”，并且程序的所有内容由我们自己写的代码组成。在这一章我们将会分析程序文件本身，看看可执行文件里头究竟包含了哪些内容，然后把 Hello, World! 程序减少到几十个字节。 最小的裸机 &ldquo;Hello, World!&rdquo; 程序 汇编语言 标签与符号 局部标签 汇编（动词） 链接 第一次运行 程序文件里有什么？ 分析可重定位文件 文件的 Section 查看文件主要段的大小 目标文件 文件类型 查看 ELF 文件的详细信息 符号列表 size readelf objdump 段的大小 反汇编 链接 可执行文件 文件类型 符号列表 段 Program Headers 段大小 第一次运行 链接脚本 第二次运行 给程序减肥 第三次运行 最" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hemashushu.github.io/zh/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/images/hello-world-assembly.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-07T00:00:00+00:00" /><meta property="og:site_name" content="河马蜀黍真是的" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/images/hello-world-assembly.png"/>
+
+<meta name="twitter:title" content="S01C03 揭秘 ELF 可执行文件，制作一个只有 70 字节的最小 Hello World 程序"/>
+<meta name="twitter:description" content="在上一章我们制作了一种无需操作系统，无需任何库就可以独自运行的 “裸机程序”，并且程序的所有内容由我们自己写的代码组成。在这一章我们将会分析程序文件本身，看看可执行文件里头究竟包含了哪些内容，然后把 Hello, World! 程序减少到几十个字节。 最小的裸机 &ldquo;Hello, World!&rdquo; 程序 汇编语言 标签与符号 局部标签 汇编（动词） 链接 第一次运行 程序文件里有什么？ 分析可重定位文件 文件的 Section 查看文件主要段的大小 目标文件 文件类型 查看 ELF 文件的详细信息 符号列表 size readelf objdump 段的大小 反汇编 链接 可执行文件 文件类型 符号列表 段 Program Headers 段大小 第一次运行 链接脚本 第二次运行 给程序减肥 第三次运行 最"/>
+
+<meta name="generator" content="Hugo 0.102.0-DEV" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
+  
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
+
+<body>
+  <div id="container">
+    <header>
+      
+      <h1>
+        <a href="/zh/">河马蜀黍真是的</a>
+      </h1>
+
+      <ul id="social-media">
+        
+        
+          <li>
+            <a href="https://hemashushu.github.io/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/">English</a>
+          </li>
+        
+        
+             <li>
+               <a href="https://github.com/hemashushu" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/hemashushu" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>好奇、探索、发现、创造</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="active" href="/zh/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>文章</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/zh/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>S01C03 揭秘 ELF 可执行文件，制作一个只有 70 字节的最小 Hello World 程序</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2022-11-07T00:00:00Z">Nov 7, 2022</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/zh/categories/craft-system">craft-system</a>
+                
+                    , 
+                    <a href="/zh/categories/dive-into-riscv">dive-into-riscv</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/zh/tags/riscv">#riscv</a>
+                
+                    , 
+                    <a href="/zh/tags/elf">#elf</a>
+                
+            </em>
+        </li>
+        
+
+        <li>23 minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+      
+<div class="featured_image">
+    <a href="https://hemashushu.github.io/zh/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/" title="S01C03 揭秘 ELF 可执行文件，制作一个只有 70 字节的最小 Hello World 程序">
+        <img src="/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/images/hello-world-assembly.png">
+    </a>
+</div>
+
+
+    
+
+    <p>在<a href="../2022-11-06-s01c02-write-a-program-run-alone-without-os">上一章</a>我们制作了一种无需操作系统，无需任何库就可以独自运行的 “裸机程序”，并且程序的所有内容由我们自己写的代码组成。在这一章我们将会分析程序文件本身，看看可执行文件里头究竟包含了哪些内容，然后把 <code>Hello, World!</code> 程序减少到几十个字节。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#%E6%9C%80%E5%B0%8F%E7%9A%84%E8%A3%B8%E6%9C%BA-hello-world-%E7%A8%8B%E5%BA%8F">最小的裸机 &ldquo;Hello, World!&rdquo; 程序</a></li>
+<li><a href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80">汇编语言</a>
+<ul>
+<li><a href="#%E6%A0%87%E7%AD%BE%E4%B8%8E%E7%AC%A6%E5%8F%B7">标签与符号</a></li>
+<li><a href="#%E5%B1%80%E9%83%A8%E6%A0%87%E7%AD%BE">局部标签</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B1%87%E7%BC%96%E5%8A%A8%E8%AF%8D">汇编（动词）</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8C">第一次运行</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E6%96%87%E4%BB%B6%E9%87%8C%E6%9C%89%E4%BB%80%E4%B9%88">程序文件里有什么？</a></li>
+<li><a href="#%E5%88%86%E6%9E%90%E5%8F%AF%E9%87%8D%E5%AE%9A%E4%BD%8D%E6%96%87%E4%BB%B6">分析可重定位文件</a>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%9A%84-section">文件的 Section</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E4%B8%BB%E8%A6%81%E6%AE%B5%E7%9A%84%E5%A4%A7%E5%B0%8F">查看文件主要段的大小</a></li>
+<li><a href="#%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6">目标文件</a>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B">文件类型</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9F%A5%E7%9C%8B-elf-%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF">查看 ELF 文件的详细信息</a>
+<ul>
+<li><a href="#%E7%AC%A6%E5%8F%B7%E5%88%97%E8%A1%A8">符号列表</a></li>
+<li><a href="#size"><code>size</code></a></li>
+<li><a href="#readelf"><code>readelf</code></a></li>
+<li><a href="#objdump"><code>objdump</code></a></li>
+<li><a href="#%E6%AE%B5%E7%9A%84%E5%A4%A7%E5%B0%8F">段的大小</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8D%E6%B1%87%E7%BC%96">反汇编</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5-1">链接</a></li>
+<li><a href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6">可执行文件</a>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B-1">文件类型</a></li>
+<li><a href="#%E7%AC%A6%E5%8F%B7%E5%88%97%E8%A1%A8-1">符号列表</a></li>
+<li><a href="#%E6%AE%B5">段</a></li>
+<li><a href="#program-headers">Program Headers</a></li>
+<li><a href="#%E6%AE%B5%E5%A4%A7%E5%B0%8F">段大小</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8C-1">第一次运行</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5%E8%84%9A%E6%9C%AC">链接脚本</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%BF%90%E8%A1%8C">第二次运行</a></li>
+<li><a href="#%E7%BB%99%E7%A8%8B%E5%BA%8F%E5%87%8F%E8%82%A5">给程序减肥</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%BF%90%E8%A1%8C">第三次运行</a></li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="最小的裸机-hello-world-程序">最小的裸机 &ldquo;Hello, World!&rdquo; 程序</h2>
+<p>上一章的 &ldquo;Hello, World!&rdquo; 程序为了演示编译过程而被分解为 <code>startup.S</code>、<code>app.c</code>、<code>libprint.c</code> 和 <code>put_char.S</code> 等几个源代码文件，实际上它们的代码都非常简单，每个文件的主要内容只有两三句。所以为了简单起见，这章把它们合并到一个汇编文件里。</p>
+<p>在任意位置新建一个名为 <code>minimal</code> 的目录，然后新建名为 <code>app.S</code> 的文件，其内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-app.S" data-lang="app.S"><span style="display:flex;"><span><span style="color:#f92672">.equ</span> VIRT<span style="color:#960050;background-color:#1e0010">_UART0</span>, <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x10</span><span style="color:#960050;background-color:#1e0010">000000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">.globl</span> _start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">.section</span> <span style="color:#f92672">.text</span>
+</span></span><span style="display:flex;"><span>_start:
+</span></span><span style="display:flex;"><span>    la      <span style="color:#960050;background-color:#1e0010">sp</span>, <span style="color:#960050;background-color:#1e0010">stack_top</span>
+</span></span><span style="display:flex;"><span>    call    <span style="color:#960050;background-color:#1e0010">bare_main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>_loop:
+</span></span><span style="display:flex;"><span>    nop
+</span></span><span style="display:flex;"><span>    j       <span style="color:#960050;background-color:#1e0010">_loop</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bare_main:
+</span></span><span style="display:flex;"><span>    la      <span style="color:#960050;background-color:#1e0010">t0</span>, <span style="color:#960050;background-color:#1e0010">hello_world</span>     #<span style="color:#960050;background-color:#1e0010"> load hello world string address into t</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    li      <span style="color:#960050;background-color:#1e0010">t4</span>, <span style="color:#960050;background-color:#1e0010">VIRT_UART0</span>      #<span style="color:#960050;background-color:#1e0010"> load UART</span><span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">address</span> <span style="color:#960050;background-color:#1e0010">(a</span> <span style="color:#960050;background-color:#1e0010">immediate</span> <span style="color:#960050;background-color:#1e0010">number)</span> <span style="color:#960050;background-color:#1e0010">into</span> <span style="color:#960050;background-color:#1e0010">t4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    mv      <span style="color:#960050;background-color:#1e0010">t1</span>, <span style="color:#a6e22e">x0</span>              #<span style="color:#960050;background-color:#1e0010"> let t</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">0</span> <span style="color:#960050;background-color:#1e0010">(t1</span> <span style="color:#960050;background-color:#1e0010">will</span> <span style="color:#960050;background-color:#1e0010">be</span> <span style="color:#960050;background-color:#1e0010">the</span> <span style="color:#960050;background-color:#1e0010">loop</span> <span style="color:#960050;background-color:#1e0010">index)</span>
+</span></span><span style="display:flex;"><span>1:
+</span></span><span style="display:flex;"><span>    add     <span style="color:#960050;background-color:#1e0010">t2</span>, <span style="color:#960050;background-color:#1e0010">t1</span>, <span style="color:#960050;background-color:#1e0010">t0</span>          #<span style="color:#960050;background-color:#1e0010"> let t</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">t1</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#960050;background-color:#1e0010">t0</span>
+</span></span><span style="display:flex;"><span>    lb      <span style="color:#960050;background-color:#1e0010">t3</span>, <span style="color:#960050;background-color:#1e0010">0(t2)</span>           #<span style="color:#960050;background-color:#1e0010"> let t</span><span style="color:#ae81ff">3</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">hello_world[t2]</span> <span style="color:#960050;background-color:#1e0010">(lb</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">load</span> <span style="color:#960050;background-color:#1e0010">byte)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    beqz    <span style="color:#960050;background-color:#1e0010">t3</span>, <span style="color:#960050;background-color:#1e0010">2f</span>              #<span style="color:#960050;background-color:#1e0010"> if a</span><span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">==</span> <span style="color:#960050;background-color:#1e0010">0</span> <span style="color:#960050;background-color:#1e0010">then</span> <span style="color:#960050;background-color:#1e0010">goto</span> <span style="color:#960050;background-color:#1e0010">`2f`</span>
+</span></span><span style="display:flex;"><span>    sb      <span style="color:#960050;background-color:#1e0010">t3</span>, <span style="color:#960050;background-color:#1e0010">0(t4)</span>           #<span style="color:#960050;background-color:#1e0010"> t</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">[0]</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">t3</span> <span style="color:#960050;background-color:#1e0010">(sb</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">store</span> <span style="color:#960050;background-color:#1e0010">byte)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    addi    <span style="color:#960050;background-color:#1e0010">t1</span>, <span style="color:#960050;background-color:#1e0010">t1</span>, <span style="color:#960050;background-color:#1e0010">1</span>           #<span style="color:#960050;background-color:#1e0010"> t</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">t1</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#960050;background-color:#1e0010">1</span>
+</span></span><span style="display:flex;"><span>    j       <span style="color:#960050;background-color:#1e0010">1b</span>                  #<span style="color:#960050;background-color:#1e0010"> goto `</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">b`</span>
+</span></span><span style="display:flex;"><span>2:
+</span></span><span style="display:flex;"><span>    ret
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">.section</span> <span style="color:#f92672">.rodata</span>
+</span></span><span style="display:flex;"><span>hello_world:<span style="color:#f92672">
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">    .asciz </span>&#34;<span style="color:#e6db74">Hello, World!\n</span>&#34;    <span style="color:#960050;background-color:#1e0010">#</span> automatic <span style="color:#960050;background-color:#1e0010">trailing</span> <span style="color:#960050;background-color:#1e0010">zero</span>
+</span></span></code></pre></div><blockquote>
+<p>源代码可以到 <a href="https://github.com/hemashushu/hemashushu.github.io/tree/main/src/content/posts">文章的 Github 源代码仓库</a> 下载。</p>
+</blockquote>
+<p>代码当中符号 <code>#</code> 后面的是注释，我在注释里写了每条指令等效的语句。函数 <code>bare_main</code> 的主体是一个循环结构，在每次循环里打印 <code>hello_world</code> 字符串的下一个字符，并在遇到字符 <code>\0</code> 时跳出循环。</p>
+<h2 id="汇编语言">汇编语言</h2>
+<p>汇编源代码经过汇编（这个 <em>汇编</em> 是动词）之后会生成一系列平铺的、无结构的二进制数据，具体来说就是类似 &ldquo;1011001100000011&hellip;&rdquo; 这样长长的一串二进制数字，为了便于阅读，有时也会以十六进制表示，比如 &ldquo;b3 03 53 00 &hellip;&quot;。它们实际上是一系列的机器指令（即 <em>二进制指令序列</em>），显然人类是很难直接阅读和理解这些二进制数据，所以工程师们发明了使用助记符（文本）来表示这些指令的方法，比如语句 <code>add t2,t1,t0</code> 对应的指令是 <code>0x005303b3</code>。有了助记符之后，我们就可以使用可阅读理解的文本来书写程序，然后再通过一种程序 ———— <em>汇编器</em> 来将文本转换为二进制指令序列，这些由助记符和数字等语句组成的文本就是 <em>汇编语言</em>。</p>
+<p><img src="images/assembler.png" alt="assembler">
+<em>部分汇编语句对应的二进制指令</em></p>
+<h3 id="标签与符号">标签与符号</h3>
+<p>二进制指令序列是一种一维的信息，为了方便定位信息，将序列每 8 位（bit）分为一组，即 1 个 <em>字节</em> 作为 1 个单位，然后给每一个字节加上一连串假想的序号，这个序号就是 <em>地址</em>，这样一来就可以用地址来定位序列上的每一个数据了。比如地址 <code>0x0006</code> 表示第 7 个字节（注意地址是从 0 开始数）。</p>
+<blockquote>
+<p>RISC-V 架构的每个指令占 4 个字节（即 32 位），压缩指令每个指令占 2 个字节（即 16 位）。也就是说，CPU 每次从指令序列里获取 4 个字节（或者 2 个字节）数据，作为输入的信号，然后让芯片里成千上万个诸如与非门等 &ldquo;小开关&rdquo; 噼里啪啦地改变电平（状态），直到所有小开关都安静下来（不再改变电平）之后，就完成一次指令的执行，这样的一次过程所需的时间叫 <em>一个时钟周期</em>。CPU 完成执行一个指令之后，又会再次从指令序列里获取数据重复刚才的过程。</p>
+</blockquote>
+<p>虽然使用地址可以定位程序的任意位置，但有时不够直观，于是就有了 <em>标签</em>（一个由字符和数字组成的字符串）。我们可以给某些特殊的地址加上标签，比如在上面的程序当中的 <code>_start</code>、<code>_loop</code>、<code>bare_main</code> 以及 <code>hello_world</code> 都是标签，通过下面的分析就会知道它们分别表示地址 <code>0x80000000</code>、<code>0x8000000c</code>、<code>0x80000014</code> 和 <code>0x80000040</code>。</p>
+<p>标签在汇编中有重要的作用：</p>
+<ul>
+<li>
+<p>用于构建一个函数。函数是组成程序的基本结构，一个程序可以大致地认为就是一堆函数的结合体（当然除了函数还有数据）。然而指令序列是没有结构的，也不存在函数这个概念，这时就需要 <code>标签</code> 来 &ldquo;模拟&rdquo; 函数。在汇编里，一个函数由 &ldquo;一个标签&rdquo; + &ldquo;一系列指令&rdquo; + &ldquo;一个返回指令&rdquo; 组成，此时标签的名称就是函数的名称。标签代替了一个函数的地址（即函数首条指令的地址），在书写调用函数的汇编语句时，就不需要知道目标函数的具体地址，只需写目标函数的标签名称即可，汇编器会把标签转换为具体的地址。</p>
+</li>
+<li>
+<p>用于表示全局常量和全局变量。我们知道所谓全局常量（比如字符串）和全局变量就是内存中的一段数据，用 <code>标签</code> 可以表示这段数据的位置，此时标签的名称就是全局常量和全局变量的名称。</p>
+</li>
+</ul>
+<p>通常函数、全局常量和全局变量会被外部模块所调用，所以在汇编里会使用 <code>.globl</code> 指令导出这些标签，这些导出的标签也叫 <code>导出符号</code>，或者简称 <code>符号</code>。</p>
+<h3 id="局部标签">局部标签</h3>
+<p>指令序列不但没有函数概念，也没有高级语言里的 <em>条件语句</em> 和 <em>循环语句</em> 等流程控制结构。那么在汇编语言里怎样实现流程控制结构呢？跟函数类似，也是通过 <code>标签</code> 和 <code>跳转指令/条件分支指令</code> 共同来 &ldquo;模拟&rdquo; 的。</p>
+<p>例如上面的汇编代码当中的 <code>beqz t3, 2f</code>，是一个 <em>条件分支指令</em> 的语句，表示当 <code>t3</code> 等于 0 时跳转到标签 <code>2</code>。再比如 <code>j 1b</code> 是一个 <em>跳转指令</em> 的语句，表示无条件跳转到标签 <code>1</code>。</p>
+<p>这些由纯数字组成的标签叫 <em>局部标签</em>，用于在局部跳转，它们不能导出为符号。使用纯数字作为标签的好处是你不需要为标签命名而犯愁，因为通常它们只是表示一个位置，而没有实际的意义，要给它们命名实在强人所难。</p>
+<p>你可能注意到在分支指令或者跳转指令语句里，数字标签后面带有 <code>f</code> 或者 <code>b</code> 这样的后缀，其中 <code>f</code> 表示 <code>forward</code>，<code>b</code> 表示 <code>backward</code>，它们都是表示寻找标签的方向。之所以需要带上寻找方向后缀，是因为局部标签的名称 ———— 数字是允许重复的，在不会发生混淆的情况下，你甚至可以用同一个数字来命名所有局部标签。因为数字允许重复，我们就不需为 &ldquo;数字排序&rdquo; 和 &ldquo;避免数字冲突&rdquo; 这些琐碎事而烦恼。</p>
+<blockquote>
+<p>虽然我们很少会直接书写汇编代码，现代的汇编代码一般是编译程序生成的，不过从汇编语言的一些特性来看，它其实还是挺多 <code>人性化</code> 的设计。在这一系列文章里，我们将会设计一门汇编语言，这门汇编语言则是完全的 &ldquo;书写友好&rdquo; 和 &ldquo;阅读友好&rdquo;，打破传统汇编语言那种 &ldquo;生人勿近&rdquo; 的个性。在后面的章节里我会详细介绍这门崭新的汇编语言。</p>
+</blockquote>
+<h2 id="汇编动词">汇编（动词）</h2>
+<p>使用 <em>汇编器</em> 可以将汇编源代码 <em>汇编</em>（动词）为 <em>可重定位文件</em>，例如：</p>
+<p><code>$ riscv64-elf-as -g -o app.o app.S</code></p>
+<ul>
+<li>参数 <code>-g</code> 用于生成供 GDB 使用的调试信息，调试信息包括源代码当中的局部变量名称，指令对应的源代码的行数等。额外的调试信息会保持在输出文件里面。虽然暂时用不上调试信息，不过在平时编译时都加上可以培养良好的习惯；</li>
+<li>参数 <code>-Wall</code> 用于报告编译过程中的所有警告和错误信息；</li>
+<li>参数 <code>-o app.o</code> 用于指定输出文件的名称。注意 <code>-o app.o</code> 是一个整体，而后面的 <code>app.S</code> 不属于这个参数的一部分。</li>
+<li>参数 <code>app.S</code> 是汇编源代码文件的名称。</li>
+</ul>
+<blockquote>
+<p>因 Linux 发行版的不同，RISC-V GCC 工具链当中的各个工具的名称前缀可能会有所不同，比如 <code>riscv64-elf-*</code> 在 Ubuntu 里被命名为 <code>riscv64-unknown-elf-*</code>。另外注意区分 <code>riscv64-elf-*</code> 和 <code>riscv64-linux-gnu-*</code>，前者用于编译和生成 &ldquo;裸机&rdquo; 程序，后者用于编译和生成在 Linux 环境中运行的程序。</p>
+</blockquote>
+<p>汇编完成后得到文件 <code>app.o</code>。</p>
+<h2 id="链接">链接</h2>
+<p>在 <a href="../2022-11-06-s01c02-write-a-program-run-alone-without-os">上一章</a> 里提到，RISC-V GCC 链接器的默认链接脚本因为程序的加载地址不同，所以不能直接用于生成供 QEMU 运行的裸机程序，这里需要重用上一章的链接脚本 <code>app.ld</code>，把该文件复制到当前项目的文件夹 <code>minimal</code> 里，然后执行链接命令：</p>
+<p><code>$ riscv64-elf-ld -T app.ld -nostdlib -o app.out app.o</code></p>
+<p>链接完成后得到可执行文件 <code>app.out</code>。</p>
+<h2 id="第一次运行">第一次运行</h2>
+<p>接下来使用 QEMU 的 <em>全系统模式</em> 程序 <code>qemu-system-riscv64</code> 来运行上一个步骤生成的 <code>app.out</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -machine virt <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios none <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel app.out
+</span></span></code></pre></div><p>如无意外，应该能看到输出一行字符 &ldquo;Hello, World!&quot;。</p>
+<blockquote>
+<p>还记得如何结束 QEMU 程序吗？是快捷键 <code>Ctrl+a, x</code> 哦，即先按下 <code>Ctrl+a</code>，然后松开 <code>Ctrl</code> 键再按 <code>x</code> 键。</p>
+</blockquote>
+<h2 id="分析可执行文件">分析可执行文件</h2>
+<p>现在我们已经知道一个程序是如何构建和产生的，接下来将会进一步了解，作为程序的载体 ———— ELF 文件里面究竟有什么内容，它的内部结构又是怎样的。</p>
+<p>GCC Toolchain 包含了一套用于分析 ELF 文件的工具 <a href="https://www.gnu.org/software/binutils/">GNU Binutils</a> ，使用它可以查看 ELF 文件的结构以及内容。</p>
+<p>C 源代码经过编译，或者汇编源代码经过汇编，得到的是 ELF 格式的 <em>可重定位文件</em>，然后一个或多个可重定位文件经过链接，则得到 ELF 格式的 <em>可执行文件</em>。比如上面的 <code>app.o</code> 属于可重定位文件，而 <code>app.out</code> 属于可执行文件。Binutils 可以分析这两种类型的文件，不过由于它们的结构和内容都非常相似，而且可重定位文件是中间产物，所以一般没必要检查。下面开始分析可执行文件 <code>app.out</code>。</p>
+<blockquote>
+<p>GNU 汇编器 <code>as</code>（即 <em>GAS</em>）和链接器 <code>ld</code> 虽然跟编译任务关系密切，不过它们不是 GCC 的一部分，而是 Binutils 这套工具的。</p>
+</blockquote>
+<h2 id="可执行文件里有什么">可执行文件里有什么？</h2>
+<p>ELF 文件内部是由多个称为 <em>Section</em>（<code>段</code>）的区块组成的，每个 section 包含一个名字和一段二进制数据。ELF 使用 section 存储不同类型的信息。</p>
+<p>让我们回想一下一个普通的应用程序包含有哪些类型的信息：</p>
+<ol>
+<li>最主要当然是程序源代码当中的语句，这些语句会被编译或者汇编为二进制指令序列，二进制指令序列会储存在名为 <code>.text</code> 的 section 里（section 的名称以点号开始）；</li>
+<li>其次是程序源代码当中的数据，数据可以大致分为以下三种类型：
+a. 常量。
+比如字符串和数组常量，这类数据在程序的运行过程中是不会改变的，这类数据储存在名为 <code>.rodata</code> 的 section 里，其中 &ldquo;ro&rdquo; 是 &ldquo;read only&rdquo; 的简写；
+b. 全局变量，包括静态变量。
+这类数据的生命周期贯穿程序的整个运行过程，而且其内容是可以改变的，这类数据存储在名为 <code>.data</code> 的 section 里；
+c. 未初始化的全局变量，或者初始值为 0 的全局变量。
+常见于程序中用作缓冲（buffer）的数组，因为其中的内容是在运行过程中由具体的语句填充或者更改，所以在定义的时候一般只会指定缓冲的大小，这类数据存储在名为 <code>.bss</code> 的 section 里，其中 &ldquo;bss&rdquo; 是 &ldquo;block starting symbol&rdquo; 的简写。需要注意的是在程序文件里，<code>.bss</code> 段并不占用空间，因为它们没有初始值（或者都是 0），所以在文件里只记录了该段的长度，而没有实际的内容。</li>
+</ol>
+<p>一个典型的可执行文件就是由 <code>.text</code>, <code>.rodata</code>, <code>.data</code>, <code>.bss</code> 等 section 组成，简单来说它们分别是指令序列、只读数据、可读写数据、未初始化的数据。当然除了 <code>.text</code>，其它段都不是必须的。</p>
+<p><img src="images/sections.png" alt="Sections"></p>
+<p>在汇编源代码里，通过 <code>.section</code> 指令来指定接下来的内容应该存储在哪个段里。比如上面的示例里的 <code>.section .text</code> 语句，其作用就是告诉汇编器：接下来的内容要放在 <code>.text</code> 段里。</p>
+<h3 id="查看-section">查看 section</h3>
+<p>使用程序 <code>objdump</code> 可以查看可执行文件的各个 section，例如：</p>
+<p><code>$ riscv64-elf-objdump -h app.out</code></p>
+<p>输出的部分内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Sections:
+</span></span><span style="display:flex;"><span>Idx Name          Size      VMA               LMA               File off  Algn
+</span></span><span style="display:flex;"><span>  0 .text         00000040  0000000080000000  0000000080000000  00001000  2**2
+</span></span><span style="display:flex;"><span>                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+</span></span><span style="display:flex;"><span>  1 .rodata       0000000f  0000000080000040  0000000080000040  00001040  2**0
+</span></span><span style="display:flex;"><span>                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+</span></span><span style="display:flex;"><span>  2 .riscv.attributes 00000043  0000000000000000  0000000000000000  0000104f  2**0
+</span></span><span style="display:flex;"><span>                  CONTENTS, READONLY
+</span></span><span style="display:flex;"><span>  3 .debug_line   00000086  0000000000000000  0000000000000000  00001092  2**0
+</span></span><span style="display:flex;"><span>                  CONTENTS, READONLY, DEBUGGING, OCTETS
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>输出结果当中的第二列是 section 的名称，第三列 &ldquo;Size&rdquo; 是 section（二进制数据）的大小，第六列 &ldquo;File off&rdquo; 是该 section 在 ELF 文件当中的开始位置。
+<code>.text</code>, <code>.data</code> 和 <code>.bss</code> 是段的名称，<code>VMA</code> 和 <code>LMA</code> 分别表示虚拟内存地址和加载地址，<code>ALLOC, LOAD, READONLY, CODE</code> 等是段的标记，程序加载器会根据该标记来决定处理该段的方式。</p>
+<p>比如 <code>ALLOC</code> 表示程序加载器需要分配空间给该段，<code>LOAD</code> 表示该段需要从文件加载进内存，<code>READONLY</code> 表示该段的内容不能被子进程修改，<code>CODE</code> 表示该段是可执行代码，<code>DATA</code> 表示该段是数据段。完整的标记列表可以参阅 <a href="https://sourceware.org/gdb/onlinedocs/gdb/Files.html">GDB - section-flag</a>。</p>
+<h3 id="查看文件主要段的大小">查看文件主要段的大小</h3>
+<p>Binutils 当中的 <code>file</code> 程序用于查看程序文件当中主要段的大小，例如：</p>
+<p><code>$ riscv64-linux-gnu-size app.o</code></p>
+<p>输出结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>   text    data     bss     dec     hex filename
+</span></span><span style="display:flex;"><span>     83       0       0      83      53 app.o
+</span></span></code></pre></div><p>输出结果的前 3 列分别表示程序的代码、可读写数据以及未初始化数据的大小。后两列 &ldquo;dec&rdquo; 和 &ldquo;hex&rdquo; 是前面 3 项内容的大小的总和，单位为字节。&ldquo;dec&rdquo; 是数值的十进制表示，&ldquo;hex&rdquo; 是数值的十六进制表示。<code>size</code> 输出的结果可以认为是一个程序的 <em>净重</em>（<em>Net weight</em>），也就是说一个程序运行时真正需要的代码和数据。</p>
+<p>如果使用 <code>ls</code> 命令查看的话，<code>app.o</code> 的大小是 4.3 KB，而使用 <code>size</code> 查看 <code>app.o</code> 的净重是 83 字节，说明 ELF 格式文件本身会占用一定的空间（当然还有很大一部分是调试信息）。</p>
+<p>需要注意的是前 3 列的数值是相关 section 的总大小，比如 &ldquo;text&rdquo; 并不是指 <code>.text</code> section，同样 &ldquo;data&rdquo; 并不是指 <code>.data</code> section。一般来说 &ldquo;text&rdquo; 列既包括了 <code>.text</code> section，也包括了 <code>.rodata</code> section 等在运行过程中不会更改的信息。另外 &ldquo;bss&rdquo; 列表示未初始化的数据的大小，我们知道这些数据仅在程序运行时才在内存里分配空间，在 ELF 文件里它们并不占用任何空间，但后两项统计值里却包含了它们的大小。</p>
+<blockquote>
+<p>初一看 <code>size</code> 的输出结果很莫名奇妙，或者说似乎没什么用处。不过对于嵌入式开发来说，<code>size</code> 输出的结果相当 &ldquo;实用&rdquo;，因为嵌入式设备的储存空间（一般是 Flash）以及运行内存（一般是 SRAM）相当小，通常只有十来或者几十 KB，所以 <code>size</code> 的统计值可以让你直接知道设备是否有足够的空间装载和运行你的程序，另外因为嵌入设备的储存空间和运行空间一般用十六进制表示，所以最后一列以十六进制的方式表示，也是为了帮你省去进制换算的麻烦。</p>
+</blockquote>
+<ul>
+<li></li>
+</ul>
+<p>仔细观察上面显示的 <code>text</code> 和 <code>data</code> 数值，可知编译器在我们写的应用程序里添加了不少的额外的内容，毕竟当前程序只有两条语句，这样的程序不太可能对应着 1000 多个字节的指令，而且文本内容 &ldquo;Hello, World!\n&rdquo; 也只有 14 个字节而已。下面会查看编译器都添加了什么内容。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="目标文件">目标文件</h3>
+<p>下面检查目标文件的一些基本信息。</p>
+<h4 id="文件类型">文件类型</h4>
+<p>先检查文件类型：</p>
+<p><code>$ file app.o</code></p>
+<p>输出内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app.o: ELF 64-bit LSB relocatable, UCB RISC-V, double-float ABI, version 1 (SYSV), with debug_info, not stripped
+</span></span></code></pre></div><p>可见汇编器输出的是一个 ELF 格式的 <em>可重定位文件</em>，也就是平常说的 <em>目标文件</em>，它还不是可执行文件。有关 ELF 格式的 3 中类型，可以参阅上一篇文章 <a href="../risc-v-gcc-base/README.zh-Hans.md">RISC-V GCC 基础</a>。</p>
+<h4 id="符号列表">符号列表</h4>
+<p>正如前面章节所述，汇编代码里会有表示地址的标签，这些标签经过 <code>.globl</code> 导出，就形成可以供外部查看的 <code>符号</code>（不过并非所有符号都是标签），可以粗略地把符号理解为函数名称或者全局变量名称。</p>
+<p>使用工具 <code>riscv64-elf-nm</code> 可以查看目标文件的导出符号列表：</p>
+<p><code>$ riscv64-elf-nm app.o</code></p>
+<p>输出的内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>0000000000000008 t _loop
+</span></span><span style="display:flex;"><span>0000000000000010 T _print_a
+</span></span><span style="display:flex;"><span>0000000000000000 T _start
+</span></span></code></pre></div><p>左边一列是各个符号的虚拟地址，右边一列是符号的名称，中间一列是符号类型的代号，部分代号的含义如下：</p>
+<ul>
+<li>A: Global absolute symbol.</li>
+<li>a: Local absolute symbol.</li>
+<li>B: Global bss symbol.</li>
+<li>b: Local bss symbol.</li>
+<li>D: Global data symbol.</li>
+<li>d: Local data symbol.</li>
+<li>T: Global text symbol.</li>
+<li>t: Local text symbol.</li>
+<li>U: Undefined symbol.</li>
+</ul>
+<p>符号类型代号当中，大写的表示是导出的（供外部使用的），小写的表示局部的（供内部使用的）。详细的列表可参阅 <a href="https://sourceware.org/binutils/docs/binutils/index.html">GNU Binary Utilities Document</a> 当中的 <a href="https://sourceware.org/binutils/docs/binutils/nm.html">nm</a> 一章。</p>
+<p>类型 <code>U</code> 比较特殊，表示未定义的符号。比如在一个源代码文件里，调用了一个外部函数，那么这个外部函数的名称就是一个未定义的符号。可见这里的 &ldquo;未定义&rdquo; 是相对当前源代码文件而言的。</p>
+<blockquote>
+<p>GCC 工具链里很多程序会提供相似的功能，比如列符号表的程序 <code>nm app.o</code>，其实也可以使用 <code>objdump -t app.o</code> 列出，还可以使用 <code>readelf --syms app.o</code> 列出。后面还会看到更多这样的情况，我们根据自己的喜好和习惯选择即可。</p>
+</blockquote>
+<h4 id="size"><code>size</code></h4>
+<h4 id="readelf"><code>readelf</code></h4>
+<p>工具 <code>readelf</code> 一般用于查看 ELF 文件的头信息以及段信息，例如：</p>
+<blockquote>
+<p>除了 <code>riscv64-elf-objdump -h</code>，也可以使用 <code>riscv64-elf-readelf -S app.o</code> 列出目标文件的段信息。</p>
+</blockquote>
+<p>ELF 的段（section）有两个视图：一个是从汇编器和链接器等工具看到的 section 视图（上面看到的都是这种视图），另一个是从程序加载器看到的 segment 视图（也称为 program 视图）。</p>
+<p>section 视图在 &ldquo;section headers&rdquo; 里列出，segment 视图在 &ldquo;program headers&rdquo; 里列出；section 视图跟 section 基本上是一一对应，而 segment 视图则跟 section 存在一对多的映射关系，比如 <code>.text</code> 和 <code>.data</code> 段常常对被映射到同一个 segment。</p>
+<p><code>$ riscv64-linux-gnu-readelf -l app.out</code></p>
+<p>参数 <code>-l</code> 表示查看程序段信息，输出的（部分）结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Elf file type is DYN (Position-Independent Executable file)
+</span></span><span style="display:flex;"><span>Entry point 0x5b0
+</span></span><span style="display:flex;"><span>There are 10 program headers, starting at offset 64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Program Headers:
+</span></span><span style="display:flex;"><span>  Type           Offset             VirtAddr           PhysAddr
+</span></span><span style="display:flex;"><span>                 FileSiz            MemSiz              Flags  Align
+</span></span><span style="display:flex;"><span>  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+</span></span><span style="display:flex;"><span>                 0x00000000000006e4 0x00000000000006e4  R E    0x1000
+</span></span><span style="display:flex;"><span>  LOAD           0x0000000000000e08 0x0000000000001e08 0x0000000000001e08
+</span></span><span style="display:flex;"><span>                 0x0000000000000248 0x0000000000000250  RW     0x1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> Section to Segment mapping:
+</span></span><span style="display:flex;"><span>  Segment Sections...
+</span></span><span style="display:flex;"><span>   03     .interp .note.gnu.build-id .note.ABI-tag .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .plt .text .rodata .eh_frame_hdr .eh_frame
+</span></span><span style="display:flex;"><span>   04     .preinit_array .init_array .fini_array .dynamic .data .got .bss
+</span></span></code></pre></div><p>下面简单讲解上面的内容：</p>
+<ul>
+<li>
+<p><code>LOAD</code> 表示将会被加载进内存的 segment（因为 <code>segment</code> 和 <code>section</code> 在中文里都叫作 <code>段</code>，所以这里直接使用英文名称。一般情况下 <code>段</code> 是指 <code>section</code>），下方的 <code>Section to Segment mapping</code> 列举了每个 segment 由哪些 section 组成。</p>
+<p>ELF 文件的主要内容由多个段（section）组成，这些段可以形成两个视图：从程序加载器的角度看，有一个叫 <code>segments</code> 的视图；从编译器、链接器角度看有一个叫 <code>sections</code> 的视图。</p>
+</li>
+<li>
+<p><code>LOAD</code> 项目显示了 segment 的文件偏移地址、虚拟地址、物理地址、在文件中的大小、在内存中的大小、标记等信息（这些内容会在本项目的其它文章种讲解）。这些信息会决定程序加载器如何处理 segment，比如 <code>RE</code> 标记表示这段内容在内存中具有 &ldquo;read, execute&rdquo; 权限，<code>RW</code> 标记表示这段内容在内存中具有 &ldquo;read, write&rdquo; 权限。</p>
+</li>
+</ul>
+<blockquote>
+<p>在现代的 CPU 内存管理单元里，物理内存被虚拟化，并以固定的大小（比如 4KB）划分为一个个区块（叫作 <em>页面</em>），每个内存页面都可以有不同的权限，比如有些内存页面只可读、有些可读写、有些可执行。</p>
+</blockquote>
+<ul>
+<li><code>Entry point 0x5b0</code> 表示程序的入口，即程序第一个会被执行的指令，位于地址 <code>0x5b0</code>，。</li>
+</ul>
+<p>使用命令 <code>riscv64-elf-readelf -l app.o</code> 即可列出 &ldquo;program headers&rdquo;，不过由于目前的 <code>app.o</code> 还不是可执行文件，所以它的 &ldquo;program headers&rdquo; 是空的。完整的 ELF 文件的结构信息可以参阅 <a href="https://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF Format wiki</a>。</p>
+<h4 id="objdump"><code>objdump</code></h4>
+<p>工具 <code>objdump</code> 可以反汇编可执行文件当中的代码段，查看位置 <code>0x5b0</code> 的内容：</p>
+<p><code>$ riscv64-linux-gnu-objdump -d app.out</code></p>
+<p>输出（部分）结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Disassembly of section .text:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>00000000000005b0 &lt;_start&gt;:
+</span></span><span style="display:flex;"><span> 5b0:   022000ef                jal     ra,5d2 &lt;load_gp&gt;
+</span></span><span style="display:flex;"><span> 5b4:   87aa                    mv      a5,a0
+</span></span><span style="display:flex;"><span> 5b6:   00002517                auipc   a0,0x2
+</span></span><span style="display:flex;"><span> 5ba:   a8253503                ld      a0,-1406(a0) # 2038 &lt;_GLOBAL_OFFSET_TABLE_+0x10&gt;
+</span></span><span style="display:flex;"><span> 5be:   6582                    ld      a1,0(sp)
+</span></span><span style="display:flex;"><span> 5c0:   0030                    addi    a2,sp,8
+</span></span><span style="display:flex;"><span> 5c2:   ff017113                andi    sp,sp,-16
+</span></span><span style="display:flex;"><span> 5c6:   4681                    li      a3,0
+</span></span><span style="display:flex;"><span> 5c8:   4701                    li      a4,0
+</span></span><span style="display:flex;"><span> 5ca:   880a                    mv      a6,sp
+</span></span><span style="display:flex;"><span> 5cc:   fc5ff0ef                jal     ra,590 &lt;__libc_start_main@plt&gt;
+</span></span><span style="display:flex;"><span> 5d0:   9002                    ebreak
+</span></span></code></pre></div><p>看到这里你可能感到很惊讶，原来程序的入口（即最先开始执行的指令）并不是 <code>main</code> 函数，而是一个名为 <code>_start</code> 的过程（大部分 C 语言的教科书或者教程都跟我们说：程序的入口是 <code>main</code> 函数，这是一个善意的谎言）。<code>_start</code> 过程会做一系列的初始化工作，然后才会调用 <code>main</code> 函数，在 <code>main</code> 函数执行完毕之后，它还会做一些清理工作。</p>
+<p>在上一个输出的结果里往下翻，就可以找到函数 <code>main</code> 的内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>0000000000000668 &lt;main&gt;:
+</span></span><span style="display:flex;"><span> 668:   1141                    addi    sp,sp,-16
+</span></span><span style="display:flex;"><span> 66a:   e406                    sd      ra,8(sp)
+</span></span><span style="display:flex;"><span> 66c:   e022                    sd      s0,0(sp)
+</span></span><span style="display:flex;"><span> 66e:   0800                    addi    s0,sp,16
+</span></span><span style="display:flex;"><span> 670:   00000517                auipc   a0,0x0
+</span></span><span style="display:flex;"><span> 674:   02050513                addi    a0,a0,32 # 690 &lt;_IO_stdin_used+0x8&gt;
+</span></span><span style="display:flex;"><span> 678:   f29ff0ef                jal     ra,5a0 &lt;puts@plt&gt;
+</span></span><span style="display:flex;"><span> 67c:   0001                    nop
+</span></span><span style="display:flex;"><span> 67e:   60a2                    ld      ra,8(sp)
+</span></span><span style="display:flex;"><span> 680:   6402                    ld      s0,0(sp)
+</span></span><span style="display:flex;"><span> 682:   0141                    addi    sp,sp,16
+</span></span><span style="display:flex;"><span> 684:   8082                    ret
+</span></span></code></pre></div><p>该段指令包含了普通函数的 <em>开场白</em> 和 <em>收场白</em> 模板代码，以及一句对函数 <code>puts</code> 的调用。</p>
+<h4 id="段的大小">段的大小</h4>
+<p>使用 <code>riscv64-elf-size</code> 可以查看各个段的大小：</p>
+<p><code>$ riscv64-elf-size app.o</code></p>
+<p>输出的结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>   text    data     bss     dec     hex filename
+</span></span><span style="display:flex;"><span>     32       0       0      32      20 app.o
+</span></span></code></pre></div><h3 id="反汇编">反汇编</h3>
+<p>你可能会疑问，我们刚刚进行了汇编，为什么还要反汇编？反汇编的结果不就是我们手写的汇编代码吗？</p>
+<p>是的，对目标文件进行 <em>反汇编</em> 将会得到汇编代码，不过经过反汇编得出的汇编代码跟我们手写的不完全一样，那是因为手写的汇编代码有一部分是 <code>伪指令</code>（即由多个真实指令组成的虚拟指令），通过反汇编能得到真实的指令；另外还有一部分是汇编指令，也就是针对汇编器的指令，这部分指令可能会改变汇编的行为，也可能会产生相当多的数据。</p>
+<p>再者反汇编工具一般还会显示各个指令的地址，这有帮助我们分析和调试程序。</p>
+<p><code>$ riscv64-elf-objdump -d app.o</code></p>
+<p>输出的结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Disassembly of section .text:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>0000000000000000 &lt;_start&gt;:
+</span></span><span style="display:flex;"><span>   0:   00000097                auipc   ra,0x0
+</span></span><span style="display:flex;"><span>   4:   000080e7                jalr    ra # 0 &lt;_start&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>0000000000000008 &lt;_loop&gt;:
+</span></span><span style="display:flex;"><span>   8:   00000013                nop
+</span></span><span style="display:flex;"><span>   c:   ffdff06f                j       8 &lt;_loop&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>0000000000000010 &lt;_print_a&gt;:
+</span></span><span style="display:flex;"><span>  10:   100004b7                lui     s1,0x10000
+</span></span><span style="display:flex;"><span>  14:   04100913                li      s2,65
+</span></span><span style="display:flex;"><span>  18:   01248023                sb      s2,0(s1) # 10000000 &lt;_print_a+0xffffff0&gt;
+</span></span><span style="display:flex;"><span>  1c:   00008067                ret
+</span></span></code></pre></div><p>注意参数 <code>-d</code> 仅反汇编 <code>.text</code> 段，如果你想查看所有段的内容，可以使用 <code>-D</code> 参数代替 <code>-d</code>，不过一般不用关心其它段的内容。</p>
+<p>下面分析其中的第 2 个指令 <code>0000_80e7</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>000000000000  00001 000 00001 1100111
+</span></span><span style="display:flex;"><span>____________  _____     _____ _______
+</span></span><span style="display:flex;"><span>|offset[11:0] rs=1      rd=1  jalr
+</span></span></code></pre></div><p>解码得出：<code>jalr ra, 0(ra)</code>，结合上一条指令 <code>auipc ra,0x0</code> 来看，这两条指令并不能实现跳转到 <code>_print_a</code> 函数，所以这里的 <code>0</code> 是一个占位符。这时 GCC 编译器，也是目前大部分编译器的原理，即在编译阶段，所有涉及函数地址、全局变量地址的地方，都用 <code>0</code> 代替，同时会做一张需要重定位的符号列表。仅在链接阶段，才会把真实的地址填上。（具体步骤和原理在后续的文章里会讲解）</p>
+<h3 id="链接-1">链接</h3>
+<p>由上一节可知，因为目标文件当中的所有符号的地址都是用 <code>0</code> 顶替的，所以 <em>目标文件</em> 是没法运行的，还需要把符号的真实地址填上，应用程序才能运行，而这这正是链接器的工作。</p>
+<p>链接器还有另外一项工作，就是如果存在多个 <em>目标文件</em>，那么它还需要把这些文件合并在一起。那么它是怎样合并的呢？</p>
+<p>我们知道目标文件里存在多个 “段”，在合并时默认会将相同名称的段合并成一个段。比如假设现有两个目标文件 <code>a.o</code> 和 <code>b.o</code>。在链接时，<code>a.o</code> 的 <code>.text</code> 段将会和 <code>b.o</code> 的 <code>.text</code> 段合并，<code>a.o</code> 的 <code>.data</code> 段和 <code>b.o</code> 的 <code>.data</code> 段合并，最后再将合并后的各个段连接起来。</p>
+<p>具体的合并方案是由一个链接器的脚本控制的，这个默认脚本可以通过命令 <code>$ riscv64-elf-ld --verbose</code> 查看，脚本的具体含义可以参考 <a href="https://sourceware.org/binutils/docs/ld/index.html">LD 的文档</a> 当中的 <a href="https://sourceware.org/binutils/docs/ld/Scripts.html">3 Linker Scripts</a> 一章，这里有一个 <a href="https://blog.csdn.net/m0_47799526/article/details/108765403">中文翻译版</a> 也可以参考一下。</p>
+<p>有时目标文件可能是第三方提供的库，比如 C 的数学库 <code>/usr/lib/libm.so</code>，所以链接时又有静态链接和动态链接之分，后续的文章会详细讲解。</p>
+<p>下面是链接命令：</p>
+<p><code>$ riscv64-elf-ld -o app.out app.o</code></p>
+<p>上面程序运行之后得到文件 <code>app.out</code>。</p>
+<h3 id="可执行文件">可执行文件</h3>
+<p>链接器的输出结果是一个可执行文件，下面查看可执行文件的信息。</p>
+<h4 id="文件类型-1">文件类型</h4>
+<p>使用 <code>file</code> 工具查看文件的类型：</p>
+<p><code>$ file app.out</code></p>
+<p>输出如下信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app.out: ELF 64-bit LSB executable, UCB RISC-V, double-float ABI, version 1 (SYSV), statically linked, with debug_info, not stripped
+</span></span></code></pre></div><p>对比之前的 <code>app.o</code> 的会发现文件类型已经由 <code>ELF relocatable</code> 变成 <code>ELF executable</code>。使用 <code>riscv64-elf-readelf -h</code> 同样可以查看 ELF 格式的头信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-elf-readelf -h app.o
+</span></span><span style="display:flex;"><span>$ riscv64-elf-readelf -h app.out
+</span></span></code></pre></div><p>输出的结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt; Type:                              REL (Relocatable file)
+</span></span><span style="display:flex;"><span>&lt; Entry point address:               0x0
+</span></span><span style="display:flex;"><span>&lt; Start of program headers:          0 (bytes into file)
+</span></span><span style="display:flex;"><span>&lt; Number of program headers:         0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt; Type:                              EXEC (Executable file)
+</span></span><span style="display:flex;"><span>&gt; Entry point address:               0x100b0
+</span></span><span style="display:flex;"><span>&gt; Start of program headers:          64 (bytes into file)
+</span></span><span style="display:flex;"><span>&gt; Number of program headers:         2
+</span></span></code></pre></div><h4 id="符号列表-1">符号列表</h4>
+<p>然后再看看导出符号表：</p>
+<p><code>$ riscv64-elf-nm app.out</code></p>
+<p>输出的内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>00000000000110d0 T __BSS_END__
+</span></span><span style="display:flex;"><span>00000000000110cc T __bss_start
+</span></span><span style="display:flex;"><span>00000000000110cc T __DATA_BEGIN__
+</span></span><span style="display:flex;"><span>00000000000110cc T _edata
+</span></span><span style="display:flex;"><span>00000000000110d0 T _end
+</span></span><span style="display:flex;"><span>00000000000118cc A __global_pointer$
+</span></span><span style="display:flex;"><span>00000000000100b4 t _loop
+</span></span><span style="display:flex;"><span>00000000000100bc T _print_a
+</span></span><span style="display:flex;"><span>00000000000110cc T __SDATA_BEGIN__
+</span></span><span style="display:flex;"><span>00000000000100b0 T _start
+</span></span></code></pre></div><p>发现多出了几个符号，比如 <code>__DATA_BEGIN</code>，<code>__bss_start</code> 等，这些符号来自链接脚本。</p>
+<h4 id="段">段</h4>
+<p>然后再看段信息：</p>
+<p><code>$ riscv64-elf-objdump -h app.out</code></p>
+<p>输出的内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Idx Name          Size      VMA               LMA               File off  Algn
+</span></span><span style="display:flex;"><span>  0 .text         0000001c  00000000000100b0  00000000000100b0  000000b0  2**2
+</span></span><span style="display:flex;"><span>                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+</span></span></code></pre></div><p>发现 <code>.data</code> 和 <code>.bss</code> 段不见了，那是因为它们原本就是无内容的，长度为 0，所以在最后输出文件里被 &ldquo;优化&rdquo;（即被移除）了。</p>
+<p><code>.text</code> 的长度不变，而 <code>VMA</code> （虚拟内存地址）和 <code>LMA</code> （加载内存地址）的值都变为 <code>0x1_00b0</code>。</p>
+<h4 id="program-headers">Program Headers</h4>
+<p>因为 <code>app.out</code> 已经是可执行文件，所以现在可以查看 &ldquo;program headers&rdquo; 了：</p>
+<p><code>$ riscv64-elf-readelf -l app.out</code></p>
+<p>输出的结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Elf file type is EXEC (Executable file)
+</span></span><span style="display:flex;"><span>Entry point 0x100b0
+</span></span><span style="display:flex;"><span>There are 2 program headers, starting at offset 64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Program Headers:
+</span></span><span style="display:flex;"><span>  Type           Offset             VirtAddr           PhysAddr
+</span></span><span style="display:flex;"><span>                 FileSiz            MemSiz              Flags  Align
+</span></span><span style="display:flex;"><span>  RISCV_ATTRIBUT 0x00000000000000cc 0x0000000000000000 0x0000000000000000
+</span></span><span style="display:flex;"><span>                 0x0000000000000043 0x0000000000000000  R      0x1
+</span></span><span style="display:flex;"><span>  LOAD           0x0000000000000000 0x0000000000010000 0x0000000000010000
+</span></span><span style="display:flex;"><span>                 0x00000000000000cc 0x00000000000000cc  R E    0x1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> Section to Segment mapping:
+</span></span><span style="display:flex;"><span>  Segment Sections...
+</span></span><span style="display:flex;"><span>   00     .riscv.attributes
+</span></span><span style="display:flex;"><span>   01     .text
+</span></span></code></pre></div><p>&ldquo;program headers&rdquo; 主要用于指示程序加载器如何加载程序（到内存），由上面的结果可见程序会被加载到 <code>0x1_0000</code>，总共加载 <code>0xcc</code> 个字节。又因为程序的入口位于地址 <code>0x1_00b0</code>，所以实际指令的大小为 <code>0xcc - 0xb0 = 0x1c</code>，这个大小跟 &ldquo;section headers&rdquo; 列出的 <code>.text</code> 段的大小是一致的。</p>
+<h4 id="段大小">段大小</h4>
+<p>然后再次查看各个段的大小：</p>
+<p><code>$ riscv64-elf-size app.out</code></p>
+<p>输出的内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>   text    data     bss     dec     hex filename
+</span></span><span style="display:flex;"><span>     28       0       0      28      1c app.out
+</span></span></code></pre></div><p>对比链接之前的 <code>app.o</code>，发现代码段（即 <code>.text</code>）居然减少了 4 个字节，下面通过反汇编便知道其中的原因：</p>
+<p><code>$ riscv64-elf-objdump -d app.out</code></p>
+<p>输出的结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Disassembly of section .text:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>00000000000100b0 &lt;_start&gt;:
+</span></span><span style="display:flex;"><span>   100b0:       00c000ef                jal     ra,100bc &lt;_print_a&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>00000000000100b4 &lt;_loop&gt;:
+</span></span><span style="display:flex;"><span>   100b4:       00000013                nop
+</span></span><span style="display:flex;"><span>   100b8:       ffdff06f                j       100b4 &lt;_loop&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>00000000000100bc &lt;_print_a&gt;:
+</span></span><span style="display:flex;"><span>   100bc:       100004b7                lui     s1,0x10000
+</span></span><span style="display:flex;"><span>   100c0:       04100913                li      s2,65
+</span></span><span style="display:flex;"><span>   100c4:       01248023                sb      s2,0(s1) # 10000000 &lt;__global_pointer$+0xffee734&gt;
+</span></span><span style="display:flex;"><span>   100c8:       00008067                ret
+</span></span></code></pre></div><p>从反汇编的结果发现两处不同：</p>
+<ol>
+<li>指令的地址从 0x1_00b0 开始（原先从 0 开始）；</li>
+<li><code>call _print_a</code> 语句由 2 个指令 <code>auipc</code> 和 <code>jalr</code> 转换为 1 个指令 <code>jal</code>，且目标地址被填上真实的地址，RISC-V 一条指令（不管是 32 位还是 64 位）的长度为 4 个字节，所以少了一条指令刚好就少了 4 个字节。</li>
+</ol>
+<p>现在分析指令 <code>00c000ef</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>0    0000000110 0    00000000 00001 1101111
+</span></span><span style="display:flex;"><span>---- ---------- ---- -------- ----- -------
+</span></span><span style="display:flex;"><span>[20] [10:1]     [11] [19:12]  rd=1  jal
+</span></span></code></pre></div><p>解码得出：<code>jal ra, 0b1100</code>，其中 <code>0b1100</code> 是地址偏移值，下面来算算它表示的绝对地址：当前指令地址为 <code>0x1_00b0</code>，即在运行的时候，<code>PC</code> 寄存器的值为 <code>0x1_00b0</code>，加上偏移值 <code>0b1100</code> 得出 <code>0x100bc</code>，这正好是函数 <code>_print_a</code> 的地址。</p>
+<blockquote>
+<p>在数字电路里寄存器 <code>PC</code> 的值主要有 3 个来源：一个是指令被获取（即 fetch）之后，PC 的当前值加上了数值 <code>4</code> 之后的数值；另一个是当前的 PC 值加上跳转指令当中的立即数；最后一个是（jalr 指令）当前 PC 值加上跳转指令的立即数，再加上目标寄存器的值。PC 的下一个值会根据指令的不同而由 <em>复用器</em> 采用这 3 个来源当中的一个。对于上面的 <code>jal</code> 指令，采用的是第 2 种来源。</p>
+</blockquote>
+<h3 id="第一次运行-1">第一次运行</h3>
+<p>上一步得到 <code>app.out</code> 是一个 ELF 格式的可执行文件，不过如果你当前操作的计算机是 x86（现在一般指 AMD64 或者 x86-64）或者 ARM 架构的，是无法直接执行这个文件的，因为这个可执行文件的目标平台是 RISC-V 架构。河马蜀黍当前的计算机是 x86 架构，直接执行之后出现了如下提示信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ ./app.out
+</span></span><span style="display:flex;"><span>Segmentation fault (core dumped)
+</span></span></code></pre></div><p>我不知道在你的计算机上运行之后会出现什么信息，不过很明显 x86 CPU 无法正确理解 RISC-V 的指令，经过一番挣扎之后估计都会以失败告终（比如上面显示的是 <em>段失败</em> 错误）。</p>
+<p>下面使用模拟器 QEMU RISC-V 来运行可执行文件 <code>app.out</code>，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -machine virt <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios none <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel app.out
+</span></span></code></pre></div><p>这次不会显示 <em>段失败</em> 错误了，但是等了半天都没等到程序结束，也没看到大写字母 “A”，显然应用程序仍然没有被正确执行。</p>
+<blockquote>
+<p>按 <code>Ctrl+a, x</code>（即先按下 <code>Ctrl+a</code>，然后再单独按下 <code>x</code> 键）可结束 QEMU，这个组合键我会反复提示，免得你跟第一次退出 VIM 一样手忙脚乱。</p>
+</blockquote>
+<p>通过后续的文章的 GDB 调试可知，QEMU RISC-V virt 会假设内核程序的开始位置在内存的 <code>0x8000_0000</code>，而我们的程序被加载到 <code>0x0001_00b0</code>，因此程序根本没有被执行。</p>
+<p>这里的 <code>0x8000_0000</code> 是一个映射地址，并不是说虚拟机真的有这么大的内存（实际上默认 QEMU RISC-V 虚拟机只有 128MB 内存），这个地址被映射到内存 RAM 的开始位置，可以从 <a href="https://github.com/qemu/qemu/blob/master/hw/riscv/virt.c">QEMU RISC-V virt 的源代码</a> 找到映射关系：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> MemMapEntry virt_memmap[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    [VIRT_MROM] <span style="color:#f92672">=</span>         {     <span style="color:#ae81ff">0x1000</span>,        <span style="color:#ae81ff">0xf000</span> },
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    [VIRT_UART0] <span style="color:#f92672">=</span>        { <span style="color:#ae81ff">0x10000000</span>,         <span style="color:#ae81ff">0x100</span> },
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    [VIRT_FLASH] <span style="color:#f92672">=</span>        { <span style="color:#ae81ff">0x20000000</span>,     <span style="color:#ae81ff">0x4000000</span> },
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    [VIRT_DRAM] <span style="color:#f92672">=</span>         { <span style="color:#ae81ff">0x80000000</span>,           <span style="color:#ae81ff">0x0</span> },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><blockquote>
+<p>有关 QEMU RISC-V 的使用及程序调试方法，会在后续的文章中讲解。</p>
+</blockquote>
+<h3 id="链接脚本">链接脚本</h3>
+<p>那么怎样才能把程序加载到指定的位置呢？这时候就需要定制的 <em>链接脚本</em> 了。链接脚本可以让链接器按照我们的需求产生输出文件，当然也就可以指定程序的加载到内存后的位置。</p>
+<p>目录 <a href="./resources/">resources</a> 里有一个链接器脚本文件 <code>app.lds</code>，其内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>OUTPUT_ARCH(riscv)
+</span></span><span style="display:flex;"><span>ENTRY(_start)
+</span></span><span style="display:flex;"><span>BASE_ADDRESS = 0x80000000;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SECTIONS
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  . = BASE_ADDRESS;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .text : {
+</span></span><span style="display:flex;"><span>    *(.text.entry)
+</span></span><span style="display:flex;"><span>    *(.text .text.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .rodata : {
+</span></span><span style="display:flex;"><span>    *(.rodata .rodata.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .data : {
+</span></span><span style="display:flex;"><span>    *(.sdata .sdata.*)
+</span></span><span style="display:flex;"><span>    *(.data .data.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .bss :{
+</span></span><span style="display:flex;"><span>    *(.sbss .sbss.*)
+</span></span><span style="display:flex;"><span>    *(.bss .bss.*)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后在链接时指定链接脚本：</p>
+<p><code>$ riscv64-elf-ld -T app.lds -o app.out app.o</code></p>
+<p>其中参数 <code>-T app.lds</code> 用于指定链接脚本。</p>
+<p>现在得到了新的文件 <code>app.out</code>，使用命令 <code>$ riscv64-elf-objdump -h app.out</code> 查看段信息，输出内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Idx Name          Size      VMA               LMA               File off  Algn
+</span></span><span style="display:flex;"><span>  0 .text         0000001c  0000000080000000  0000000080000000  00001000  2**2
+</span></span><span style="display:flex;"><span>                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+</span></span></code></pre></div><p>可见代码段 <code>.text</code> 的加载地址已经变为 <code>0x8000_0000</code>。</p>
+<p>再看看 &ldquo;program headers&rdquo;：</p>
+<p><code>$ riscv64-elf-readelf -l app.out</code></p>
+<p>输出的结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Elf file type is EXEC (Executable file)
+</span></span><span style="display:flex;"><span>Entry point 0x80000000
+</span></span><span style="display:flex;"><span>There are 2 program headers, starting at offset 64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Program Headers:
+</span></span><span style="display:flex;"><span>  Type           Offset             VirtAddr           PhysAddr
+</span></span><span style="display:flex;"><span>                 FileSiz            MemSiz              Flags  Align
+</span></span><span style="display:flex;"><span>  RISCV_ATTRIBUT 0x000000000000101c 0x0000000000000000 0x0000000000000000
+</span></span><span style="display:flex;"><span>                 0x0000000000000043 0x0000000000000000  R      0x1
+</span></span><span style="display:flex;"><span>  LOAD           0x0000000000001000 0x0000000080000000 0x0000000080000000
+</span></span><span style="display:flex;"><span>                 0x000000000000001c 0x000000000000001c  R E    0x1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> Section to Segment mapping:
+</span></span><span style="display:flex;"><span>  Segment Sections...
+</span></span><span style="display:flex;"><span>   00     .riscv.attributes
+</span></span><span style="display:flex;"><span>   01     .text
+</span></span></code></pre></div><p>从上面的信息可见程序的入口以及虚拟内存地址均为 <code>0x80000000</code>，加载的大小为 <code>0x1c</code> 字节，刚好就是代码段的大小。</p>
+<p>有关链接脚本的具体内容可以参阅 <a href="https://sourceware.org/binutils/docs/ld/Scripts.html">Linker Scripts</a> 或者 <a href="https://blog.csdn.net/m0_47799526/article/details/108765403">中文翻译版</a> 。</p>
+<h3 id="第二次运行">第二次运行</h3>
+<p>下面执行新生成的可执行文件 <code>app.out</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -machine virt <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios none <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel app.out
+</span></span></code></pre></div><p>如无意外，应该可以看到在终端输出大写字母 “A”。再友情提示一下，按 <code>Ctrl+x, a</code> 终止 QEMU。</p>
+<h3 id="给程序减肥">给程序减肥</h3>
+<p>现在纯汇编写的 RISC-V 程序就已经完成了，先看看程序的大小：</p>
+<p><code>$ ls -lh</code></p>
+<p>输出的结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>-rw-r--r-- 1 yang yang  311 Oct 21 15:27 app.lds
+</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang 3.2K Oct 21 11:05 app.o
+</span></span><span style="display:flex;"><span>-rwxr-xr-x 1 yang yang 5.6K Oct 21 15:27 app.out
+</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang  442 Oct 21 06:57 app.S
+</span></span></code></pre></div><p>发现了吗？可执行文件 <code>app.out</code> 居然有 <code>5.6KB</code>，它是如此巨大！不是说只有 30 左右字节的吗？下面我们来给程序减减肥吧。</p>
+<p>首先需要知道为什么 <code>app.out</code> 文件会那么大，明明当前的应用程序非常简单，编译之后的指令序列只有 <code>0x1c</code>（即十进制的 <code>28</code>） 个字节。那是因为 ELF 文件格式有固定的结构，这些结构会占用一定的空间，另外 ELF 文件里还包含用于程序调试的信息。使用工具 <code>riscv64-elf-objcopy</code> 可以把这些信息通通去掉，只剩下跟链接脚本描述一致的二进制数据（也就是说 <code>.text</code>，<code>.rodata</code> 和 <code>.data</code> 等段的信息会被保留）：</p>
+<p><code>$ riscv64-elf-objcopy -S -O binary app.out app.bin</code></p>
+<p>参数 <code>-S</code> 表示移除所有多余的信息（包括调试信息），<code>-O binary</code> 表示输出文件的格式， <code>app.out</code> 和 <code>app.bin</code> 分别表示输入和输出的文件名。</p>
+<p>指令执行完毕之后会产生一个名为 <code>app.bin</code> 的文件，下面检查它的大小：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ ls -l app.bin
+</span></span><span style="display:flex;"><span>-rwxr-xr-x 1 yang yang 28 Oct 21 15:34 app.bin
+</span></span></code></pre></div><p>果然只剩下 <code>28</code> 个字节，使用 <code>xxd</code> 工具可以肉眼查看它的内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ xxd app.bin
+</span></span><span style="display:flex;"><span>00000000: ef00 c000 1300 0000 6ff0 dfff b704 0010  ........o.......
+</span></span><span style="display:flex;"><span>00000010: 1309 1004 2380 2401 6780 0000            ....#.$.g...
+</span></span></code></pre></div><p>如果你的记忆好的话，可能会对上面一段数字有一种似曾相识的感觉，它正是上面章节反汇编可执行文件 <code>app.out</code> 代码段时的内容，比如开头的 4 个字节 <code>ef 00 c0 00</code>，因为磁盘储存采用 <em>小端序</em> 的缘故，我们需要将字节的顺序反转，得到 <code>00 c0 00 ef</code>，这正是第一条指令 <code>jal ra,100bc</code> 的机器码 <code>0x00c000ef</code>。</p>
+<h3 id="第三次运行">第三次运行</h3>
+<p>下面尝试用 QEMU 运行它，不过因为 <code>app.bin</code> 除了机器指令，其余的所有信息都被移除了，所以需要手动指定程序加载到内存的位置，也就是说再也不能直接把 <code>app.bin</code> 作为 <code>-kernel</code> 参数传给 QEMU，转而需要使用参数 <code>-device loader,file=FILENAME,addr=ADDRESS</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -machine virt <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios none <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -device loader,file<span style="color:#f92672">=</span>app.bin,addr<span style="color:#f92672">=</span>0x80000000
+</span></span></code></pre></div><p>如无意外，上面的命令也能输出正确的结果，同样按 <code>Ctrl+a, x</code> 退出 QEMU。</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        <li>
+        
+            <a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/"><i class="fa fa-chevron-circle-left"></i> S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序</a>
+        
+        </li>
+        <li>
+        
+        </li>
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <ul>
+            <li>
+                <h6>Copyright © 2022 - Hippospark | 
+                    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"><img alt="cc by-nc-nd" class="license" src="/images/cc-by-nc-nd.png" /></a> |
+                    Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+                    Theme <a href="https://github.com/funkydan2/hugo-kiera" title="Kiera">Kiera</a> |
+                    <a href="https://hemashushu.github.io/index.xml">Subscribe </a></h6>
+            </li>
+            
+            
+        </ul>
+        
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+
+</body>
+
+</html>
+

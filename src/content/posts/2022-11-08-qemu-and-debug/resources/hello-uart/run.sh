@@ -3,7 +3,7 @@
 # build
 
 riscv64-elf-as -g -o app.o app.S
-riscv64-elf-ld -T app.lds -o app.out app.o
+riscv64-elf-ld -T app.ld -o app.out app.o
 riscv64-elf-objcopy -S -O binary app.out app.bin
 
 # run by using ELF
