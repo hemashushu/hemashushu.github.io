@@ -1,7 +1,7 @@
 baseURL = "https://hemashushu.github.io/"
 languageCode = "en-us"
 copyright = "Copyright &copy; 2022 - Hippospark"
-title = "河马蜀黍真是的"
+title = "河马蜀黍的个人主页"
 theme = "hugo-kiera"
 publishDir = "../docs"
 
@@ -20,7 +20,7 @@ defaultContentLanguage = "en"
 
 [languages]
   [languages.zh]
-    title = "河马蜀黍真是的"
+    title = "河马蜀黍的个人主页"
     weight = 1
     languageName = "中文"
 
@@ -30,13 +30,13 @@ defaultContentLanguage = "en"
     summaryLength = 255
 
     [languages.zh.params]
-      tagline = "好奇、探索、发现、创造"
-      description = "记录一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件"
+      tagline = "好奇、探索、创造"
+      description = "河马蜀黍的个人主页和博客，分享一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件"
 
   [languages.en]
-    title = "Hemashushu Homepage & Blog"
+    title = "Hemashushu's Homepage"
     weight = 2
     languageName = "English"
     [languages.en.params]
-      tagline = "Curiosity, exploration, discovery and creation"
-      description = "Share some low level computer technology, programming skills, learning notes, some softwares and hardwares"
+      tagline = "Curiosity, exploration and creation"
+      description = "Hemashushu's homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares"
