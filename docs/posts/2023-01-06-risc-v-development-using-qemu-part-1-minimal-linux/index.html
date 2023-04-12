@@ -9,7 +9,9 @@
 <meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="RISC-V Development using QEMU - Part 1 Build a minimal Linux System" />
 <meta property="og:description" content="This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
-Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator. Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot. Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains." />
+Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
+Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
+Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/posts/2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/" /><meta property="og:image" content="https://hemashushu.github.io/images/banner.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-01-06T00:00:00+00:00" />
@@ -21,7 +23,9 @@ Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBo
 
 <meta name="twitter:title" content="RISC-V Development using QEMU - Part 1 Build a minimal Linux System"/>
 <meta name="twitter:description" content="This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
-Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator. Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot. Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains."/>
+Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
+Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
+Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains."/>
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
     
@@ -140,37 +144,37 @@ Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBo
     
 
     <p>This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:</p>
-<p><a href="../2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/">Part 1</a>. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
-Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
-Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.
-Part 4. Remote debugging with the GDB, and setup remote text editing and debugging by VSCode.</p>
+<p><a href="../2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/">Part 1</a>. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.</p>
+<p>Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.</p>
+<p>Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.</p>
+<p>Part 4. Remote debugging with the GDB, and setup remote text editing and debugging by VSCode.</p>
 <hr>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
-<li><a href="#-why-not-use-real-risc-v-hardware">Why not use real RISC-V hardware?</a></li>
-<li><a href="#-create-the-project-folder">Create the project folder</a></li>
-<li><a href="#-create-risc-v-linux-hello-world-program">Create RISC-V Linux &ldquo;Hello World!&rdquo; program</a></li>
-<li><a href="#-build-the-linux-system">Build the Linux system</a>
+<li><a href="#1-why-not-use-the-actual-risc-v-hardware">1. Why not use the actual RISC-V hardware?</a></li>
+<li><a href="#2-create-the-project-folder">2. Create the project folder</a></li>
+<li><a href="#3-create-a-risc-v-linux-hello-world-program">3. Create a RISC-V Linux &ldquo;Hello World!&rdquo; program</a></li>
+<li><a href="#4-build-the-linux-system">4. Build the Linux system</a>
 <ul>
-<li><a href="#-compile-linux-kernel">Compile Linux kernel</a></li>
-<li><a href="#-compile-busybox">Compile BusyBox</a></li>
+<li><a href="#41-compile-linux-kernel">4.1 Compile Linux kernel</a></li>
+<li><a href="#42-compile-busybox">4.2 Compile BusyBox</a></li>
 </ul>
 </li>
-<li><a href="#-make-the-image-file">Make the image file</a>
+<li><a href="#5-make-the-image-file">5. Make the image file</a>
 <ul>
-<li><a href="#-make-the-file-system">Make the file system</a></li>
+<li><a href="#51-make-the-file-system">5.1 Make the file system</a></li>
 </ul>
 </li>
-<li><a href="#-boot-the-system">Boot the system</a></li>
-<li><a href="#-run-the-hello-world-program">Run the &ldquo;Hello World!&rdquo; program</a></li>
-<li><a href="#-conclusion">Conclusion</a></li>
+<li><a href="#6-boot-the-system">6. Boot the system</a></li>
+<li><a href="#7-run-the-hello-world-program">7. Run the &ldquo;Hello World!&rdquo; program</a></li>
+<li><a href="#8-conclusion">8. Conclusion</a></li>
 </ul>
 <!-- raw HTML omitted -->
-<h2 id="why-not-use-real-risc-v-hardware">Why not use real RISC-V hardware?</h2>
+<h2 id="1-why-not-use-the-actual-risc-v-hardware">1. Why not use the actual RISC-V hardware?</h2>
 <p>The RISC-V ISA has become popular in recent years due to its ease of learning and implementation, and the RISC-V toolchains are now quite mature. However, high-performance, stable and affordable RISC-V chips are still missing as of 2023.</p>
 <p>Moreover, writing and debugging programs in an emulator is far more convenient than on real hardware. This approach can save money, eliminate the need for connecting wires, and avoid the hassle of copying or synchronizing program files. You can perform all sorts of tasks on just one machine.</p>
-<h2 id="create-the-project-folder">Create the project folder</h2>
+<h2 id="2-create-the-project-folder">2. Create the project folder</h2>
 <p>QEMU is a software that emulates all the hardware of a complete computer system, including the CPU, memory, storage drives and network interfaces. This emulation is commonly known as a &ldquo;virtual computer&rdquo; or &ldquo;virtual machine&rdquo;.</p>
 <p>The storage device is usually implemented using a file called &ldquo;image file&rdquo;, which means that the hard disk drive you see within the virtual machine is actually an ordinary file located on the <em>host machine</em> (the machine running QEMU). Operations such as partitioning, formatting, reading and writing to the hard disk drive within the virtual machine take place inside the image file.</p>
 <p>The hardware configuation of the virtual machine, such as the type of CPU, number of cores, memory capacity etc. is specified through QEMU command line parameters. As a result, the command to start QEMU can be quite long. It&rsquo;s a good practice to create a directory for each virtual machine, which contains an image file and a Shell script to start QEMU.</p>
@@ -180,7 +184,7 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 </span></span></code></pre></div><blockquote>
 <p>It is not possible to create a RISC-V virtual machine using virtualaztion software such as VirtualBox and VMWare. This is because these types of software are only capable of creating virtual machine with the same architecture CPU as the host machine. For example, on an <em>x86_64</em> system, you can only create an <em>x86_64</em> virtual machine. However, since the computing ability of virtual machines is provided by the physical CPU of the host machine, their performance is typically much higher than that of QEMU.</p>
 </blockquote>
-<h2 id="create-risc-v-linux-hello-world-program">Create RISC-V Linux &ldquo;Hello World!&rdquo; program</h2>
+<h2 id="3-create-a-risc-v-linux-hello-world-program">3. Create a RISC-V Linux &ldquo;Hello World!&rdquo; program</h2>
 <p>Out objective is to create a RISC-V Linux system. To validate that the target system is functional, the most straightforward approach is to write a RISC-V Linux &ldquo;Hello World!&rdquo; program and try to execute it on the target system.</p>
 <p>To begin, create a <code>main.c</code> file in the <code>~/riscv64-minimal-linux</code> directory and input the following code:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
@@ -207,20 +211,20 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 <blockquote>
 <p>The compilation parameter <code>-static</code> instructs the compiler to generate an executable program with static linking, it simplifies our example.</p>
 </blockquote>
-<h2 id="build-the-linux-system">Build the Linux system</h2>
-<p>Building a runnable Linux system is actually far easier than you may think. In fact it only requires two softwares: the Linux kernel and Busybox.</p>
+<h2 id="4-build-the-linux-system">4. Build the Linux system</h2>
+<p>Building a runnable Linux system is actually far easier than you may think. In fact it only requires two softwares: the <a href="https://www.kernel.org/">Linux kernel</a> and <a href="https://busybox.net/">Busybox</a>.</p>
 <p>The Linux kernel is responsible for driving and initializing hardware componenets, as well as creating an environment for running applications. On the other hand, BusyBox privodes a user friendly interactive interface a.k.a the Shell.</p>
-<h3 id="compile-linux-kernel">Compile Linux kernel</h3>
+<h3 id="41-compile-linux-kernel">4.1 Compile Linux kernel</h3>
 <ol>
-<li>Download the <a href="https://github.com/torvalds/linux/tags">Linux kernel source code tarball</a> to the project folder, it&rsquo;s not recommended that cloning the source code Git repository, as it is very large, takes a long time to download and requires a significant amount of storage space.</li>
+<li>Download the <a href="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.2.10.tar.xz">Linux kernel source code tarball</a> to the project folder, it&rsquo;s not recommended that cloning the source code Git repository, as it is very large, takes a long time to download and requires a significant amount of storage space.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget https://github.com/torvalds/linux/archive/refs/tags/v6.2.tar.gz
-</span></span></code></pre></div><p>Once the tarball is downloaded, extract it to obtain a folder named <code>linux-6.2</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tar xf v6.2.tar.gz
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.2.10.tar.xz
+</span></span></code></pre></div><p>Once the tarball is downloaded, extract it to obtain a folder named <code>linux-6.2.10</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tar xf linux-6.2.10.tar.xz
 </span></span></code></pre></div><ol start="2">
 <li>Compiling with default configuration</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd linux-6.2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd linux-6.2.10
 </span></span><span style="display:flex;"><span>$ ARCH<span style="color:#f92672">=</span>riscv CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make defconfig
 </span></span><span style="display:flex;"><span>$ ARCH<span style="color:#f92672">=</span>riscv CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make -j <span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
 </span></span></code></pre></div><p>Take a break and step out for a cup of coffee. When you return, you should find a file named <code>arch/riscv/boot/Image</code>.</p>
@@ -228,8 +232,8 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file arch/riscv/boot/Image
 </span></span></code></pre></div><p>The output should indicate that file is a &ldquo;PE32+ executable (EFI application)&rdquo;</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>./arch/riscv/boot/Image: PE32+ executable (EFI application) RISC-V 64-bit (stripped to external PDB), for MS Windows, 2 sections
-</span></span></code></pre></div><h3 id="compile-busybox">Compile BusyBox</h3>
-<p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, download the <a href="https://busybox.net/downloads/busybox-1.36.0.tar.bz2">BusyBox tarball</a>, extract the tarball and configure it using the default settings.</p>
+</span></span></code></pre></div><h3 id="42-compile-busybox">4.2 Compile BusyBox</h3>
+<p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, download the <a href="https://busybox.net/downloads/busybox-1.36.0.tar.bz2">BusyBox source code tarball</a>, extract the tarball and configure it using the default settings.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
 </span></span><span style="display:flex;"><span>$ wget https://busybox.net/downloads/busybox-1.36.0.tar.bz2
 </span></span><span style="display:flex;"><span>$ tar xf busybox-1.36.0.tar.bz2
@@ -244,7 +248,7 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file busybox
 </span></span></code></pre></div><p>The expected output should resemble something like:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>busybox: ELF 64-bit LSB executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), statically linked, BuildID[sha1]=04d2e9ad32458855c1861202cc4f7b53dea75374, for GNU/Linux 4.15.0, stripped
-</span></span></code></pre></div><h2 id="make-the-image-file">Make the image file</h2>
+</span></span></code></pre></div><h2 id="5-make-the-image-file">5. Make the image file</h2>
 <p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, create a new folder named <code>output</code>. This folder will be used to store files that can be deleted during system rebuilds, such as the image file:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
 </span></span><span style="display:flex;"><span>$ mkdir build
@@ -252,7 +256,7 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 </span></span></code></pre></div><p>Next, create an empty file <code>vda.img</code> with a capacity of 128MB and format it as <code>ext2</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/zero of<span style="color:#f92672">=</span>vda.img bs<span style="color:#f92672">=</span>1M count<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>
 </span></span><span style="display:flex;"><span>$ mkfs.ext2 -F vda.img
-</span></span></code></pre></div><h3 id="make-the-file-system">Make the file system</h3>
+</span></span></code></pre></div><h3 id="51-make-the-file-system">5.1 Make the file system</h3>
 <p>Since the image file currently only contains one partition, which is empty, we can access it by mounting it. Once mounted, create the common Linux file system folder structure.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir mnt
 </span></span><span style="display:flex;"><span>$ sudo mount -o loop vda.img mnt
@@ -295,21 +299,21 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
 </span></span><span style="display:flex;"><span>$ sudo umount mnt
 </span></span></code></pre></div><p>You now have an image file <code>vda.img</code> which contains a minimal bootable Linux file system.</p>
-<h2 id="boot-the-system">Boot the system</h2>
+<h2 id="6-boot-the-system">6. Boot the system</h2>
 <p>To begin, install QEMU, On Arch Linux, the packaged is called <code>qemu-system-riscv</code>, on Debian/Ubuntu it&rsquo;s simply called <code>qemu-system</code>. Once you&rsquo;ve installed QEMU, navigate back to the <code>~/riscv64-minimal-linux</code> folder again and run the following command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -machine virt <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -m 1G <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -kernel ./linux-6.2/arch/riscv/boot/Image <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -kernel ./linux-6.2.10/arch/riscv/boot/Image <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -append <span style="color:#e6db74">&#34;root=/dev/vda rw console=ttyS0&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -drive file<span style="color:#f92672">=</span>build/vda.img,format<span style="color:#f92672">=</span>raw,id<span style="color:#f92672">=</span>hd0 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -device virtio-blk-device,drive<span style="color:#f92672">=</span>hd0 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -nographic
 </span></span></code></pre></div><p>There are several parameters in this command, let&rsquo;s go through them line by line:</p>
 <ul>
-<li><code>-machine virt</code> QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. The <code>virt</code> machine is a specical one that doesn&rsquo;t correspond to any real hardware. It&rsquo;s an idealized processor for a specified architecture combined with some devices.</li>
+<li><code>-machine virt</code> QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. <a href="https://qemu-project.gitlab.io/qemu/system/riscv/virt.html">The <code>virt</code> machine</a> is a specical one that doesn&rsquo;t correspond to any real hardware. It&rsquo;s an idealized processor for a specified architecture combined with some devices.</li>
 <li><code>-m 1G</code>: This specifies the memory capacity.</li>
-<li><code>-kernel ./linux-6.2/arch/riscv/boot/Image</code>: This specifies the kernel file. Just like a real machine, the QEMU boot process also contains several stages: &ldquo;bios -&gt; kernel -&gt; initramfs -&gt; userspace init&rdquo;. When you omit the <code>-bios</code> parameter, the default RISC-V QEMU BIOS firmware called <code> OpenSBI</code> will be loaded automatically.</li>
+<li><code>-kernel ./linux-6.2/arch/riscv/boot/Image</code>: This specifies the kernel file. Just like a real machine, the QEMU boot process also contains several stages: &ldquo;bios -&gt; kernel -&gt; initramfs -&gt; userspace init&rdquo;. When you omit the <code>-bios</code> parameter, the <a href="https://qemu-project.gitlab.io/qemu/system/target-riscv.html#risc-v-cpu-firmware">default RISC-V QEMU BIOS firmware</a> called <code> OpenSBI</code> will be loaded automatically.</li>
 <li><code>-append &quot;root=/dev/vda rw console=ttyS0&quot;</code>: This appends parameters to the kernel.</li>
 <li><code>-drive file=build/vda.img,format=raw,id=hd0</code> and <code>-device virtio-blk-device,drive=hd0</code>: These specify the block device, which can be considered as the hard disk drive or SSD in real life.</li>
 <li><code>-nographic</code>: This indicates that this machine has no graphic interface hardware (also called a graphic card), so all text messages generated by the software in this machine will be fed back to user through the <em>Serial port</em>. Of course, the <em>Serial port</em> is also virtual, it redirects the text message to the Terminal running the QEMU program.</li>
@@ -327,7 +331,7 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># chmod +x /etc/init.d/rcS</span>
 </span></span></code></pre></div><p>Note that this step only needs to be done once. The Linux system is now ready, let&rsquo;s do some checking:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># uname -a</span>
-</span></span><span style="display:flex;"><span>Linux <span style="color:#f92672">(</span>none<span style="color:#f92672">)</span> 6.2.0 <span style="color:#75715e">#1 SMP Tue Jan 4 02:10:41 CST 2023 riscv64 GNU/Linux</span>
+</span></span><span style="display:flex;"><span>Linux <span style="color:#f92672">(</span>none<span style="color:#f92672">)</span> 6.2.10 <span style="color:#75715e">#1 SMP Tue Jan 4 02:10:41 CST 2023 riscv64 GNU/Linux</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># free -h</span>
 </span></span><span style="display:flex;"><span>              total        used        free      shared  buff/cache   available
@@ -348,11 +352,11 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 </span></span><span style="display:flex;"><span>Filesystem                Size      Used Available Use% Mounted on
 </span></span><span style="display:flex;"><span>/dev/root               118.5M      2.3M    109.7M   2% /
 </span></span><span style="display:flex;"><span>devtmpfs                484.2M         <span style="color:#ae81ff">0</span>    484.2M   0% /dev
-</span></span></code></pre></div><h2 id="run-the-hello-world-program">Run the &ldquo;Hello World!&rdquo; program</h2>
+</span></span></code></pre></div><h2 id="7-run-the-hello-world-program">7. Run the &ldquo;Hello World!&rdquo; program</h2>
 <p>Try running the &ldquo;Hello World!&rdquo; program we made:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/opt/main.elf
 </span></span></code></pre></div><p>If there are no exceptions, a line of text that reads &ldquo;Hello World!&rdquo; will be displayed. This indicates that we&rsquo;ve successfully created a minimal RISC-V Linux system. Finally, execute the <code>poweroff</code> command to turn off the virtual machine.</p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="8-conclusion">8. Conclusion</h2>
 <p>In this part, we&rsquo;ve created a minimal Linux system with a base shell, and it can properly run a static linking user program. However, you&rsquo;ll notice that this system lacks many tools that we use daily, such as <code>SSH</code>, <code>Vim</code> and <code>wget</code> etc. In the next part, we&rsquo;ll build a base Linux system with common tools and the capability of doing RISC-V assembly development and debugging.</p>
 
 

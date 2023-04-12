@@ -8,6 +8,6 @@ clean:
 
 .PHONY: server
 server:
-	hugo server
+	hugo server --bind 0.0.0.0
 
 

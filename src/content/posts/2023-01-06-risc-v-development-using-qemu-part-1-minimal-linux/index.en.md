@@ -20,31 +20,31 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 
 - - -
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [Why not use real RISC-V hardware?](#-why-not-use-real-risc-v-hardware)
-- [Create the project folder](#-create-the-project-folder)
-- [Create RISC-V Linux "Hello World!" program](#-create-risc-v-linux-hello-world-program)
-- [Build the Linux system](#-build-the-linux-system)
-  - [Compile Linux kernel](#-compile-linux-kernel)
-  - [Compile BusyBox](#-compile-busybox)
-- [Make the image file](#-make-the-image-file)
-  - [Make the file system](#-make-the-file-system)
-- [Boot the system](#-boot-the-system)
-- [Run the "Hello World!" program](#-run-the-hello-world-program)
-- [Conclusion](#-conclusion)
+- [1. Why not use the actual RISC-V hardware?](#1-why-not-use-the-actual-risc-v-hardware)
+- [2. Create the project folder](#2-create-the-project-folder)
+- [3. Create a RISC-V Linux "Hello World!" program](#3-create-a-risc-v-linux-hello-world-program)
+- [4. Build the Linux system](#4-build-the-linux-system)
+  - [4.1 Compile Linux kernel](#41-compile-linux-kernel)
+  - [4.2 Compile BusyBox](#42-compile-busybox)
+- [5. Make the image file](#5-make-the-image-file)
+  - [5.1 Make the file system](#51-make-the-file-system)
+- [6. Boot the system](#6-boot-the-system)
+- [7. Run the "Hello World!" program](#7-run-the-hello-world-program)
+- [8. Conclusion](#8-conclusion)
 
 <!-- /code_chunk_output -->
 
-## Why not use real RISC-V hardware?
+## 1. Why not use the actual RISC-V hardware?
 
 The RISC-V ISA has become popular in recent years due to its ease of learning and implementation, and the RISC-V toolchains are now quite mature. However, high-performance, stable and affordable RISC-V chips are still missing as of 2023.
 
 Moreover, writing and debugging programs in an emulator is far more convenient than on real hardware. This approach can save money, eliminate the need for connecting wires, and avoid the hassle of copying or synchronizing program files. You can perform all sorts of tasks on just one machine.
 
-## Create the project folder
+## 2. Create the project folder
 
 QEMU is a software that emulates all the hardware of a complete computer system, including the CPU, memory, storage drives and network interfaces. This emulation is commonly known as a "virtual computer" or "virtual machine".
 
@@ -61,7 +61,7 @@ $ cd ~/riscv64-minimal-linux
 
 > It is not possible to create a RISC-V virtual machine using virtualaztion software such as VirtualBox and VMWare. This is because these types of software are only capable of creating virtual machine with the same architecture CPU as the host machine. For example, on an *x86_64* system, you can only create an *x86_64* virtual machine. However, since the computing ability of virtual machines is provided by the physical CPU of the host machine, their performance is typically much higher than that of QEMU.
 
-## Create RISC-V Linux "Hello World!" program
+## 3. Create a RISC-V Linux "Hello World!" program
 
 Out objective is to create a RISC-V Linux system. To validate that the target system is functional, the most straightforward approach is to write a RISC-V Linux "Hello World!" program and try to execute it on the target system.
 
@@ -98,30 +98,30 @@ After compiling, we obtain the output file `main.elf`, however it is certain tha
 
 > The compilation parameter `-static` instructs the compiler to generate an executable program with static linking, it simplifies our example.
 
-## Build the Linux system
+## 4. Build the Linux system
 
-Building a runnable Linux system is actually far easier than you may think. In fact it only requires two softwares: the Linux kernel and Busybox.
+Building a runnable Linux system is actually far easier than you may think. In fact it only requires two softwares: the [Linux kernel](https://www.kernel.org/) and [Busybox](https://busybox.net/).
 
 The Linux kernel is responsible for driving and initializing hardware componenets, as well as creating an environment for running applications. On the other hand, BusyBox privodes a user friendly interactive interface a.k.a the Shell.
 
-### Compile Linux kernel
+### 4.1 Compile Linux kernel
 
-1. Download the [Linux kernel source code tarball](https://github.com/torvalds/linux/tags) to the project folder, it's not recommended that cloning the source code Git repository, as it is very large, takes a long time to download and requires a significant amount of storage space.
+1. Download the [Linux kernel source code tarball](https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.2.10.tar.xz) to the project folder, it's not recommended that cloning the source code Git repository, as it is very large, takes a long time to download and requires a significant amount of storage space.
 
 ```bash
-$ wget https://github.com/torvalds/linux/archive/refs/tags/v6.2.tar.gz
+$ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.2.10.tar.xz
 ```
 
-Once the tarball is downloaded, extract it to obtain a folder named `linux-6.2`
+Once the tarball is downloaded, extract it to obtain a folder named `linux-6.2.10`
 
 ```bash
-$ tar xf v6.2.tar.gz
+$ tar xf linux-6.2.10.tar.xz
 ```
 
 2. Compiling with default configuration
 
 ```bash
-$ cd linux-6.2
+$ cd linux-6.2.10
 $ ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- make defconfig
 $ ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- make -j $(nproc)
 ```
@@ -140,9 +140,9 @@ The output should indicate that file is a "PE32+ executable (EFI application)"
 ./arch/riscv/boot/Image: PE32+ executable (EFI application) RISC-V 64-bit (stripped to external PDB), for MS Windows, 2 sections
 ```
 
-### Compile BusyBox
+### 4.2 Compile BusyBox
 
-Navigate back to the `~/riscv64-minimal-linux` folder, download the [BusyBox tarball](https://busybox.net/downloads/busybox-1.36.0.tar.bz2), extract the tarball and configure it using the default settings.
+Navigate back to the `~/riscv64-minimal-linux` folder, download the [BusyBox source code tarball](https://busybox.net/downloads/busybox-1.36.0.tar.bz2), extract the tarball and configure it using the default settings.
 
 ```bash
 $ cd ..
@@ -180,7 +180,7 @@ The expected output should resemble something like:
 busybox: ELF 64-bit LSB executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), statically linked, BuildID[sha1]=04d2e9ad32458855c1861202cc4f7b53dea75374, for GNU/Linux 4.15.0, stripped
 ```
 
-## Make the image file
+## 5. Make the image file
 
 Navigate back to the `~/riscv64-minimal-linux` folder, create a new folder named `output`. This folder will be used to store files that can be deleted during system rebuilds, such as the image file:
 
@@ -197,7 +197,7 @@ $ dd if=/dev/zero of=vda.img bs=1M count=128
 $ mkfs.ext2 -F vda.img
 ```
 
-### Make the file system
+### 5.1 Make the file system
 
 Since the image file currently only contains one partition, which is empty, we can access it by mounting it. Once mounted, create the common Linux file system folder structure.
 
@@ -266,7 +266,7 @@ $ sudo umount mnt
 
 You now have an image file `vda.img` which contains a minimal bootable Linux file system.
 
-## Boot the system
+## 6. Boot the system
 
 To begin, install QEMU, On Arch Linux, the packaged is called `qemu-system-riscv`, on Debian/Ubuntu it's simply called `qemu-system`. Once you've installed QEMU, navigate back to the `~/riscv64-minimal-linux` folder again and run the following command:
 
@@ -274,7 +274,7 @@ To begin, install QEMU, On Arch Linux, the packaged is called `qemu-system-riscv
 $ qemu-system-riscv64 \
      -machine virt \
      -m 1G \
-     -kernel ./linux-6.2/arch/riscv/boot/Image \
+     -kernel ./linux-6.2.10/arch/riscv/boot/Image \
      -append "root=/dev/vda rw console=ttyS0" \
      -drive file=build/vda.img,format=raw,id=hd0 \
      -device virtio-blk-device,drive=hd0 \
@@ -283,9 +283,9 @@ $ qemu-system-riscv64 \
 
 There are several parameters in this command, let's go through them line by line:
 
-- `-machine virt` QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. The `virt` machine is a specical one that doesn't correspond to any real hardware. It's an idealized processor for a specified architecture combined with some devices.
+- `-machine virt` QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. [The `virt` machine](https://qemu-project.gitlab.io/qemu/system/riscv/virt.html) is a specical one that doesn't correspond to any real hardware. It's an idealized processor for a specified architecture combined with some devices.
 - `-m 1G`: This specifies the memory capacity.
-- `-kernel ./linux-6.2/arch/riscv/boot/Image`: This specifies the kernel file. Just like a real machine, the QEMU boot process also contains several stages: "bios -> kernel -> initramfs -> userspace init". When you omit the `-bios` parameter, the default RISC-V QEMU BIOS firmware called ` OpenSBI` will be loaded automatically.
+- `-kernel ./linux-6.2/arch/riscv/boot/Image`: This specifies the kernel file. Just like a real machine, the QEMU boot process also contains several stages: "bios -> kernel -> initramfs -> userspace init". When you omit the `-bios` parameter, the [default RISC-V QEMU BIOS firmware](https://qemu-project.gitlab.io/qemu/system/target-riscv.html#risc-v-cpu-firmware) called ` OpenSBI` will be loaded automatically.
 - `-append "root=/dev/vda rw console=ttyS0"`: This appends parameters to the kernel.
 - `-drive file=build/vda.img,format=raw,id=hd0` and `-device virtio-blk-device,drive=hd0`: These specify the block device, which can be considered as the hard disk drive or SSD in real life.
 - `-nographic`: This indicates that this machine has no graphic interface hardware (also called a graphic card), so all text messages generated by the software in this machine will be fed back to user through the _Serial port_. Of course, the _Serial port_ is also virtual, it redirects the text message to the Terminal running the QEMU program.
@@ -313,7 +313,7 @@ Note that this step only needs to be done once. The Linux system is now ready, l
 
 ```bash
 # uname -a
-Linux (none) 6.2.0 #1 SMP Tue Jan 4 02:10:41 CST 2023 riscv64 GNU/Linux
+Linux (none) 6.2.10 #1 SMP Tue Jan 4 02:10:41 CST 2023 riscv64 GNU/Linux
 
 # free -h
               total        used        free      shared  buff/cache   available
@@ -336,7 +336,7 @@ Filesystem                Size      Used Available Use% Mounted on
 devtmpfs                484.2M         0    484.2M   0% /dev
 ```
 
-## Run the "Hello World!" program
+## 7. Run the "Hello World!" program
 
 Try running the "Hello World!" program we made:
 
@@ -346,6 +346,6 @@ Try running the "Hello World!" program we made:
 
 If there are no exceptions, a line of text that reads "Hello World!" will be displayed. This indicates that we've successfully created a minimal RISC-V Linux system. Finally, execute the `poweroff` command to turn off the virtual machine.
 
-## Conclusion
+## 8. Conclusion
 
 In this part, we've created a minimal Linux system with a base shell, and it can properly run a static linking user program. However, you'll notice that this system lacks many tools that we use daily, such as `SSH`, `Vim` and `wget` etc. In the next part, we'll build a base Linux system with common tools and the capability of doing RISC-V assembly development and debugging.
