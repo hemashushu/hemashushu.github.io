@@ -1,8 +1,7 @@
 ---
-title: "RISC-V Development using QEMU - Part 1 Build a minimal Linux System"
+title: "RISC-V development using QEMU - Part 1 Build a minimal Linux system"
 date: 2023-01-06
 draft: false
-# images: ["/posts/2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/images/banner.png"]
 images: ["/images/banner.png"]
 tags: ["risc-v", "qemu"]
 categories: ["development"]
@@ -12,7 +11,7 @@ This series articles will guide you setting up a RISC-V development environment 
 
 [Part 1](../2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/). Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 
-Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
+[Part 2](../2023-01-08-risc-v-development-using-qemu-part-2-buildroot). Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
 
 Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.
 
@@ -307,6 +306,7 @@ This error message appears because the system isn't fully installed yet. Press t
 # echo "#!/bin/sh" >> /etc/init.d/rcS
 # echo "/bin/mount -t proc proc /proc" >> /etc/init.d/rcS
 # chmod +x /etc/init.d/rcS
+# touch /etc/fstab
 ```
 
 Note that this step only needs to be done once. The Linux system is now ready, let's do some checking:
@@ -348,4 +348,10 @@ If there are no exceptions, a line of text that reads "Hello World!" will be dis
 
 ## 8. Conclusion
 
-In this part, we've created a minimal Linux system with a base shell, and it can properly run a static linking user program. However, you'll notice that this system lacks many tools that we use daily, such as `SSH`, `Vim` and `wget` etc. In the next part, we'll build a base Linux system with common tools and the capability of doing RISC-V assembly development and debugging.
+In this section, we've created a minimal Linux system with a base shell, and it can properly run a static linking user program. However, you'll notice that this system lacks many tools that we use daily, such as `SSH`, `Vim`, `git` and `wget` etc. In the next section, we'll build a base Linux system with common tools and the capability of doing RISC-V assembly development and debugging.
+
+{{< rawhtml >}}
+<div>
+    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
+</div>
+{{< /rawhtml >}}

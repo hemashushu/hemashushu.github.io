@@ -3,11 +3,11 @@
 <html lang="en-us">
 
 <head>
-  <title>RISC-V Development using QEMU - Part 1 Build a minimal Linux System - Hemashushu&#39;s Homepage</title>
+  <title>RISC-V development using QEMU - Part 1 Build a minimal Linux system - Hemashushu&#39;s Homepage</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
-<meta name="author" content="hemashushu" /><meta property="og:title" content="RISC-V Development using QEMU - Part 1 Build a minimal Linux System" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="RISC-V development using QEMU - Part 1 Build a minimal Linux system" />
 <meta property="og:description" content="This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
 Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
@@ -21,7 +21,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://hemashushu.github.io/images/banner.png"/>
 
-<meta name="twitter:title" content="RISC-V Development using QEMU - Part 1 Build a minimal Linux System"/>
+<meta name="twitter:title" content="RISC-V development using QEMU - Part 1 Build a minimal Linux system"/>
 <meta name="twitter:description" content="This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
 Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
@@ -91,7 +91,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 
 <article>
 
-    <h1>RISC-V Development using QEMU - Part 1 Build a minimal Linux System</h1>
+    <h1>RISC-V development using QEMU - Part 1 Build a minimal Linux system</h1>
 
     
       <aside>
@@ -135,7 +135,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
     
       
 <div class="featured_image">
-    <a href="https://hemashushu.github.io/posts/2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/" title="RISC-V Development using QEMU - Part 1 Build a minimal Linux System">
+    <a href="https://hemashushu.github.io/posts/2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/" title="RISC-V development using QEMU - Part 1 Build a minimal Linux system">
         <img src="/images/banner.png">
     </a>
 </div>
@@ -145,7 +145,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 
     <p>This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:</p>
 <p><a href="../2023-01-06-risc-v-development-using-qemu-part-1-minimal-linux/">Part 1</a>. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.</p>
-<p>Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.</p>
+<p><a href="../2023-01-08-risc-v-development-using-qemu-part-2-buildroot">Part 2</a>. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.</p>
 <p>Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.</p>
 <p>Part 4. Remote debugging with the GDB, and setup remote text editing and debugging by VSCode.</p>
 <hr>
@@ -329,6 +329,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># echo &#34;#!/bin/sh&#34; &gt;&gt; /etc/init.d/rcS</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># echo &#34;/bin/mount -t proc proc /proc&#34; &gt;&gt; /etc/init.d/rcS</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># chmod +x /etc/init.d/rcS</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># touch /etc/fstab</span>
 </span></span></code></pre></div><p>Note that this step only needs to be done once. The Linux system is now ready, let&rsquo;s do some checking:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># uname -a</span>
 </span></span><span style="display:flex;"><span>Linux <span style="color:#f92672">(</span>none<span style="color:#f92672">)</span> 6.2.10 <span style="color:#75715e">#1 SMP Tue Jan 4 02:10:41 CST 2023 riscv64 GNU/Linux</span>
@@ -357,7 +358,13 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/opt/main.elf
 </span></span></code></pre></div><p>If there are no exceptions, a line of text that reads &ldquo;Hello World!&rdquo; will be displayed. This indicates that we&rsquo;ve successfully created a minimal RISC-V Linux system. Finally, execute the <code>poweroff</code> command to turn off the virtual machine.</p>
 <h2 id="8-conclusion">8. Conclusion</h2>
-<p>In this part, we&rsquo;ve created a minimal Linux system with a base shell, and it can properly run a static linking user program. However, you&rsquo;ll notice that this system lacks many tools that we use daily, such as <code>SSH</code>, <code>Vim</code> and <code>wget</code> etc. In the next part, we&rsquo;ll build a base Linux system with common tools and the capability of doing RISC-V assembly development and debugging.</p>
+<p>In this section, we&rsquo;ve created a minimal Linux system with a base shell, and it can properly run a static linking user program. However, you&rsquo;ll notice that this system lacks many tools that we use daily, such as <code>SSH</code>, <code>Vim</code>, <code>git</code> and <code>wget</code> etc. In the next section, we&rsquo;ll build a base Linux system with common tools and the capability of doing RISC-V assembly development and debugging.</p>
+
+
+<div>
+    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
+</div>
+
 
 
 </article>
@@ -371,6 +378,8 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
         
         </li>
         <li>
+        
+            <a href="https://hemashushu.github.io/posts/2023-01-08-risc-v-development-using-qemu-part-2-buildroot/">RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot <i class="fa fa-chevron-circle-right"></i> </a>
         
         </li>
     </ul>
