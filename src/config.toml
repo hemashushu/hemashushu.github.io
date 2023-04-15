@@ -17,6 +17,7 @@ defaultContentLanguage = "en"
 
 [params]
     customCSS = ["/css/custom.css"]
+    mathjax = true
 
 [languages]
   [languages.zh]

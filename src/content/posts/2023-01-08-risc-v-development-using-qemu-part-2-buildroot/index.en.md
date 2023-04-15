@@ -215,7 +215,7 @@ The message will be ended with two lines: `Welcome to Buildroot` and `buildroot 
 
 ## 4. Check the system
 
-You can do a quick checking to validate if the cpu module, memory size, kernel version, storage space, etc. match what you configured.
+You can do a quick checking to verify if the cpu module, memory size, kernel version, storage space, etc. match what you configured.
 
 ```bash
 # uname -a

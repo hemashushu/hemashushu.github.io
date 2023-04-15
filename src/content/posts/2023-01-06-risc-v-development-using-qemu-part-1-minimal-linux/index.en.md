@@ -23,7 +23,7 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 
 <!-- code_chunk_output -->
 
-- [1. Why not use the actual RISC-V hardware?](#1-why-not-use-the-actual-risc-v-hardware)
+- [1. Why not use the real RISC-V hardware?](#1-why-not-use-the-real-risc-v-hardware)
 - [2. Create the project folder](#2-create-the-project-folder)
 - [3. Create a RISC-V Linux "Hello World!" program](#3-create-a-risc-v-linux-hello-world-program)
 - [4. Build the Linux system](#4-build-the-linux-system)
@@ -37,7 +37,7 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 
 <!-- /code_chunk_output -->
 
-## 1. Why not use the actual RISC-V hardware?
+## 1. Why not use the real RISC-V hardware?
 
 The RISC-V ISA has become popular in recent years due to its ease of learning and implementation, and the RISC-V toolchains are now quite mature. However, high-performance, stable and affordable RISC-V chips are still missing as of 2023.
 
@@ -282,7 +282,7 @@ $ qemu-system-riscv64 \
 
 There are several parameters in this command, let's go through them line by line:
 
-- `-machine virt` QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. [The `virt` machine](https://qemu-project.gitlab.io/qemu/system/riscv/virt.html) is a specical one that doesn't correspond to any real hardware. It's an idealized processor for a specified architecture combined with some devices.
+- `-machine virt` QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. [The `virt` machine](https://qemu-project.gitlab.io/qemu/system/riscv/virt.html) is a specical one that doesn't correspond to any real hardware. It's an idealized hardware for a specified architecture combined with some devices.
 - `-m 1G`: This specifies the memory capacity.
 - `-kernel ./linux-6.2/arch/riscv/boot/Image`: This specifies the kernel file. Just like a real machine, the QEMU boot process also contains several stages: "bios -> kernel -> initramfs -> userspace init". When you omit the `-bios` parameter, the [default RISC-V QEMU BIOS firmware](https://qemu-project.gitlab.io/qemu/system/target-riscv.html#risc-v-cpu-firmware) called ` OpenSBI` will be loaded automatically.
 - `-append "root=/dev/vda rw console=ttyS0"`: This appends parameters to the kernel.

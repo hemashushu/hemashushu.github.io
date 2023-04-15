@@ -29,6 +29,9 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
     
+    <script src="/js/mathjax-config.js" defer></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
@@ -188,89 +191,89 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 </span></span></code></pre></div><p>Before starting the compilation process, you can customize the target system by changing the image file capacity, adding packages, etc. To do this, execute the <code>make menuconfig</code> command to enter the configuration interface.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make menuconfig
 </span></span></code></pre></div><p>Check the following options:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Toolchain ---&gt;
-</span></span><span style="display:flex;"><span>    * Install glibc utilities
-</span></span><span style="display:flex;"><span>    * Enable C++ support
-</span></span><span style="display:flex;"><span>Build options ---&gt;
-</span></span><span style="display:flex;"><span>    * Enable compiler cache
-</span></span><span style="display:flex;"><span>Filesystem images ---&gt;
-</span></span><span style="display:flex;"><span>    * ext2/3/4
-</span></span><span style="display:flex;"><span>        * ext4
-</span></span><span style="display:flex;"><span>    exact size
-</span></span><span style="display:flex;"><span>        * 2048M
-</span></span></code></pre></div><p>Where the <code>image size</code> option requires manual input.</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">Toolchain ---&gt;
+    * Install glibc utilities
+    * Enable C++ support
+Build options ---&gt;
+    * Enable compiler cache
+Filesystem images ---&gt;
+    * ext2/3/4
+        * ext4
+    exact size
+        * 2048M
+</code></pre><p>Where the <code>image size</code> option requires manual input.</p>
 <h3 id="11-select-packages">1.1 Select packages</h3>
 <p>Next, select the packages you need. Note that the option &ldquo;Show packages that are also provided by busybox&rdquo; must be selected first, otherwise some options will be unavailable. You can press the <code>/</code> key at any time to search for packages by name. The following is a list of recommended packages for building an assembly development environment.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Target packages ---&gt;
-</span></span><span style="display:flex;"><span>    * Show packages that are also provided by busybox
-</span></span><span style="display:flex;"><span>    Compressors and decompressors ---&gt;
-</span></span><span style="display:flex;"><span>        * bzip2
-</span></span><span style="display:flex;"><span>        * gzip
-</span></span><span style="display:flex;"><span>        * unzip
-</span></span><span style="display:flex;"><span>        * xz-utils
-</span></span><span style="display:flex;"><span>        * zip
-</span></span><span style="display:flex;"><span>        * zstd
-</span></span><span style="display:flex;"><span>    Debugging, profiling and benchmark ---&gt;
-</span></span><span style="display:flex;"><span>        * gdb
-</span></span><span style="display:flex;"><span>            * gdbserver
-</span></span><span style="display:flex;"><span>            * full debugger
-</span></span><span style="display:flex;"><span>            * TUI support
-</span></span><span style="display:flex;"><span>    Development tools ---&gt;
-</span></span><span style="display:flex;"><span>        * binutils
-</span></span><span style="display:flex;"><span>            * binutils binaries
-</span></span><span style="display:flex;"><span>        * check
-</span></span><span style="display:flex;"><span>        * diffutils
-</span></span><span style="display:flex;"><span>        * findutils
-</span></span><span style="display:flex;"><span>        * flex
-</span></span><span style="display:flex;"><span>        * gawk
-</span></span><span style="display:flex;"><span>        * gettext
-</span></span><span style="display:flex;"><span>        * git
-</span></span><span style="display:flex;"><span>        * grep
-</span></span><span style="display:flex;"><span>        * libtool
-</span></span><span style="display:flex;"><span>        * make
-</span></span><span style="display:flex;"><span>        * patch
-</span></span><span style="display:flex;"><span>        * pkgconf
-</span></span><span style="display:flex;"><span>        * sed
-</span></span><span style="display:flex;"><span>        * tree
-</span></span><span style="display:flex;"><span>    Hardware handling ---&gt;
-</span></span><span style="display:flex;"><span>        * kbd
-</span></span><span style="display:flex;"><span>    Interpreter languages and scripting ---&gt;
-</span></span><span style="display:flex;"><span>        * python3
-</span></span><span style="display:flex;"><span>            python3 module format to install ---&gt;
-</span></span><span style="display:flex;"><span>                * .py sources and .pyc compiled
-</span></span><span style="display:flex;"><span>            External python modules
-</span></span><span style="display:flex;"><span>                * python-pip
-</span></span><span style="display:flex;"><span>    Libraries ---&gt;
-</span></span><span style="display:flex;"><span>        Crypto ---&gt;
-</span></span><span style="display:flex;"><span>            * CA Certificates
-</span></span><span style="display:flex;"><span>            openssl support
-</span></span><span style="display:flex;"><span>                ssl library ---&gt;
-</span></span><span style="display:flex;"><span>                    * openssl
-</span></span><span style="display:flex;"><span>                openssl
-</span></span><span style="display:flex;"><span>                    * openssl binary
-</span></span><span style="display:flex;"><span>    Networking applications ---&gt;
-</span></span><span style="display:flex;"><span>        iputils
-</span></span><span style="display:flex;"><span>            * ping
-</span></span><span style="display:flex;"><span>        * openssh
-</span></span><span style="display:flex;"><span>        * wget
-</span></span><span style="display:flex;"><span>    Shell and utilities ---&gt;
-</span></span><span style="display:flex;"><span>        * bash
-</span></span><span style="display:flex;"><span>        * bash completion
-</span></span><span style="display:flex;"><span>        * file
-</span></span><span style="display:flex;"><span>        * sudo
-</span></span><span style="display:flex;"><span>        * time
-</span></span><span style="display:flex;"><span>        * which
-</span></span><span style="display:flex;"><span>    System tools
-</span></span><span style="display:flex;"><span>        * coreutils
-</span></span><span style="display:flex;"><span>            * Individual binaries
-</span></span><span style="display:flex;"><span>        * htop
-</span></span><span style="display:flex;"><span>        * shadow
-</span></span><span style="display:flex;"><span>        * tar
-</span></span><span style="display:flex;"><span>    Text editors and viewers ---&gt;
-</span></span><span style="display:flex;"><span>        * less
-</span></span><span style="display:flex;"><span>        * vim
-</span></span><span style="display:flex;"><span>        * install runtime
-</span></span></code></pre></div><p>Check out the <a href="https://www.linuxfromscratch.org/lfs/view/stable/">Linux From Scratch Book</a> for a detailed explanation of each package. Once you have selected your packages, select &ldquo;Save&rdquo; and &ldquo;Exit&rdquo; to exit the configuration interface.</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">Target packages ---&gt;
+    * Show packages that are also provided by busybox
+    Compressors and decompressors ---&gt;
+        * bzip2
+        * gzip
+        * unzip
+        * xz-utils
+        * zip
+        * zstd
+    Debugging, profiling and benchmark ---&gt;
+        * gdb
+            * gdbserver
+            * full debugger
+            * TUI support
+    Development tools ---&gt;
+        * binutils
+            * binutils binaries
+        * check
+        * diffutils
+        * findutils
+        * flex
+        * gawk
+        * gettext
+        * git
+        * grep
+        * libtool
+        * make
+        * patch
+        * pkgconf
+        * sed
+        * tree
+    Hardware handling ---&gt;
+        * kbd
+    Interpreter languages and scripting ---&gt;
+        * python3
+            python3 module format to install ---&gt;
+                * .py sources and .pyc compiled
+            External python modules
+                * python-pip
+    Libraries ---&gt;
+        Crypto ---&gt;
+            * CA Certificates
+            openssl support
+                ssl library ---&gt;
+                    * openssl
+                openssl
+                    * openssl binary
+    Networking applications ---&gt;
+        iputils
+            * ping
+        * openssh
+        * wget
+    Shell and utilities ---&gt;
+        * bash
+        * bash completion
+        * file
+        * sudo
+        * time
+        * which
+    System tools
+        * coreutils
+            * Individual binaries
+        * htop
+        * shadow
+        * tar
+    Text editors and viewers ---&gt;
+        * less
+        * vim
+        * install runtime
+</code></pre><p>Check out the <a href="https://www.linuxfromscratch.org/lfs/view/stable/">Linux From Scratch Book</a> for a detailed explanation of each package. Once you have selected your packages, select &ldquo;Save&rdquo; and &ldquo;Exit&rdquo; to exit the configuration interface.</p>
 <h2 id="2-build-buildroot">2. Build Buildroot</h2>
 <p>Run the <code>make</code> command to start the package download and compilation process.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make -j <span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
@@ -310,7 +313,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>Once the command is executed, many message will be shown, generated by <em>OpenSBI</em>, kernel and the <code>init</code> process. You can safely ignore them if there is no error message.</p>
 <p>The message will be ended with two lines: <code>Welcome to Buildroot</code> and <code>buildroot login</code>, enter the user name <code>root</code> without password to log in.</p>
 <h2 id="4-check-the-system">4. Check the system</h2>
-<p>You can do a quick checking to validate if the cpu module, memory size, kernel version, storage space, etc. match what you configured.</p>
+<p>You can do a quick checking to verify if the cpu module, memory size, kernel version, storage space, etc. match what you configured.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># uname -a</span>
 </span></span><span style="display:flex;"><span>Linux buildroot 5.15.43 <span style="color:#75715e">#1 SMP Tue Mar 4 07:31:21 CST 2023 riscv64 GNU/Linux</span>
 </span></span><span style="display:flex;"><span>

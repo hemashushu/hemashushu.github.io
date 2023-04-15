@@ -1,5 +1,5 @@
 ---
-title: "Making your own tools and building modern computer system from scratch, step by step"
+title: "Making your own tools and building modern computer system from scratch, step by step - Introduction"
 date: 2022-10-31T14:34:52+08:00
 images: ["/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"]
 tags: ["riscv"]
@@ -9,151 +9,84 @@ draft: false
 
 ## Preface
 
-RISC-V has been a popular computer instruction set for the last few years, and I'm sure many of you have already tried to compile a RISC-V version Linux kernel, or followed a tutorial to write a toy operating system, create a toy programming language, or even write a toy CPU in HDL (hardware description language).
+RISC-V has become a popular computer instruction set in recent years, and many of you may have tried compiling the RISC-V version of the Linux kernel, following tutorials to write the RISC-V version toy operating systems, toy programming languages and compilers, or even toy CPU using the hardware description language (HDL).
 
-At the beginning you must have been excited, like a hero starting a new adventure in an Isekai (_異世界_, otherworld). But when you get to the second chapter of the tutorial, you may start to feel confused and finally have to give up. You may be wondering: "I've been writing programs for years and solving all kinds of algorithm problems easily. Why don't I understand these tutorials?"
+Regardless of which path you chose, at the beginning, you were likely excited and eager, like a brave adventurer embarking on a new quest in an unknown world. However, as you progressed through the tutorial and reached the second chapter, you may have started to furrow your brow, grit your teeth, and struggled through a few more chapters before ultimately giving up. You may have thought, "I've been writing programs for several years, and I'm not even intimidated by various algorithm problems. Why can't I understand these tutorials?"
 
-Obviously this is because of the lack of understanding of the _system technology_. You may disagree: "Well, system technology, I learned it long ago in my basic computer course and passed the exam! ". Yes, there are courses such as _Computer Organization and Design_, _Compilers Principles_, _Operating Systems_ etc., and of course they are studied in several semesters. However, it is a mistake to study these subjects separately, because the system technologies of computers are intertwined.
+The root of the problem is a lack of complete understanding of computer system techology (also known as _computer fundamentals_, _low level techonlogy_, or _core technology_, collectively referred to as _system technology_ below).
+
+You might argue, "System technology? I learned about that in computer fundamentals courses, and I passed the exams!" Indeed, computer science programs offer courses like _Computer Organization_, _Compiliation Principles_ and _Operating Systems_, which are often divided into multiple semesters to ensure you can understand. However, **learning these subjects separately is a mistake** because system technology is interconnected.
 
 ![path](images/path.en.png)
-_The progressive learning path_
+_The spiral learning path_
 
-A computer system consists of three basic parts: _programming language_, _processor_, and _operating system_. If viewed from far away, the processor and the operating system are the same thing, they build together one of the most complex machines in history -- computers. The processor implements the constant logical and operations, the operating system is an extension of the processor and implements the parts that need to be changed, and the language is used to express, encapsulate and abstract the functions of the machine, making communication between the machine and humans possible. It can be seen that they are "the different aspects of the same purpose -- to let machines solve problems". Learning them separately is hard to understand the connections of them. Consider thinking of each subject as a pillar. The correct learning path is to stepping upward in a spiral around these pillars, instead of climbing one pillar, then sliding down and climbing another.
+Computer systems consist of three major fundamental components: language, processor, and operating system. From afar, the processor and operating system may appear to be the same thing. Together, they build the most complex machine in human history -- the computer. The processor is responsible for implementing the invariant logical opeartions, while the operating system is a extension of the processor, responsible for implementing the variable parts. Language is used to express, encapsulate, and abstract the functionality of the machine, making communication between the machine and humans possible. They are different aspects of the same goal -- to make the machine solve problems.
 
-In addition, there are also problems with the learning way, as computer system technologies are mostly the result of engineers' continuous problem solving. In other words, the theory is not the main thing, these techniques are the _best practices_ derived through trial and error. Therefore, a better way to learn is to start with exploring and practice, and then summarize by trial and error, rather than learning a lot of principles, doing a lot of exercises.
+Learning them separately will lead to a lack of understanding of the connections and reasons behind them. Imagine each of these subjects as a standing pillar. The better learning path is to **spiral gradually up** around these pillars, rather than climbing up one pillar, then sliding down and climbing another.
+
+Secondly, there are also issues with the learning methods. Most system technology is the result of continuous problem-solving and accumulation by engineers. In other words, theory does not play a dominant role, they are more about the best practices through various attempts. Therefore, a better approach to learning should starting with exploration and experimentation, learning by practicing, making mistakes, and summarizing, rather than starting with a lot of theory.
 
 ![way](images/way.en.png)
 
-In general, although you have almost all studied subjects related to computer systems, you have not really mastered these techniques because they are so far from how systems are built. Try designing a minimal instruction set and drawing the data path of a microarchitecture by hand without the help of the Internet, or writing a cold-boot bootloader for a target architecture, or writing a simple syntax parser from scratch without any libraries, and you will find it very difficult.
+Overall, although we may have learned almost all of the subjects related to system technology, we may not have truly mastered them because our learning process is far from the way the system is built and constructed. You can try designing the simplest instruction set without the help of the internet, then drawing the approximate data path of the microarchitecture by hand, or writing a boot loader for a given target hardware platform, or writing a simple syntax parser from scratch without any libraries. You will find that even though you have just learned these subjects, implementing them is very challenging.
 
-## Features
+## Characteristics
 
-We have learned a lot of computer system knowledge in our normal work and study, only they are loose and incomplete in our mind, I want to connect these knowledge through a series of articles, so that you can master it. There are many features in this series:
+In fact, we have already accumulated some system technology in our daily study and work, but it is often fragmented and incomplete. I hope to connect them through a series of articles, so that they become truly knowledge and skills. This series has the following characteristics:
 
-- No more "talk about the principle first, then do some small projects", but start from exploration and practice, and then derive the principle in the process of practice. And unlike many hands-on tutorials, this series not only talks about "how to do", but also explains "why" for each step. Many hands-on tutorials tend to ignore the second point, they generally list each instruction and input parameters, you must follow the instructions carefully in order to finally succeed. Follow these tutorials although you can also make "works", but the principle of which is certainly very vague. And these operating guidelines are very dependent on the environment and tools, often because of changes in the hardware and software environment or updates to the version of the tool, resulting in some of these steps have subtle changes, inconsistent with the tutorial, and in the end can not be successful.
+- It doesn't follow the traditional approach "learn theory first, then do projects". Instead, it starts with exploration and experimentation, interspersing theory in the process of practice. Also unlike many practical tutorials, this series not only shows you **how to do**, but also explains **why**. Many practical tutorials often ignore the latter point and list only the steps to follow, with screenshots and input parameters, or just show you a long operating videos. While following these tutorials may make it "work", the underlying principles are often vague. Additionally, such instructions are highly dependent on the environment and tools, and sometimes steps change subtly due to changes in software and hardware environments or tool version updates, making them inconsistent with the tutorial and ultimately unsuccessful.
 
-- No more learning by subject. The entire series is split into small stages based on the building process of the system. Each stage will cover multiple subjects at the same time, but each subject will not be covered in depth. You will complete one stage before moving on to the next.
+- It doesn't divide the content by subject, but by multiple small stages according to the system construction process and our understanding level. Each stage will involve knowledge from multiple subjects.
 
-- **Build from scratch without any specified IDE, SDK or library.** Only a few generic open source compilers and tools is need, and later you will use your own tools. Because even the tools are built by us, you can thoroughly figure out every detail.
+- **It doesn't require any specified software or hardware**. Many professional system technology tutorials or training require various high-end and expensive proprietary software and hardware, this series only a few general open source and free software, and a few widely used and cheapest no more than hundred dollars   essential hardware modules are needed (of course, this series is free, and there will be no Ads or promotional links 😄). Besides saving money, the most important thing is that this series aims to enable you to create tools and build systems on your own, not to make you just an operator or user of a specific software or hardware.
 
-- Does not rely on any specified software and hardware, using only a few general open source software and a few of the most widely used and low-cost hardware modules, that can be completed to the last chapter. While many professional system technology tutorials or training require a variety of expensive software and hardware, this series costs less than a hundred dollars in total (of course, the series is free and there will be no promotional links in the articles). The most important thing is that this series is not designed to make you an operator of some particular software or hardware, but to let you create your own tools and build the system.
+- **It doesn't require any specified IDE, SDK, or library**. We will build everything from scratch, starting with a few general open source and free compilers and tools, and later using our own tools. By building our own tools, you can thoroughly understand every technical detail without leaving any blind spots.
 
-- It is not a walk-through, but an in-depth and complete practice of computer systems. After completing this series, you will have a clear understanding of the system and can be free from all the trendy "knowledge".
+- It's not popular science or superficial observation, but rather a truly in-depth practice of computer systems. Through this series you will gain a correct understanding of the system, and you will not be confused by various fancy "knowledge" that are widely circulated but actually wrong, e.g. the belief that the core technology of computers is only chip manufacturing, solving this problem and all problems are solved, which is completely wrong.
 
-This series will use the RISC-V instruction set as the target architecture for learning and implementation, the reasons for choosing RISC-V are.
+This series will use the RISC-V as the target architecture for learning and implementation. I chose RISC-V because:
 
-- It's relatively a simple instruction set, which makes it possible to implement your own "minimal working" compiler and processor.
+- Its instruction set is relatively simple, which makes it possible for you to implement "the smallest working" compiler and processor by ourselves.
 
-- There are a large number of relevant open source tools and documentation. Using tools to check and verify that your "work" is correct, which is important for both learning and implementing.
+- There are a large number of related open source and free tools and documents that you can use to check and verify your work, which is very important for the exploration and learning process.
 
-- Finally, if you make a product, you don't need to worry about the licensing issues.
+- Finally, if you produce a product, there is no need to worry about licensing issues.
 
-## Introduction
+## Summary
 
-The knowledge of computer systems is very large, it is the accumulation of thousands of the world's best engineers over the decades, both the width and depth of knowledge are almost close to the limits of the human brain. It can even be said that it is the work of a group of people who are "far beyond our current era". _Hemashushu_ certainly know that it is impossible to complete through a few articles. So I'm going to write four series, each series contains several parts, each part contains several of chapters, a total of about a hundred long articles 😅.
+There is no doubt that system technology contains large amount of content. It represents the accumulation of the work of thousands of top engineers from around the world over several decades, and its breadth and depth are almost at the limit of what the human brain can comprehend. In fact, one could argue that it is the work of a group of people who have far surpassed our current era.
 
-The main content of this series can be described in one sentence: **Learning existing tools and systems, making your own tools, building a new system**.
+I realize that it is impossible to cover all of the content in just a few articles. That is why I have prepared four series, each consisting of several parts, and each part containing several chapters. In total, there will be about a hundred articles. The main focus of this series can be described in one sentence: **Learn about existing tools and systems, create you own tools, and build new systems.** You may have already read books or articles like "Building Systems from Scratch", but this series not only builds systems, but also makes tools for building systems, which I believe will still be refreshing for you 😁.
 
 ![content](images/content.en.png)
 
-The topic is very large, but you don't have to worry about it is too difficult to achieve. Because in each part you will only get to the level that just works. What's more, each small part of the system technology is surprisingly easy to learn if you take it out separately. So just follow step by step and you won't get stuck in the process.
+Although the content is vast, you do not have to worry about it is too difficult to complete. Each part, despite having a fancy name, only aims to achieve the level of "just enough to work". Moreover, every small component of system technology is surprisingly simple than you think when analyzed and implemented individually. So as long as you follow step-by-step, you will not get stuck along the way. Of course, I will also strike a balance between "rudimentary" and "practical" to ensure that each "work" in the series has its value.
 
-> Sometimes it's not that the technology itself is really hard, it's that you encounter bad textbooks or don't meet good teacher. I think that well-written, classic textbooks though rare, but are always there and easily available, just often overshadowed by huge amounts of poor quality information. It is important to choose the right textbook.
+> Sometimes the system technology itself is not really difficult, it is just that you have encountered a lousy tutorial or have not meet a good teacher. I found that although there are many excellent and classic textbooks, they are often overshadowed by a huge amount of low-quality information. Choosing the right textbook is crucial.
 
-But I also balance "simplicity" and "practicality", so that each "small project" has its own value. Modern mainstream computer systems have heavy historical burden, for example, GCC is more than thirty years old, as well as the Linux kernel has been developed for thirty years, which makes it very difficult for the newcomer to read, understand, modify and expand, and many new ideas cannot be integrated. Our system, on the other hand, because it starts from scratch and has no burden at all, will be relatively simple and easy to implement, and some problems can be solved from the root, new ideas (which are not actually new, just because few people know about them) can be integrated without any worries. Some features:
+Mainstream modern system technology carries a heavy historical burden. For example, GCC has been around for more than thirty years as well, and the Linux kernel has been under development for thirty years as well. For beginner, it is difficult to comprehend, modify, and expand these systems, and many new concepts cannot be integrated. In contrast, our system is built from scratch, with no burden, making it relatively simple and easy to implement. Some stubborn problems can be solved fundamentally, and new concepts (which are not really new but just not well-known). The system we built has many highlights, for example:
 
-- A language that can both be used for hardware, low-level, back-end and front-end development.
-- An assembly language that is human-readable.
-- A functional linker scripting language.
-- A microkernel system in which drivers can be develop, debug, install and distribute as easy as general applications.
-- A system that never needs to be shut down and reboot, with a rollbackable update mechanism.
-- A security model based on capability rather than _user and group_.
-- A _Shell_ with structured data.
+- Use one language for hardware development, system level development, application and web frontend development.
+- A user-friendly assembly language.
+- A functional script language for both Shell script and linking script.
+- A operating system that uses a microkernel, making it easy to develop, debug, install and deploy (develop driver programs just like regular programs). System updates do not require a reboot and can be rolled back.
+- A system security model based on capabilities rather than users and groups.
+- A Shell with structured data.
 
-There are more features that will be listed in specific chapters, but of course the main feature is that **you will make and use your own tools**. Even if you can see other books or articles like "Building System from Scratch", this series will still be a refreshing experience for you 😁.
+Of course, there are many other features, which will be detailed in spcific chapters.
 
-## Like, Share, Donate
+## Like, Share and Donate
 
-Although I have completed most of the projects in this series, I find it quite challenging to explain them. For example, how to organize the huge and intersecting contents, how to select the practical topics, how to make the transition between chapters, how to ensure the correctness of the contents, how to make it easier for the readers to read, and so on.
+Although I have already put most of the content in this series into practice, I found it quite challenging to explain them. It was difficult to organize the vast and intertwined content, choose practice projects, achieve smooth transitions between chapters, ensure the knowledge is correct, and make it easy to understand for readers. It took me more than four months to writ just the first eight articles, revising them over and over again. I don't know how many years it will take me to finish the last chapter 😵‍💫.
 
-The first 8 articles in the first series took more than four months to complete, after repeated writing and revising. I don't know how many years it will take to finish the last chapter. On the other side, although computer system technology holds the importance of technology inheritance and innovation, and holds the basis of modern industry, but it is "realistically" almost useless (💰) for individuals, because almost all companies are engaged in application-level development, and the system technology is too far away from a typical developer.
+On the other hand, while system technology is significant in terms of inheriting and innovating scientific and technological, and as the foundation of modern industry, it is not much value for individuals (💰), as most enterprises are engaged in application-level development. System technology is too distant for both ordinary people and developers.
 
-Although I try hard to write every article, it is obvious that only a few people will read it, and only a very few of them will be interested. So, if you happen to read this series of articles and find it helpful, please donate to me without hesitation! Your donation of a cup of coffee is my motivation to write the next article. 😄
+Even though I do my best to write each article well, only a few readers will actually read them, and only an extremely small number of people will be interested. Therefore, if you happen to come across this series and find them helpful, please feel free to tip me, your a cup of cola or coffee is the driving force for my next article 😄.
+
+Finally, Although system technology is "almost useless" for individuals, it can satisfy your primal curiosity, exploration, and creativity very well. Imagine what could be cooler than "conquering the most complex machine with your bare hands". When you finish the last chapter, I believe you will see a different world. Click on [the series index](../2022-11-01-building-a-modern-computer-system-from-scratch-index) to start your journey!
 
 {{< rawhtml >}}
 <div>
     <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
 </div>
 {{< /rawhtml >}}
-
-Finally, while systems technology is not realistically useful, it can be a good way to satisfy your "curiosity, exploration and creation". What could be cooler than "conquering the most complex machine in the history of mankind, alone and with bare hands"? When you finish the last chapter, I believe you will find a different world. Click on the title of the table of contents below to start your journey to the Isekai!
-
-- - -
-
-> **note** This list will be continuously updated
-
-**Series 1: Dive into RISC-V system step by step**
-
-- Part I: Understanding the usage of compiler, linker, debugger and some common binary tools, understanding the organization of program, building minimal freestanding (also called _bare metal programs_) executable programs.
-
-  - [S01C01 What is cross-compilation? Let's cross-compile and run our first program](../2022-11-05-s01c01-cross-compile-and-run-the-first-program)
-  - [S01C02 Write a Hello World program that can run alone without an OS](../2022-11-06-s01c02-write-a-program-run-alone-without-os)
-  - [S01C03 Uncovering the ELF executable file, making a minimal Hello World program only 70 bytes](../2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program)
-
-- Part II: A brief look at the principles of interaction between software and hardware through microcontroller (MCU). Writing bare-metal program (firmware) without SDK or HAL (hardware abstraction library), directly reading and writing registers, controlling the electrical signal of input and output pin (GPIO), implementing serial communications.
-
-- Part III: Understanding the principles of program loading, dynamic linking in modern systems, understanding the function call conventions of RISC-V and the basic instructions, writing simple programs in assembly language.
-
-- Part IV: Design an assembly language with a target architecture of RISC-V, implement its assembler and syntax parser.
-
-- Part V: Designing a functional linker script language and implementing a script interpreter.
-
-**Series 2: Implementing a modern language and compiler step by step**
-
-- Part I: Designing an IR (intermediate language) and implementing a code generator from IR to assembly language.
-
-- Part II: Designing a modern statically typed language, implementing a code generator from high-level language to IR, now you have a _simple but complete compilation system_.
-
-- Part III: Implement the [WASM](https://webassembly.org/) virtual machine (VM) and then implement the code generator for the IR to WASM. With the WASM VM you can get a basic idea of how a processor works, while having the WASM code generator means that the language can run in a browser.
-
-- Part IV: Implementing the IR to the [LLVM IR](https://llvm.org/docs/LangRef.html) code generator, which allows the language to generate programs for `x86` and `arm` target architectures.
-
-![compilation system](images/compilation-system.png)
-
-- Part V: Implementing the project construction tool and package manager, which is a necessary part of any modern language.
-
-- Part VI: Rewriting the compiler in the language to achieve _self-hosting_ (i.e., the compiler can compile its own source code), and from now you start using your own tools to build the system.
-
-**Series 3: Implementing a functional RISC-V CPU step by step**
-
-- Part I: Designing a minimal instruction set that enables numeric accumulation and memory loading and storing, implement a minimal processor with digital circuit simulation software that contains the basic processor elements, such as ROM, RAM, register file, decoder, controller and ALU (arithmetic logic unit), which can execute the instruction set.
-
-- Part II: Deriving an HDL language from the language, implement a digital circuit simulator and a test framework, implement a code generator from this HDL to [SystemVerilog](https://en.wikipedia.org/wiki/SystemVerilog). Re-implement the previous processor with the HDL and download it to the FPGA hardware for power-on testing.
-
-- Part III: Implementing a multi-cycle RV64I processor using the HDL language and download it to the FPGA hardware for power-on testing.
-
-- Part IV: Implementing some common protocols (e.g. UART, \(I^2C\), SPI), write drivers for common peripherals (e.g. GPIO, SPI Flash, SD card, SSD 1306 display etc.). Integrating into the processor to achieve a complete hardware system.
-
-- Part V: Upgrade the microarchitecture of the processor to a multi-stage pipeline design.
-
-**Series 4: Implementing a functional microkernel OS step by step**
-
-- Part I: Adding a MMU (memory management unit) to the processor, as well as a privileged module.
-
-- Part II: Implementing the minimal kernel, i.e. implementing basic serial text sending and receiving, page tables, memory management, program loader, process switch and message mechanisms.
-
-- Part III: Implementing the most simplified _ext4_ like file system.
-
-- Part IV: Implementing a simple _Shell_.
-
-- Part V: Implementing a simple network interface.
-
-- Part VI: Implementing a package manager.
-
-- Part VII: Adding a floating point module to the processor, and a matrix algorithm coprocessor.
-
-- Part VIII: implementing a simple machine learning library and then implementing a handwritten number recognition program.
-
-- Part IX: Implementing a simple graphics acceleration coprocessor.
-
-- Part X: Implementing a simple graphics library, and make a retro action game.

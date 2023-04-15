@@ -29,6 +29,9 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 
 <meta name="generator" content="Hugo 0.102.0-DEV" />
     
+    <script src="/js/mathjax-config.js" defer></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
@@ -152,7 +155,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
-<li><a href="#1-why-not-use-the-actual-risc-v-hardware">1. Why not use the actual RISC-V hardware?</a></li>
+<li><a href="#1-why-not-use-the-real-risc-v-hardware">1. Why not use the real RISC-V hardware?</a></li>
 <li><a href="#2-create-the-project-folder">2. Create the project folder</a></li>
 <li><a href="#3-create-a-risc-v-linux-hello-world-program">3. Create a RISC-V Linux &ldquo;Hello World!&rdquo; program</a></li>
 <li><a href="#4-build-the-linux-system">4. Build the Linux system</a>
@@ -171,7 +174,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <li><a href="#8-conclusion">8. Conclusion</a></li>
 </ul>
 <!-- raw HTML omitted -->
-<h2 id="1-why-not-use-the-actual-risc-v-hardware">1. Why not use the actual RISC-V hardware?</h2>
+<h2 id="1-why-not-use-the-real-risc-v-hardware">1. Why not use the real RISC-V hardware?</h2>
 <p>The RISC-V ISA has become popular in recent years due to its ease of learning and implementation, and the RISC-V toolchains are now quite mature. However, high-performance, stable and affordable RISC-V chips are still missing as of 2023.</p>
 <p>Moreover, writing and debugging programs in an emulator is far more convenient than on real hardware. This approach can save money, eliminate the need for connecting wires, and avoid the hassle of copying or synchronizing program files. You can perform all sorts of tasks on just one machine.</p>
 <h2 id="2-create-the-project-folder">2. Create the project folder</h2>
@@ -311,7 +314,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -nographic
 </span></span></code></pre></div><p>There are several parameters in this command, let&rsquo;s go through them line by line:</p>
 <ul>
-<li><code>-machine virt</code> QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. <a href="https://qemu-project.gitlab.io/qemu/system/riscv/virt.html">The <code>virt</code> machine</a> is a specical one that doesn&rsquo;t correspond to any real hardware. It&rsquo;s an idealized processor for a specified architecture combined with some devices.</li>
+<li><code>-machine virt</code> QEMU can emulate many different types of read hardware platforms. A machine is a combination of a specified processor and some peripherals. <a href="https://qemu-project.gitlab.io/qemu/system/riscv/virt.html">The <code>virt</code> machine</a> is a specical one that doesn&rsquo;t correspond to any real hardware. It&rsquo;s an idealized hardware for a specified architecture combined with some devices.</li>
 <li><code>-m 1G</code>: This specifies the memory capacity.</li>
 <li><code>-kernel ./linux-6.2/arch/riscv/boot/Image</code>: This specifies the kernel file. Just like a real machine, the QEMU boot process also contains several stages: &ldquo;bios -&gt; kernel -&gt; initramfs -&gt; userspace init&rdquo;. When you omit the <code>-bios</code> parameter, the <a href="https://qemu-project.gitlab.io/qemu/system/target-riscv.html#risc-v-cpu-firmware">default RISC-V QEMU BIOS firmware</a> called <code> OpenSBI</code> will be loaded automatically.</li>
 <li><code>-append &quot;root=/dev/vda rw console=ttyS0&quot;</code>: This appends parameters to the kernel.</li>
