@@ -4,7 +4,7 @@ date: 2022-11-07
 draft: true
 images: ["/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/images/hello-world-assembly.png"]
 tags: ["riscv", "elf"]
-categories: ["craft-system", "dive-into-riscv"]
+categories: ["craft-system", "S01"]
 ---
 
 [read first :: /zh/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program](/zh/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program)

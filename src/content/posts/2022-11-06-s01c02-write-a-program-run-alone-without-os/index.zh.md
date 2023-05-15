@@ -4,7 +4,7 @@ date: 2022-11-06
 draft: false
 images: ["/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/images/bare-metal.png"]
 tags: ["riscv", "bare-metal"]
-categories: ["craft-system", "dive-into-riscv"]
+categories: ["craft-system", "S01"]
 ---
 
 [上一章](../2022-11-05-s01c01-cross-compile-and-run-the-first-program) 我们写了一个 "Hello, World!" 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 "Hello, World!" 程序（这种程序叫 _裸机程序_），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。

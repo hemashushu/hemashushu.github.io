@@ -54,19 +54,6 @@
                 href="https://hemashushu.github.io/zh/categories/craft-system/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/categories/dive-into-riscv/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/categories/dive-into-riscv/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/categories/dive-into-riscv/"
-                />
-  </url><url>
     <loc>https://hemashushu.github.io/zh/tags/riscv/</loc>
     <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -78,6 +65,19 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/tags/riscv/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/categories/s01/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/categories/s01/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/categories/s01/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/</loc>

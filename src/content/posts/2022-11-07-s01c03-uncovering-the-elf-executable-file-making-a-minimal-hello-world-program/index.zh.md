@@ -4,7 +4,7 @@ date: 2022-11-07
 draft: true
 images: ["/posts/2022-11-07-s01c03-uncovering-the-elf-executable-file-making-a-minimal-hello-world-program/images/hello-world-assembly.png"]
 tags: ["riscv", "elf"]
-categories: ["craft-system", "dive-into-riscv"]
+categories: ["craft-system", "S01"]
 ---
 
 在[上一章](../2022-11-06-s01c02-write-a-program-run-alone-without-os)我们制作了一种无需操作系统，无需任何库就可以独自运行的 “裸机程序”，并且程序的所有内容由我们自己写的代码组成。在这一章我们将会分析程序文件本身，看看可执行文件里头究竟包含了哪些内容，然后把 `Hello, World!` 程序减少到几十个字节。

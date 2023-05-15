@@ -4,7 +4,7 @@ date: 2022-11-05
 draft: false
 images: ["/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png"]
 tags: ["riscv", "gcc", "qemu"]
-categories: ["craft-system", "dive-into-riscv"]
+categories: ["craft-system", "S01"]
 ---
 
 这是 [《从零开始一步一步制作自己的工具、构建现代计算机系统》](../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step) 系列的第一个系列 ———— 《一步一步深入了解 RISC-V 系统》。作为漫长旅程的第一站，我们应该从哪里开始呢？正如 [上一篇](../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step) 所说的，计算机系统技术的知识面很广而且相互交叉，无论从哪里开始都会同时涉及多个领域的内容，因此很难把知识平铺开来然后逐点分解。不过计算机系统是一个层层封装的结构，每一层都会把复杂的事情封装起来，然后向上一层提供相对简单的接口，如此类推直到最上一层 ———— 应用程序。这个特点使得人们即使对系统技术不甚了解，也可以顺利地使用程序完成各种工作。所以 "对程序的探索" 自然就成为我们学习系统技术的突破口。
