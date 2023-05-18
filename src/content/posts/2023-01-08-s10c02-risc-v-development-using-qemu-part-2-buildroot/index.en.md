@@ -425,6 +425,8 @@ A debugging session is active.
 Quit anyway? (y or n) y
 ```
 
+![GDB Debugging](./images/gdb.png)
+
 As shown above, this Linux system already contains common tools and is capable of base assembly development and program debugging.
 
 ## 11. Where is the GCC toolchain?

@@ -445,7 +445,8 @@ A debugging session is active.
         Inferior 1 [process 165] will be killed.
 
 Quit anyway? (y or n) y
-</code></pre><p>As shown above, this Linux system already contains common tools and is capable of base assembly development and program debugging.</p>
+</code></pre><p><img src="./images/gdb.png" alt="GDB Debugging"></p>
+<p>As shown above, this Linux system already contains common tools and is capable of base assembly development and program debugging.</p>
 <h2 id="11-where-is-the-gcc-toolchain">11. Where is the GCC toolchain?</h2>
 <p>Unfortunately, the <code>gcc</code> package is not available in Buildroot, as explained in <a href="https://buildroot.org/downloads/manual/manual.html#faq-no-compiler-on-target">the Buildroot documentation</a>. If you have patient enough, you can compile the GCC toolchains from source and copy it into the guest machine, It may be helpful to check out some scripts such as <a href="https://github.com/michaeljclark/musl-riscv-toolchain/">musl-riscv-toolchain</a> and <a href="https://git.zv.io/toolchains/musl-cross-make">musl-cross-make</a>.</p>
 <p>Alternatively, you can download the pre-compiled RISC-V crossing compilation toolchains from <a href="https://toolchains.bootlin.com/">toolchains.bootlin.com</a> and the native compilation toolchains from <a href="https://musl.cc/">musl.cc</a>. But these are beyond the scope of this chapter.</p>
