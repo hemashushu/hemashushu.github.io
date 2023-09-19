@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en-us">
+<html lang="en">
 
 <head>
   <title>riscv - Hemashushu&#39;s Homepage</title>
@@ -10,14 +10,13 @@
 <meta name="author" content="hemashushu" /><link rel="alternate" type="application/rss+xml" href="https://hemashushu.github.io/tags/riscv/index.xml" title="Hemashushu's Homepage" /><meta property="og:title" content="riscv" />
 <meta property="og:description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://hemashushu.github.io/tags/riscv/" /><meta property="og:site_name" content="Hemashushu&#39;s Homepage" />
-
+<meta property="og:url" content="https://hemashushu.github.io/tags/riscv/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="riscv"/>
 <meta name="twitter:description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares"/>
 
-<meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="generator" content="Hugo 0.113.0">
     
     <script src="/js/mathjax-config.js" defer></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -32,36 +31,41 @@
   <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
 
 <body>
-  <div id="container">
-    <header>
-      
-      <h1>
-        <a href="/">Hemashushu&rsquo;s Homepage</a>
-      </h1>
-
+  <header>
+    <div id="overlay"></div>
+    <div id="content">
       <ul id="social-media">
         
         
-          <li>
+            <li>
             <a href="https://hemashushu.github.io/zh/tags/riscv/">中文</a>
-          </li>
+            </li>
         
         
-             <li>
-               <a href="https://github.com/hemashushu" title="GitHub">
-               <i class="fab fa-github fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://twitter.com/hemashushu" title="Twitter">
-               <i class="fab fa-twitter fa-lg"></i>
-               </a>
-             </li>
+                <li>
+                <a href="https://github.com/hemashushu" title="GitHub">
+                <i class="fab fa-github fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://twitter.com/hemashushu" title="Twitter">
+                <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                </li>
       </ul>
+
+      
+      <h1>
+      <a href="/">Hemashushu&rsquo;s Homepage</a>
+      </h1>
+
       
       <p><em>Curiosity, exploration and creation</em></p>
       
-    </header>
+    </div>
+  </header>
+  <div id="container">
+
 
     
 <nav>
@@ -102,23 +106,13 @@
     <ul>
         
         <li>
-            <a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/">S01C02 Write a Hello World program that can run standalone without the need for an OS</a>
+            <a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/">S01C02 Write a Hello World program that can run standalone without the need for an OS</a>
             <time class="date-meta">Nov 6</time>
         </li>
         
         <li>
             <a href="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/">S01C01 What is cross-compilation? Let&rsquo;s cross-compile and run the first program</a>
             <time class="date-meta">Nov 5</time>
-        </li>
-        
-        <li>
-            <a href="https://hemashushu.github.io/posts/2022-11-01-building-a-modern-computer-system-from-scratch-index/">Making your own tools and building modern computer system from scratch, step by step - Index</a>
-            <time class="date-meta">Nov 1</time>
-        </li>
-        
-        <li>
-            <a href="https://hemashushu.github.io/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/">Making your own tools and building modern computer system from scratch, step by step - Introduction</a>
-            <time class="date-meta">Oct 31</time>
         </li>
         
     </ul>
@@ -148,6 +142,21 @@
     </footer>
 </div>
 <script src="/js/scripts.js"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7X4YJHXM9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-J7X4YJHXM9', { 'anonymize_ip': false });
+}
+</script>
+
+
+
 
 
 </body>

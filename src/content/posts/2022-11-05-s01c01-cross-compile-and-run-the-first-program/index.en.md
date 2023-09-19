@@ -7,17 +7,21 @@ tags: ["riscv", "gcc", "qemu"]
 categories: ["craft-system", "S01"]
 ---
 
+<!--
 The project [Making your own tools and building modern computer system from scratch, step by step](../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step) comprises of four series of artical, with the first series being _Dive into RISC-V system, step by step_.
 
 This article serves as the first stop on a long journey. Where should we begin? As mentioned in the [project introduction](../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step), computer system technology has a broad knowledge base and is interrelated. Starting from any point would involve multiple fields, making it difficult to explain everything in a straight line. However, a computer system has a layered and encapsulated structure. Each layer encapsulates complex things and exposes relatively simple interfaces to the layer above, and so on, until the top layer - the application layer. This feature allows people to write various application even if they are not familiar with the low-level technology. Therefore, learning about "applications" will be a good starting point for learning system technology.
+-->
 
-In the first series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language. With the assembler and linker, we will have the ability to generate programs (binary executable files), making it possible for us to create our own tools from scratch.
+This is the first chapter of series _Dive into RISC-V system, step by step_. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language. With the assembler and linker, we will have the ability to generate programs (binary executable files), making it possible for us to create our own tools from scratch.
 
 > In the first chapter of _Linkers & Loaders_ by John R. Levine, it is mentioned that "all the linker writers in the world could probably fir in on root". Perphaps after we finish this series, we may aslo be able to squeeze into this room 😁.
 
 I will be using [Rust](https://www.rust-lang.org/) to write the assembler and script parser for this series. While many articles, tutorials and projects related to compiler and system programming often use C as the programming language. Rust provides a better option in this era. Using Rust is not just to keep up with the trend, but also to avoid low-level errors and reduce frustration in the learning and development process, which is especially important for beginners in system programming. Additionally, Rust has a convenient toolchain, like many modern languages, which allows us to focus on development and reduce some repetitive work. However, in the chapters that discuss basic principles, I will still use C language since it is very straightforward and can correspond well with low-level technology.
 
 You may be wondering, "Why don't we jump right in and start by writing a language, an operation system, or a CPU?" While I understand the eagerness to dive into these ambitious projects. it's not a feasible approach. These projects have a high starting point. If you attempt to learn or practice directly from them, you will encounter many new concepts, which will lead to even more new concepts. Eventually, you may become overwhelmed by too many incomprehensible things. Of course, there are many paths to exploration and learning, but after stumbling around for a while, you will likely return to this starting point, which is like a beginner's village in system programming. To avoid unnecessary detours, it's best to begin your exploration journey here.
+
+> Many beginners often ask questions like "How does the CPU work?" or "How to write an operating system?" Unfortunately, these questions are too "huge" to receive satisfactory answers. Such questions are akin to asking "Why can a battery light up a bulb?" or "Why does a magnet attract iron?" Initially, these questions may seem simple, but as you go deeper, new questions keep arising, leading to knowledge gaps that are difficult to fill.
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 
@@ -60,6 +64,10 @@ In other word, cross-compilation occurs when "the environment in which the compi
 
 - The _target platform_ refers to the type of operating system, such as Linux, Windows, and Darwin/macOS.
 
+The working principles and processes of both _native compilation_ (ordinary compilation) and _cross-compilation_ are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term _cross-compilation_ does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.
+
+![Compilation Comparation](./images/compilation-comparasion.png)
+
 Of course, when developing programs, in addition to considering the target architecture and target platform, more detailed information may need to be considered. For example, when developing Linux applications, subtle differences between different distributions need to be considered. However, for the compiler, it only cares about the target archiecture and target platform.
 
 It's worth nothing that there are programs that do not require an operating system and can run independently, called _freestanding_ or _bare-metal_ programs, such as firmwares running on the microcontrollers (MCUs) and the kernel. When compiling such programs, only the _target architecture_ needs to be specified, and the _target platform_ does not need to be specified.
@@ -74,7 +82,7 @@ The target instruction set of the compiler to be implemented in this series is _
 
 ## 3. GCC compiler
 
-The mainstream compilers currently in use are GCC and LLVM, both of which are open source and free and support cross-compilation. However, GCC is more commonly used in the field of microcontrollers, which will be used in the later chapters discussing the principles of software and hardware communication. Therefore, for simplicity, only GCC will be discussed below.
+The mainstream compilers currently in use are GCC and LLVM, both of which are open source and free. However, GCC is more commonly used in the field of microcontrollers, which will be used in the later chapters discussing the principles of software and hardware communication. Therefore, for simplicity, only GCC will be discussed below.
 
 In addition to the compiler, the binary tool Binutils, debugging tool GDB, standard libraries, and kernel headers are often used when developing programs, collectively known as the GNU Toolchain. The GNU Toolchain can be easily installed through package managers in most Linux distributions. Depending on the compilation target, the names of the packages in the toolchain will also be different. For example, in Arch Linux, the RISC-V GNU Toolchain package names name:
 
@@ -114,7 +122,7 @@ Create a file named `app.c` anywhere with the following contents:
 ```c
 #include <stdio.h>
 
-int main() {
+int main(void) {
     printf("Hello, World!\n");
     return 0;
 }
@@ -182,7 +190,7 @@ Here are the meanings of some of the content in the above text:
 
 - `64-bit, RISC-V, double-float ABI, GNU/Linux 4.15.0`: These pieces of information indicate the target architecture, target platform, and some detailed information of the target environment.
 
-- `LSB`: Indicates that the data in the current file is _least significant byte_ first, which is commonly known as _little-endian_. The opposite of LSB is MSB, which is _most significant byte_ first, commonly known as _bit-endian_. Byte order determines how an integer (such as `int32` and `int64`, which must be composed of multiple bytes) is stored in memory or on disk. For example, if the number `0x11223344` is stored in memory using LSB, the order of each byte is "44 33 22 11", and if it is stored using MSB, the order is "11 22 33 44". When viewing the contents of an executable file with a hexadecimal viewer that uses LSB byte order, the order of each byte of an integer number needs to be reversed to get its true value, while text content can be read directly.
+- `LSB`: Indicates that the data in the current file is _least significant byte_ first, which is commonly known as _little-endian_. The opposite of LSB is MSB, which is _most significant byte_ first, commonly known as _bit-endian_. Byte order determines how an integer (such as `int32` and `int64`, which must be composed of multiple bytes) is stored in memory or on disk. For example, if the number `0x11223344` is stored in memory using LSB, the order of each byte is "(start) 44 33 22 11", and if it is stored using MSB, the order is "(start) 11 22 33 44". When viewing the contents of an executable file with a hexadecimal viewer that uses LSB byte order, the order of each byte of an integer number needs to be reversed to get its true value, while text content can be read directly.
 
 - `with debug_info, not stripped`: Indicates that the current executable file contains debug information.
 
@@ -233,6 +241,8 @@ qemu-riscv64: Could not open '/lib/ld-linux-riscv64-lp64d.so.1': No such file or
 Obviously, the program did not run correctly. By default, GCC produces dynamically linked programs, which require a _runtime dynamic linker_ to load the shared libraries required by the program. The runtime dynamic linker is the program `ld.so`, which is the `/lib/ld-linux-riscv64-lp64d.so.1` shown in the error message in this example.
 
 The program produced by GCC is assumed to run in a "normal Linux system", while we are currently in a special environment called QEMU user mode. From the perspective of the "Hello, World!" program, it does not know that it is running in a specical environment and assumes that it is running in a Linux system based on the RISC-V architecture. Therefore, it searches for the dynamic linker `/lib/ld-linux-riscv64-lp64d.so.1` as usual. In reality, the current environment (the author's machine) is running the *x86_64* version of Linux, and the dynamic linker is `/lib/ld-linux-x86-64.so.2`. QEMU user mode only translates CPU instructions and does not convert other data such as file paths, so the program fails to run.
+
+> You may have noticed that `./app.elf` can be executed directly, and the error message produced are the same. This is because the Linux kernel supports programs which require interpreters through the [MISC binary](https://www.kernel.org/doc/html/latest/admin-guide/binfmt-misc.html) feature. Check the file `/proc/sys/fs/binfmt_misc/qemu-riscv64`, it shows when you run `./app.elf` from the command line, the actually command `/usr/bin/qemu-riscv64-static ./app.elf` is executed. `qemu-riscv64-static` is the same as `qemu-riscv64` above, except that it is itself statically linked.
 
 ### 5.3 Specify the dynamic linker path
 

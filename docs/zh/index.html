@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en-us">
+<html lang="zh">
 
 <head>
   <title>河马蜀黍的个人主页</title>
@@ -10,14 +10,13 @@
 <meta name="author" content="hemashushu" /><link rel="alternate" type="application/rss+xml" href="https://hemashushu.github.io/zh/index.xml" title="河马蜀黍的个人主页" /><meta property="og:title" content="河马蜀黍的个人主页" />
 <meta property="og:description" content="河马蜀黍的个人主页和博客，分享一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://hemashushu.github.io/zh/" /><meta property="og:site_name" content="河马蜀黍的个人主页" />
-
+<meta property="og:url" content="https://hemashushu.github.io/zh/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="河马蜀黍的个人主页"/>
 <meta name="twitter:description" content="河马蜀黍的个人主页和博客，分享一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件"/>
 
-<meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="generator" content="Hugo 0.113.0">
     
     <script src="/js/mathjax-config.js" defer></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -32,36 +31,41 @@
   <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
 
 <body>
-  <div id="container">
-    <header>
-      
-      <h1>
-        <a href="/zh/">河马蜀黍的个人主页</a>
-      </h1>
-
+  <header>
+    <div id="overlay"></div>
+    <div id="content">
       <ul id="social-media">
         
         
-          <li>
+            <li>
             <a href="https://hemashushu.github.io/">English</a>
-          </li>
+            </li>
         
         
-             <li>
-               <a href="https://github.com/hemashushu" title="GitHub">
-               <i class="fab fa-github fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://twitter.com/hemashushu" title="Twitter">
-               <i class="fab fa-twitter fa-lg"></i>
-               </a>
-             </li>
+                <li>
+                <a href="https://github.com/hemashushu" title="GitHub">
+                <i class="fab fa-github fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://twitter.com/hemashushu" title="Twitter">
+                <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                </li>
       </ul>
+
+      
+      <h1>
+      <a href="/zh/">河马蜀黍的个人主页</a>
+      </h1>
+
       
       <p><em>好奇、探索、创造</em></p>
       
-    </header>
+    </div>
+  </header>
+  <div id="container">
+
 
     
 <nav>
@@ -95,7 +99,7 @@
     
 
     <li class="first" >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/" title="S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序">S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序</a></h1>
+      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/" title="S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序">S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序</a></h1>
       <aside>
     <ul>
         <li>
@@ -131,21 +135,21 @@
         </li>
         
 
-        <li>15 minute read</li>
+        <li>17 minute read</li>
     </ul>
 </aside>
 
       
 <div class="featured_image">
-    <a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/" title="S01C02 编写一个无需操作系统，可独自运行的 Hello World 程序">
-        <img src="/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/images/bare-metal.png">
+    <a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/" title="S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序">
+        <img src="/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/images/bare-metal.png">
     </a>
 </div>
 
 
-      <p>上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 &ldquo;Hello, World!&rdquo; 程序（这种程序叫 裸机程序），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。 1. 什么是裸机程序？ 如何启动裸机程序 裸机版的 &ldquo;Hello, World!&rdquo; 程序 如何直接访问硬件？ 通过串口发送字符 实现 print_string 函数 主程序 程序启动器 编译 链接</p>
+      <p>上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 &ldquo;Hello, World!&rdquo; 程序（这种程序叫 裸机程序），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。 1. 什么是裸机程序？ 2. 如何启动裸机程序 3. 制作裸机版的 &ldquo;Hello, World!&rdquo; 程序 3.1 如何直接访问硬件？ 3.2 通过串口发送字符 实现 print_string 函数 主程序 程序启</p>
       
-      <a href="/zh/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/">Read more…</a>
+      <a href="/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/">Read more…</a>
       
     </li>
     
@@ -202,103 +206,9 @@
 </div>
 
 
-      <p>项目 《从零开始一步一步制作自己的工具、构建现代计算机系统》 由四个系列文章组成，其中第一个系列是《一步一步深入了解 RISC-V 系统》。 该篇文章是第一个系列的第一篇，作为漫长旅程的第一站，我们应该从哪里开始呢？正如 项目介绍 所提到的，计算机系统技术的知识面很广，同时又相互交叉。无论从哪里开始都会同时涉及多个领域，因此很难把所有知识拉成一条直线然后从头到尾地讲解。不过计算机系统有一个显著的特点，就是层层封装的结构。每一层都会把复杂的事情封装起来，然后向上一层提供相对简单的接口，如此类推直到最上一层 —— 应用程序。这个特点使得</p>
+      <p>这是《一步一步深入 RISC-V 系统》系列文章的第一章。在这个系列里，我们将会了解程序是如何构建、程序文件本身是什么样的结构、程序是如何运行、软件和硬件之间是如何交流，以及汇编语言是怎样被转换为指令，等等有关程序的基本原理。在这个系列的后半阶段，我们会实现一个 RISC-V 汇编器和链接器，以及一门有特色的 RISC-V 汇编语言和链接器脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件），这是我们制作自己的工具的基础。 在 John R. Levine 的《Linkers &amp; Loaders》第一章里提到：“大概一个房间就能装得下世上所有编写链接器的人” （</p>
       
       <a href="/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-01-building-a-modern-computer-system-from-scratch-index/" title="从零开始一步一步制作自己的工具、构建现代计算机系统 - 目录">从零开始一步一步制作自己的工具、构建现代计算机系统 - 目录</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2022-11-01T00:00:00Z">Nov 1, 2022</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="/zh/categories/craft-system">craft-system</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="/zh/tags/riscv">#riscv</a>
-                
-            </em>
-        </li>
-        
-
-        <li>4 minute read</li>
-    </ul>
-</aside>
-
-      
-
-      <p>这是 从零开始一步一步制作自己的工具、构建现代计算机系统 系列文章的总目录。 上一篇 简介 提到，该系列文章由四个系列组成，每个系列包含若干部。下面列出每一部的标题以及已完成的文章的链接，当有新文章时，这个目录也会同时更新。 第一个系列属于基础知识，其内容不如另外三个系列那么酷，不过建议不要跳过第一个系列。现代的计算机技术领域非常庞大且复杂，各式各样的框架和工具层出不穷，迭代速度也快到转瞬即逝的地步。如果我们仅停留在各种框架、工具和语言之间徘徊，可能穷其一生都未必能学完。不过如果我们向底层方向研究，就会发现事情会变得</p>
-      
-      <a href="/zh/posts/2022-11-01-building-a-modern-computer-system-from-scratch-index/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介">从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2022-10-31T14:34:52&#43;08:00">Oct 31, 2022</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="/zh/categories/craft-system">craft-system</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="/zh/tags/riscv">#riscv</a>
-                
-            </em>
-        </li>
-        
-
-        <li>8 minute read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://hemashushu.github.io/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/" title="从零开始一步一步制作自己的工具、构建现代计算机系统 - 简介">
-        <img src="/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg">
-    </a>
-</div>
-
-
-      <p>前言 RISC-V 是最近几年热门的计算机指令集，相信已经有不少朋友已经尝试过编译 RISC-V 版的 Linux 内核，或者跟着教程编写 RISC-V 版的玩具操作系统、玩具编程语言和编译器，甚至用 HDL（硬件描述语言）编写自己的玩具 RISC-V CPU。 无论是哪种，刚开始时你肯定既激动又兴奋，就像要在一个异世界开始一段新冒险的勇者那样。不过当你翻到教程的第二章，你可能就开始眉头紧锁，然后咬着牙又翻了几章，经过一番挣扎最后只能放弃。这时候你可能很疑惑：“明明写了几年的程序，各种算法题早已不放在眼里，为什么还是看不懂这些教程呢？！&quot; 显然这是因为缺少对完整的 系统</p>
-      
-      <a href="/zh/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/">Read more…</a>
       
     </li>
     
@@ -326,6 +236,21 @@
     </footer>
 </div>
 <script src="/js/scripts.js"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7X4YJHXM9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-J7X4YJHXM9', { 'anonymize_ip': false });
+}
+</script>
+
+
+
 
 
 </body>

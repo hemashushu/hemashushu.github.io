@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en-us">
+<html lang="en">
 
 <head>
   <title>S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system - Hemashushu&#39;s Homepage</title>
@@ -15,8 +15,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/posts/2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-01-06T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-01-06T00:00:00+00:00" /><meta property="og:site_name" content="Hemashushu&#39;s Homepage" />
-
+<meta property="article:modified_time" content="2023-01-06T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system"/>
@@ -25,7 +24,7 @@ Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBo
 Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
 Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains."/>
 
-<meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="generator" content="Hugo 0.113.0">
     
     <script src="/js/mathjax-config.js" defer></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -40,30 +39,35 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
   <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
 
 <body>
-  <div id="container">
-    <header>
-      
-      <h1>
-        <a href="/">Hemashushu&rsquo;s Homepage</a>
-      </h1>
-
+  <header>
+    <div id="overlay"></div>
+    <div id="content">
       <ul id="social-media">
         
-             <li>
-               <a href="https://github.com/hemashushu" title="GitHub">
-               <i class="fab fa-github fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://twitter.com/hemashushu" title="Twitter">
-               <i class="fab fa-twitter fa-lg"></i>
-               </a>
-             </li>
+                <li>
+                <a href="https://github.com/hemashushu" title="GitHub">
+                <i class="fab fa-github fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://twitter.com/hemashushu" title="Twitter">
+                <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                </li>
       </ul>
+
+      
+      <h1>
+      <a href="/">Hemashushu&rsquo;s Homepage</a>
+      </h1>
+
       
       <p><em>Curiosity, exploration and creation</em></p>
       
-    </header>
+    </div>
+  </header>
+  <div id="container">
+
 
     
 <nav>
@@ -130,7 +134,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
         </li>
         
 
-        <li>18 minute read</li>
+        <li>19 minute read</li>
     </ul>
 </aside>
 
@@ -207,6 +211,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 </ul>
 <p><img src="./images/linux-boot-process.png" alt="Linux System Boot Process"></p>
 <p>There is an amazing program called <a href="https://busybox.net/">Busybox</a> that contains all of the user programs mentioned above in a single program. BusyBox greatly simplifies the process of building a system. In this chapter we will build our first system using Busybox and the Linux kernel.</p>
+<p><img src="./images/minimal-linux-os.png" alt="Minimal Linux Operating System"></p>
 <h3 id="31-compile-linux-kernel">3.1 Compile Linux kernel</h3>
 <ol>
 <li>Install RISC-V GCC toolchains</li>
@@ -233,18 +238,24 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 </span></span></code></pre></div><blockquote>
 <p>It&rsquo;s not recommended that cloning the kernel source code Git repository, as it is very large, takes a long time to download and requires a significant amount of storage space.</p>
 </blockquote>
-<ol start="3">
+<p>Ensure that no permission errors occur, transfer ownership of the directory to the current user:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ chown -R $USER:$USER linux-6.2.10
+</span></span></code></pre></div><ol start="3">
 <li>Compiling with default configuration</li>
 </ol>
+<p>Ensure that the kernel tree is absolutely clean, change into the kernel source directory created and run the <code>make mrproper</code> command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd linux-6.2.10
-</span></span><span style="display:flex;"><span>$ ARCH<span style="color:#f92672">=</span>riscv CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make defconfig
+</span></span><span style="display:flex;"><span>$ make mrproper
+</span></span></code></pre></div><p>Configure with the default settings and start to compile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ARCH<span style="color:#f92672">=</span>riscv CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make defconfig
 </span></span><span style="display:flex;"><span>$ ARCH<span style="color:#f92672">=</span>riscv CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make -j <span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
 </span></span></code></pre></div><p>Take a break and step out for a cup of coffee. When you return, you should find a file named <code>arch/riscv/boot/Image</code>.</p>
 <p>To examine this file, use the <code>file</code> command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file arch/riscv/boot/Image
 </span></span></code></pre></div><p>The output should indicate that file is a &ldquo;PE32+ executable (EFI application)&rdquo;</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>./arch/riscv/boot/Image: PE32+ executable (EFI application) RISC-V 64-bit (stripped to external PDB), for MS Windows, 2 sections
-</span></span></code></pre></div><h3 id="32-compile-busybox">3.2 Compile BusyBox</h3>
+</span></span></code></pre></div><p>Note that the output file is different from the <em>x86</em> architecture. When compiling for <em>x86</em>, the default output file is <code>arch/x86/boot/bzImage</code>, which is a compressed binary image. It will be later renamed to <em>vmlinuz</em> and copied to the <code>/boot</code> directory (the prefix &ldquo;vm&rdquo; stands for &ldquo;virtual memory&rdquo;, and the suffix &ldquo;z&rdquo; indicates that the file is compressed). While <code>arch/riscv/boot/Image</code> is a flat binary image file and it is a commonly used for embedded systems. Check <a href="https://en.wikipedia.org/wiki/Vmlinux">vmlinux wiki</a> for details.</p>
+<h3 id="32-compile-busybox">3.2 Compile BusyBox</h3>
 <p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, download the <a href="https://busybox.net/downloads/busybox-1.36.0.tar.bz2">BusyBox source code tarball</a>, extract the tarball and configure it using the default settings.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
 </span></span><span style="display:flex;"><span>$ wget https://busybox.net/downloads/busybox-1.36.0.tar.bz2
@@ -313,7 +324,6 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd part1
 </span></span><span style="display:flex;"><span>$ sudo mkdir -p bin sbin lib usr/bin usr/sbin usr/lib
 </span></span><span style="display:flex;"><span>$ sudo mkdir -p etc
-</span></span><span style="display:flex;"><span>$ sudo mkdir -p dev proc sys run tmp
 </span></span><span style="display:flex;"><span>$ sudo mkdir -p root
 </span></span></code></pre></div><p>You may wonder why so many directories are needed, but it&rsquo;s for historical reasons. Linux inherited the concept of Unix, which is a 50-year-old system when computer hardware and software were very different from modern ones. Now this series of directories has become a convention for Linux system.</p>
 <ul>
@@ -324,18 +334,36 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <li><code>usr/sbin</code>: system daemons and utilities such as <code>sshd</code>, <code>httpd</code>.</li>
 <li><code>usr/lib</code>: genernal libraries.</li>
 <li><code>etc</code>: system configuration files.</li>
+<li><code>root</code>: the home folder for the <code>root</code> user. As you know the home folder for all users is under the <code>/home</code> folder, but the root user is an exception.</li>
+</ul>
+<p>If you write a program to distribute to a Linux system, you need to follow these conventions as well:</p>
+<ul>
+<li><code>/usr/bin</code>: binary executables.</li>
+<li><code>/usr/share</code>: read-only program resource files.</li>
+<li><code>/etc</code>: system-wide program configuration files.</li>
+<li><code>/var/lib</code>: system-wide program data.</li>
+</ul>
+<p>If you write a shared library:</p>
+<ul>
+<li><code>/usr/lib</code>: the library files.</li>
+<li><code>/usr/include</code>: library headers.</li>
+</ul>
+<blockquote>
+<p>In certain modern Linux distributions, the directories <code>/bin</code>, <code>/sbin</code>, <code>/lib</code> are simple symbolic links to <code>/usr/bin</code>, <code>/usr/sbin</code> and <code>/usr/lib</code> correspondingly.</p>
+</blockquote>
+<p>Apart from the <em>actual file system</em>, there are various virtual file system directries whose contents are generated by the kernel and drivers. Although you still need to create them manually on the hard disk, they serve as mount points.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo mkdir -p dev proc sys
+</span></span></code></pre></div><ul>
 <li><code>dev</code>: device files created by device drivers, Linux treats all hardware as files, for example, <code>/dev/hda</code> is the first hard disk of your system, and you can read and write to it as if the entire hard disk is a huge file.</li>
 <li><code>proc</code>: user programs running information, but also some kernel and drivers running information for historical reasons.</li>
 <li><code>sys</code>: kernel and drivers running information.</li>
-<li><code>run</code> and <code>tmp</code>: they are actually RAM disks, and all data would be lost when the machine power is off. They are used for storing cache and temporary files.</li>
-<li><code>root</code>: the home folder for the <code>root</code> user. As you know the home folder for all users is under the <code>/home</code> folder, but the root user is an exception.</li>
 </ul>
-<p>The above are the general uses of these directories, it is important to note that:</p>
+<p>Two additional virtual directories present, named <code>run</code> and <code>tmp</code>. They are actually RAM disks for storing cache and temporary files, and all data stored in them would be lost when the machine is rebooted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo mkdir -p run tmp
+</span></span></code></pre></div><p>It is important to note that:</p>
 <ul>
 <li>Not everyone has a consistent understanding of these directories, so some directories may store other content.</li>
-<li>They are created with root privilegs because the owner of these folders should be the <code>root</code> user, whose ID is always zero in all Linux systems.</li>
-<li>The <code>dev</code>, <code>proc</code>, <code>sys</code>, <code>run</code> and <code>tmp</code> are all virtual directories whose contents are generated by the program. They are created on the hard disk only to provide mount names.</li>
-<li>The kernel and drivers do not need these directories, they run in a separate state.</li>
+<li>They are created all with root privilegs because the owner of these folders should be the <code>root</code> user.</li>
 </ul>
 <blockquote>
 <p>Check the <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">Filesystem Hierarchy Standard</a> for the details of directory structure.</p>
@@ -476,12 +504,12 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, create file <code>app.c</code> with the following code:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Hello, world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Press Ctrl+a, then press x to exit QEMU.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello, world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Press Ctrl+a, then press x to exit QEMU.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> getchar();
-</span></span><span style="display:flex;"><span>        putchar(c);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">putchar</span>(c);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Then compile it with RISC-V GCC compiler:</p>
@@ -552,7 +580,7 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
     <ul>
         <li>
         
-            <a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/"><i class="fa fa-chevron-circle-left"></i> S01C02 Write a Hello World program that can run standalone without the need for an OS</a>
+            <a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/"><i class="fa fa-chevron-circle-left"></i> S01C02 Write a Hello World program that can run standalone without the need for an OS</a>
         
         </li>
         <li>
@@ -588,6 +616,21 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
     </footer>
 </div>
 <script src="/js/scripts.js"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7X4YJHXM9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-J7X4YJHXM9', { 'anonymize_ip': false });
+}
+</script>
+
+
+
 
 
 </body>

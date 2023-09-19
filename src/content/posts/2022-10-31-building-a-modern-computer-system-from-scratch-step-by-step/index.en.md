@@ -4,7 +4,7 @@ date: 2022-10-31T14:34:52+08:00
 images: ["/posts/2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step/images/mcu.jpg"]
 tags: ["riscv"]
 categories: ["craft-system"]
-draft: false
+draft: true
 ---
 
 ## Preface
@@ -30,9 +30,11 @@ Secondly, there are also issues with the learning methods. Most system technolog
 
 Overall, although we may have learned almost all of the subjects related to system technology, we may not have truly mastered them because our learning process is far from the way the system is built and constructed. You can try designing the simplest instruction set without the help of the internet, then drawing the approximate data path of the microarchitecture by hand, or writing a boot loader for a given target hardware platform, or writing a simple syntax parser from scratch without any libraries. You will find that even though you have just learned these subjects, implementing them is very challenging.
 
-## Characteristics
+## The project
 
-In fact, we have already accumulated some system technology in our daily study and work, but it is often fragmented and incomplete. I hope to connect them through a series of articles, so that they become truly knowledge and skills. This series has the following characteristics:
+In fact, we have already accumulated some system technology in our daily study and work, but it is often fragmented and incomplete. So I created a project called "Making your own tools and building modern computer system from scratch, step by step". I hope you can connect the knowledge related to system technology and truly master it through this project.
+
+This project consists of a series of articles with the following characteristics:
 
 - It doesn't follow the traditional approach "learn theory first, then do projects". Instead, it starts with exploration and experimentation, interspersing theory in the process of practice. Also unlike many practical tutorials, this series not only shows you **how to do**, but also explains **why**. Many practical tutorials often ignore the latter point and list only the steps to follow, with screenshots and input parameters, or just show you a long operating videos. While following these tutorials may make it "work", the underlying principles are often vague. Additionally, such instructions are highly dependent on the environment and tools, and sometimes steps change subtly due to changes in software and hardware environments or tool version updates, making them inconsistent with the tutorial and ultimately unsuccessful.
 
@@ -56,7 +58,7 @@ This series will use the RISC-V as the target architecture for learning and impl
 
 There is no doubt that system technology contains large amount of content. It represents the accumulation of the work of thousands of top engineers from around the world over several decades, and its breadth and depth are almost at the limit of what the human brain can comprehend. In fact, one could argue that it is the work of a group of people who have far surpassed our current era.
 
-I realize that it is impossible to cover all of the content in just a few articles. That is why I have prepared four series, each consisting of several parts, and each part containing several chapters. In total, there will be about a hundred articles. The main focus of this series can be described in one sentence: **Learn about existing tools and systems, create you own tools, and build new systems.** You may have already read books or articles like "Building Systems from Scratch", but this series not only builds systems, but also makes tools for building systems, which I believe will still be refreshing for you 😁.
+I realize that it is impossible to cover all of the content in just a few articles. That is why I divied this project into four series, each series consisting of several parts, and each part containing several chapters. In total, there will be about a hundred articles. The main focus of this series can be described in one sentence: **Learn about existing tools and systems, create you own tools, and build new systems.** You may have already read books or articles like "Building Systems from Scratch", but this series not only builds systems, but also makes tools for building systems, which I believe will still be refreshing for you 😁.
 
 ![content](images/content.en.png)
 
@@ -77,7 +79,7 @@ Of course, there are many other features, which will be detailed in spcific chap
 
 ## Like, Share and Donate
 
-Although I have already put most of the content in this series into practice, I found it quite challenging to explain them. It was difficult to organize the vast and intertwined content, choose practice projects, achieve smooth transitions between chapters, ensure the knowledge is correct, and make it easy to understand for readers. It took me more than four months to writ just the first eight articles, revising them over and over again. I don't know how many years it will take me to finish the last chapter 😵‍💫.
+Although I have already practiced most of the content in this project, I found it is quite challenging to explain them. It was difficult to organize the vast and intertwined content, choose practice projects, achieve smooth transitions between chapters, ensure the knowledge is correct, and make it easy to understand for readers. It took me more than four months to writ just the first eight articles, revising them over and over again. I don't know how many years it will take me to finish the last chapter 😵‍💫.
 
 On the other hand, while system technology is significant in terms of inheriting and innovating scientific and technological, and as the foundation of modern industry, it is not much value for individuals (💰), as most enterprises are engaged in application-level development. System technology is too distant for both ordinary people and developers.
 

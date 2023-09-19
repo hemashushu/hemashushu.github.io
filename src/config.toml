@@ -4,6 +4,7 @@ copyright = "Copyright &copy; 2022 - Hippospark"
 title = "河马蜀黍的个人主页"
 theme = "hugo-kiera"
 publishDir = "../docs"
+googleAnalytics = 'G-J7X4YJHXM9'
 
 # English is the default language
 defaultContentLanguage = "en"

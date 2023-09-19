@@ -157,7 +157,7 @@ img[src*="mid"] {
         margin-right: -400px;
     }
 
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 932px) {
 
         .mid-image,
         figure.mid img,
@@ -179,7 +179,7 @@ img[src*="float"] {
     box-shadow: 0 3px 3px #bbbbbb;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 932px) {
 
     .float-image,
     figure.float img,
@@ -199,7 +199,7 @@ img[src*="float-right"] {
     box-shadow: 0 3px 3px #bbbbbb;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 932px) {
 
     .float-image-right,
     figure.float-right img,

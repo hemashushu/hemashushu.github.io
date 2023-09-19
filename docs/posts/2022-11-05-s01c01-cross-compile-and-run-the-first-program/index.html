@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en-us">
+<html lang="en">
 
 <head>
   <title>S01C01 What is cross-compilation? Let&#39;s cross-compile and run the first program - Hemashushu&#39;s Homepage</title>
@@ -8,22 +8,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S01C01 What is cross-compilation? Let&#39;s cross-compile and run the first program" />
-<meta property="og:description" content="The project Making your own tools and building modern computer system from scratch, step by step comprises of four series of artical, with the first series being Dive into RISC-V system, step by step.
-This article serves as the first stop on a long journey. Where should we begin? As mentioned in the project introduction, computer system technology has a broad knowledge base and is interrelated. Starting from any point would involve multiple fields, making it difficult to explain everything in a straight line." />
+<meta property="og:description" content="This is the first chapter of series Dive into RISC-V system, step by step. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/" /><meta property="og:image" content="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-11-05T00:00:00+00:00" /><meta property="og:site_name" content="Hemashushu&#39;s Homepage" />
-
+<meta property="article:modified_time" content="2022-11-05T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png"/>
 
 <meta name="twitter:title" content="S01C01 What is cross-compilation? Let&#39;s cross-compile and run the first program"/>
-<meta name="twitter:description" content="The project Making your own tools and building modern computer system from scratch, step by step comprises of four series of artical, with the first series being Dive into RISC-V system, step by step.
-This article serves as the first stop on a long journey. Where should we begin? As mentioned in the project introduction, computer system technology has a broad knowledge base and is interrelated. Starting from any point would involve multiple fields, making it difficult to explain everything in a straight line."/>
+<meta name="twitter:description" content="This is the first chapter of series Dive into RISC-V system, step by step. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language."/>
 
-<meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="generator" content="Hugo 0.113.0">
     
     <script src="/js/mathjax-config.js" defer></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -38,36 +35,41 @@ This article serves as the first stop on a long journey. Where should we begin? 
   <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
 
 <body>
-  <div id="container">
-    <header>
-      
-      <h1>
-        <a href="/">Hemashushu&rsquo;s Homepage</a>
-      </h1>
-
+  <header>
+    <div id="overlay"></div>
+    <div id="content">
       <ul id="social-media">
         
         
-          <li>
+            <li>
             <a href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/">中文</a>
-          </li>
+            </li>
         
         
-             <li>
-               <a href="https://github.com/hemashushu" title="GitHub">
-               <i class="fab fa-github fa-lg"></i>
-               </a>
-             </li>
-             <li>
-               <a href="https://twitter.com/hemashushu" title="Twitter">
-               <i class="fab fa-twitter fa-lg"></i>
-               </a>
-             </li>
+                <li>
+                <a href="https://github.com/hemashushu" title="GitHub">
+                <i class="fab fa-github fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://twitter.com/hemashushu" title="Twitter">
+                <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                </li>
       </ul>
+
+      
+      <h1>
+      <a href="/">Hemashushu&rsquo;s Homepage</a>
+      </h1>
+
       
       <p><em>Curiosity, exploration and creation</em></p>
       
-    </header>
+    </div>
+  </header>
+  <div id="container">
+
 
     
 <nav>
@@ -154,14 +156,17 @@ This article serves as the first stop on a long journey. Where should we begin? 
 
     
 
-    <p>The project <a href="../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step">Making your own tools and building modern computer system from scratch, step by step</a> comprises of four series of artical, with the first series being <em>Dive into RISC-V system, step by step</em>.</p>
-<p>This article serves as the first stop on a long journey. Where should we begin? As mentioned in the <a href="../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step">project introduction</a>, computer system technology has a broad knowledge base and is interrelated. Starting from any point would involve multiple fields, making it difficult to explain everything in a straight line. However, a computer system has a layered and encapsulated structure. Each layer encapsulates complex things and exposes relatively simple interfaces to the layer above, and so on, until the top layer - the application layer. This feature allows people to write various application even if they are not familiar with the low-level technology. Therefore, learning about &ldquo;applications&rdquo; will be a good starting point for learning system technology.</p>
-<p>In the first series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language. With the assembler and linker, we will have the ability to generate programs (binary executable files), making it possible for us to create our own tools from scratch.</p>
+    <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>This is the first chapter of series <em>Dive into RISC-V system, step by step</em>. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language. With the assembler and linker, we will have the ability to generate programs (binary executable files), making it possible for us to create our own tools from scratch.</p>
 <blockquote>
 <p>In the first chapter of <em>Linkers &amp; Loaders</em> by John R. Levine, it is mentioned that &ldquo;all the linker writers in the world could probably fir in on root&rdquo;. Perphaps after we finish this series, we may aslo be able to squeeze into this room 😁.</p>
 </blockquote>
 <p>I will be using <a href="https://www.rust-lang.org/">Rust</a> to write the assembler and script parser for this series. While many articles, tutorials and projects related to compiler and system programming often use C as the programming language. Rust provides a better option in this era. Using Rust is not just to keep up with the trend, but also to avoid low-level errors and reduce frustration in the learning and development process, which is especially important for beginners in system programming. Additionally, Rust has a convenient toolchain, like many modern languages, which allows us to focus on development and reduce some repetitive work. However, in the chapters that discuss basic principles, I will still use C language since it is very straightforward and can correspond well with low-level technology.</p>
 <p>You may be wondering, &ldquo;Why don&rsquo;t we jump right in and start by writing a language, an operation system, or a CPU?&rdquo; While I understand the eagerness to dive into these ambitious projects. it&rsquo;s not a feasible approach. These projects have a high starting point. If you attempt to learn or practice directly from them, you will encounter many new concepts, which will lead to even more new concepts. Eventually, you may become overwhelmed by too many incomprehensible things. Of course, there are many paths to exploration and learning, but after stumbling around for a while, you will likely return to this starting point, which is like a beginner&rsquo;s village in system programming. To avoid unnecessary detours, it&rsquo;s best to begin your exploration journey here.</p>
+<blockquote>
+<p>Many beginners often ask questions like &ldquo;How does the CPU work?&rdquo; or &ldquo;How to write an operating system?&rdquo; Unfortunately, these questions are too &ldquo;huge&rdquo; to receive satisfactory answers. Such questions are akin to asking &ldquo;Why can a battery light up a bulb?&rdquo; or &ldquo;Why does a magnet attract iron?&rdquo; Initially, these questions may seem simple, but as you go deeper, new questions keep arising, leading to knowledge gaps that are difficult to fill.</p>
+</blockquote>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
@@ -209,6 +214,8 @@ This article serves as the first stop on a long journey. Where should we begin? 
 <p>The <em>target platform</em> refers to the type of operating system, such as Linux, Windows, and Darwin/macOS.</p>
 </li>
 </ul>
+<p>The working principles and processes of both <em>native compilation</em> (ordinary compilation) and <em>cross-compilation</em> are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term <em>cross-compilation</em> does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.</p>
+<p><img src="./images/compilation-comparasion.png" alt="Compilation Comparation"></p>
 <p>Of course, when developing programs, in addition to considering the target architecture and target platform, more detailed information may need to be considered. For example, when developing Linux applications, subtle differences between different distributions need to be considered. However, for the compiler, it only cares about the target archiecture and target platform.</p>
 <p>It&rsquo;s worth nothing that there are programs that do not require an operating system and can run independently, called <em>freestanding</em> or <em>bare-metal</em> programs, such as firmwares running on the microcontrollers (MCUs) and the kernel. When compiling such programs, only the <em>target architecture</em> needs to be specified, and the <em>target platform</em> does not need to be specified.</p>
 <p>Cross-compilation serves two main purposes:</p>
@@ -222,7 +229,7 @@ This article serves as the first stop on a long journey. Where should we begin? 
 </ul>
 <p>The target instruction set of the compiler to be implemented in this series is <em>riscv64gc</em>, which is also a cross-compiler.</p>
 <h2 id="3-gcc-compiler">3. GCC compiler</h2>
-<p>The mainstream compilers currently in use are GCC and LLVM, both of which are open source and free and support cross-compilation. However, GCC is more commonly used in the field of microcontrollers, which will be used in the later chapters discussing the principles of software and hardware communication. Therefore, for simplicity, only GCC will be discussed below.</p>
+<p>The mainstream compilers currently in use are GCC and LLVM, both of which are open source and free. However, GCC is more commonly used in the field of microcontrollers, which will be used in the later chapters discussing the principles of software and hardware communication. Therefore, for simplicity, only GCC will be discussed below.</p>
 <p>In addition to the compiler, the binary tool Binutils, debugging tool GDB, standard libraries, and kernel headers are often used when developing programs, collectively known as the GNU Toolchain. The GNU Toolchain can be easily installed through package managers in most Linux distributions. Depending on the compilation target, the names of the packages in the toolchain will also be different. For example, in Arch Linux, the RISC-V GNU Toolchain package names name:</p>
 <ul>
 <li>riscv64-linux-gnu-binutils</li>
@@ -256,8 +263,8 @@ This article serves as the first stop on a long journey. Where should we begin? 
 <p>Create a file named <code>app.c</code> anywhere with the following contents:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The program is very simple: print the text &ldquo;Hello, World!&rdquo; to the screen then exit the program with a return value of 0.</p>
@@ -325,7 +332,7 @@ This article serves as the first stop on a long journey. Where should we begin? 
 <p><code>64-bit, RISC-V, double-float ABI, GNU/Linux 4.15.0</code>: These pieces of information indicate the target architecture, target platform, and some detailed information of the target environment.</p>
 </li>
 <li>
-<p><code>LSB</code>: Indicates that the data in the current file is <em>least significant byte</em> first, which is commonly known as <em>little-endian</em>. The opposite of LSB is MSB, which is <em>most significant byte</em> first, commonly known as <em>bit-endian</em>. Byte order determines how an integer (such as <code>int32</code> and <code>int64</code>, which must be composed of multiple bytes) is stored in memory or on disk. For example, if the number <code>0x11223344</code> is stored in memory using LSB, the order of each byte is &ldquo;44 33 22 11&rdquo;, and if it is stored using MSB, the order is &ldquo;11 22 33 44&rdquo;. When viewing the contents of an executable file with a hexadecimal viewer that uses LSB byte order, the order of each byte of an integer number needs to be reversed to get its true value, while text content can be read directly.</p>
+<p><code>LSB</code>: Indicates that the data in the current file is <em>least significant byte</em> first, which is commonly known as <em>little-endian</em>. The opposite of LSB is MSB, which is <em>most significant byte</em> first, commonly known as <em>bit-endian</em>. Byte order determines how an integer (such as <code>int32</code> and <code>int64</code>, which must be composed of multiple bytes) is stored in memory or on disk. For example, if the number <code>0x11223344</code> is stored in memory using LSB, the order of each byte is &ldquo;(start) 44 33 22 11&rdquo;, and if it is stored using MSB, the order is &ldquo;(start) 11 22 33 44&rdquo;. When viewing the contents of an executable file with a hexadecimal viewer that uses LSB byte order, the order of each byte of an integer number needs to be reversed to get its true value, while text content can be read directly.</p>
 </li>
 <li>
 <p><code>with debug_info, not stripped</code>: Indicates that the current executable file contains debug information.</p>
@@ -364,6 +371,9 @@ This article serves as the first stop on a long journey. Where should we begin? 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>qemu-riscv64: Could not open &#39;/lib/ld-linux-riscv64-lp64d.so.1&#39;: No such file or directory
 </span></span></code></pre></div><p>Obviously, the program did not run correctly. By default, GCC produces dynamically linked programs, which require a <em>runtime dynamic linker</em> to load the shared libraries required by the program. The runtime dynamic linker is the program <code>ld.so</code>, which is the <code>/lib/ld-linux-riscv64-lp64d.so.1</code> shown in the error message in this example.</p>
 <p>The program produced by GCC is assumed to run in a &ldquo;normal Linux system&rdquo;, while we are currently in a special environment called QEMU user mode. From the perspective of the &ldquo;Hello, World!&rdquo; program, it does not know that it is running in a specical environment and assumes that it is running in a Linux system based on the RISC-V architecture. Therefore, it searches for the dynamic linker <code>/lib/ld-linux-riscv64-lp64d.so.1</code> as usual. In reality, the current environment (the author&rsquo;s machine) is running the <em>x86_64</em> version of Linux, and the dynamic linker is <code>/lib/ld-linux-x86-64.so.2</code>. QEMU user mode only translates CPU instructions and does not convert other data such as file paths, so the program fails to run.</p>
+<blockquote>
+<p>You may have noticed that <code>./app.elf</code> can be executed directly, and the error message produced are the same. This is because the Linux kernel supports programs which require interpreters through the <a href="https://www.kernel.org/doc/html/latest/admin-guide/binfmt-misc.html">MISC binary</a> feature. Check the file <code>/proc/sys/fs/binfmt_misc/qemu-riscv64</code>, it shows when you run <code>./app.elf</code> from the command line, the actually command <code>/usr/bin/qemu-riscv64-static ./app.elf</code> is executed. <code>qemu-riscv64-static</code> is the same as <code>qemu-riscv64</code> above, except that it is itself statically linked.</p>
+</blockquote>
 <h3 id="53-specify-the-dynamic-linker-path">5.3 Specify the dynamic linker path</h3>
 <p>You will find that the file <code>ld-linux-riscv64-lp64d.so.1</code> does exist if your system is <em>Arch Linux</em> and the package <code>riscv64-linux-gnu-glibc</code> is installed, but the path is <code>/usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1</code> instead of <code>/lib/ld-linux-riscv64-lp64d.so.1</code>. According to the manual of <code>qemu-riscv64</code>, you can pass a path as a parameter using the <code>-L</code> options or setting the <code>QEMU_LD_PREFIX</code> environment variable, then QEMU will add this path as a prefix to the ELF&rsquo;s <code>interpreter</code> path.</p>
 <p>Therefore, you can run the <code>app.elf</code> program as follows:</p>
@@ -493,12 +503,10 @@ This article serves as the first stop on a long journey. Where should we begin? 
     <ul>
         <li>
         
-            <a href="https://hemashushu.github.io/posts/2022-11-01-building-a-modern-computer-system-from-scratch-index/"><i class="fa fa-chevron-circle-left"></i> Making your own tools and building modern computer system from scratch, step by step - Index</a>
-        
         </li>
         <li>
         
-            <a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-program-run-alone-without-os/">S01C02 Write a Hello World program that can run standalone without the need for an OS <i class="fa fa-chevron-circle-right"></i> </a>
+            <a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/">S01C02 Write a Hello World program that can run standalone without the need for an OS <i class="fa fa-chevron-circle-right"></i> </a>
         
         </li>
     </ul>
@@ -529,6 +537,21 @@ This article serves as the first stop on a long journey. Where should we begin? 
     </footer>
 </div>
 <script src="/js/scripts.js"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7X4YJHXM9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-J7X4YJHXM9', { 'anonymize_ip': false });
+}
+</script>
+
+
+
 
 
 </body>

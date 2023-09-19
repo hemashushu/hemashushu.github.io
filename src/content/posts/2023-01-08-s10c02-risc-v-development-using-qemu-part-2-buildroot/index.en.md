@@ -84,6 +84,16 @@ Filesystem images --->
 
 Where the `image size` option requires manual input.
 
+There are several selection markers in the _menuconfig_, and their meanings as follow:
+
+- `[*]`: Build into the kernel.
+- `[ ]`: Do not build.
+- `<*>`: Build into the kernel.
+- `< >`: Do not build.
+- `<M>`: Build as external module, this means that the result of the build of this item will not be included in the kernel, but in a separate file.
+
+We won't be using external modules in this section, so avoid using the marker `<M>`.
+
 ## 3. Select packages
 
 Next, select the packages you need. Note that the option "Show packages that are also provided by busybox" must be selected first, otherwise some options will be unavailable. You can press the `/` key at any time to search for packages by name. The following is a list of recommended packages for building a RISC-V assembly development environment.
