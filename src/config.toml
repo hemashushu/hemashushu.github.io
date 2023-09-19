@@ -1,8 +1,8 @@
 baseURL = "https://hemashushu.github.io/"
 languageCode = "en-us"
-copyright = "Copyright &copy; 2022 - Hippospark"
+copyright = "Copyright &copy; 2023 - Hippospark"
 title = "河马蜀黍的个人主页"
-theme = "hugo-kiera"
+theme = "hugo-selina"
 publishDir = "../docs"
 googleAnalytics = 'G-J7X4YJHXM9'
 
