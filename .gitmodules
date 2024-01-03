@@ -1,0 +1,3 @@
+[submodule "src/themes/hugo-selina"]
+	path = src/themes/hugo-selina
+	url = git@github.com:hemashushu/hugo-selina.git
