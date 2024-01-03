@@ -1,6 +1,6 @@
 baseURL = "https://hemashushu.github.io/"
 languageCode = "en-us"
-copyright = "Copyright &copy; 2023 - Hippospark"
+copyright = "Copyright &copy; 2023 - Hippospark Young"
 title = "河马蜀黍的个人主页"
 theme = "hugo-selina"
 publishDir = "../docs"
