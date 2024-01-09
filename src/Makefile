@@ -1,5 +1,8 @@
 .PHONY: all
-all:
+all: clean build
+
+.PHONY: build
+build:
 	hugo
 
 .PHONY: clean

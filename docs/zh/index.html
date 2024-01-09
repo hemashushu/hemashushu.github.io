@@ -72,6 +72,12 @@
     <ul>
         
         <li>
+            <a class="" href="/zh/works/">
+                <i class="fa-li fa  fa-lg"></i><span>作品</span>
+            </a>
+        </li>
+        
+        <li>
             <a class="" href="/zh/posts/">
                 <i class="fa-li fa  fa-lg"></i><span>文章</span>
             </a>
@@ -92,130 +98,9 @@
 
 
 
-<section id="home">
-  <ul>
-    
-    
-    
-
-    <li class="first" >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/" title="S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序">S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2022-11-06T00:00:00Z">Nov 6, 2022</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="/zh/categories/craft-system">craft-system</a>
-                
-                    , 
-                    <a href="/zh/categories/s01">S01</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="/zh/tags/riscv">#riscv</a>
-                
-                    , 
-                    <a href="/zh/tags/bare-metal">#bare-metal</a>
-                
-            </em>
-        </li>
-        
-
-        <li>17 minute read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/" title="S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序">
-        <img src="/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/images/bare-metal.png">
-    </a>
-</div>
-
-
-      <p>上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 &ldquo;Hello, World!&rdquo; 程序（这种程序叫 裸机程序），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。 1. 什么是裸机程序？ 2. 如何启动裸机程序 3. 制作裸机版的 &ldquo;Hello, World!&rdquo; 程序 3.1 如何直接访问硬件？ 3.2 通过串口发送字符 实现 print_string 函数 主程序 程序启</p>
-      
-      <a href="/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/" title="S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序">S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2022-11-05T00:00:00Z">Nov 5, 2022</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="/zh/categories/craft-system">craft-system</a>
-                
-                    , 
-                    <a href="/zh/categories/s01">S01</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="/zh/tags/riscv">#riscv</a>
-                
-                    , 
-                    <a href="/zh/tags/gcc">#gcc</a>
-                
-                    , 
-                    <a href="/zh/tags/qemu">#qemu</a>
-                
-            </em>
-        </li>
-        
-
-        <li>23 minute read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/" title="S01C01 什么是交叉编译？GCC 交叉编译及运行第一个程序">
-        <img src="/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png">
-    </a>
-</div>
-
-
-      <p>这是《一步一步深入 RISC-V 系统》系列文章的第一章。在这个系列里，我们将会了解程序是如何构建、程序文件本身是什么样的结构、程序是如何运行、软件和硬件之间是如何交流，以及汇编语言是怎样被转换为指令，等等有关程序的基本原理。在这个系列的后半阶段，我们会实现一个 RISC-V 汇编器和链接器，以及一门有特色的 RISC-V 汇编语言和链接器脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件），这是我们制作自己的工具的基础。 在 John R. Levine 的《Linkers &amp; Loaders》第一章里提到：“大概一个房间就能装得下世上所有编写链接器的人” （</p>
-      
-      <a href="/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/">Read more…</a>
-      
-    </li>
-    
-  </ul>
+<section id="index">
+INDEX
 </section>
-
-
 
 
 
@@ -223,7 +108,7 @@
     <footer>
         <ul>
             <li>
-                <h6>Copyright © 2023 - Hippospark | 
+                <h6>Copyright © 2023 - Hippospark Young | 
                     <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"><img alt="cc by-nc-nd" class="license" src="/images/cc-by-nc-nd.png" /></a> |
                     Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
                     Theme <a href="https://github.com/hemashushu/hugo-selina" title="Selina">Selina</a> |
