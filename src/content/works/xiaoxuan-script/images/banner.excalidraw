@@ -150,8 +150,8 @@
     },
     {
       "type": "ellipse",
-      "version": 770,
-      "versionNonce": 1200957408,
+      "version": 786,
+      "versionNonce": 582269451,
       "isDeleted": false,
       "id": "CSDKzl4CGL1qaoQNp5P7u",
       "fillStyle": "solid",
@@ -160,8 +160,8 @@
       "roughness": 2,
       "opacity": 100,
       "angle": 0,
-      "x": 1592.019282994829,
-      "y": 494.07645174470457,
+      "x": 1587.8976316822998,
+      "y": 494.9007820072104,
       "strokeColor": "#ffa94d",
       "backgroundColor": "#ffa94d",
       "width": 73.18136124046373,
@@ -173,7 +173,7 @@
         "type": 2
       },
       "boundElements": [],
-      "updated": 1704852433747,
+      "updated": 1704938777930,
       "link": null,
       "locked": false
     },
@@ -8520,20 +8520,24 @@
       "locked": false
     },
     {
-      "id": "I57IH6gzEk6JSkNAdiD7t",
       "type": "line",
-      "x": 1325.4168653556512,
-      "y": 505.7223579348944,
-      "width": 22.919421944091482,
-      "height": 19.951075359215196,
-      "angle": 0,
-      "strokeColor": "#ca8547",
-      "backgroundColor": "#fde6d7",
+      "version": 2488,
+      "versionNonce": 1474056160,
+      "isDeleted": false,
+      "id": "I57IH6gzEk6JSkNAdiD7t",
       "fillStyle": "solid",
       "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
+      "angle": 0,
+      "x": 1325.4168653556512,
+      "y": 505.7223579348944,
+      "strokeColor": "#ca8547",
+      "backgroundColor": "#fde6d7",
+      "width": 22.919421944091482,
+      "height": 19.951075359215196,
+      "seed": 32904736,
       "groupIds": [
         "wwpUhM3ZO904_GjII9f1m",
         "4FzoiQAFEiZi3zaoRpvnb",
@@ -8543,14 +8547,15 @@
       "roundness": {
         "type": 2
       },
-      "seed": 32904736,
-      "version": 2488,
-      "versionNonce": 1474056160,
-      "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1704852666612,
       "link": null,
       "locked": false,
+      "startBinding": null,
+      "endBinding": null,
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
       "points": [
         [
           0,
@@ -8616,12 +8621,7 @@
           0,
           0
         ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": null
+      ]
     },
     {
       "type": "ellipse",
