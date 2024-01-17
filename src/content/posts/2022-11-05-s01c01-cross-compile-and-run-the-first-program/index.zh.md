@@ -66,7 +66,7 @@ categories: ["craft-system", "S01"]
 
 无论是_本地编译_（即普通的编译）还是_交叉编译_，其工作原理和过程是一模一样的，都是将高级语言翻译成目标环境的机器指令（汇编代码）。所以 "交叉编译" 这个名称并不是指某种功能，而是用于描述一种编译情况，即编译环境跟运行环境不同，仅此而已。
 
-![本地编译和交叉编译](./images/compilation-comparasion.png)
+{{< figure src="./images/compilation-comparasion.png" class="wide" caption="本地编译和交叉编译" >}}
 
 当然在开发程序时，除了需要考虑目标架构和目标平台，可能还得考虑更细致的一些信息，比如当你在开发 Linux 应用程序时，需要考虑不同发行版之间的细微差别。不过对于编译器来说，它的确只关心目标架构和目标平台。
 
@@ -336,7 +336,7 @@ app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shar
 
 当执行命令 `riscv64-linux-gnu-gcc` 将一个 C 源代码编译为一个可执行文件时，实际上 GCC 是分 4 个阶段（或者说步骤）来完成的：
 
-![GCC compile stages](images/gcc-compile-stage.png)
+{{< figure src="./images/gcc-compile-stage.png" class="wide" caption="GCC 各个编译阶段" >}}
 
 ### 6.1 预处理
 

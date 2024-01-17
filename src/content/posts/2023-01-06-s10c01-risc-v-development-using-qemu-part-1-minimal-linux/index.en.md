@@ -81,7 +81,7 @@ A typical Linux system consists of numerous user programs, including:
 
 There is an amazing program called [Busybox](https://busybox.net/) that contains all of the user programs mentioned above in a single program. BusyBox greatly simplifies the process of building a system. In this chapter we will build our first system using Busybox and the Linux kernel.
 
-![Minimal Linux Operating System](./images/minimal-linux-os.png)
+{{<figure src="./images/minimal-linux-os.png" class="mid" caption="Minimal Linux Operating System">}}
 
 ### 3.1 Compile Linux kernel
 

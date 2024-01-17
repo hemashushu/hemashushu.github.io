@@ -66,7 +66,7 @@ In other word, cross-compilation occurs when "the environment in which the compi
 
 The working principles and processes of both _native compilation_ (ordinary compilation) and _cross-compilation_ are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term _cross-compilation_ does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.
 
-![Compilation Comparation](./images/compilation-comparasion.png)
+{{< figure src="./images/compilation-comparasion.png" class="wide" caption="Compilation Comparation" >}}
 
 Of course, when developing programs, in addition to considering the target architecture and target platform, more detailed information may need to be considered. For example, when developing Linux applications, subtle differences between different distributions need to be considered. However, for the compiler, it only cares about the target archiecture and target platform.
 
@@ -340,7 +340,7 @@ The program can also run correctly. However this method is not very useful becau
 
 When the command `riscv64-linux-gnu-gcc` compiles a C source code into an executable file, GCC actually completes the process in four stages.
 
-![GCC compile stages](images/gcc-compile-stage.png)
+{{< figure src="./images/gcc-compile-stage.png" class="wide" caption="GCC compile stages" >}}
 
 ### 6.1 Preprocessing
 

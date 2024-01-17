@@ -40,7 +40,6 @@ body header ul li a {
 }
 
 #container main section#home a {
-    /* color: #c6488c; */
     color: #bd6f85;
 }
 
@@ -62,7 +61,6 @@ body header ul li a {
 
 #container main article>pre {
     background-color: #443b39;
-    /* box-shadow: 0 -1px 0 #bbbbbb inset; */
 }
 
 #container main article .highlight pre {
@@ -121,116 +119,6 @@ a {
     color: #db98ab;
 }
 
-
-/**
-:not(#home) and :not(#list) is avoiding full width image in list of posts, e.g. home and taxonomy pages
- */
-/* header .full-image,
-header figure.full img,
-header img[src*="full"],
-article .full-image,
-article figure.full img,
-article img[src*="full"],
-section:not(#list):not(#home) .full-image,
-section:not(#list):not(#home) figure.full img,
-section:not(#list):not(#home) img[src*="full"] {
-    width: 100%;
-    box-shadow: 0 3px 3px #bbbbbb;
-}
-
-@supports (width: 100vw) {
-
-    header .full-image,
-    header figure.full img,
-    header img[src*="full"],
-    article .full-image,
-    article figure.full img,
-    article img[src*="full"],
-    section:not(#list):not(#home) .full-image,
-    section:not(#list):not(#home) figure.full img,
-    section:not(#list):not(#home) img[src*="full"] {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-}
-
-.mid-image,
-figure.mid img,
-img[src*="mid"] {
-    width: 100%;
-    box-shadow: 0 3px 3px #bbbbbb;
-}
-
-@supports (width: 100vw) {
-
-    .mid-image,
-    figure.mid img,
-    img[src*="mid"] {
-        width: 800px;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -400px;
-        margin-right: -400px;
-    }
-
-    @media only screen and (max-width: 932px) {
-
-        .mid-image,
-        figure.mid img,
-        img[src*="mid"] {
-            width: 100%;
-            left: 0;
-            right: 0;
-            margin: 0;
-        }
-    }
-}
-
-.float-image,
-figure.float img,
-img[src*="float"] {
-    width: 300px;
-    float: left;
-    margin: 0 1em 1em -3em;
-    box-shadow: 0 3px 3px #bbbbbb;
-}
-
-@media only screen and (max-width: 932px) {
-
-    .float-image,
-    figure.float img,
-    img[src*="float"] {
-        float: none;
-        margin: 0;
-        width: 100%;
-    }
-}
-
-.float-image-right,
-figure.float-right img,
-img[src*="float-right"] {
-    width: 300px;
-    float: right;
-    margin: 0 -3em 1em 1em;
-    box-shadow: 0 3px 3px #bbbbbb;
-}
-
-@media only screen and (max-width: 932px) {
-
-    .float-image-right,
-    figure.float-right img,
-    img[src*="float-right"] {
-        float: none;
-        margin: 0;
-        width: 100%;
-    }
-} */
-
 /* article img caption */
 article img+em {
     color: rgba(0, 0, 0, .5);
@@ -247,7 +135,6 @@ table thead {
 blockquote {
     border-left-color: #715b54;
     background-color: #3e3b3c;
-    /* box-shadow: 0 -1px 0 #797979 inset; */
 }
 
 blockquote::before {

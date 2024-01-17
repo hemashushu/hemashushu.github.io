@@ -6,11 +6,11 @@ menu: "main"
 meta: "false"
 ---
 
-Hi! I'm _Hemashushu_.
+Hi! I'm _Hemashushu_, and I'm a freelancer.
 
-Here I share some fun and interesting computer technology, programming skills and learning notes, and also publish some of my software. Follow me on Twitter [@hemashushu](https://twitter.com/hemashushu) and Github [Hema Shushu](https://github.com/hemashushu) for updates. Please consider donating to me if you find my articles or software is helpful to you 😋
+In this website I will share some interesting computer technologies, programming skills and learning notes, and also post some of my software and hardware. Follow me on Twitter [@hemashushu](https://twitter.com/hemashushu) or Github [Hema Shushu](https://github.com/hemashushu) for updates. Please consider donating to me if you find my articles or work helpful. 😋
 
-Note: Most of my softwares released here are **open source and free**, please do not download the modified or re-packaged versions of my software from other web sites, and please do not pay for those. My personal website is [hemashushu.github.io](https://hemashushu.github.io) and mirror [hemashushuzsd.gitee.io](http://hemashushuzsd.gitee.io/).
+Note: Most of my software and hardware are **open source and free**, please do not download the modified or re-packaged versions of my work from other web sites, and please do not pay for those. My website address is [hemashushu.github.io](https://hemashushu.github.io) (and the mirror [hemashushuzsd.gitee.io](http://hemashushuzsd.gitee.io/)).
 
 {{< rawhtml >}}
 <div>

@@ -56,6 +56,11 @@
                 <i class="fab fa-twitter fa-lg"></i>
                 </a>
                 </li>
+                <li>
+                <a href="https://www.youtube.com/@hemashushu" title="Youtube">
+                <i class="fab fa-youtube fa-lg"></i>
+                </a>
+                </li>
       </ul>
 
       
@@ -221,7 +226,12 @@
 </li>
 </ul>
 <p>无论是_本地编译_（即普通的编译）还是_交叉编译_，其工作原理和过程是一模一样的，都是将高级语言翻译成目标环境的机器指令（汇编代码）。所以 &ldquo;交叉编译&rdquo; 这个名称并不是指某种功能，而是用于描述一种编译情况，即编译环境跟运行环境不同，仅此而已。</p>
-<p><img src="./images/compilation-comparasion.png" alt="本地编译和交叉编译"></p>
+<figure class="wide"><img src="./images/compilation-comparasion.png"
+         alt="本地编译和交叉编译"/><figcaption>
+            <p>本地编译和交叉编译</p>
+        </figcaption>
+</figure>
+
 <p>当然在开发程序时，除了需要考虑目标架构和目标平台，可能还得考虑更细致的一些信息，比如当你在开发 Linux 应用程序时，需要考虑不同发行版之间的细微差别。不过对于编译器来说，它的确只关心目标架构和目标平台。</p>
 <p>另外还有一些不需要操作系统而能够自己独立运行的程序，这种程序叫做 <em>freestanding 程序</em> 或者 <em>裸机（bare metal）程序</em>，比如在微控制器（MCU）里运行的程序（通常也叫做 <em>固件</em>）和内核程序，在编译这种程序则只需指定 <em>目标架构</em> 而不需要指定 <em>目标平台</em>。</p>
 <p>交叉编译主要有两个目的：</p>
@@ -427,7 +437,12 @@
 <p>程序同样能正确运行。不过这种方法并没有太大用处，因为比前面两种方法复杂太多，而且生成的程序只适合在当前机器上 <em>QEMU 用户模式</em> 里运行，没法在标准的 RISC-V 架构的 Linux 环境里运行。这里主要是为了演示如何修改程序的 <code>interpreter</code>。有关动态链接器的详细资料可以通过命令 <code>$ man ld.so</code> 调出文档查看。</p>
 <h2 id="6-分阶段编译">6. 分阶段编译</h2>
 <p>当执行命令 <code>riscv64-linux-gnu-gcc</code> 将一个 C 源代码编译为一个可执行文件时，实际上 GCC 是分 4 个阶段（或者说步骤）来完成的：</p>
-<p><img src="images/gcc-compile-stage.png" alt="GCC compile stages"></p>
+<figure class="wide"><img src="./images/gcc-compile-stage.png"
+         alt="GCC 各个编译阶段"/><figcaption>
+            <p>GCC 各个编译阶段</p>
+        </figcaption>
+</figure>
+
 <h3 id="61-预处理">6.1 预处理</h3>
 <p>将源代码里 <code>#include ...</code> 指定的文件复制进来，然后解析其中的条件编译指令（<code>#ifdef</code>），展开宏（<code>macro</code>）等。相当于命令：</p>
 <p><code>$ riscv64-linux-gnu-cpp app.c &gt; app.i</code></p>

@@ -56,6 +56,11 @@
                 <i class="fab fa-twitter fa-lg"></i>
                 </a>
                 </li>
+                <li>
+                <a href="https://www.youtube.com/@hemashushu" title="Youtube">
+                <i class="fab fa-youtube fa-lg"></i>
+                </a>
+                </li>
       </ul>
 
       
@@ -221,7 +226,12 @@
 </li>
 </ul>
 <p>The working principles and processes of both <em>native compilation</em> (ordinary compilation) and <em>cross-compilation</em> are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term <em>cross-compilation</em> does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.</p>
-<p><img src="./images/compilation-comparasion.png" alt="Compilation Comparation"></p>
+<figure class="wide"><img src="./images/compilation-comparasion.png"
+         alt="Compilation Comparation"/><figcaption>
+            <p>Compilation Comparation</p>
+        </figcaption>
+</figure>
+
 <p>Of course, when developing programs, in addition to considering the target architecture and target platform, more detailed information may need to be considered. For example, when developing Linux applications, subtle differences between different distributions need to be considered. However, for the compiler, it only cares about the target archiecture and target platform.</p>
 <p>It&rsquo;s worth nothing that there are programs that do not require an operating system and can run independently, called <em>freestanding</em> or <em>bare-metal</em> programs, such as firmwares running on the microcontrollers (MCUs) and the kernel. When compiling such programs, only the <em>target architecture</em> needs to be specified, and the <em>target platform</em> does not need to be specified.</p>
 <p>Cross-compilation serves two main purposes:</p>
@@ -434,7 +444,12 @@
 <p>The program can also run correctly. However this method is not very useful because it is much more complicated than the first two methods, and the generated program is only suitable for running in the QEMU user mode, and cannot run in a standard RISC-V Linux system. The main purpose of this example is to demonstrate how to modify the <code>interpreter</code> of a program. For more information about dynamic linkers, you can use the command <code>$ man ld.so</code> to view the documentation.</p>
 <h2 id="6-phased-compilation">6. Phased compilation</h2>
 <p>When the command <code>riscv64-linux-gnu-gcc</code> compiles a C source code into an executable file, GCC actually completes the process in four stages.</p>
-<p><img src="images/gcc-compile-stage.png" alt="GCC compile stages"></p>
+<figure class="wide"><img src="./images/gcc-compile-stage.png"
+         alt="GCC compile stages"/><figcaption>
+            <p>GCC compile stages</p>
+        </figcaption>
+</figure>
+
 <h3 id="61-preprocessing">6.1 Preprocessing</h3>
 <p>The files specified by <code>#include ...</code> in the source code are copied, and the conditional compilation instructions (<code>#ifdef</code>) are parsed and the macros are expanded. This is equivalent to the command:</p>
 <p><code>$ riscv64-linux-gnu-cpp app.c &gt; app.i</code></p>
