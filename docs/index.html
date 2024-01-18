@@ -106,7 +106,7 @@
 <section id="index">
     <div class="work-item">
         <div class="work-header">
-            <h2>Overview</h2>
+            <h2>An overview of my software and hardware</h2>
         </div>
         <div class="work-content">
             <div class="banner">
@@ -114,7 +114,7 @@
             </div>
             <div class="work-entry">
                 <h3 class="capital">Programming Language</h3>
-                <div class="work-detail wide">
+                <div class="work-detail full">
                     <p><em>XiaoXuan Language</em> is an elegant, full-stack programming language.
                         It consists of several variants and can be used to develop a variety applications,
                         including digital circuits and chips,
@@ -125,40 +125,40 @@
                     </p>
                     <p>The implemented variants:</p>
                     <ul>
-                        <li><b>XiaoXuan Script</b> -
+                        <li><span class="todo">XiaoXuan Script</span> -
                             Build high-performance, solid web applications that compile to WebAssembly
                             on-the-fly without requiring any build tools.
                         </li>
-                        <li><b>XiaoXuan Core</b> -
+                        <li><span class="todo">XiaoXuan Core</span> -
                             Build powerful user-space system programs with extremely fast startup
                             speed and small footprint, direct <em>syscall</em> and interoperation
                             with C shared libraries.
                         </li>
-                        <li><b>XiaoXuan Managed</b> -
+                        <li><span class="todo">XiaoXuan Managed</span> -
                             Build secure and robust programs for business systems, cloud-native
                             (microservices and serverless functions), data science, A.I. and more.
                             Each program runs in its own isolated environement, programs do not need
                             to be installed, only a URL address is required to run them.
                         </li>
-                        <li><b>XiaoXuan Native</b> -
+                        <li><span class="todo">XiaoXuan Native</span> -
                             A general-purpose programming language inspired by Rust, but much simpler.
                             Automatic memory management without garbage collection, and no complex concepts
                             such as ownership, borrow checking, and lifetimes. Supports compilation to
                             native code for architectures such as <em>x86-64</em>, <em>aarch64</em> and
                             <em>riscv64</em>.
                         </li>
-                        <li><b>XiaoXuan Micro</b> -
+                        <li><span class="todo">XiaoXuan Micro</span> -
                             Easily build high-performance firmware for microcontroller, the built-in micro VM
                             makes it possible to "write once, run anywhere".
                         </li>
-                        <li><b>XiaoXuan Logic</b> -
+                        <li><span class="todo">XiaoXuan Logic</span> -
                             A brand new and modern hardware description language (HDL) that allows you
                             to develop hardware and chipss in the same way as you develop open source
                             software. It comes with a GPU-accelerated simulator that significantly improves
                             test efficiency.
                         </li>
                     </ul>
-                    <figure class="full">
+                    <figure class="wide">
                         <img src="/works/xiaoxuan-lang/images/variants.png" alt="XiaoXuan Language Family">
                         <figcaption>
                             <p>XiaoXuan Language Family</p>
@@ -174,13 +174,44 @@
                         The implemented local language variants are as follows:
                     </p>
                     <ul>
-                        <li><b>XiaoXuan Core Hans</b> - The Chinese edition (中文版)</li>
+                        <li><span class="todo">XiaoXuan Core Hans</span> - The Chinese edition (中文版)</li>
                     </ul>
                 </div>
             </div>
             <div class="work-entry">
                 <h3 class="capital">Operating System</h3>
-                <div class="work-detail wide">
+                <div class="work-detail full">
+                    <ul>
+                        <li><span class="todo">XiaoYu OS</span> - A brand new operating system designed for engineers daily use.
+                            The system is very secure, all applications run in isolated
+                            environement with lowest possible privileges, applications must request permissions from
+                            the user when they need them. The system is also very clean, and even after decades of use,
+                            it will remain as clean as new, with no junk left behind. Applications are maintained by
+                            developers, and the system does not require package maintainers.
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><span class="todo">XiaoYu Micro OS</span> - A <b>true</b> operating system that runs on microcontrollers (MCUs).
+                        Applications (firmware) can be run simply by "downloading" and "configuring", without
+                        the need to install cumbersome development tools and debuggers and then compile from
+                        source code. It completely changes the way firmware is developed and deployed.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="work-entry">
+                <h3 class="capital">Hardware</h3>
+                <div class="work-detail full">
+                    <ul>
+                        <li><span class="todo">XiaoYu Debugger</span> - A very simple debugger (programmer) base on
+                            CMSIS-DAP implemented using a low cost MCU <em>STM32F042</em> and very
+                            few parts. Used for downloading firmware to other MCUs or debugging programs.</li>
+                        <li><span class="todo">XiaoYu Dev Board Mini</span> - A reference board for <em>XiaoXuan Micro</em> development.
+                            It uses a low-cost MCU <em>STM32G070</em> in LQFP package, which is easy to make and
+                            solder by yourself.</li>
+                        <li><span class="todo">XiaoYu Dev Board</span> - A reference board for <em>XiaoYu Micro OS</em> development.
+                            It integrates a debugger as well as numerous interfaces, buttons and LEDs using
+                            the common MCU <em>STM32F412</em>.</li>
+                    </ul>
                 </div>
             </div>
         </div>

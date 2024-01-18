@@ -13,7 +13,9 @@ h3,
 h4,
 h5,
 h6,
-time {}
+time {
+    color: lightskyblue;
+}
 
 body header {
     background-image: url("/images/header/jacalyn-beales-KDg6MX6Wszs-unsplash.jpg");
@@ -178,59 +180,6 @@ body header p {
 
 #container main section#home a {
     color: hotpink;
-}
-
-#container main section#index {
-    padding-top: 32px;
-}
-
-#container main section#index .work-item {
-    margin-bottom: 3em;
-    position: relative;
-}
-
-#container main section#index .work-item .work-header {
-    float: left;
-    width: 25%;
-}
-
-#container main section#index .work-item .work-content {
-    float: right;
-    width: 70%;
-}
-
-#container main section#index .work-item::after {
-    content: "";
-    display: block;
-    height: 1px;
-    clear: both;
-}
-
-.work-header h2 {
-    font-size: 1.8em;
-    color: salmon;
-}
-
-.work-content .banner {
-    position: relative;
-}
-
-.work-content .banner img {
-    display: block;
-    border: none;
-    max-width: 100%;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.work-content .work-entry {
-    margin-bottom: 2em;
-}
-
-.work-content .work-entry h3.capital {
-    text-transform: uppercase;
-    color: salmon;
 }
 
 #container main section#list ul {
@@ -461,13 +410,12 @@ figure {
     margin-right: 8px;
 }
 
-.image,
-figure img,
 img {
     border: none;
     width: 100%;
 }
 
+figure img,
 article img {
     display: block;
     max-width: 100%;
@@ -556,4 +504,86 @@ ul.pagination {
 
 ul.pagination li {
     padding: 0 1em;
+}
+
+
+#container main section#index {
+    padding-top: 32px;
+}
+
+#container main section#index .work-item {
+    margin-bottom: 3em;
+    position: relative;
+}
+
+#container main section#index .work-item .work-header {
+    float: left;
+    width: 25%;
+}
+
+#container main section#index .work-item .work-content {
+    float: right;
+    width: 70%;
+}
+
+#container main section#index .work-item::after {
+    content: "";
+    display: block;
+    height: 1px;
+    clear: both;
+}
+
+.work-header h2 {
+    font-size: 1.8em;
+}
+
+.work-content .banner {
+    position: relative;
+}
+
+.work-content .banner img {
+    display: block;
+    border: none;
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.work-content .work-entry {
+    margin-bottom: 2em;
+}
+
+.work-content .work-entry h3.capital {
+    text-transform: uppercase;
+}
+
+.work-content .work-entry .work-detail ul li {
+    margin-bottom: 8px;
+}
+
+.work-content .work-entry .work-detail a {
+    color: hotpink;
+}
+
+.work-content .work-entry .work-detail .todo {
+    cursor: default;
+    color: hotpink;
+    font-weight: 500;
+    display: inline-block;
+    border-bottom: 1.5px dashed hotpink;
+}
+
+#container main section#index .work-item:first-child .work-header {
+    float: none;
+    width: 100%;
+}
+
+#container main section#index .work-item:first-child .work-content {
+    float: none;
+    width: 100%;
+}
+
+#container main section#index .work-item:first-child .work-content .banner img {
+    width: 75%;
 }
