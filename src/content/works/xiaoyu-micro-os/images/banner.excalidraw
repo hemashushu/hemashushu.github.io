@@ -1,0 +1,193 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "line",
+      "version": 1862,
+      "versionNonce": 1083736536,
+      "isDeleted": false,
+      "id": "crG1OSUld9qQVORQzyw6J",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 2,
+      "opacity": 100,
+      "angle": 0,
+      "x": 886.8142310167516,
+      "y": 628.7441959361362,
+      "strokeColor": "#ffd8a8",
+      "backgroundColor": "#ffd8a8",
+      "width": 876.8290577965438,
+      "height": 149.00167245350127,
+      "seed": 519136242,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "boundElements": [],
+      "updated": 1705633590056,
+      "link": null,
+      "locked": false,
+      "startBinding": null,
+      "endBinding": null,
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          722.319627535614,
+          4.23128481612364
+        ],
+        [
+          839.517182996691,
+          -31.7346361209284
+        ],
+        [
+          796.677594168405,
+          -128.88967619537323
+        ],
+        [
+          660.8247769624509,
+          -140.0809732992409
+        ],
+        [
+          412.8224096445268,
+          -144.77038763737764
+        ],
+        [
+          170.34417018031422,
+          -140.78287686636838
+        ],
+        [
+          26.148262504730496,
+          -124.3941911218543
+        ],
+        [
+          -26.3096553075887,
+          -79.78994224690538
+        ],
+        [
+          -37.31187479985287,
+          -34.45474778843648
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "text",
+      "version": 2042,
+      "versionNonce": 1765485480,
+      "isDeleted": false,
+      "id": "Zsg0iBw_S7y4VVXNmpzKo",
+      "fillStyle": "solid",
+      "strokeWidth": 4,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1519.2384292264414,
+      "y": 577.681247837975,
+      "strokeColor": "#ffffff",
+      "backgroundColor": "transparent",
+      "width": 177.93333435058594,
+      "height": 35,
+      "seed": 1527226284,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
+      "updated": 1705633544765,
+      "link": null,
+      "locked": false,
+      "fontSize": 28,
+      "fontFamily": 1,
+      "text": "@hemashushu",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "@hemashushu",
+      "lineHeight": 1.25,
+      "baseline": 25
+    },
+    {
+      "type": "rectangle",
+      "version": 128,
+      "versionNonce": 592242562,
+      "isDeleted": false,
+      "id": "SJtMDncaLlsH55qqSwN9G",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 2,
+      "opacity": 100,
+      "angle": 0,
+      "x": 821.1175216398178,
+      "y": 325.76273540519446,
+      "strokeColor": "#ced4da",
+      "backgroundColor": "transparent",
+      "width": 936,
+      "height": 317.99999999999994,
+      "seed": 967943384,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "boundElements": [],
+      "updated": 1705633652743,
+      "link": null,
+      "locked": false
+    },
+    {
+      "type": "text",
+      "version": 60,
+      "versionNonce": 97350056,
+      "isDeleted": false,
+      "id": "1CVpaa1jLxkJgmvJdxa1z",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 2,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1196.1175216398178,
+      "y": 366.76273540519446,
+      "strokeColor": "#ffd8a8",
+      "backgroundColor": "transparent",
+      "width": 173.56666564941406,
+      "height": 65.43161417502151,
+      "seed": 666808744,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
+      "updated": 1705633584709,
+      "link": null,
+      "locked": false,
+      "fontSize": 52.34529134001721,
+      "fontFamily": 1,
+      "text": "Banner",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Banner",
+      "lineHeight": 1.25,
+      "baseline": 46
+    }
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}

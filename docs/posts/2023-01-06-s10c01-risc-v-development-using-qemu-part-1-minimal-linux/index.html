@@ -220,7 +220,12 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>A series of base programs such as <em>ls</em>, <em>cat</em>, <em>echo</em> etc.</p>
 </li>
 </ul>
-<p><img src="./images/linux-boot-process.png" alt="Linux System Boot Process"></p>
+<figure class="wide"><img src="./images/linux-boot-process.png"
+         alt="The Linux System Boot Process"/><figcaption>
+            <p>The Linux System Boot Process</p>
+        </figcaption>
+</figure>
+
 <p>There is an amazing program called <a href="https://busybox.net/">Busybox</a> that contains all of the user programs mentioned above in a single program. BusyBox greatly simplifies the process of building a system. In this chapter we will build our first system using Busybox and the Linux kernel.</p>
 <figure class="mid"><img src="./images/minimal-linux-os.png"
          alt="Minimal Linux Operating System"/><figcaption>
@@ -511,7 +516,12 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 </span></span><span style="display:flex;"><span>mvendorid       : 0x0
 </span></span><span style="display:flex;"><span>marchid         : 0x70200
 </span></span><span style="display:flex;"><span>mimpid          : 0x70200
-</span></span></code></pre></div><p><img src="./images/busybox.png" alt="Busybox"></p>
+</span></span></code></pre></div><figure class="full"><img src="./images/busybox.png"
+         alt="Busybox"/><figcaption>
+            <p>Busybox</p>
+        </figcaption>
+</figure>
+
 <p>Run the command <code>poweroff</code> to turn off the virtual machine to exit QEMU. If there is any exception causes the virtual machine to freeze, press <code>Ctrl+a</code> and then press the <code>x</code> key to terminate QEMU. Note that the <code>Ctrl+C</code> key does not work.</p>
 <h2 id="6-get-rid-of-the-busybox">6. Get rid of the BusyBox</h2>
 <p>If there is only one user program need to run, and the shell is not necessary, the system we built can be further simplified.</p>
@@ -574,18 +584,20 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>After a while, the &ldquo;Hello, World!&rdquo; message will appear:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Hello, world!
 </span></span><span style="display:flex;"><span>Press Ctrl+a, then press x to exit QEMU.
-</span></span></code></pre></div><p><img src="./images/app.png" alt="Hello, World! Program"></p>
+</span></span></code></pre></div><figure class="full"><img src="./images/app.png"
+         alt="The Hello, World! Program"/><figcaption>
+            <p>The Hello, World! Program</p>
+        </figcaption>
+</figure>
+
 <p>This indicates that our program is executed correctly.</p>
 <blockquote>
 <p>Because this <em>Hello World</em> program is the only user program, it is launched directly by the kernel. It has no exit door to leave. Therefore, there is an inifinite loop in the <code>main()</code> functon in the <code>app.c</code>. If this only user program ends, the machine will crash and a <em>kernel panic</em> message will be shown.</p>
 </blockquote>
 <h2 id="7-conclusion">7. Conclusion</h2>
 <p>In this section, we&rsquo;ve created a minimal Linux system with a base shell, and it can properly run a static linking user program. However, you&rsquo;ll notice that this system lacks many tools that we use daily, such as <code>ssh</code>, <code>vim</code> and <code>git</code> etc. In the next section, we&rsquo;ll build a base Linux system with common tools and the capability of doing RISC-V assembly development and debugging.</p>
-
-
-<div>
-    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
-</div>
+<figure class="mid"><img src="/images/subscribe-and-donate.en.png"/>
+</figure>
 
 
 

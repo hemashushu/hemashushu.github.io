@@ -167,9 +167,7 @@
 
     
 
-    <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>This is the first chapter of series <em>Dive into RISC-V system, step by step</em>. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language. With the assembler and linker, we will have the ability to generate programs (binary executable files), making it possible for us to create our own tools from scratch.</p>
+    <p>This is the first chapter of series <em>Dive into RISC-V system, step by step</em>. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language. With the assembler and linker, we will have the ability to generate programs (binary executable files), making it possible for us to create our own tools from scratch.</p>
 <blockquote>
 <p>In the first chapter of <em>Linkers &amp; Loaders</em> by John R. Levine, it is mentioned that &ldquo;all the linker writers in the world could probably fir in on root&rdquo;. Perphaps after we finish this series, we may aslo be able to squeeze into this room 😁.</p>
 </blockquote>
@@ -226,7 +224,7 @@
 </li>
 </ul>
 <p>The working principles and processes of both <em>native compilation</em> (ordinary compilation) and <em>cross-compilation</em> are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term <em>cross-compilation</em> does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.</p>
-<figure class="wide"><img src="./images/compilation-comparasion.png"
+<figure class="mid"><img src="./images/compilation-comparasion.png"
          alt="Compilation Comparation"/><figcaption>
             <p>Compilation Comparation</p>
         </figcaption>
@@ -246,7 +244,7 @@
 <p>The target instruction set of the compiler to be implemented in this series is <em>riscv64gc</em>, which is also a cross-compiler.</p>
 <h2 id="3-gcc-compiler">3. GCC compiler</h2>
 <p>The mainstream compilers currently in use are GCC and LLVM, both of which are open source and free. However, GCC is more commonly used in the field of microcontrollers, which will be used in the later chapters discussing the principles of software and hardware communication. Therefore, for simplicity, only GCC will be discussed below.</p>
-<p>In addition to the compiler, the binary tool Binutils, debugging tool GDB, standard libraries, and kernel headers are often used when developing programs, collectively known as the GNU Toolchain. The GNU Toolchain can be easily installed through package managers in most Linux distributions. Depending on the compilation target, the names of the packages in the toolchain will also be different. For example, in Arch Linux, the RISC-V GNU Toolchain package names name:</p>
+<p>In addition to the compiler, the binary tool Binutils, debugging tool GDB, standard libraries, and kernel headers are often used when developing programs, collectively known as the GNU Toolchain. The GNU Toolchain can be easily installed through package managers in most Linux distributions. Depending on the compilation target, the names of the packages in the toolchain will also be different. For example, in Arch Linux, the <a href="https://github.com/riscv-collab/riscv-gnu-toolchain">RISC-V GNU Toolchain</a> package names name:</p>
 <ul>
 <li>riscv64-linux-gnu-binutils</li>
 <li>riscv64-linux-gnu-gcc</li>
@@ -398,7 +396,12 @@
 <li><code>$ QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/ qemu-riscv64 app.elf</code></li>
 </ul>
 <p>Both commands can run correctly, and you should see the &ldquo;Hello, World!&rdquo; text output by the program.</p>
-<p><img src="./images/qemu-user.png" alt="QEMU User Mode"></p>
+<figure class="wide"><img src="./images/qemu-user.png"
+         alt="QEMU User Mode"/><figcaption>
+            <p>QEMU User Mode</p>
+        </figcaption>
+</figure>
+
 <blockquote>
 <p>On Linux, you can use the <code>locate</code> command to quickly find the location of files. For example, the command <code>$ locate lp64d.so.1</code> will show you the path to the dynamic linker.</p>
 </blockquote>
@@ -440,7 +443,12 @@
 </span></span><span style="display:flex;"><span>app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
 </span></span></code></pre></div><p>It seems that the RISC-V version of <code>ld.so</code> works, but the dynamic linker cannot find the RISC-V version of the shared library <code>libc.so.6</code>. This problem is easy to solve, just specify the path of the shared library that the program depends on through the <code>LD_LIBRARY_PATH</code> environment variable, for example:</p>
 <p><code>$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf</code></p>
-<p><img src="./images/interpreter-path.png" alt="Interpreter Path"></p>
+<figure class="wide"><img src="./images/interpreter-path.png"
+         alt="Interpreter Path"/><figcaption>
+            <p>Interpreter Path</p>
+        </figcaption>
+</figure>
+
 <p>The program can also run correctly. However this method is not very useful because it is much more complicated than the first two methods, and the generated program is only suitable for running in the QEMU user mode, and cannot run in a standard RISC-V Linux system. The main purpose of this example is to demonstrate how to modify the <code>interpreter</code> of a program. For more information about dynamic linkers, you can use the command <code>$ man ld.so</code> to view the documentation.</p>
 <h2 id="6-phased-compilation">6. Phased compilation</h2>
 <p>When the command <code>riscv64-linux-gnu-gcc</code> compiles a C source code into an executable file, GCC actually completes the process in four stages.</p>
@@ -509,11 +517,8 @@
 <p>This chapter is the first in a series of articles, and some parts may be difficult to understand. However, as we progress through the series, the content will become clearer. Learning C language in the Linux environment is crucial, and taking breaks between reading chapters to allow the brain to digest the information is recommended.</p>
 </blockquote>
 <p>In the next chapter, we will build a simple program that can run independently without an operation system. If you feel confident in your understanding of the concepts covered in this chapter, feel free to proceed to the next chapter.</p>
-
-
-<div>
-    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
-</div>
+<figure class="mid"><img src="/images/subscribe-and-donate.en.png"/>
+</figure>
 
 
 

@@ -58,11 +58,10 @@ body header ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    position: absolute;
-    top: 12px;
-    right: 0;
-
     font-size: 14px;
+    position: relative;
+    top: 12px;
+    float: right;
 }
 
 body header ul li {
@@ -80,22 +79,22 @@ body header p {
 @media only screen and (max-width: 1056px) {
 
     /* 1056 = 1024 + 32 (padding left+righ) */
-    body header {
-        height: 260px;
-    }
-
     body header #content {
         width: auto;
         padding-left: 16px;
         padding-right: 16px;
     }
+}
+
+@media only screen and (max-width: 800px) {
+
+    /* 800 = 1024 * 75% + 32 (padding left+righ) */
+    body header {
+        height: 260px;
+    }
 
     body header h1 {
         font-size: 1.8em;
-    }
-
-    body header ul li {
-        margin: 0 1em 0 0;
     }
 }
 
@@ -153,7 +152,11 @@ body header p {
     #container>* {
         width: 100%;
     }
+}
 
+@media only screen and (max-width: 800px) {
+
+    /* 800 = 1024 * 75% + 32 (padding left+righ) */
     #container main {
         font-size: .9em;
     }
@@ -434,15 +437,15 @@ figure figcaption p {
 }
 
 figure.full img {
-    max-width: 100%;
+    width: 100%;
 }
 
 figure.wide img {
-    max-width: 75%;
+    width: 75%;
 }
 
 figure.mid img {
-    max-width: 50%;
+    width: 50%;
 }
 
 table {
@@ -506,48 +509,57 @@ ul.pagination li {
     padding: 0 1em;
 }
 
-
 #container main section#index {
-    padding-top: 32px;
+    /* padding-top: 32px; */
 }
 
 #container main section#index .work-item {
     margin-bottom: 3em;
+}
+
+.work-banner {
     position: relative;
 }
 
-#container main section#index .work-item .work-header {
-    float: left;
-    width: 25%;
-}
-
-#container main section#index .work-item .work-content {
-    float: right;
-    width: 70%;
-}
-
-#container main section#index .work-item::after {
-    content: "";
+.work-banner img {
     display: block;
-    height: 1px;
-    clear: both;
+    border: none;
+    max-width: 100%;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .work-header h2 {
     font-size: 1.8em;
 }
 
-.work-content .banner {
+.work-header .description {
+    color: gray;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.work-header .status {
     position: relative;
 }
 
-.work-content .banner img {
-    display: block;
-    border: none;
-    max-width: 100%;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+.work-header .status .title {
+    display: inline-block;
+    font-size: 0.9em;
+    font-style: italic;
+    color: gray;
+    margin-right: 8px
+}
+
+.work-header .status .progress {
+    display: inline-block;
+    color: lightgray;
+}
+
+.work-header .status .progress span.checked {
+    color: yellowgreen;
+    /* mediumaquamarine limegreen */
 }
 
 .work-content .work-entry {
@@ -558,32 +570,53 @@ ul.pagination li {
     text-transform: uppercase;
 }
 
-.work-content .work-entry .work-detail ul li {
+.work-content .work-entry .work-detail ul>li {
     margin-bottom: 8px;
+}
+
+.work-content .work-entry .work-detail ul.card {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.work-content .work-entry .work-detail ul.card>li {
+    display: block;
+    margin: 0 24px 16px 0;
+    /* padding: 8px 12px; */
+    min-width: 300px;
+    flex-basis: min-content;
+    flex-grow: 1;
+    overflow-wrap: anywhere;
 }
 
 .work-content .work-entry .work-detail a {
     color: hotpink;
 }
 
-.work-content .work-entry .work-detail .todo {
-    cursor: default;
+.work-content .work-entry .work-detail .null-link {
     color: hotpink;
-    font-weight: 500;
-    display: inline-block;
     border-bottom: 1.5px dashed hotpink;
 }
 
-#container main section#index .work-item:first-child .work-header {
-    float: none;
-    width: 100%;
+.work-content .work-entry .work-detail ul.card>li .card-title {
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
-#container main section#index .work-item:first-child .work-content {
-    float: none;
-    width: 100%;
-}
+/* adjust the figure/image width */
+/* 1056 = 1024 + 32 (padding left+righ) */
+/* 800 = 1024 * 75% + 32 (padding left+righ) */
+@media only screen and (max-width: 800px) {
+    figure.wide img {
+        width: 100%;
+    }
 
-#container main section#index .work-item:first-child .work-content .banner img {
-    width: 75%;
+    figure.mid img {
+        width: 75%;
+    }
+
+    .work-banner img {
+        width: 100%;
+    }
 }

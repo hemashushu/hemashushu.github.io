@@ -10,13 +10,9 @@ Hi! I'm _Hemashushu_, and I'm a freelancer.
 
 In this website I will share some interesting computer technologies, programming skills and learning notes, and also post some of my software and hardware. Follow me on Twitter [@hemashushu](https://twitter.com/hemashushu) or Github [Hema Shushu](https://github.com/hemashushu) for updates. Please consider donating to me if you find my articles or work helpful. 😋
 
-Note: Most of my software and hardware are **open source and free**, please do not download the modified or re-packaged versions of my work from other web sites, and please do not pay for those. My website address is [hemashushu.github.io](https://hemashushu.github.io) (and the mirror [hemashushuzsd.gitee.io](http://hemashushuzsd.gitee.io/)).
+Note: Most of my software and hardware are **open source and free**, please do not download the modified or re-packaged versions of my work from other web sites, and please do not pay for those. My website address is [https://hemashushu.github.io](https://hemashushu.github.io) (and the mirror [https://hemashushuzsd.gitee.io](https://hemashushuzsd.gitee.io)).
 
-{{< rawhtml >}}
-<div>
-    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
-</div>
-{{< /rawhtml >}}
+{{< figure src="/images/subscribe-and-donate.en.png" class="mid" >}}
 
 Or donate via Paypal [paypal.me/hippospark](https://paypal.me/hippospark)
 

@@ -47,7 +47,7 @@ _裸机程序_ 是指在 "无操作系统" 的环境中运行的程序，初一�
 
 机器通电或者复位之后，CPU 会从某个约定的内存地址开始执行第一条指令，这个内存地址一般对应着一段固定在 ROM 芯片里的 _加载程序_（_loader_）或硬件初始化程序（比如 BIOS，UEFI 程序，有时也叫做 _固件_，_firmware_）。然后加载程序会尝试从约定的地方加载系统 _引导程序_（_boot loader_）并跳转到该引导程序的第一条指令（简称 _入口_），引导程序再加载 _内核_ 并跳转到内核的入口。可见机器的启动过程就是连续的几个程序运行和跳转的过程。
 
-![Linux 启动过程](./images/linux-boot-process.png)
+{{< figure src="./images/linux-boot-process.png" class="full" caption="Linux 的启动过程" >}}
 
 需要注意的是并不是每一台机器通电后的启动过程都一样，有些硬件平台可能只有其中的一个或两个步骤，有些则可能会有更多的步骤。但有一点是确定的：每个程序的位置和入口都是上一个步骤约定的，所以要让机器运行我们写的裸机程序，最简单的方法是把这个程序放置在预留给 _引导程序_ 或者 _内核_ 的位置，这样就可以 "冒充" 为引导程序或者内核，机器通电后经过若干个步骤就会执行我们的程序。
 
@@ -330,7 +330,7 @@ $ qemu-system-riscv64 \
 
 如无意外，应该能看到正确的输出结果 "Hello, World!"。
 
-![qemu system](images/qemu-system.png)
+{{< figure src="./images/qemu-system.png" class="wide" caption="QEMU 全系统模式" >}}
 
 这时你的主机（通常称为 _host_）可能会有一个核心（core）的负载率高达 100%，这是因为 "Hello, World!" 程序从 _bare_main_ 函数返回之后，来到了一个死循环（即 `startup.S` 里的 `_loop`），你需要结束 QEMU 程序才能让 CPU 平静下来。
 
@@ -391,8 +391,4 @@ riscv64-elf-gcc \
 
 下一章将会深入剖析 _可执行文件_ 的组成和结构，让我们看看 "Hello, World!" 在 "物理" 层面究竟是什么样子的。
 
-{{< rawhtml >}}
-<div>
-    <img src="/images/subscribe-and-donate.zh.png" class="block-image image-480px"/>
-</div>
-{{< /rawhtml >}}
+{{< figure src="/images/subscribe-and-donate.zh.png" class="mid" >}}

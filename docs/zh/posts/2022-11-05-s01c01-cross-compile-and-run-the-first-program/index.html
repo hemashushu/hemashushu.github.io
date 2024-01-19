@@ -167,9 +167,7 @@
 
     
 
-    <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>这是《一步一步深入 RISC-V 系统》系列文章的第一章。在这个系列里，我们将会了解程序是如何构建、程序文件本身是什么样的结构、程序是如何运行、软件和硬件之间是如何交流，以及汇编语言是怎样被转换为指令，等等有关程序的基本原理。在这个系列的后半阶段，我们会实现一个 RISC-V 汇编器和链接器，以及一门有特色的 RISC-V 汇编语言和链接器脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件），这是我们制作自己的工具的基础。</p>
+    <p>这是《一步一步深入 RISC-V 系统》系列文章的第一章。在这个系列里，我们将会了解程序是如何构建、程序文件本身是什么样的结构、程序是如何运行、软件和硬件之间是如何交流，以及汇编语言是怎样被转换为指令，等等有关程序的基本原理。在这个系列的后半阶段，我们会实现一个 RISC-V 汇编器和链接器，以及一门有特色的 RISC-V 汇编语言和链接器脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件），这是我们制作自己的工具的基础。</p>
 <blockquote>
 <p>在 <em>John R. Levine</em> 的《Linkers &amp; Loaders》第一章里提到：“大概一个房间就能装得下世上所有编写链接器的人” （原文：<em>all the linker writers in the world could probably fit in one room</em>）。也许我们学完这个系列之后也可以挤进这个小房间了，哈哈。</p>
 </blockquote>
@@ -226,7 +224,7 @@
 </li>
 </ul>
 <p>无论是_本地编译_（即普通的编译）还是_交叉编译_，其工作原理和过程是一模一样的，都是将高级语言翻译成目标环境的机器指令（汇编代码）。所以 &ldquo;交叉编译&rdquo; 这个名称并不是指某种功能，而是用于描述一种编译情况，即编译环境跟运行环境不同，仅此而已。</p>
-<figure class="wide"><img src="./images/compilation-comparasion.png"
+<figure class="mid"><img src="./images/compilation-comparasion.png"
          alt="本地编译和交叉编译"/><figcaption>
             <p>本地编译和交叉编译</p>
         </figcaption>
@@ -391,7 +389,12 @@
 <li><code>$ QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/ qemu-riscv64 app.elf</code></li>
 </ul>
 <p>如无意外，上面两个命令都能正确运行，能看到程序输出的 &ldquo;Hello, World!&rdquo; 文本。</p>
-<p><img src="./images/qemu-user.png" alt="QEMU User Mode"></p>
+<figure class="wide"><img src="./images/qemu-user.png"
+         alt="QEMU 用户模式"/><figcaption>
+            <p>QEMU 用户模式</p>
+        </figcaption>
+</figure>
+
 <blockquote>
 <p>在 Linux 系统里，可以使用 <code>locate</code> 命令快速定位所需的文件，比如命令 <code>$ locate lp64d.so.1</code> 可以帮你找到动态链接器的路径。</p>
 </blockquote>
@@ -433,7 +436,12 @@
 </span></span><span style="display:flex;"><span>app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
 </span></span></code></pre></div><p>看来 RISC-V 版的 <code>ld.so</code> 已经起作用了，但这个动态链接器找不到 RISC-V 版的共享库 <code>libc.so.6</code>。这个问题比较好解决，只要通过环境变量 <code>LD_LIBRARY_PATH</code> 就可以指定程序所依赖的共享库的路径，例如：</p>
 <p><code>$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf</code></p>
-<p><img src="./images/interpreter-path.png" alt="Interpreter Path"></p>
+<figure class="wide"><img src="./images/interpreter-path.png"
+         alt="解析器路径"/><figcaption>
+            <p>解析器路径</p>
+        </figcaption>
+</figure>
+
 <p>程序同样能正确运行。不过这种方法并没有太大用处，因为比前面两种方法复杂太多，而且生成的程序只适合在当前机器上 <em>QEMU 用户模式</em> 里运行，没法在标准的 RISC-V 架构的 Linux 环境里运行。这里主要是为了演示如何修改程序的 <code>interpreter</code>。有关动态链接器的详细资料可以通过命令 <code>$ man ld.so</code> 调出文档查看。</p>
 <h2 id="6-分阶段编译">6. 分阶段编译</h2>
 <p>当执行命令 <code>riscv64-linux-gnu-gcc</code> 将一个 C 源代码编译为一个可执行文件时，实际上 GCC 是分 4 个阶段（或者说步骤）来完成的：</p>
@@ -499,17 +507,14 @@
 <h2 id="8-总结">8. 总结</h2>
 <p>这章主要讲解什么是交叉编译，以及交叉编译了一个 &ldquo;Hello, World!&rdquo; 程序，然后使用 QEMU 模拟一个不同架构的 Linux 环境来运行交叉编译得到的可执行文件。通过这一章我们知道如何构建一个程序，同时也知道其实交叉编译并没什么特别的地方，操作方法跟普通编译几乎一样，只是编译出来的结果（可执行文件）的运行方式不太一样而已（即我们无法在当前机器上直接运行）。</p>
 <blockquote>
-<p>这章是我们漫长的几个系列文章当中的第一个系列的第一章，如果你发现这章里有些地方不太明白，这是很正常的。正如 <a href="../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step">项目介绍</a> 所说，系统技术相互交叉，有些内容必须到了后面的章节才能展开。你可以继续往下阅读，到了某个阶段时再回来这里重温一遍，可能会发现一下子全都懂了。就像看悬疑电影那样，有些伏笔到了最后会自然解开。</p>
+<p>这章是我们漫长的系列文章当中的第一章，如果你发现有些地方不太明白，这是很正常的。因为系统技术是相互交叉的，有些内容必须到了后面的章节才能理解。你可以继续往下阅读，到了某个阶段时再回来这里重温一遍，也许会发现一下子全都看明白了。</p>
 </blockquote>
 <blockquote>
-<p>如果你觉得这章的内容太难了，甚至完全不知道在讲什么。可能只是因为你对 C 语言或者说一般的编程技术，以及 Linux 环境不是很熟悉，你可以适当停下来，然后看看一些经典的书籍和教程。注意学习 C 语言一定要 Linux 环境，在其它环境里学习 C 语言你只能学会语法，然后一无所知。另外请记住计算机的每门科目都不需要一下子从头到尾看完，每次看一两章就可以停下来，然后去做点别的事情或者其它科目，让你的大脑在背后慢慢地消化。如此一段时间之后再回来看这系列文章估计就没什么问题了。</p>
+<p>如果你觉得这章的内容太难，甚至完全不知道在讲什么。请不要灰心，可能只是因为你对 C 语言或者 Linux 环境不是很熟悉，你可以适当停下来，然后看看一些经典的书籍和教程，补充一下这方面的知识。注意 C 语言一定要在 Linux 环境里学习（和实践），在其它平台学习 C 语言你可能只学会了语法，然后无所用武之地。另外请记住计算机技术的每个领域都不需要一下子从头到尾学完，每次学一两章就可以停下来，也可以跳过一些章节，然后去做点别的事情或者学习其它领域，让你的大脑在背后慢慢地消化，一段时间之后再回来接着学习是完全没问题的。</p>
 </blockquote>
-<p>好了，如果觉得没问题那就点击下一章吧。下一章将会构建一个简单的无需操作系统就可以独自运行的程序。</p>
-
-
-<div>
-    <img src="/images/subscribe-and-donate.zh.png" class="block-image image-480px"/>
-</div>
+<p>下一章将会构建一个简单的无需操作系统就可以独自运行的程序。</p>
+<figure class="mid"><img src="/images/subscribe-and-donate.zh.png"/>
+</figure>
 
 
 

@@ -8,8 +8,4 @@ categories: ["craft-system", "S01"]
 ---
 
 
-{{< rawhtml >}}
-<div>
-    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
-</div>
-{{< /rawhtml >}}
+{{< figure src="/images/subscribe-and-donate.en.png" class="mid" >}}

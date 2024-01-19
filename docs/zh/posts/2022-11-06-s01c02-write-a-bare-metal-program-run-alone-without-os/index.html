@@ -199,7 +199,12 @@
 </blockquote>
 <h2 id="2-如何启动裸机程序">2. 如何启动裸机程序</h2>
 <p>机器通电或者复位之后，CPU 会从某个约定的内存地址开始执行第一条指令，这个内存地址一般对应着一段固定在 ROM 芯片里的 <em>加载程序</em>（<em>loader</em>）或硬件初始化程序（比如 BIOS，UEFI 程序，有时也叫做 <em>固件</em>，<em>firmware</em>）。然后加载程序会尝试从约定的地方加载系统 <em>引导程序</em>（<em>boot loader</em>）并跳转到该引导程序的第一条指令（简称 <em>入口</em>），引导程序再加载 <em>内核</em> 并跳转到内核的入口。可见机器的启动过程就是连续的几个程序运行和跳转的过程。</p>
-<p><img src="./images/linux-boot-process.png" alt="Linux 启动过程"></p>
+<figure class="full"><img src="./images/linux-boot-process.png"
+         alt="Linux 的启动过程"/><figcaption>
+            <p>Linux 的启动过程</p>
+        </figcaption>
+</figure>
+
 <p>需要注意的是并不是每一台机器通电后的启动过程都一样，有些硬件平台可能只有其中的一个或两个步骤，有些则可能会有更多的步骤。但有一点是确定的：每个程序的位置和入口都是上一个步骤约定的，所以要让机器运行我们写的裸机程序，最简单的方法是把这个程序放置在预留给 <em>引导程序</em> 或者 <em>内核</em> 的位置，这样就可以 &ldquo;冒充&rdquo; 为引导程序或者内核，机器通电后经过若干个步骤就会执行我们的程序。</p>
 <p>我们要实现是一个 &ldquo;裸机&rdquo; 版的 &ldquo;Hello, World!&rdquo; 程序，该程序将会在 <em>QEMU RISC-V 64-bit Virt</em> 的 <em>全系统模式</em> 里运行。</p>
 <h2 id="3-制作裸机版的-hello-world-程序">3. 制作裸机版的 &ldquo;Hello, World!&rdquo; 程序</h2>
@@ -419,7 +424,12 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios none <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel app.out
 </span></span></code></pre></div><p>如无意外，应该能看到正确的输出结果 &ldquo;Hello, World!&quot;。</p>
-<p><img src="images/qemu-system.png" alt="qemu system"></p>
+<figure class="wide"><img src="./images/qemu-system.png"
+         alt="QEMU 全系统模式"/><figcaption>
+            <p>QEMU 全系统模式</p>
+        </figcaption>
+</figure>
+
 <p>这时你的主机（通常称为 <em>host</em>）可能会有一个核心（core）的负载率高达 100%，这是因为 &ldquo;Hello, World!&rdquo; 程序从 <em>bare_main</em> 函数返回之后，来到了一个死循环（即 <code>startup.S</code> 里的 <code>_loop</code>），你需要结束 QEMU 程序才能让 CPU 平静下来。</p>
 <p>请注意你需要按 <code>Ctrl+a</code> 然后松开 <code>Ctrl</code> 键再按 <code>x</code> 来结束 QEMU 程序，而不是平常的 <code>Ctrl+c</code>，这个奇怪的组合键可能跟 VIM 的退出方法一样，会让你手忙脚乱一阵子。</p>
 <blockquote>
@@ -460,11 +470,8 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 <h2 id="总结">总结</h2>
 <p>这章我们创建了一种无需操作系统、无需任何库，就可以独自运行的程序，并了解了机器通电后是如何一步步地加载并运行我们的程序，同时也知道操作系统的内核其实是一个 &ldquo;大号&rdquo; 的裸机程序，而这章写的裸机程序也可以粗略地看作是一个功能弱到爆的 <em>系统内核</em>。希望通过这章的学习和实践，能够破除内核的神秘感，同时能解开诸如 “机器通电后经历会做些什么？” 这些长期存在我们心中的困惑。</p>
 <p>下一章将会深入剖析 <em>可执行文件</em> 的组成和结构，让我们看看 &ldquo;Hello, World!&rdquo; 在 &ldquo;物理&rdquo; 层面究竟是什么样子的。</p>
-
-
-<div>
-    <img src="/images/subscribe-and-donate.zh.png" class="block-image image-480px"/>
-</div>
+<figure class="mid"><img src="/images/subscribe-and-donate.zh.png"/>
+</figure>
 
 
 

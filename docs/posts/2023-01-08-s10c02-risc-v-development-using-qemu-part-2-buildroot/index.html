@@ -355,7 +355,8 @@ Filesystem images ---&gt;
 </span></span><span style="display:flex;"><span>hart            : <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>isa             : rv64imafdch_zicsr_zifencei_zihintpause_zba_zbb_zbc_zbs_sstc
 </span></span><span style="display:flex;"><span>mmu             : sv48
-</span></span></code></pre></div><p><img src="./images/buildroot.png" alt="Buildroot"></p>
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Next, check the installed packages:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># python --version</span>
 </span></span><span style="display:flex;"><span>Python 3.11.2
@@ -430,7 +431,8 @@ PS1=&#39;[\u@\h \W]\$ &#39;
 </span></span></code></pre></div><p>This will generate a file named <code>hello.elf</code>. Try running it, a line of text reading &ldquo;Hello World!&rdquo; will be displayed if there are no exceptions.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./hello.elf
 </span></span><span style="display:flex;"><span>Hello World!
-</span></span></code></pre></div><p><img src="./images/hello-world.png" alt="Hello World"></p>
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h2 id="10-debug-program-by-gdb">10. Debug program by GDB</h2>
 <p>The <code>gdb</code> package has also been installed. Let&rsquo;s start debugging <code>main.elf</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gdb hello.elf
@@ -469,7 +471,12 @@ A debugging session is active.
         Inferior 1 [process 165] will be killed.
 
 Quit anyway? (y or n) y
-</code></pre><p><img src="./images/gdb.png" alt="GDB Debugging"></p>
+</code></pre><figure class="wide"><img src="./images/gdb.png"
+         alt="GDB Debugging"/><figcaption>
+            <p>GDB Debugging</p>
+        </figcaption>
+</figure>
+
 <p>As shown above, this Linux system already contains common tools and is capable of base assembly development and program debugging.</p>
 <h2 id="11-where-is-the-gcc-toolchain">11. Where is the GCC toolchain?</h2>
 <p>Unfortunately, the <code>gcc</code> package is not available in Buildroot, as explained in <a href="https://buildroot.org/downloads/manual/manual.html#faq-no-compiler-on-target">the Buildroot documentation</a>. If you have patient enough, you can compile the GCC toolchains from source and copy it into the guest machine, It may be helpful to check out some scripts such as <a href="https://github.com/michaeljclark/musl-riscv-toolchain/">musl-riscv-toolchain</a> and <a href="https://git.zv.io/toolchains/musl-cross-make">musl-cross-make</a>.</p>
@@ -477,11 +484,8 @@ Quit anyway? (y or n) y
 <h2 id="12-conclusion">12. Conclusion</h2>
 <p>In this section, we built a base Linux system that contains general tools as well as <code>binutils</code> and <code>gdb</code> using <em>Buildroot</em>. However, it is still not complete, for example, the GCC toolchain is missing, and there is no package management tool, making it difficult to install or update software.</p>
 <p>In the next section, we will set up a complete Debian distribution in QEMU.</p>
-
-
-<div>
-    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
-</div>
+<figure class="mid"><img src="/images/subscribe-and-donate.en.png"/>
+</figure>
 
 
 

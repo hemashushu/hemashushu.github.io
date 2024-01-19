@@ -7,12 +7,6 @@ tags: ["riscv", "gcc", "qemu"]
 categories: ["craft-system", "S01"]
 ---
 
-<!--
-The project [Making your own tools and building modern computer system from scratch, step by step](../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step) comprises of four series of artical, with the first series being _Dive into RISC-V system, step by step_.
-
-This article serves as the first stop on a long journey. Where should we begin? As mentioned in the [project introduction](../2022-10-31-building-a-modern-computer-system-from-scratch-step-by-step), computer system technology has a broad knowledge base and is interrelated. Starting from any point would involve multiple fields, making it difficult to explain everything in a straight line. However, a computer system has a layered and encapsulated structure. Each layer encapsulates complex things and exposes relatively simple interfaces to the layer above, and so on, until the top layer - the application layer. This feature allows people to write various application even if they are not familiar with the low-level technology. Therefore, learning about "applications" will be a good starting point for learning system technology.
--->
-
 This is the first chapter of series _Dive into RISC-V system, step by step_. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language. With the assembler and linker, we will have the ability to generate programs (binary executable files), making it possible for us to create our own tools from scratch.
 
 > In the first chapter of _Linkers & Loaders_ by John R. Levine, it is mentioned that "all the linker writers in the world could probably fir in on root". Perphaps after we finish this series, we may aslo be able to squeeze into this room 😁.
@@ -66,7 +60,7 @@ In other word, cross-compilation occurs when "the environment in which the compi
 
 The working principles and processes of both _native compilation_ (ordinary compilation) and _cross-compilation_ are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term _cross-compilation_ does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.
 
-{{< figure src="./images/compilation-comparasion.png" class="wide" caption="Compilation Comparation" >}}
+{{< figure src="./images/compilation-comparasion.png" class="mid" caption="Compilation Comparation" >}}
 
 Of course, when developing programs, in addition to considering the target architecture and target platform, more detailed information may need to be considered. For example, when developing Linux applications, subtle differences between different distributions need to be considered. However, for the compiler, it only cares about the target archiecture and target platform.
 
@@ -84,7 +78,7 @@ The target instruction set of the compiler to be implemented in this series is _
 
 The mainstream compilers currently in use are GCC and LLVM, both of which are open source and free. However, GCC is more commonly used in the field of microcontrollers, which will be used in the later chapters discussing the principles of software and hardware communication. Therefore, for simplicity, only GCC will be discussed below.
 
-In addition to the compiler, the binary tool Binutils, debugging tool GDB, standard libraries, and kernel headers are often used when developing programs, collectively known as the GNU Toolchain. The GNU Toolchain can be easily installed through package managers in most Linux distributions. Depending on the compilation target, the names of the packages in the toolchain will also be different. For example, in Arch Linux, the RISC-V GNU Toolchain package names name:
+In addition to the compiler, the binary tool Binutils, debugging tool GDB, standard libraries, and kernel headers are often used when developing programs, collectively known as the GNU Toolchain. The GNU Toolchain can be easily installed through package managers in most Linux distributions. Depending on the compilation target, the names of the packages in the toolchain will also be different. For example, in Arch Linux, the [RISC-V GNU Toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) package names name:
 
 - riscv64-linux-gnu-binutils
 - riscv64-linux-gnu-gcc
@@ -255,7 +249,7 @@ Therefore, you can run the `app.elf` program as follows:
 
 Both commands can run correctly, and you should see the "Hello, World!" text output by the program.
 
-![QEMU User Mode](./images/qemu-user.png)
+{{< figure src="./images/qemu-user.png" class="wide" caption="QEMU User Mode" >}}
 
 > On Linux, you can use the `locate` command to quickly find the location of files. For example, the command `$ locate lp64d.so.1` will show you the path to the dynamic linker.
 
@@ -332,7 +326,7 @@ It seems that the RISC-V version of `ld.so` works, but the dynamic linker cannot
 
 `$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf`
 
-![Interpreter Path](./images/interpreter-path.png)
+{{< figure src="./images/interpreter-path.png" class="wide" caption="Interpreter Path" >}}
 
 The program can also run correctly. However this method is not very useful because it is much more complicated than the first two methods, and the generated program is only suitable for running in the QEMU user mode, and cannot run in a standard RISC-V Linux system. The main purpose of this example is to demonstrate how to modify the `interpreter` of a program. For more information about dynamic linkers, you can use the command `$ man ld.so` to view the documentation.
 
@@ -424,8 +418,4 @@ In this chapter, we learned about cross-compilation and how to cross-compile a "
 
 In the next chapter, we will build a simple program that can run independently without an operation system. If you feel confident in your understanding of the concepts covered in this chapter, feel free to proceed to the next chapter.
 
-{{< rawhtml >}}
-<div>
-    <img src="/images/subscribe-and-donate.en.png" class="block-image image-480px"/>
-</div>
-{{< /rawhtml >}}
+{{< figure src="/images/subscribe-and-donate.en.png" class="mid" >}}
