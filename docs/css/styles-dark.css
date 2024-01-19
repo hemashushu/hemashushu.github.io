@@ -3,20 +3,30 @@ body {
     background: #2A2829;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+time {
+    color: rosybrown;
+}
+
 body header #overlay {
     background-color: #332121;
 }
 
 body header h1 a {
-    color: rgba(238, 136, 164, 0.82);
+    color: rosybrown;
 }
 
 body header p {
-    color: rgba(238, 136, 164, 0.82);
+    color: rosybrown;
 }
 
 body header ul li a {
-    color: #f2c6c1;
+    color: #d0a3a3;
 }
 
 #container header h1 a {
@@ -24,20 +34,20 @@ body header ul li a {
 }
 
 #container nav {
-    border-bottom-color: #a66767;
+    border-bottom-color: #886767;
 }
 
 #container nav a {
-    color: #ee8383;
+    color: rosybrown;
 }
 
 #container nav ul li a.active {
-    border-bottom-color: #c16b6b;
+    border-bottom-color: rosybrown;
 }
 
-#container main section#home span {
+/* #container main section#home span {
     color: #666666;
-}
+} */
 
 #container main section#home a {
     color: #bd6f85;
@@ -81,7 +91,7 @@ body header ul li a {
 }
 
 #container footer {
-    border-top-color: #cc8c8c;
+    border-top-color: #886767;
 }
 
 #container footer ul li a.active {
@@ -111,17 +121,16 @@ input {
     color: #909090;
 }
 
-#container main article h1 {
+/* #container main article h1 {
     color: #bf879f;
-}
+} */
 
-a {
+#container main section.post-nav a {
     color: #db98ab;
 }
 
-/* article img caption */
-article img+em {
-    color: rgba(0, 0, 0, .5);
+figure figcaption p {
+    color: inherit;
 }
 
 table {
@@ -139,4 +148,9 @@ blockquote {
 
 blockquote::before {
     color: rgba(213, 186, 186, 0.1);
+}
+
+.work-content .work-entry .work-detail .null-link {
+    color: #bd6f85;
+    border-bottom: 1.5px dashed #bd6f85;
 }

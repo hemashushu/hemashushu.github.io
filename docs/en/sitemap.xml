@@ -228,17 +228,17 @@
                 href="https://hemashushu.github.io/categories/s01/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/</loc>
+    <loc>https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/</loc>
     <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/"
+                href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/"
+                href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/tags/gcc/</loc>
@@ -254,17 +254,17 @@
                 href="https://hemashushu.github.io/tags/gcc/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/</loc>
+    <loc>https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/</loc>
     <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/"
+                href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/"
+                href="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/about/</loc>

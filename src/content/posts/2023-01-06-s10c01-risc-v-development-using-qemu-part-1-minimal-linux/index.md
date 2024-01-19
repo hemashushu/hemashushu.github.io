@@ -77,11 +77,11 @@ A typical Linux system consists of numerous user programs, including:
 
 - A series of base programs such as _ls_, _cat_, _echo_ etc.
 
-{{< figure src="./images/linux-boot-process.png" class="wide" caption="The Linux System Boot Process" >}}
+{{< figure src="./images/linux-boot-process.png" class="wide white" caption="The Linux System Boot Process" >}}
 
 There is an amazing program called [Busybox](https://busybox.net/) that contains all of the user programs mentioned above in a single program. BusyBox greatly simplifies the process of building a system. In this chapter we will build our first system using Busybox and the Linux kernel.
 
-{{< figure src="./images/minimal-linux-os.png" class="mid" caption="Minimal Linux Operating System" >}}
+{{< figure src="./images/minimal-linux-os.png" class="mid white" caption="Minimal Linux Operating System" >}}
 
 ### 3.1 Compile Linux kernel
 
@@ -516,7 +516,7 @@ marchid         : 0x70200
 mimpid          : 0x70200
 ```
 
-{{< figure src="./images/busybox.png" class="full" caption="Busybox" >}}
+<!-- {{< figure src="./images/busybox.png" class="wide" caption="Busybox" >}} -->
 
 Run the command `poweroff` to turn off the virtual machine to exit QEMU. If there is any exception causes the virtual machine to freeze, press `Ctrl+a` and then press the `x` key to terminate QEMU. Note that the `Ctrl+C` key does not work.
 
@@ -629,7 +629,7 @@ Hello, world!
 Press Ctrl+a, then press x to exit QEMU.
 ```
 
-{{< figure src="./images/app.png" class="full" caption="The Hello, World! Program" >}}
+<!-- {{< figure src="./images/app.png" class="wide" caption="The Hello, World! Program" >}} -->
 
 This indicates that our program is executed correctly.
 
