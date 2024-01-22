@@ -6,7 +6,9 @@ tags: ["risc-v", "qemu"]
 categories: ["development", "S10"]
 ---
 
-This series of articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
+This series of articles will guide you setting up a RISC-V development environment using QEMU.
+
+The series includes four parts:
 
 [Part 1](../2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/). Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 
@@ -15,8 +17,6 @@ This series of articles will guide you setting up a RISC-V development environme
 Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.
 
 Part 4. Remote debugging with the GDB, and setup remote text editing and debugging by VSCode.
-
-- - -
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 

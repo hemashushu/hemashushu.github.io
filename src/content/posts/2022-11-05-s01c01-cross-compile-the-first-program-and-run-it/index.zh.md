@@ -2,7 +2,7 @@
 title: "S01C01 什么是交叉编译？GCC 交叉编译第一个程序并运行它"
 date: 2022-11-05
 draft: false
-# images: ["/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png"]
+# images: ["/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/images/hello-world.png"]
 tags: ["riscv", "gcc", "qemu"]
 categories: ["craft-system", "S01"]
 ---

@@ -75,6 +75,9 @@
     
 <nav>
     <ul>
+        <li>
+            <a href="/" title="Home">Home</a>
+        </li>
         
         <li>
             <a class="" href="/works/">
@@ -115,13 +118,13 @@
             <div class="work-entry">
                 <h2 class="capital">Programming Language</h2>
                 <div class="work-detail">
-                    <p><em>XiaoXuan Language</em> is an elegant, full-stack programming language.
+                    <p><em>The XiaoXuan Programming Language</em> is an elegant, full-stack programming language.
                         It consists of several variants and can be used to develop a variety applications,
                         including digital circuits and chips,
-                        microcontroller programs, GPU shaders, native programs, system programs,
-                        service programs, web applications and more.
+                        microcontroller programs, GPU shaders, system programs, local native programs,
+                        cloud native programs, web applications and more.
                         All variants use the same syntax and design philosophy, allowing you to learn
-                        one language for all domains of development.
+                        one language for all sorts of development.
                     </p>
                     <p>The implemented variants:</p>
                     <ul class="card">
@@ -129,16 +132,17 @@
                             <div class="card-title">
                                 <h3><span class="null-link">XiaoXuan Script</span></h3>
                             </div>
-                            <div class="card-content">Build high-performance, solid web applications that compile to
-                                WebAssembly on-the-fly without requiring any build tools.
+                            <div class="card-content">Build high-performance, solid web applications.
+                                It can be compiled to WebAssembly on-the-fly without the need for any build tools.
+                                It aims to be the preferred programming language for web development.
                             </div>
                         </li>
                         <li>
                             <div class="card-title">
                                 <h3><a href="/works/xiaoxuan-core">XiaoXuan Core</a></h3>
                             </div>
-                            <div class="card-content">Build powerful user-space system programs with extremely
-                                fast startup speed and small footprint, direct <em>syscall</em> and interoperation
+                            <div class="card-content">Build powerful user-space system programs that have extremely
+                                fast startup speed and small memory footprint, it can directly call <em>syscall</em> and interoperate
                                 with C shared libraries.
                             </div>
                         </li>
@@ -146,29 +150,30 @@
                             <div class="card-title">
                                 <h3><span class="null-link">XiaoXuan Managed</span></h3>
                             </div>
-                            <div class="card-content">Build secure and robust programs for business systems,
-                                cloud-native (microservices and serverless functions), data science, A.I. and more.
-                                Each program runs in its own isolated environement, programs do not need
-                                to be installed, only a URL address is required to run them.
+                            <div class="card-content">Build secure, robust, low-latency and responsive
+                                cloud-native applications (such as microservices and serverless functions etc.),
+                                business systems, data science programs, A.I. programs and more.
+                                Each program runs in its own isolated environement, eliminating the need for containers.
+                                Applications do not need to be installed, they can be run with just a URL.
                             </div>
                         </li>
                         <li>
                             <div class="card-title">
                                 <h3><span class="null-link">XiaoXuan Native</span></h3>
                             </div>
-                            <div class="card-content">A general-purpose programming language inspired by Rust, but much
-                                simpler. Automatic memory management without garbage collection, and no complex concepts
-                                such as ownership, borrow checking, and lifetimes. Supports compilation to
-                                native code for architectures such as <em>x86-64</em>, <em>aarch64</em> and
-                                <em>riscv64</em>.
+                            <div class="card-content">A general-purpose programming language inspired by Rust but much
+                                simpler. It provides automatic memory management without garbage collection,
+                                and avoids complex concepts such as ownership, borrow checking, and lifetimes.
+                                It supports compiling to native code for architectures such as
+                                <em>x86-64</em>, <em>aarch64</em> and <em>riscv64</em>.
                             </div>
                         </li>
                         <li>
                             <div class="card-title">
                                 <h3><span class="null-link">XiaoXuan Micro</span></h3>
                             </div>
-                            <div class="card-content">Easily build high-performance firmware for microcontroller, the
-                                built-in micro VM makes it possible to "write once, run anywhere".
+                            <div class="card-content">Build high-performance firmware for microcontroller easily,
+                                the built-in micro VM makes it possible to "write once, run anywhere".
                             </div>
                         </li>
                         <li>
@@ -176,19 +181,19 @@
                                 <h3><span class="null-link">XiaoXuan Logic</span></h3>
                             </div>
                             <div class="card-content">A brand new and modern hardware description language (HDL) that
-                                allows you to develop hardware and chipss in the same way as you develop open source
-                                software. It comes with a GPU-accelerated simulator that significantly improves
-                                test efficiency.</div>
+                                lets you design hardware and chips in the same ease and collaboration as open-source
+                                software. Its built-in GPU-accelerated simulator dramatically enhances test efficiency,
+                                saving you valuable time and resources.</div>
                         </li>
                     </ul>
                     <figure class="wide white">
                         <img src="/works/xiaoxuan-lang/images/variants.png" alt="XiaoXuan Language Family">
                         <figcaption>
-                            <p>XiaoXuan Language Family</p>
+                            <p>The XiaoXuan Programming Language Family</p>
                         </figcaption>
                     </figure>
                     <p>The <em>XiaoXuan programming language</em> supports writing code in local languages,
-                        such as Chinese, Japanese and French. In addition to keywords, the standard library add
+                        such as Chinese, Japanese and French. In addition to keywords, the standard library and
                         related documentation are also translated into local languages.
                         Using local language programming is beneficial for children, beginners and
                         non-computer majors who are not native English speakers.
@@ -200,11 +205,14 @@
                         <li><span class="null-link">XiaoXuan Core Hans</span> - The Chinese edition (中文版)</li>
                     </ul>
                 </div>
+                <div class="read-more">
+                    <a href="/works/xiaoxuan-lang/" title="Read more">Read more...</a>
+                </div>
             </div>
             <div class="work-entry">
                 <h2 class="capital">Operating System</h2>
                 <div class="work-detail">
-                    <p>In addition, I have designed two new operating systems, one for daily use
+                    <p>I have also designed two new operating systems, one for daily use
                         by software engineers and the other for microcontrollers.
                         Both are implemented using <em>XiaoXuan Lang</em>.
                     </p>
@@ -213,21 +221,21 @@
                             <div class="card-title">
                                 <h3><span class="null-link">XiaoYu OS</span></h3>
                             </div>
-                            <div class="card-content">A brand new operating system designed for engineers daily use.
-                                The system is very secure, all applications run in isolated
-                                environement with lowest possible privileges, applications must request permissions from
-                                the user when they need them. The system is also very clean, and even after decades of
-                                use, it will remain as clean as new, with no junk left behind. Applications are
-                                maintained by
-                                developers, and the system does not require package maintainers.</div>
+                            <div class="card-content">A brand new operating system built for the modern engineer's daily workflow.
+                                Every application runs in secure, isolated environement with minimal privileges,
+                                requesting permissions only when needed. This also ensures a pristine system, even after
+                                years of use, free from accumulated clutter or hidden processes.
+                                XiaoYu OS empowers developers to directly maintain their applications, eliminating the
+                                need for dedicated package maintainers.
+                            </div>
                         </li>
                         <li>
                             <div class="card-title">
                                 <h3><span class="null-link">XiaoYu Micro OS</span></h3>
                             </div>
                             <div class="card-content">A true operating system (not RTOS) for microcontrollers (MCUs).
-                                Applications (firmwares) can be run simply by "downloading" and "configuring", without
-                                the need to install cumbersome development tools and debuggers and then compile from
+                                Applications (firmwares) can be run by simply downloading and configuring, without
+                                the need to install cumbersome development tools and debuggers, and compiling from
                                 source code. It completely changes the way firmware is developed and deployed.</div>
                         </li>
                     </ul>
@@ -242,12 +250,16 @@
                     </p>
                     <ul class="card">
                         <li>
+                            
                             <div class="card-title">
                                 <h3><span class="null-link">XiaoYu Debugger</span></h3>
                             </div>
-                            <div class="card-content">A very simple debugger (programmer) base on
+                            <div class="card-content">
+                                A very simple debugger (programmer) base on
                                 CMSIS-DAP implemented using a low cost MCU <em>STM32F042</em> and very
-                                few parts. Used for downloading firmware to other MCUs or debugging programs.</div>
+                                few parts. Used for downloading firmware to other MCUs or debugging programs.
+                            </div>
+
                         </li>
                         <li>
                             <div class="card-title">
@@ -271,19 +283,24 @@
         </div>
     </div>
 
-    <div class="work-item post">
+    
+    <div class="work-item">
         <div class="work-header">
             <h1>Recent Posts</h1>
         </div>
         <div class="work-content">
-            <ul>
-                
-                
-                
-
-                <li class="first" >
-                    <h3><a href="https://hemashushu.github.io/posts/2023-01-08-s10c02-risc-v-development-using-qemu-part-2-buildroot/" title="S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot">S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot</a></h3>
-                    <aside>
+            <div class="work-entry">
+                <div class="work-detail">
+                    <ul class="card">
+                        
+                        
+                        
+                        <li>
+                            <div class="card-title">
+                                <h3><a href="https://hemashushu.github.io/posts/2023-01-08-s10c02-risc-v-development-using-qemu-part-2-buildroot/" title="S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot">S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot</a></h3>
+                            </div>
+                            <div class="card-content">
+                                <aside>
     <ul>
         <li>
             <time class="post-date" datetime="2023-01-08T00:00:00Z">Jan 8, 2023</time>
@@ -294,21 +311,23 @@
     </ul>
 </aside>
 
-                    
+                                
 
-                    <p>This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
-Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
-Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
-Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.</p>
-                    
-                    <a href="/posts/2023-01-08-s10c02-risc-v-development-using-qemu-part-2-buildroot/">Read more…</a>
-                    
-                </li>
-                
-
-                <li >
-                    <h3><a href="https://hemashushu.github.io/posts/2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/" title="S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system">S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system</a></h3>
-                    <aside>
+                                <p>In the previous section, we built a minimal Linux system by compiling the Linux kernel and BusyBox. While the system contains a base Shell environment and is capable of running static linked user programs, it is not suitable for development purposes. In theory, we could add any software, such as ssh, vim, git or binutils and so on by compiling their source codes and copying the binaries and libraries into the image file.</p>
+                                
+                                <div class="detail-link">
+                                    <a href="/posts/2023-01-08-s10c02-risc-v-development-using-qemu-part-2-buildroot/">Read more…</a>
+                                </div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="card-title">
+                                <h3><a href="https://hemashushu.github.io/posts/2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/" title="S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system">S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system</a></h3>
+                            </div>
+                            <div class="card-content">
+                                <aside>
     <ul>
         <li>
             <time class="post-date" datetime="2023-01-06T00:00:00Z">Jan 6, 2023</time>
@@ -319,21 +338,27 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
     </ul>
 </aside>
 
-                    
+                                
 
-                    <p>This series of articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
+                                <p>This series of articles will guide you setting up a RISC-V development environment using QEMU.
+The series includes four parts:
 Part 1. Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 Part 2. Building a base RISC-V Linux system with the ability of doing RISC-V assembly development and debug using Buildroot.
 Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.</p>
-                    
-                    <a href="/posts/2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/">Read more…</a>
-                    
-                </li>
-                
-
-                <li >
-                    <h3><a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/" title="S01C02 Write a Hello World program that can run standalone without an OS">S01C02 Write a Hello World program that can run standalone without an OS</a></h3>
-                    <aside>
+                                
+                                <div class="detail-link">
+                                    <a href="/posts/2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/">Read more…</a>
+                                </div>
+                                
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="card-title">
+                                <h3><a href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/" title="S01C02 Write a Hello World program that can run standalone without an OS">S01C02 Write a Hello World program that can run standalone without an OS</a></h3>
+                            </div>
+                            <div class="card-content">
+                                <aside>
     <ul>
         <li>
             <time class="post-date" datetime="2022-11-06T00:00:00Z">Nov 6, 2022</time>
@@ -344,16 +369,19 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
     </ul>
 </aside>
 
-                    
+                                
 
-                    <p> </p>
-                    
-                </li>
-                
-
-                <li >
-                    <h3><a href="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/" title="S01C01 Let&#39;s cross-compile the first program and run it">S01C01 Let&#39;s cross-compile the first program and run it</a></h3>
-                    <aside>
+                                <p> </p>
+                                
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="card-title">
+                                <h3><a href="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/" title="S01C01 Let&#39;s cross-compile the first program and run it">S01C01 Let&#39;s cross-compile the first program and run it</a></h3>
+                            </div>
+                            <div class="card-content">
+                                <aside>
     <ul>
         <li>
             <time class="post-date" datetime="2022-11-05T00:00:00Z">Nov 5, 2022</time>
@@ -364,17 +392,21 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
     </ul>
 </aside>
 
-                    
+                                
 
-                    <p>This is the first chapter of series Dive into RISC-V system, step by step. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language.</p>
+                                <p>This is the first chapter of series Dive into RISC-V system, step by step. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language.</p>
+                                
+                                <div class="detail-link">
+                                    <a href="/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/">Read more…</a>
+                                </div>
+                                
+                            </div>
+                        </li>
+                        
+                    </ul>
                     
-                    <a href="/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/">Read more…</a>
-                    
-                </li>
-                
-            </ul>
-
-            
+                </div>
+            </div>
         </div>
     </div>
 </section>

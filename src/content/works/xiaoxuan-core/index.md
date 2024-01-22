@@ -6,7 +6,7 @@ tags: ["xiaoxuan-lang"]
 categories: ["xiaoxuan-core"]
 ---
 
-{{< rawhtml >}}
+{{< html >}}
 
 <div class="work-item">
     <div class="work-banner">
@@ -45,4 +45,4 @@ categories: ["xiaoxuan-core"]
 
 </div>
 
-{{< /rawhtml >}}
+{{< /html >}}

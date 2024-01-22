@@ -16,11 +16,4 @@ meta: "false"
 
 {{< figure src="/images/subscribe-and-donate.zh.png" class="mid" >}}
 
-<!--
-{{< rawhtml >}}
-<div>
-</div>
-{{< /rawhtml >}}
--->
-
 这里的文章采用 [署名-非商业性使用-禁止演绎 4.0 (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh) 进行许可，即：欢迎转载我的文章，只需 **注明原始出处，同时禁止修改以及用于商业用途** 即可。

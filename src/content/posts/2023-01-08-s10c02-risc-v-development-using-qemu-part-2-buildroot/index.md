@@ -1,12 +1,17 @@
 ---
 title: "S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot"
 date: 2023-01-08
+# images: ["/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/images/bare-metal.png"]
 draft: false
 tags: ["risc-v", "qemu", "buildroot"]
 categories: ["development", "S10"]
 ---
 
-This series articles will guide you setting up a RISC-V development environment using QEMU. The series includes four parts:
+In the previous section, we built a minimal Linux system by compiling the _Linux kernel_ and _BusyBox_. While the system contains a base Shell environment and is capable of running static linked user programs, it is not suitable for development purposes. In theory, we could add any software, such as `ssh`, `vim`, `git` or `binutils` and so on by compiling their source codes and copying the binaries and libraries into the image file. Actually, there is a project called [Linux From Scratch](https://www.linuxfromscratch.org/lfs/) that guides users through building the entire Linux system from source code. Although it's an excellent tutorial for those who want to understand how Linux system are built, it can be challenging for beginners, and the process would be tedious and time consuming.
+
+In this chapter, we will use a tool called [Buildroot](https://buildroot.org/) to download and compile software automatically, resulting in the creation of an image file. `Buildroot` is free and open-source, so you can check its source code if you want to know how it works.
+
+The series includes four parts:
 
 [Part 1](../2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/). Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 
@@ -15,8 +20,6 @@ This series articles will guide you setting up a RISC-V development environment 
 Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C language development and debug with GCC toolchains.
 
 Part 4. Remote debugging with the GDB, and setup remote text editing and debugging by VSCode.
-
-- - -
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 
@@ -36,10 +39,6 @@ Part 4. Remote debugging with the GDB, and setup remote text editing and debuggi
 - [12. Conclusion](#12-conclusion)
 
 <!-- /code_chunk_output -->
-
-In the previous section, we built a minimal Linux system by compiling the _Linux kernel_ and _BusyBox_. While the system contains a base Shell environment and is capable of running static linked user programs, it is not suitable for development purposes. In theory, we could add any software, such as `ssh`, `vim`, `git` or `binutils` and so on by compiling their source codes and copying the binaries and libraries into the image file. Actually, there is a project called [Linux From Scratch](https://www.linuxfromscratch.org/lfs/) that guides users through building the entire Linux system from source code. Although it's an excellent tutorial for those who want to understand how Linux system are built, it can be challenging for beginners, and the process would be tedious and time consuming.
-
-In this chapter, we will use a tool called [Buildroot](https://buildroot.org/) to download and compile software automatically, resulting in the creation of an image file. `Buildroot` is free and open-source, so you can check its source code if you want to know how it works.
 
 ## 1. Get the _Buildroot_ source code
 

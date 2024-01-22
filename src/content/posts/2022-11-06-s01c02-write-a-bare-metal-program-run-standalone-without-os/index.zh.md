@@ -2,7 +2,7 @@
 title: "S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序"
 date: 2022-11-06
 draft: false
-# images: ["/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-alone-without-os/images/bare-metal.png"]
+# images: ["/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/images/bare-metal.png"]
 tags: ["riscv", "bare-metal"]
 categories: ["craft-system", "S01"]
 ---

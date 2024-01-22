@@ -2,7 +2,7 @@
 title: "S01C01 Let's cross-compile the first program and run it"
 date: 2022-11-05
 draft: false
-# images: ["/posts/2022-11-05-s01c01-cross-compile-and-run-the-first-program/images/hello-world.png"]
+# images: ["/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/images/hello-world.png"]
 tags: ["riscv", "gcc", "qemu"]
 categories: ["craft-system", "S01"]
 ---
