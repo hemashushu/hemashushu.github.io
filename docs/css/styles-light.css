@@ -570,7 +570,7 @@ ul.pagination li {
 }
 
 #container main section#home .work-content .work-entry h2 {
-    font-size: 1.1em;
+    /* font-size: 1.1em; */
 }
 
 #container main section#home .work-content .work-entry h2.capital {
@@ -613,9 +613,23 @@ ol.card.wide>li {
     min-width: 360px;
 }
 
+ul.card>li .card_cover {
+    height: 160px;
+    overflow: hidden;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+ul.card>li .card_cover img {
+    object-fit: contain;
+    object-position: bottom;
+    display: block;
+    height: 100%;
+}
+
 ul.card>li .card-title h3,
 ol.card>li .card-title h3  {
-    font-size: 1.1em;
+    /* font-size: 1.1em; */
     margin: 0.2em 0;
 }
 

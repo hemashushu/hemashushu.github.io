@@ -3,7 +3,7 @@ all: clean build
 
 .PHONY: build
 build:
-	hugo
+	hugo --logLevel info
 
 .PHONY: clean
 clean:

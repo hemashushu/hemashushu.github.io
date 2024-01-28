@@ -3,7 +3,7 @@ title: "The XiaoXuan Programming Language"
 date: 2023-12-01
 draft: false
 tags: ["xiaoxuan-lang"]
-categories: ["development"]
+categories: ["xiaoxuan-lang"]
 ---
 
 {{< figure class="wide" src="./images/banner_v2.png" >}}
@@ -12,22 +12,22 @@ _The XiaoXuan Programming Language_ is an elegant, full-stack programming langua
 
 The implemented variants:
 
-- {{< null-link "XiaoXuan Script" >}}
-  Build high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It aims to be the preferred programming language for web development.
-
 - [XiaoXuan Core](/works/xiaoxuan-core)
   Build powerful user-space system programs that have extremely fast startup speed and small memory footprint, it can directly call _syscall_ and interoperate with C shared libraries.
 
-- {{< null-link "XiaoXuan Managed" >}}
+- [XiaoXuan Script](/works/xiaoxuan-script)
+  Build high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It aims to be the next programming language for web development.
+
+- [XiaoXuan Managed](/works/xiaoxuan-managed)
   Build secure, robust, low-latency and responsive cloud-native applications (such as microservices and serverless functions etc.), business systems, data science programs, A.I. programs and more. Each program runs in its own isolated environement, eliminating the need for containers. Applications do not need to be installed, they can be run with just a URL.
 
-- {{< null-link "XiaoXuan Native" >}}
+- [XiaoXuan Native](/works/xiaoxuan-native)
   A general-purpose programming language inspired by Rust but much simpler. It provides automatic memory management without garbage collection, and avoids complex concepts such as ownership, borrow checking, and lifetimes. It supports compiling to native code for architectures such as _x86-64_, _aarch64_ and _riscv64_.
 
-- {{< null-link "XiaoXuan Micro" >}}
+- [XiaoXuan Micro](/works/xiaoxuan-micro)
   Build high-performance firmware for microcontroller easily, the built-in micro VM makes it possible to "write once, run anywhere".
 
-- {{< null-link "XiaoXuan Logic" >}}
+- [XiaoXuan Logic](/works/xiaoxuan-logic)
   A brand new and modern hardware description language (HDL) that lets you design hardware and chips in the same ease and collaboration as open-source software. Its built-in GPU-accelerated simulator dramatically enhances test efficiency, saving you valuable time and resources.
 
 {{< figure class="wide" src="./images/variants.png" caption="The XiaoXuan Programming Language Family" >}}
@@ -60,8 +60,8 @@ If you perfer to write programs that run locally, it is recommended to start wit
 
 ## Recommended tutorials
 
-- {{< null-link "Get started with XiaoXuan Script in 5 minutes." >}}
-- {{< null-link "Get started with XiaoXuan Core in 5 minutes." >}}
+- {{< null-link "Get started with XiaoXuan Script in 5 minutes" >}}
+- {{< null-link "Get started with XiaoXuan Core in 5 minutes" >}}
 
 ## Related documents
 
@@ -89,13 +89,13 @@ If you perfer to write programs that run locally, it is recommended to start wit
 
     <li>
         <div class="card-title">
-            <h3><span class="null-link">Build a simple OS (Linux kernel based) from scratch using XiaoXuan Core</span></h3>
+            <h3><span class="null-link">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</span></h3>
         </div>
         <div class="card-content">
             <ol>
                 <li><span class="null-link">Set up a RISC-V virtual machine using QEMU.</span></li>
                 <li><span class="null-link">Write a minimal 'init' program.</span></li>
-                <li><span class="null-link">Write a basic 'shell' program.</span></li>
+                <li><span class="null-link">Write a minimal 'shell' program.</span></li>
                 <li><span class="null-link">Fundamentals of file system and processes,  implementing the `pwd` and `ls` commands.</span></li>
                 <li><span class="null-link">Implement the `mount` and `umount` commands.</span></li>
                 <li><span class="null-link">Principals of `redirect`, implementing the `echo` and `cat` commands.</span></li>
@@ -109,7 +109,7 @@ If you perfer to write programs that run locally, it is recommended to start wit
 
     <li>
         <div class="card-title">
-            <h3><span class="null-link">Building a Docker-like container manager from scratch using XiaoXuan Core</span></h3>
+            <h3><span class="null-link">Build a Docker-like container manager from scratch using XiaoXuan Core</span></h3>
         </div>
         <div class="card-content">
             <ol>
