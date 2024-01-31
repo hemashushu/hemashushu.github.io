@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="XiaoXuan Core" />
-<meta property="og:description" content=" progress Build powerful user-space system programs with extremely fast startup speed and small footprint, direct syscall and interoperation with C shared libraries. Features a b c " />
+<meta property="og:description" content="The XiaoXuan Core Programming Language is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call syscall and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
+Motivation Availability and portability Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/works/xiaoxuan-core/" /><meta property="article:section" content="works" />
 <meta property="article:published_time" content="2023-12-25T00:00:00+00:00" />
@@ -16,7 +17,8 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="XiaoXuan Core"/>
-<meta name="twitter:description" content=" progress Build powerful user-space system programs with extremely fast startup speed and small footprint, direct syscall and interoperation with C shared libraries. Features a b c "/>
+<meta name="twitter:description" content="The XiaoXuan Core Programming Language is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call syscall and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
+Motivation Availability and portability Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:"/>
 
 <meta name="generator" content="Hugo 0.121.2">
     
@@ -34,7 +36,7 @@
 
 <body>
   <header>
-    <div id="overlay"></div>
+    
     <div id="content">
       <ul id="social-media">
         
@@ -131,13 +133,16 @@
             <em>
                 
                     
+                    <a href="/tags/xiaoxuan-core">#xiaoxuan-core</a>
+                
+                    , 
                     <a href="/tags/xiaoxuan-lang">#xiaoxuan-lang</a>
                 
             </em>
         </li>
         
 
-        <li>One minute read</li>
+        <li>3 minute read</li>
     </ul>
 </aside>
 
@@ -148,47 +153,81 @@
 
     
 
-    
+    <figure class="wide"><img src="./images/banner.png"/>
+</figure>
 
-
-<div class="work-item">
-    <div class="work-banner">
-        <img src="/works/xiaoxuan-core/images/banner.png" alt="banner">
-    </div>
-    <div class="work-header">
-        <!-- <h2>XiaoXuan Core</h2> -->
-        <div class="status">
-            <div class="title">progress</div>
-            <div class="progress">
-                <span class="checked"><i class="fa-solid fa-leaf"></i></span>
-                <span class="checked"><i class="fa-solid fa-leaf"></i></span>
-                <span class="checked"><i class="fa-solid fa-leaf"></i></span>
-                <span><i class="fa-solid fa-leaf"></i></span>
-                <span><i class="fa-solid fa-leaf"></i></span>
-            </div>
-        </div>
-    </div>
-    <div class="work-content">
-        <div class="intro">
-            Build powerful user-space system programs with extremely fast startup
-            speed and small footprint, direct <em>syscall</em> and interoperation
-            with C shared libraries.
-        </div>
-        <div class="work-entry">
-            <h3>Features</h3>
-            <div class="work-detail">
-                <ul>
-                    <li>a</li>
-                    <li>b</li>
-                    <li>c</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
+<p>The <em>XiaoXuan Core Programming Language</em> is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call <em>syscall</em> and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.</p>
+<h2 id="motivation">Motivation</h2>
+<h3 id="availability-and-portability">Availability and portability</h3>
+<p>Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:</p>
+<ul>
+<li>
+<p>For applications built with compiled languages:</p>
+<ul>
+<li>May encounter excessive dependencies that require manual compilation during the build process.</li>
+<li>Compilation may fail due to changes in shared library version.</li>
+</ul>
+</li>
+<li>
+<p>For applications built with script languages:</p>
+<ul>
+<li>May encounter version incompatibility issues</li>
+<li>May encounter dependency version conflict issues</li>
+</ul>
+</li>
+</ul>
+<p><em>XiaoXuan Core</em> has learned from these lessons and is designed to ensure that once an application is created and can run, it will continue to run correctly even if it is not maintained and after a long period of time.</p>
+<h3 id="ease-of-development-maintaince-and-high-performance">Ease of development, maintaince, and high performance</h3>
+<p>The <em>XiaoXuan Core</em> language strikes a good balance between &ldquo;ease of development&rdquo; and &ldquo;high performance&rdquo;. The <em>XiaoXuan Core</em> language has the following features:</p>
+<ul>
+<li>Data-race-free concurrency model</li>
+<li>GC-free automatic memory management</li>
+<li>Discards difficult-to-master concepts such as pointers, ownership, borrow checking and lifetimes.</li>
+</ul>
+<p>These features make it easy for developers to develop safe, stable and high-performance applications.</p>
+<h2 id="quick-start">Quick start</h2>
+<p>The following code demostrates how to call syscalls and external functions (from shared libraries). The code prints the current working directory.</p>
+<blockquote>
+<p>The <em>XiaoXuan Core</em> standard library provides simpler ways to get the current working directory or print strings. The code below is written for demostration purposes only. Additionally, the following steps assume a Linux operation system. If you are using other platform or want to try a simpler &ldquo;Hello, World!&rdquo; program, please refer to the <span class="null-link">XiaoXuan Code Documentation</span>.</p>
+</blockquote>
+<ol>
+<li>Create a file named <code>pwd.anc</code> in any directory with the following content:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">config</span>(<span style="color:#a6e22e">runtime</span>, <span style="color:#e6db74">&#34;1.0&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">external</span> <span style="color:#a6e22e">shared</span> <span style="color:#e6db74">&#34;libc.so.6&#34;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">puts</span>(<span style="color:#a6e22e">addr</span><span style="color:#f92672">:</span><span style="color:#66d9ef">long</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">buf_length</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">buf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">std</span><span style="color:#f92672">::</span>Array<span style="color:#f92672">::&lt;</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">&gt;::</span><span style="color:#a6e22e">fill</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">buf_length</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// invoke syscall
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">syscall</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">syscall</span><span style="color:#f92672">::</span><span style="color:#a6e22e">number</span><span style="color:#f92672">::</span><span style="color:#a6e22e">getcwd</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">buf</span>.<span style="color:#a6e22e">raw_addr</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">buf</span>.<span style="color:#a6e22e">length</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// call external function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">puts</span>(<span style="color:#a6e22e">buf</span>.<span style="color:#a6e22e">raw_addr</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="2">
+<li>
+<p>Download the <em>XiaoXuan Core</em> launcher <span class="null-link">ancl-1.0.1.x86_64-linux-gnu.tar.gz</span> from the offical website and extract it to the <code>~/.local/bin</code> or <code>/usr/bin</code> directory.</p>
+</li>
+<li>
+<p>Run the following command:</p>
+</li>
+</ol>
+<p><code>$ ancl pwd.anc</code></p>
+<p>The launcher will first check the version of the runtime required by the application and then start the corresponding runtime to execute it.</p>
+<p>Since this is the first time we are running an <em>XiaoXuan Core</em> application, the launcher will download the runtime from the internet. Then the runtime will compile and cache the application on-the-fly. Finally, you should see the application output a line of text, which is the current working directory.</p>
+<h2 id="the-xiaoxuan-core-vm">The XiaoXuan Core VM</h2>
+<p>ANC 运行时是一个单一的静态链接的可执行文件，其由编译器和虚拟机（VM）两部分组成。其中的VM是为运行系统程序而专门设计的，它有如下特点：</p>
+<ul>
+<li></li>
+</ul>
 
 
 </article>
@@ -198,7 +237,7 @@
     <ul>
         <li>
         
-            <a href="https://hemashushu.github.io/works/xiaoxuan-core-hans/"><i class="fa fa-chevron-circle-left"></i> XiaoXuan Core - Chinese Edition (中文版)</a>
+            <a href="https://hemashushu.github.io/works/xiaoxuan-local-hans/"><i class="fa fa-chevron-circle-left"></i> XiaoXuan Core - Chinese Edition (中文版)</a>
         
         </li>
         <li>

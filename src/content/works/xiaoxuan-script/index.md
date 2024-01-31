@@ -8,7 +8,7 @@ categories: ["xiaoxuan-script"]
 
 {{< figure class="wide" src="./images/banner.png" >}}
 
-_The XiaoXuan Script Programming Language_ is suitable for building high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It aims to be the next programming language for web development.
+The _XiaoXuan Script Programming Language_ is suitable for building high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It is intended to be the next preferred programming language for web development.
 
 ## How does it work?
 
@@ -110,7 +110,7 @@ Now open any browser and visit `http://localhost:8000/`. You should see the text
 
 _JavaScript_ is the default programming language supported by browsers. It is easy to learn and use, and its syntax is flexible. Compared to _JavaScript_, _XiaoXuan Script_ has the following advantages:
 
-- It has a stricter syntax and is a statically, strongly typed compiled programming language, it is more suitable for developing large-scale applications. It can significantly reduce communication costs between team members in team development, and is also easier to maintain the application source code.
+- It has a stricter syntax and is a statically, strongly typed compiled programming language, it is more suitable for developing large-scale applications. It can significantly reduce coordination costs between team members in team development, and is also easier to maintain the application source code.
 
 - It is compiled to WebAssembly before running, and WebAssembly is widely considered to have higher performance than _JavaScript_. Therefore, _XiaoXuan Script_ has better performance in computationally intensive scenarios (such as data processing, audio or image processing).
 

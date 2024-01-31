@@ -13,9 +13,9 @@ time {
     color: rosybrown;
 }
 
-body header #overlay {
+/* body header #overlay {
     background-color: #332121;
-}
+} */
 
 body header h1 a {
     color: rosybrown;
@@ -26,11 +26,7 @@ body header p {
 }
 
 body header ul li a {
-    color: #d0a3a3;
-}
-
-#container header h1 a {
-    color: #aa3f79;
+    color: rosybrown;
 }
 
 #container nav {
@@ -94,8 +90,9 @@ body header ul li a {
     border-top-color: #886767;
 }
 
-#container footer ul li a.active {
-    border-bottom-color: #ffffff;
+#container footer ul li a {
+    /* border-bottom-color: #ffffff; */
+    color: #bd6f85;
 }
 
 #container textarea,
@@ -153,4 +150,22 @@ blockquote::before {
 .work-content .work-entry .work-detail .null-link {
     color: #bd6f85;
     border-bottom: 1.5px dashed #bd6f85;
+}
+
+
+ul.card>li .card-book .background {
+    background-color: #666;
+}
+
+ul.card>li .card-book .frame {
+    background-color: #666;
+}
+
+ul.card>li .card-book .frame .name {
+    border: 1px solid rgba(255,255,255,.8);
+    filter: brightness(.9);
+}
+
+ul.card>li .card-book .frame .date {
+    color: rgba(255,255,255,.5);
 }

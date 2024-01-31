@@ -13,7 +13,7 @@ _The XiaoXuan Programming Language_ is an elegant, full-stack programming langua
 The implemented variants:
 
 - [XiaoXuan Core](/works/xiaoxuan-core)
-  Build powerful user-space system programs that have extremely fast startup speed and small memory footprint, it can directly call _syscall_ and interoperate with C shared libraries.
+  Build powerful user-space system programs that have extremely fast startup speed and small memory footprint, it can directly call _syscall_ and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
 
 - [XiaoXuan Script](/works/xiaoxuan-script)
   Build high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It aims to be the next programming language for web development.
@@ -69,7 +69,7 @@ If you perfer to write programs that run locally, it is recommended to start wit
 <ul class="card wide">
     <li>
         <div class="card-title">
-            <h3><span class="null-link">The XiaoXuan Language Reference</span></h3>
+            <h3><span class="null-link">The XiaoXuan Programming Language Reference</span></h3>
         </div>
         <div class="card-content">
             <ol>

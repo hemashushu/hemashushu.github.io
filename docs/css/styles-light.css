@@ -18,24 +18,27 @@ time {
 }
 
 body header {
+    /*
     background-image: url("/images/header/jacalyn-beales-KDg6MX6Wszs-unsplash.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 320px;
+    */
+    min-height: 120px;
     width: 100%;
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
     position: relative;
 }
 
-body header #overlay {
+/* body header #overlay {
     background-color: transparent;
     background-image: linear-gradient(180deg, #7148484d 16%, #9a727200 36%);
     opacity: .46;
     position: absolute;
     height: 100%;
     width: 100%;
-}
+} */
 
 body header #content {
     position: relative;
@@ -50,7 +53,7 @@ body header h1 {
 }
 
 body header h1 a {
-    color: #fffd;
+    color: lightskyblue;
 }
 
 body header ul {
@@ -69,11 +72,11 @@ body header ul li {
 }
 
 body header ul li a {
-    color: rgba(255, 255, 255, .9);
+    color: lightpink;
 }
 
 body header p {
-    color: rgba(255, 255, 255, .9);
+    color: lightskyblue;
 }
 
 @media only screen and (max-width: 1056px) {
@@ -89,9 +92,10 @@ body header p {
 @media only screen and (max-width: 800px) {
 
     /* 800 = 1024 * 75% + 32 (padding left+righ) */
-    body header {
+
+    /* body header {
         height: 260px;
-    }
+    } */
 
     body header h1 {
         font-size: 1.8em;
@@ -288,7 +292,7 @@ body header p {
 #container footer ul li>span {
     font-size: 0.8em;
     font-weight: bold;
-    color: grey;
+    /* color: grey; */
 }
 
 #container footer ul li:first-child {
@@ -300,12 +304,12 @@ body header p {
 }
 
 #container footer ul li a {
-    color: #666666;
+    color: hotpink;
 }
 
-#container footer ul li a.active {
+/* #container footer ul li a.active {
     border-bottom: 0.2em solid #666666;
-}
+} */
 
 #container footer img.license {
     border-width: 0;
@@ -539,7 +543,11 @@ ul.pagination li {
     margin-right: auto;
 }
 
-#container main section#home .work-item .work-header h1 {
+#container main section#home .work-item:first-child .work-banner {
+    margin-top: 2em;
+}
+
+/* #container main section#home .work-item .work-header h1 {
     font-size: 1.3em;
 }
 
@@ -563,7 +571,7 @@ ul.pagination li {
 
 .work-header .status .progress span.checked {
     color: yellowgreen;
-}
+} */
 
 .work-content .work-entry {
     margin-bottom: 2em;
@@ -578,12 +586,12 @@ ul.pagination li {
 }
 
 .work-content .work-entry .work-detail ul>li {
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 }
 
-.work-content .work-entry .read-more {
-    text-align: right;
-    padding-right: 16px;
+.work-content .work-entry .work-more {
+    /* text-align: right;
+    padding-right: 16px; */
 }
 
 .null-link {
@@ -601,7 +609,7 @@ ol.card {
 ul.card>li,
 ol.card>li {
     display: block;
-    margin: 0 24px 16px 0;
+    margin: 0 24px 24px 0;
     min-width: 300px;
     flex-basis: min-content;
     flex-grow: 1;
@@ -611,6 +619,11 @@ ol.card>li {
 ul.card.wide>li,
 ol.card.wide>li {
     min-width: 360px;
+}
+
+ul.card.narrow>li,
+ol.card.narrow>li {
+    max-width: 360px;
 }
 
 ul.card>li .card_cover {
@@ -632,6 +645,112 @@ ol.card>li .card-title h3  {
     /* font-size: 1.1em; */
     margin: 0.2em 0;
 }
+
+ul.card>li .card-book {
+    position: relative;
+    margin-bottom: 32px;
+}
+
+ul.card>li .card-book .background {
+    position: absolute;
+    top: 8px;
+    left: 40px;
+    width: 220px;
+    height: 250px;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+    background-color: #eee;
+}
+
+ul.card>li .card-book .frame {
+    position: relative;
+    left: 32px;
+    width: 220px;
+    height: 250px;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+    background-color: white;
+}
+
+ul.card>li .card-book .frame .name {
+    background-color: #f783ac;
+    margin: 16px 20px 8px;
+    padding: 16px;
+}
+
+ul.card>li .card-book .frame .name h3 {
+    font-size: .9em;
+    overflow-wrap: break-word;
+    margin: 0;
+}
+
+#container main section#home ul.card>li .card-book .frame .name h3 a {
+    color: white;
+}
+
+ul.card>li .card-book .frame .name .separator {
+    display: block;
+    height: 1px;
+    background-color: white;
+    margin: 8px 0;
+}
+
+ul.card>li .card-book .frame .name .catalog {
+    font-size: .7em;
+    font-style: italic;
+    color: white;
+}
+
+ul.card>li .card-book .frame .date {
+    margin: 0 34px;
+    font-size: .7em;
+    color: rgba(0, 0, 0, .5);
+}
+
+/* book color alt 1 */
+ul.card>li .card-book.c1 .frame .name {
+    background-color: #3bc9db;
+}
+
+/* book color alt 2 */
+ul.card>li .card-book.c2 .frame .name {
+    background-color: #4dabf7;
+}
+
+/* book color alt 3 */
+ul.card>li .card-book.c3 .frame .name {
+    background-color: #9775fa;
+}
+
+/* book color alt 4 */
+ul.card>li .card-book.c4 .frame .name {
+    background-color: #f783ac;
+}
+
+/* book color alt 5 */
+ul.card>li .card-book.c5 .frame .name {
+    background-color: #38d9a9;
+}
+
+/* book color alt 6 */
+ul.card>li .card-book.c6 .frame .name {
+    background-color: #ffa94d;
+}
+
+/* book color alt 7 */
+
+ul.card>li .card-book.c7 .background {
+    border-color: #ff8787;
+}
+
+ul.card>li .card-book.c7 .frame {
+    border-color: #ff8787;
+}
+
+ul.card>li .card-book.c7 .frame .name {
+    background-color: #ff8787;
+}
+
 
 /* adjust the figure/image width */
 /* 1056 = 1024 + 32 (padding left+righ) */
