@@ -78,6 +78,126 @@ Since this is the first time we are running an _XiaoXuan Core_ application, the 
 
 ## The XiaoXuan Core VM
 
-ANC 运行时是一个单一的静态链接的可执行文件，其由编译器和虚拟机（VM）两部分组成。其中的VM是为运行系统程序而专门设计的，它有如下特点：
+{{< figure class="wide white" src="./images/vm-model.png" caption="The XiaoXuan Core VM" >}}
 
--
+_XiaoXuan Runtime_ is a self-contained, statically linked executable that combines a compiler and a virtual machine (VM) designed specifically for running system programs. It offers serveral key advantages:
+
+- **Fast loading:** The structure of the application's image file and the instruction set architecture (ISA) are specially designed to eliminate the need for parsing and preprocessing by the VM. Instead, the file is simply mapped to memory and the bytecode can be executed directly.
+- **Program security:** The _XiaoXuan Core VM_ uses indexes instead of pointers to locate functions, data, and local variables. The stack is also divided into three separate stack: frame information, local variables, and operands. This effectively prevents memory boundary and overflow issues, reducing program vulnerabilities.
+- **Seamless interoperability with C/C++/Rust shared libraries:** The VM's memory model closely resembles that of the local native machine, allowing VM functions to directly call shared libraries built in C/C++/Rust. Additionally, VM functions can be also passed to shared libraries as callback functions (enabling shared libraries to call back into the VM). This feature allows _XiaoXuan Core_ to take full advantage of the rich ecosystem of existing shared libraries.
+- **Data-race-free parallelism model:** The _XiaoXuan Core VM_ has no "global data", and threads are only allowed to communicate by passing copies of data through _channels_. This prevent data races and ensures thread safety.
+- **Embeddable in Rust applications:** _XiaoXuan Core_ programs and the VM can be embedded as a library in Rust applications. Rust can then call VM functions just like regular functions (using a JIT generated "bridge function").
+
+## How XiaoXuan Core solves verison compatibility issues?
+
+_XiaoXiao Core_ applications can maintain correct operation even when the runtime environment changes (e.g., major version changes to the shared libraries in the system). This is achieved through the following two measures:
+
+{{< figure class="wide white" src="./images/version-model.png" caption="The XiaoXuan Core Applications Version Control" >}}
+
+1. Runtime version specification
+
+Each _XiaoXuan Core_ application is required to specify a runtime version number. For single-file applications, this is specified using the `config(runtime, "1.0")` statement. For multi-file applications, it is specified in the package descriptor file `package.anon`, for example:
+
+```js
+{
+    name: "myapp"
+    runtime: "1.1"
+}
+```
+
+The _XiaoXuan Core Application Launcher_ (`ancl`) will start the corresponding runtime based on the version number specified by the application to compile or run.
+
+2. Bundled shared modules and shared libraries
+
+Each verson of the runtime comes with its own shared modules (e.g., `std` and `math`) and, most importantly, a set of dynamic shared libraries (e.g., `libc`, `libsqlite3`, `libz` etc.). This allows applications to not rely on the shared libraries of the OS.
+
+Therefore, whether the _XiaoXuan Core_ runtime is updated or the system shared library versions change, the application can run in the same environment as it was developed in.
+
+This feature improves application compatibility and stability, reduces dependency on the system environment, simplifies application deployment and maintenance.
+
+## Get started
+
+- {{< null-link "Get started with XiaoXuan Core in 5 minutes" >}}
+
+## Manuals & Tutorials
+
+{{< html >}}
+<ul class="card">
+    <li>
+        <div class="card-title">
+            <h3><span class="null-link">The XiaoXuan Programming Language Reference</span></h3>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "Data types" >}}
+- {{< null-link "Variables" >}}
+- {{< null-link "Functions" >}}
+- {{< null-link "Collection" >}}
+- {{< null-link "Control flow" >}}
+- {{< null-link "Method, generic and trait" >}}
+- {{< null-link "Pattern" >}}
+- {{< null-link "Chain" >}}
+- {{< null-link "Error handling" >}}
+- {{< null-link "Modules" >}}
+
+{{< html >}}
+        </div>
+    </li>
+
+    <li>
+        <div class="card-title">
+            <h3><span class="null-link">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</span></h3>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "Set up a RISC-V virtual machine using QEMU" >}}
+- {{< null-link "Write a minimal `init` program" >}}
+- {{< null-link "Write a minimal `shell` program" >}}
+- {{< null-link "Fundamentals of file system and processes,  implementing the `pwd` and `ls` commands" >}}
+- {{< null-link "Implement the `mount` and `umount` commands" >}}
+- {{< null-link "Principals of `redirect`, implementing the `echo` and `cat` commands" >}}
+- {{< null-link "Principal of `pipe`, implementing the `tee` and `tr` commands" >}}
+- {{< null-link "Session and process groups" >}}
+- {{< null-link "The `root` privileges, users and groups, and the `setuid` bit" >}}
+- {{< null-link "Add support for shell scripts" >}}
+
+{{< html >}}
+        </div>
+    </li>
+
+    <li>
+        <div class="card-title">
+            <h3><span class="null-link">Build a Docker-like container utility from scratch using XiaoXuan Core</span></h3>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "The principal of Linux container" >}}
+- {{< null-link "Isolating the file system" >}}
+- {{< null-link "Isolating the process space" >}}
+- {{< null-link "Isolating the accounts" >}}
+- {{< null-link "The virtual networking devices and route" >}}
+
+{{< html >}}
+        </div>
+    </li>
+</ul>
+{{< /html >}}
+
+## Related documents
+
+
+
+## Related projects
+
+The source code repositories of related projects:
+
+- {{< null-link "XiaoXuan Core VM" >}}
+- {{< null-link "XiaoXuan Core Assembly" >}}
+- {{< null-link "XiaoXuan Core IR" >}}
+- {{< null-link "XiaoXuan Core Compiler" >}}
+- {{< null-link "XiaoXuan Core Runtime" >}}
+- {{< null-link "XiaoXuan Core Launcher" >}}
+- {{< null-link "XiaoXuan Allocator" >}}

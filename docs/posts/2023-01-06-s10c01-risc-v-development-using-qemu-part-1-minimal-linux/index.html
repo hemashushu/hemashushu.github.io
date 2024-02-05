@@ -6,7 +6,7 @@
   <title>S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system - Hemashushu&#39;s Homepage</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system" />
 <meta property="og:description" content="This series of articles will guide you setting up a RISC-V development environment using QEMU.
 The series includes four parts:
@@ -206,8 +206,8 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>QEMU is a software that emulates all the hardware of a complete computer system, including the CPU, memory, storage drives and network interfaces. This emulation is commonly known as a &ldquo;virtual computer&rdquo; or &ldquo;virtual machine&rdquo;.</p>
 <p>Unlike VirtualBox or VMWare, In QEMU, the hardware configuation of a virtual machine, such as the type of CPU, number of cores, memory capacity, is specified through QEMU command line parameters. As a result, the command to start QEMU can be quite lengthy. It&rsquo;s good practice to create a shell script to start QEMU and a directory for each virtual machine to hold this script file and the image file.</p>
 <p>To get started, create a directory in your home directory and name it something like &ldquo;riscv64-minimal-linux&rdquo;, this is where you will store all the files created in this chapter.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir ~/riscv64-minimal-linux
-</span></span><span style="display:flex;"><span>$ cd ~/riscv64-minimal-linux
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir ~/riscv64-minimal-linux
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> ~/riscv64-minimal-linux
 </span></span></code></pre></div><blockquote>
 <p>It is not possible to create a RISC-V virtual machine using virtualaztion software such as VirtualBox and VMWare on the <em>x86_64</em> or <em>ARM</em> platform. This is because these types of software are only capable of creating virtual machine with the same architecture CPU as the host machine. For example, on an <em>x86_64</em> platform, you can only create an <em>x86_64</em> virtual machine. However, since the computing ability of virtual machines is provided by the physical CPU of the host machine, their performance is typically much higher than that of QEMU.</p>
 </blockquote>
@@ -259,65 +259,65 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <li>Prepare the Linux kernel source code</li>
 </ol>
 <p>Download the <a href="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.2.10.tar.xz">Linux kernel source code tarball</a> to the project folder.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.2.10.tar.xz
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.2.10.tar.xz
 </span></span></code></pre></div><p>Once the tarball is downloaded, extract it to obtain a folder named <code>linux-6.2.10</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tar xf linux-6.2.10.tar.xz
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ tar xf linux-6.2.10.tar.xz
 </span></span></code></pre></div><blockquote>
 <p>It&rsquo;s not recommended that cloning the kernel source code Git repository, as it is very large, takes a long time to download and requires a significant amount of storage space.</p>
 </blockquote>
 <p>Ensure that no permission errors occur, transfer ownership of the directory to the current user:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ chown -R $USER:$USER linux-6.2.10
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> linux-6.2.10
 </span></span></code></pre></div><ol start="3">
 <li>Compiling with default configuration</li>
 </ol>
 <p>Ensure that the kernel tree is absolutely clean, change into the kernel source directory created and run the <code>make mrproper</code> command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd linux-6.2.10
-</span></span><span style="display:flex;"><span>$ make mrproper
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> linux-6.2.10
+</span></span><span class="line"><span class="cl">$ make mrproper
 </span></span></code></pre></div><p>Configure with the default settings and start to compile:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ARCH<span style="color:#f92672">=</span>riscv CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make defconfig
-</span></span><span style="display:flex;"><span>$ ARCH<span style="color:#f92672">=</span>riscv CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make -j <span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">ARCH</span><span class="o">=</span>riscv <span class="nv">CROSS_COMPILE</span><span class="o">=</span>riscv64-linux-gnu- make defconfig
+</span></span><span class="line"><span class="cl">$ <span class="nv">ARCH</span><span class="o">=</span>riscv <span class="nv">CROSS_COMPILE</span><span class="o">=</span>riscv64-linux-gnu- make -j <span class="k">$(</span>nproc<span class="k">)</span>
 </span></span></code></pre></div><p>Take a break and step out for a cup of coffee. When you return, you should find a file named <code>arch/riscv/boot/Image</code>.</p>
 <p>To examine this file, use the <code>file</code> command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file arch/riscv/boot/Image
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ file arch/riscv/boot/Image
 </span></span></code></pre></div><p>The output should indicate that file is a &ldquo;PE32+ executable (EFI application)&rdquo;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>./arch/riscv/boot/Image: PE32+ executable (EFI application) RISC-V 64-bit (stripped to external PDB), for MS Windows, 2 sections
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">./arch/riscv/boot/Image: PE32+ executable (EFI application) RISC-V 64-bit (stripped to external PDB), for MS Windows, 2 sections
 </span></span></code></pre></div><p>Note that the output file is different from the <em>x86</em> architecture. When compiling for <em>x86</em>, the default output file is <code>arch/x86/boot/bzImage</code>, which is a compressed binary image. It will be later renamed to <em>vmlinuz</em> and copied to the <code>/boot</code> directory (the prefix &ldquo;vm&rdquo; stands for &ldquo;virtual memory&rdquo;, and the suffix &ldquo;z&rdquo; indicates that the file is compressed). While <code>arch/riscv/boot/Image</code> is a flat binary image file and it is a commonly used for embedded systems. Check <a href="https://en.wikipedia.org/wiki/Vmlinux">vmlinux wiki</a> for details.</p>
 <h3 id="32-compile-busybox">3.2 Compile BusyBox</h3>
 <p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, download the <a href="https://busybox.net/downloads/busybox-1.36.0.tar.bz2">BusyBox source code tarball</a>, extract the tarball and configure it using the default settings.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
-</span></span><span style="display:flex;"><span>$ wget https://busybox.net/downloads/busybox-1.36.0.tar.bz2
-</span></span><span style="display:flex;"><span>$ tar xf busybox-1.36.0.tar.bz2
-</span></span><span style="display:flex;"><span>$ cd busybox-1.36.0
-</span></span><span style="display:flex;"><span>$ CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make defconfig
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">$ wget https://busybox.net/downloads/busybox-1.36.0.tar.bz2
+</span></span><span class="line"><span class="cl">$ tar xf busybox-1.36.0.tar.bz2
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> busybox-1.36.0
+</span></span><span class="line"><span class="cl">$ <span class="nv">CROSS_COMPILE</span><span class="o">=</span>riscv64-linux-gnu- make defconfig
 </span></span></code></pre></div><p>Before compiling, some minor modifications are needed:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make menuconfig
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ make menuconfig
 </span></span></code></pre></div><p>Select the &ldquo;Settings -&gt; Build Options -&gt; Build static binary (no shared libs)&rdquo; option. Then select &ldquo;Exit&rdquo; and confirm &ldquo;Yes&rdquo; when prompted with &ldquo;Do you wish to save your new configuration&rdquo;.</p>
 <p>Once you have completed this step, you can begin the compilation process:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ CROSS_COMPILE<span style="color:#f92672">=</span>riscv64-linux-gnu- make -j <span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">CROSS_COMPILE</span><span class="o">=</span>riscv64-linux-gnu- make -j <span class="k">$(</span>nproc<span class="k">)</span>
 </span></span></code></pre></div><p>We now have the output file <code>./busybox</code>, use the <code>file</code> command to check and confirm that it is a RISC-V executable file with <strong>static linking</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file busybox
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ file busybox
 </span></span></code></pre></div><p>The expected output should resemble something like:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>busybox: ELF 64-bit LSB executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), statically linked, BuildID[sha1]=04d2e9ad32458855c1861202cc4f7b53dea75374, for GNU/Linux 4.15.0, stripped
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">busybox: ELF 64-bit LSB executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), statically linked, BuildID[sha1]=04d2e9ad32458855c1861202cc4f7b53dea75374, for GNU/Linux 4.15.0, stripped
 </span></span></code></pre></div><h2 id="4-make-the-image-file">4. Make the image file</h2>
 <p>Just as a computer needs a hard drive or SSD to store programs and data, a virtual machine needs storage device as well. The storage device for virtual machines is usually implemented using a type of file called &ldquo;image file&rdquo;, which means that the hard disk drive you see within the virtual machine is actually an ordinary file located on the <em>host machine</em> (the machine running QEMU). Operations such as partitioning, formatting, reading and writing to the hard disk drive within the virtual machine take place inside the image file.</p>
 <h3 id="41-create-an-empty-image-file">4.1 Create an empty image file</h3>
 <p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, create an empty file <code>vda.img</code> with a capacity of 128MB:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/zero of<span style="color:#f92672">=</span>vda.img bs<span style="color:#f92672">=</span>1M count<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>vda.img <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">128</span>
 </span></span></code></pre></div><p>The <code>dd</code> command copies data from <code>if</code> to <code>of</code> with the specified capacity, where <code>/dev/zero</code> is a special file filled with zeroes with an infinite size. You can check the contents of a file using the hexadecimal and binary viewr and converter tool <code>xxd</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ xxd -l <span style="color:#ae81ff">64</span> vda.img
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ xxd -l <span class="m">64</span> vda.img
 </span></span></code></pre></div><p>The above command shows the first 64 bytes of the file <code>vda.img</code>. The expected output is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>00000000: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-</span></span><span style="display:flex;"><span>00000010: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-</span></span><span style="display:flex;"><span>00000020: 0000 0000 0000 0000 0000 0000 0000 0000  ................
-</span></span><span style="display:flex;"><span>00000030: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">00000000: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+</span></span><span class="line"><span class="cl">00000010: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+</span></span><span class="line"><span class="cl">00000020: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+</span></span><span class="line"><span class="cl">00000030: 0000 0000 0000 0000 0000 0000 0000 0000  ................
 </span></span></code></pre></div><h3 id="42-partition-the-image-file">4.2 Partition the image file</h3>
 <p>The current image file is like a flash new hard disk and needs to be partitioned before we can store programs and data on it.</p>
 <p>There is a convenient tool called <code>fdisk</code> that can be used to partition a disk or image file. Run the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ fdisk vda.img
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ fdisk vda.img
 </span></span></code></pre></div><p>Since we are not partitioning a real hard disk, the above command does not require root privileges (i.e., running as the root user or using <code>sudo</code>). Then enter the following commands in sequence in <code>fdisk</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Command (m for help): g
-</span></span><span style="display:flex;"><span>Command (m for help): n
-</span></span><span style="display:flex;"><span>Command (m for help): w
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Command (m for help): g
+</span></span><span class="line"><span class="cl">Command (m for help): n
+</span></span><span class="line"><span class="cl">Command (m for help): w
 </span></span></code></pre></div><p>The meaning of each command is:</p>
 <ul>
 <li><code>g</code>: create a new empty GPT partition table.</li>
@@ -325,33 +325,33 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <li><code>w</code>: write the partition table to disk and exit <code>fdisk</code>.</li>
 </ul>
 <p>Let&rsquo;s check the partitions of the image file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ fdisk -l vda.img
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ fdisk -l vda.img
 </span></span></code></pre></div><p>The output should resemble this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Disk vda.img: 128 MiB, 134217728 bytes, 262144 sectors
-</span></span><span style="display:flex;"><span>Units: sectors of 1 * 512 = 512 bytes
-</span></span><span style="display:flex;"><span>Sector size (logical/physical): 512 bytes / 512 bytes
-</span></span><span style="display:flex;"><span>I/O size (minimum/optimal): 512 bytes / 512 bytes
-</span></span><span style="display:flex;"><span>Disklabel type: gpt
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Device     Start    End Sectors  Size Type
-</span></span><span style="display:flex;"><span>vda.img1    2048 260095  258048  126M Linux filesystem
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Disk vda.img: 128 MiB, 134217728 bytes, 262144 sectors
+</span></span><span class="line"><span class="cl">Units: sectors of 1 * 512 = 512 bytes
+</span></span><span class="line"><span class="cl">Sector size (logical/physical): 512 bytes / 512 bytes
+</span></span><span class="line"><span class="cl">I/O size (minimum/optimal): 512 bytes / 512 bytes
+</span></span><span class="line"><span class="cl">Disklabel type: gpt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Device     Start    End Sectors  Size Type
+</span></span><span class="line"><span class="cl">vda.img1    2048 260095  258048  126M Linux filesystem
 </span></span></code></pre></div><p>Then attach this image file to the current system:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo losetup -P /dev/loop0 vda.img
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo losetup -P /dev/loop0 vda.img
 </span></span></code></pre></div><p>The image file is treated as a hard disk. The device file <code>/dev/loop0</code> refers to the hard disk, and <code>/dev/loop0p1</code> refers to the first partition (the <code>/dev/loop0p2</code> is the second partition and so on).</p>
 <p>Format the first partition with the <code>ext2</code> file system:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo mkfs.ext2 /dev/loop0p1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo mkfs.ext2 /dev/loop0p1
 </span></span></code></pre></div><blockquote>
 <p>A typical hard disk or SSD for a Linux system consists of four partitions: <code>/boot</code>, root, <code>/home</code> and a swap partition. However, for a simple system, only one root partition is required.</p>
 </blockquote>
 <h3 id="43-make-the-file-system">4.3 Make the file system</h3>
 <p>To begin, mount the first partition:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir -p part1
-</span></span><span style="display:flex;"><span>$ sudo mount /dev/loop0p1 part1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir -p part1
+</span></span><span class="line"><span class="cl">$ sudo mount /dev/loop0p1 part1
 </span></span></code></pre></div><p>The <code>part1</code> directory represents the root filesystem of the virtual machine to be built. We need to create a series of directories within it that are required by the Linux system.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd part1
-</span></span><span style="display:flex;"><span>$ sudo mkdir -p bin sbin lib usr/bin usr/sbin usr/lib
-</span></span><span style="display:flex;"><span>$ sudo mkdir -p etc
-</span></span><span style="display:flex;"><span>$ sudo mkdir -p root
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> part1
+</span></span><span class="line"><span class="cl">$ sudo mkdir -p bin sbin lib usr/bin usr/sbin usr/lib
+</span></span><span class="line"><span class="cl">$ sudo mkdir -p etc
+</span></span><span class="line"><span class="cl">$ sudo mkdir -p root
 </span></span></code></pre></div><p>You may wonder why so many directories are needed, but it&rsquo;s for historical reasons. Linux inherited the concept of Unix, which is a 50-year-old system when computer hardware and software were very different from modern ones. Now this series of directories has become a convention for Linux system.</p>
 <ul>
 <li><code>bin</code>: base programs such as <code>ls</code>, <code>cat</code>, <code>mkdir</code>.</li>
@@ -379,14 +379,14 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>In certain modern Linux distributions, the directories <code>/bin</code>, <code>/sbin</code>, <code>/lib</code> are simple symbolic links to <code>/usr/bin</code>, <code>/usr/sbin</code> and <code>/usr/lib</code> correspondingly.</p>
 </blockquote>
 <p>Apart from the <em>actual file system</em>, there are various virtual file system directries whose contents are generated by the kernel and drivers. Although you still need to create them manually on the hard disk, they serve as mount points.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo mkdir -p dev proc sys
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo mkdir -p dev proc sys
 </span></span></code></pre></div><ul>
 <li><code>dev</code>: device files created by device drivers, Linux treats all hardware as files, for example, <code>/dev/hda</code> is the first hard disk of your system, and you can read and write to it as if the entire hard disk is a huge file.</li>
 <li><code>proc</code>: user programs running information, but also some kernel and drivers running information for historical reasons.</li>
 <li><code>sys</code>: kernel and drivers running information.</li>
 </ul>
 <p>Two additional virtual directories present, named <code>run</code> and <code>tmp</code>. They are actually RAM disks for storing cache and temporary files, and all data stored in them would be lost when the machine is rebooted.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo mkdir -p run tmp
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo mkdir -p run tmp
 </span></span></code></pre></div><p>It is important to note that:</p>
 <ul>
 <li>Not everyone has a consistent understanding of these directories, so some directories may store other content.</li>
@@ -396,76 +396,76 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>Check the <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">Filesystem Hierarchy Standard</a> for the details of directory structure.</p>
 </blockquote>
 <p>Next, copy the BusyBox program file into the <code>bin</code> folder and create essential symbolic links.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd bin
-</span></span><span style="display:flex;"><span>$ sudo cp ../../busybox-1.36.0/busybox .
-</span></span><span style="display:flex;"><span>$ sudo ln -s busybox sh
-</span></span><span style="display:flex;"><span>$ cd ..
-</span></span><span style="display:flex;"><span>$ cd sbin
-</span></span><span style="display:flex;"><span>$ sudo ln -s ../bin/busybox init
-</span></span><span style="display:flex;"><span>$ sudo ln -s ../bin/busybox mount
-</span></span><span style="display:flex;"><span>$ cd ..
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> bin
+</span></span><span class="line"><span class="cl">$ sudo cp ../../busybox-1.36.0/busybox .
+</span></span><span class="line"><span class="cl">$ sudo ln -s busybox sh
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> sbin
+</span></span><span class="line"><span class="cl">$ sudo ln -s ../bin/busybox init
+</span></span><span class="line"><span class="cl">$ sudo ln -s ../bin/busybox mount
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> ..
 </span></span></code></pre></div><p>By default, when kernel has finish initializing hardware and building the user program running environment, it launches the first and only user program <code>/sbin/init</code>. The file path is hard coding in the kernel source, so we should follow this convention as well.</p>
 <blockquote>
 <p>As you can see from the above commands, <code>init</code> is just a symbolic link, and it is actually the Busybox program itself, as well as the shell program <code>sh</code> and mount utility <code>mount</code>. How does Busybox do this? This is because Busybox integrates including <code>init</code>, shell, and many base programs (such as <code>cat</code>, <code>ls</code>). When it is called through a symbolic link, it knows the name of the link (remember the value of the first element of the parameter <code>argv</code> in the <code>main()</code> function?) and starts the corresponding function inside it by that name, thus enabling one program to play the role of multiple programs.</p>
 </blockquote>
 <h3 id="44-configure-the-system">4.4 Configure the system</h3>
 <p>The system built by Busybox is configured by commands, including mounting file systems, assigning IP addresses for network interface. Create a shell script <code>/etc/init.d/rcS</code> and write command lines into it as needed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd etc
-</span></span><span style="display:flex;"><span>$ sudo mkdir -p init.d
-</span></span><span style="display:flex;"><span>$ cat <span style="color:#e6db74">&lt;&lt; EOF | sudo tee init.d/rcS
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">#!/bin/sh
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mount -t proc none /proc
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mount -t sysfs none /sys
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mount -t tmpfs none /run
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mount -t tmpfs none /tmp
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
-</span></span><span style="display:flex;"><span>$ sudo chmod +x init.d/rcS
-</span></span><span style="display:flex;"><span>$ cd ..
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> etc
+</span></span><span class="line"><span class="cl">$ sudo mkdir -p init.d
+</span></span><span class="line"><span class="cl">$ cat <span class="s">&lt;&lt; EOF | sudo tee init.d/rcS
+</span></span></span><span class="line"><span class="cl"><span class="s">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="s">mount -t proc none /proc
+</span></span></span><span class="line"><span class="cl"><span class="s">mount -t sysfs none /sys
+</span></span></span><span class="line"><span class="cl"><span class="s">mount -t tmpfs none /run
+</span></span></span><span class="line"><span class="cl"><span class="s">mount -t tmpfs none /tmp
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">$ sudo chmod +x init.d/rcS
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> ..
 </span></span></code></pre></div><p>Since we are building a simple system, there are only mount virtual folder commands in the initialization shell script. Remember to add the <em>execute permission</em> to the script file, otherwise it wouldn&rsquo;t be executed.</p>
 <p>To prevent Busybox from complaining, there are still some files that need to be created:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd dev
-</span></span><span style="display:flex;"><span>$ sudo mknod -m <span style="color:#ae81ff">666</span> tty2 c <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>$ sudo mknod -m <span style="color:#ae81ff">666</span> tty3 c <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>$ sudo mknod -m <span style="color:#ae81ff">666</span> tty4 c <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>$ cd ..
-</span></span><span style="display:flex;"><span>$ sudo touch etc/fstab
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> dev
+</span></span><span class="line"><span class="cl">$ sudo mknod -m <span class="m">666</span> tty2 c <span class="m">4</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">$ sudo mknod -m <span class="m">666</span> tty3 c <span class="m">4</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">$ sudo mknod -m <span class="m">666</span> tty4 c <span class="m">4</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">$ sudo touch etc/fstab
 </span></span></code></pre></div><h3 id="45-check-the-file-system">4.5 Check the file system</h3>
 <p>To ensure that the file system has been created correctly, run the <code>tree</code> command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo tree
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo tree
 </span></span></code></pre></div><p>The expected output should resemble the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>├── bin
-</span></span><span style="display:flex;"><span>│   ├── busybox
-</span></span><span style="display:flex;"><span>│   └── sh -&gt; busybox
-</span></span><span style="display:flex;"><span>├── dev
-</span></span><span style="display:flex;"><span>│   ├── tty2
-</span></span><span style="display:flex;"><span>│   ├── tty3
-</span></span><span style="display:flex;"><span>│   └── tty4
-</span></span><span style="display:flex;"><span>├── etc
-</span></span><span style="display:flex;"><span>│   ├── fstab
-</span></span><span style="display:flex;"><span>│   └── init.d
-</span></span><span style="display:flex;"><span>│       └── rcS
-</span></span><span style="display:flex;"><span>├── lib
-</span></span><span style="display:flex;"><span>├── lost+found
-</span></span><span style="display:flex;"><span>├── proc
-</span></span><span style="display:flex;"><span>├── root
-</span></span><span style="display:flex;"><span>├── run
-</span></span><span style="display:flex;"><span>├── sbin
-</span></span><span style="display:flex;"><span>│   ├── init -&gt; ../bin/busybox
-</span></span><span style="display:flex;"><span>│   └── mount -&gt; ../bin/busybox
-</span></span><span style="display:flex;"><span>├── sys
-</span></span><span style="display:flex;"><span>├── tmp
-</span></span><span style="display:flex;"><span>└── usr
-</span></span><span style="display:flex;"><span>    ├── bin
-</span></span><span style="display:flex;"><span>    ├── lib
-</span></span><span style="display:flex;"><span>    └── sbin
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>17 directories, 9 files
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">├── bin
+</span></span><span class="line"><span class="cl">│   ├── busybox
+</span></span><span class="line"><span class="cl">│   └── sh -&gt; busybox
+</span></span><span class="line"><span class="cl">├── dev
+</span></span><span class="line"><span class="cl">│   ├── tty2
+</span></span><span class="line"><span class="cl">│   ├── tty3
+</span></span><span class="line"><span class="cl">│   └── tty4
+</span></span><span class="line"><span class="cl">├── etc
+</span></span><span class="line"><span class="cl">│   ├── fstab
+</span></span><span class="line"><span class="cl">│   └── init.d
+</span></span><span class="line"><span class="cl">│       └── rcS
+</span></span><span class="line"><span class="cl">├── lib
+</span></span><span class="line"><span class="cl">├── lost+found
+</span></span><span class="line"><span class="cl">├── proc
+</span></span><span class="line"><span class="cl">├── root
+</span></span><span class="line"><span class="cl">├── run
+</span></span><span class="line"><span class="cl">├── sbin
+</span></span><span class="line"><span class="cl">│   ├── init -&gt; ../bin/busybox
+</span></span><span class="line"><span class="cl">│   └── mount -&gt; ../bin/busybox
+</span></span><span class="line"><span class="cl">├── sys
+</span></span><span class="line"><span class="cl">├── tmp
+</span></span><span class="line"><span class="cl">└── usr
+</span></span><span class="line"><span class="cl">    ├── bin
+</span></span><span class="line"><span class="cl">    ├── lib
+</span></span><span class="line"><span class="cl">    └── sbin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">17 directories, 9 files
 </span></span></code></pre></div><p>Finally, leave the <code>part1</code> folder and unmount the image file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
-</span></span><span style="display:flex;"><span>$ sudo umount part1
-</span></span><span style="display:flex;"><span>$ rm -r part1
-</span></span><span style="display:flex;"><span>$ sudo losetup -d /dev/loop0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">$ sudo umount part1
+</span></span><span class="line"><span class="cl">$ rm -r part1
+</span></span><span class="line"><span class="cl">$ sudo losetup -d /dev/loop0
 </span></span></code></pre></div><p>You now have an image file <code>vda.img</code> which contains a minimal bootable Linux file system.</p>
 <h2 id="5-boot-the-system">5. Boot the system</h2>
 <p>Install QEMU, On Arch Linux, the package is:</p>
@@ -477,14 +477,14 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <li><code>qemu-system</code></li>
 </ul>
 <p>Once you&rsquo;ve installed QEMU, navigate back to the <code>~/riscv64-minimal-linux</code> folder again and run the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -machine virt <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -m 1G <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -kernel ./linux-6.2.10/arch/riscv/boot/Image <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -append <span style="color:#e6db74">&#34;root=/dev/vda1 rw console=ttyS0&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -drive file<span style="color:#f92672">=</span>vda.img,format<span style="color:#f92672">=</span>raw,id<span style="color:#f92672">=</span>hd0 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -device virtio-blk-device,drive<span style="color:#f92672">=</span>hd0 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     -nographic
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ qemu-system-riscv64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -machine virt <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -m 1G <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -kernel ./linux-6.2.10/arch/riscv/boot/Image <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -append <span class="s2">&#34;root=/dev/vda1 rw console=ttyS0&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -drive <span class="nv">file</span><span class="o">=</span>vda.img,format<span class="o">=</span>raw,id<span class="o">=</span>hd0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -device virtio-blk-device,drive<span class="o">=</span>hd0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     -nographic
 </span></span></code></pre></div><p>There are several parameters in this command, let&rsquo;s go through them line by line:</p>
 <ul>
 <li><code>-machine virt</code> QEMU can emulate many real hardware platforms. A machine is a combination of a specified processor and some peripherals. <a href="https://qemu-project.gitlab.io/qemu/system/riscv/virt.html">The <code>virt</code> machine</a> is a specical one that doesn&rsquo;t correspond to any real hardware. It&rsquo;s an idealized processor for a specified architecture combined with some devices.</li>
@@ -495,33 +495,33 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <li><code>-nographic</code>: This indicates that this machine has no graphic interface hardware (also called <em>graphic card</em>), so all text messages generated by the software in this machine will be fed back to user through the <em>Serial port</em>. Of course, the <em>Serial port</em> is also virtual, it redirects the text message to the <em>Terminal</em> running the QEMU program.</li>
 </ul>
 <p>After executing the command, a lot of text will scroll up until a message appears:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Please press Enter to activate this console.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Please press Enter to activate this console.
 </span></span></code></pre></div><p>Press the <code>Enter</code> key, and a command prompt <code>~ #</code> will appear.</p>
 <p>Note that all base and system programs (i.e., the symbolic links to Busybox) have not been created yet. Run the following command to complete the installation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># /bin/busybox --install -s</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /bin/busybox --install -s</span>
 </span></span></code></pre></div><p>Note that this step only needs to be done once. The Linux system is now ready, let&rsquo;s do some checking:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># uname -a</span>
-</span></span><span style="display:flex;"><span>Linux <span style="color:#f92672">(</span>none<span style="color:#f92672">)</span> 6.2.10 <span style="color:#75715e">#1 SMP Tue Jan 4 02:10:41 CST 2023 riscv64 GNU/Linux</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># free -h</span>
-</span></span><span style="display:flex;"><span>              total        used        free      shared  buff/cache   available
-</span></span><span style="display:flex;"><span>Mem:         970.5M       10.6M      957.1M           <span style="color:#ae81ff">0</span>        2.7M      952.6M
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># df -h</span>
-</span></span><span style="display:flex;"><span>Filesystem                Size      Used Available Use% Mounted on
-</span></span><span style="display:flex;"><span>/dev/root               116.6M      1.7M    108.6M   2% /
-</span></span><span style="display:flex;"><span>devtmpfs                484.2M         <span style="color:#ae81ff">0</span>    484.2M   0% /dev
-</span></span><span style="display:flex;"><span>none                    485.2M         <span style="color:#ae81ff">0</span>    485.2M   0% /run
-</span></span><span style="display:flex;"><span>none                    485.2M         <span style="color:#ae81ff">0</span>    485.2M   0% /tmp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># cat /proc/cpuinfo</span>
-</span></span><span style="display:flex;"><span>processor       : <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>hart            : <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>isa             : rv64imafdch_sstc_zihintpause
-</span></span><span style="display:flex;"><span>mmu             : sv57
-</span></span><span style="display:flex;"><span>mvendorid       : 0x0
-</span></span><span style="display:flex;"><span>marchid         : 0x70200
-</span></span><span style="display:flex;"><span>mimpid          : 0x70200
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># uname -a</span>
+</span></span><span class="line"><span class="cl">Linux <span class="o">(</span>none<span class="o">)</span> 6.2.10 <span class="c1">#1 SMP Tue Jan 4 02:10:41 CST 2023 riscv64 GNU/Linux</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># free -h</span>
+</span></span><span class="line"><span class="cl">              total        used        free      shared  buff/cache   available
+</span></span><span class="line"><span class="cl">Mem:         970.5M       10.6M      957.1M           <span class="m">0</span>        2.7M      952.6M
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># df -h</span>
+</span></span><span class="line"><span class="cl">Filesystem                Size      Used Available Use% Mounted on
+</span></span><span class="line"><span class="cl">/dev/root               116.6M      1.7M    108.6M   2% /
+</span></span><span class="line"><span class="cl">devtmpfs                484.2M         <span class="m">0</span>    484.2M   0% /dev
+</span></span><span class="line"><span class="cl">none                    485.2M         <span class="m">0</span>    485.2M   0% /run
+</span></span><span class="line"><span class="cl">none                    485.2M         <span class="m">0</span>    485.2M   0% /tmp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cat /proc/cpuinfo</span>
+</span></span><span class="line"><span class="cl">processor       : <span class="m">0</span>
+</span></span><span class="line"><span class="cl">hart            : <span class="m">0</span>
+</span></span><span class="line"><span class="cl">isa             : rv64imafdch_sstc_zihintpause
+</span></span><span class="line"><span class="cl">mmu             : sv57
+</span></span><span class="line"><span class="cl">mvendorid       : 0x0
+</span></span><span class="line"><span class="cl">marchid         : 0x70200
+</span></span><span class="line"><span class="cl">mimpid          : 0x70200
 </span></span></code></pre></div><!-- raw HTML omitted -->
 <p>Run the command <code>poweroff</code> to turn off the virtual machine to exit QEMU. If there is any exception causes the virtual machine to freeze, press <code>Ctrl+a</code> and then press the <code>x</code> key to terminate QEMU. Note that the <code>Ctrl+C</code> key does not work.</p>
 <h2 id="6-get-rid-of-the-busybox">6. Get rid of the BusyBox</h2>
@@ -529,18 +529,18 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>Next we will create a <em>Hello World</em> program, and use it to replace the Busybox. Thus the system only consist of Linux kernel and one <em>Hello World</em> program.</p>
 <h3 id="61-create-_hello-world_-program">6.1 Create <em>Hello World</em> program</h3>
 <p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, create file <code>app.c</code> with the following code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello, world!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Press Ctrl+a, then press x to exit QEMU.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">putchar</span>(c);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Press Ctrl+a, then press x to exit QEMU.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">putchar</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Then compile it with RISC-V GCC compiler:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-linux-gnu-gcc -g -Wall -static -o app.elf app.c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ riscv64-linux-gnu-gcc -g -Wall -static -o app.elf app.c
 </span></span></code></pre></div><blockquote>
 <p>The compilation parameter <code>-static</code> instructs the compiler to generate an executable program with static linking, it simplifies our example.</p>
 </blockquote>
@@ -552,39 +552,39 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>In earlier versions of Linux, there was another temporary RAM file system called <code>initrd</code> (<em>initial RAM disk</em>), which is a bit like an image file. It would be loaded and mounted to RAM by bootloader during the machine boot process. However it is now deprecated and replaced by <code>initramfs</code>. The name <em>initrd</em> is still inherited, and can be seen in files such as the GRUB configuration file <code>/boot/grub/grub.cfg</code> and the QEMU command parameters.</p>
 </blockquote>
 <p>Navigate to the <code>~/riscv64-minimal-linux</code> folder, create the folder <code>ram1</code>, change into it, and create the folder <code>sbin</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir -p ram1
-</span></span><span style="display:flex;"><span>$ cd ram1
-</span></span><span style="display:flex;"><span>$ mkdir -p sbin
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir -p ram1
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> ram1
+</span></span><span class="line"><span class="cl">$ mkdir -p sbin
 </span></span></code></pre></div><p>Copy the <em>Hello World</em> program into <code>sbin</code> folder and name it <code>init</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cp ../app.elf sbin/init
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cp ../app.elf sbin/init
 </span></span></code></pre></div><p>The file system creation is complete. Note that both creating folder and copying file do not require root privileges. Run the <code>tree</code> command to check the new file system:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ tree
 </span></span></code></pre></div><p>The output should be:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>└── sbin
-</span></span><span style="display:flex;"><span>    └── init
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>2 directories, 1 file
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">└── sbin
+</span></span><span class="line"><span class="cl">    └── init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2 directories, 1 file
 </span></span></code></pre></div><p>Use the command <code>cpio</code> to package the <code>ram1</code> folder into an archive file and compress it with <code>gzip</code> command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find . | <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     cpio -o -v --format<span style="color:#f92672">=</span>newc | <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>     gzip &gt; ../initramfs.cpio.gz
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find . <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     cpio -o -v --format<span class="o">=</span>newc <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     gzip &gt; ../initramfs.cpio.gz
 </span></span></code></pre></div><p>Now you have obtained the file <code>~/riscv64-minimal-linux/initramfs.cpio.gz</code>. It is safe to delete the <code>ram1</code> folder:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd ..
-</span></span><span style="display:flex;"><span>$ rm -Rf ram1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">$ rm -Rf ram1
 </span></span></code></pre></div><h3 id="63-boot-the-new-system">6.3 Boot the new system</h3>
 <p>Run the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>qemu-system-riscv64 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -machine virt <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -m 1G <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel ./linux-6.2.10/arch/riscv/boot/Image <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -initrd ./initramfs.cpio.gz <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -append <span style="color:#e6db74">&#34;root=/dev/ram rdinit=/sbin/init console=ttyS0&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qemu-system-riscv64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -machine virt <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -m 1G <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -kernel ./linux-6.2.10/arch/riscv/boot/Image <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -initrd ./initramfs.cpio.gz <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -append <span class="s2">&#34;root=/dev/ram rdinit=/sbin/init console=ttyS0&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -nographic
 </span></span></code></pre></div><p>There is a new kernel parameter <code>rdinit=</code>, which is used to specify the <code>init</code> program file path in the <code>initramfs</code>.</p>
 <p>After a while, the &ldquo;Hello, World!&rdquo; message will appear:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Hello, world!
-</span></span><span style="display:flex;"><span>Press Ctrl+a, then press x to exit QEMU.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Hello, world!
+</span></span><span class="line"><span class="cl">Press Ctrl+a, then press x to exit QEMU.
 </span></span></code></pre></div><!-- raw HTML omitted -->
 <p>This indicates that our program is executed correctly.</p>
 <blockquote>

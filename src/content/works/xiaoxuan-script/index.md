@@ -128,9 +128,11 @@ _XiaoXuan Script_ actually supports pre-compilation mode, which is recommended f
 
 However, for most web applications, the code may not so large, and on-the-fly compilation mode is more convenient. It can simplify the developer's workflow, you can write, debug and run your code like you do with _JavaScript_, without the need for any build tools. In addition, XiaoXuan Script has a very fast compilation speed, and users can hardly notice the compilation process when they access your web application.
 
-## Resources
+## Get started
 
 - {{< null-link "XiaoXuan Script Playground" >}}
 - {{< null-link "Get started with XiaoXuan Script in 5 minutes" >}}
+
+## Manuals & Tutorials
+
 - {{< null-link "Build a local TODO web application using XiaoXuan Script" >}}
-- [The XiaoXuan Programming Language Family](/works/xiaoxuan-lang/)

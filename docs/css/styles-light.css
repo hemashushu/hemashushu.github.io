@@ -48,8 +48,9 @@ body header #content {
 }
 
 body header h1 {
-    font-size: 2.2em;
-    margin-top: 1.2em;
+    font-size: 1.6em;
+    margin-top: 1em;
+    margin-bottom: 12px;
 }
 
 body header h1 a {
@@ -76,6 +77,7 @@ body header ul li a {
 }
 
 body header p {
+    margin-top: 0;
     color: lightskyblue;
 }
 
@@ -98,7 +100,7 @@ body header p {
     } */
 
     body header h1 {
-        font-size: 1.8em;
+        font-size: 1.4em;
     }
 }
 
@@ -144,6 +146,7 @@ body header p {
 #container main {
     flex: 1 0 0;
     line-height: 1.5;
+    margin-bottom: 32px;
 }
 
 /* #container main h1 {
@@ -178,7 +181,7 @@ body header p {
 
 #container main section#list ul li {
     padding: 0.5em 0;
-    border-bottom: 1px solid #cecece;
+    border-bottom: 1px dashed #c7ebf7;
 }
 
 /* #container main section#list ul li:nth-child(odd) {
@@ -204,7 +207,7 @@ body header p {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #f7f7f7;
+    border-top: 1px solid #c7ebf7;
     font-size: 0.9em;
 }
 
@@ -213,20 +216,20 @@ body header p {
 }
 
 #container main section.post-nav a {
-    color: #666;
+    color: hotpink;
 }
 
 #container main article {
     overflow: hidden;
 }
 
-#container main article>pre {
-    background-color: #eef7d2;
+/* #container main article>pre {
+    background-color: #faf4ed;
     overflow-x: auto;
     padding: 0.8em;
-    font-size: 0.9em;
-}
+} */
 
+/* highlight code block */
 #container main article .highlight {
     overflow: hidden;
     border-radius: 6px;
@@ -239,20 +242,30 @@ body header p {
     margin: 0;
 }
 
+/* bug fix */
 #container main article .highlight pre code[data-lang="text"] {
     white-space: normal;
     word-break: break-word;
 }
 
-#container main article pre code {
+/* for code blocks which start with 4-space or tab */
+#container main article > pre  {
+    color: #575279;
+    background-color: #faf4ed;
+    overflow-x: auto;
     font-size: 0.9em;
+    padding: 0.8em;
+    margin: 0;
+    white-space: normal;
+    word-break: break-word;
 }
 
+/* inline code */
 #container main article p code,
 #container main article li code {
     padding: 0.1em 0.4em 0.2em;
     border-radius: 6px;
-    background-color: #ff88882b;
+    background-color: #fff1ea;
     font-size: 0.9em;
 }
 
@@ -277,7 +290,7 @@ body header p {
 }
 
 #container footer {
-    border-top: solid 1px #c7ebf7;
+    border-top: solid 5px #c7ebf7;
     padding: 32px 0;
 }
 
@@ -476,10 +489,10 @@ table thead {
 
 blockquote {
     margin: 1em;
-    border-left: solid 0.1em #cecece;
+    border-left: solid 0.5em #9acd322e;
     padding: 0.5em 2em;
     position: relative;
-    background-color: #efefef;
+    background-color: #f6fdf3;
 }
 
 blockquote::before {
@@ -487,7 +500,7 @@ blockquote::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     font-size: 3em;
-    color: rgba(192, 192, 192, 0.3);
+    color: #9acd322e;
     position: absolute;
     left: 16px;
     top: 0;
@@ -599,30 +612,26 @@ ul.pagination li {
     border-bottom: 1.5px dashed hotpink;
 }
 
-ul.card,
-ol.card {
+ul.card {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
 }
 
-ul.card>li,
-ol.card>li {
+ul.card>li {
     display: block;
-    margin: 0 24px 24px 0;
+    margin: 0 32px 32px 0;
     min-width: 300px;
     flex-basis: min-content;
     flex-grow: 1;
     overflow-wrap: anywhere;
 }
 
-ul.card.wide>li,
-ol.card.wide>li {
+ul.card.wide>li {
     min-width: 360px;
 }
 
-ul.card.narrow>li,
-ol.card.narrow>li {
+ul.card.narrow>li {
     max-width: 360px;
 }
 
@@ -640,10 +649,17 @@ ul.card>li .card_cover img {
     height: 100%;
 }
 
-ul.card>li .card-title h3,
-ol.card>li .card-title h3  {
+ul.card>li .card-title h3  {
     /* font-size: 1.1em; */
     margin: 0.2em 0;
+}
+
+ul.card>li .card-title.center {
+    text-align: center;
+}
+
+ul.card>li .card-content ul {
+    padding-left: 0;
 }
 
 ul.card>li .card-book {
@@ -676,6 +692,7 @@ ul.card>li .card-book .frame .name {
     background-color: #f783ac;
     margin: 16px 20px 8px;
     padding: 16px;
+    filter: grayscale(.4) brightness(1.1);
 }
 
 ul.card>li .card-book .frame .name h3 {

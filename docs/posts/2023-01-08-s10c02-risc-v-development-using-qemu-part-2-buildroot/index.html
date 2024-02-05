@@ -6,7 +6,7 @@
   <title>S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot - Hemashushu&#39;s Homepage</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot" />
 <meta property="og:description" content="In the previous section, we built a minimal Linux system by compiling the Linux kernel and BusyBox. While the system contains a base Shell environment and is capable of running static linked user programs, it is not suitable for development purposes. In theory, we could add any software, such as ssh, vim, git or binutils and so on by compiling their source codes and copying the binaries and libraries into the image file." />
 <meta property="og:type" content="article" />
@@ -183,16 +183,16 @@
 <!-- raw HTML omitted -->
 <h2 id="1-get-the-_buildroot_-source-code">1. Get the <em>Buildroot</em> source code</h2>
 <p>To get started, create a project folder in your home directory, let&rsquo;s call <code>riscv64-buildroot</code>. Once created, change into the folder and clone the <a href="https://git.buildroot.net/buildroot">Buildroot source code repository</a> via <em>Git</em>. After the download is complete, change into the <code>buildroot</code> directory and check out a stable version, e.g., <code>2023.02</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir ~/riscv64-buildroot
-</span></span><span style="display:flex;"><span>$ cd ~/riscv64-buildroot
-</span></span><span style="display:flex;"><span>$ git clone https://git.buildroot.net/buildroot
-</span></span><span style="display:flex;"><span>$ cd buildroot
-</span></span><span style="display:flex;"><span>$ git checkout -b 2023.02
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir ~/riscv64-buildroot
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> ~/riscv64-buildroot
+</span></span><span class="line"><span class="cl">$ git clone https://git.buildroot.net/buildroot
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> buildroot
+</span></span><span class="line"><span class="cl">$ git checkout -b 2023.02
 </span></span></code></pre></div><h2 id="2-configure-_buildroot_">2. Configure <em>Buildroot</em></h2>
 <p><em>Buildroot</em> is capable of building Linux systems for various hardware platforms. You can check the <code>board</code> directory to see a list of all platform vendors and modules. Each platform has one or more corresponding default configurations located in the <code>configs</code> directory. Run the following command to configure a QEMU RISC-V target platform with default settings:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make qemu_riscv64_virt_defconfig
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ make qemu_riscv64_virt_defconfig
 </span></span></code></pre></div><p>You can customize the target system by changing the image file capacity, adding packages, and more by execute the <code>make menuconfig</code> command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make menuconfig
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ make menuconfig
 </span></span></code></pre></div><p>Check the following options:</p>
 <pre tabindex="0"><code class="language-conf" data-lang="conf">Toolchain ---&gt;
     * Install glibc utilities
@@ -288,36 +288,36 @@ Filesystem images ---&gt;
 </code></pre><p>Check out the <a href="https://www.linuxfromscratch.org/lfs/view/stable/">Linux From Scratch Book</a> for a detailed explanation of each package. Once you have selected your packages, select &ldquo;Save&rdquo; and &ldquo;Exit&rdquo; to exit the configuration interface.</p>
 <h2 id="4-compile-_buildroot_">4. Compile <em>Buildroot</em></h2>
 <p>Run the <code>make</code> command to start the package download and compilation process.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make -j <span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ make -j <span class="k">$(</span>nproc<span class="k">)</span>
 </span></span></code></pre></div><blockquote>
 <p>The <code>$(nproc)</code> is a <em>command substitution</em> that is replaced by the output of the <code>nproc</code> command. The <code>nproc</code> command is used to display the number of CPU cores. So the above command will become <code>make -j 6</code> assuming there are 6 cores in your CPU. This will make the compilation process much faster since the code will be compiled with multiple threads.</p>
 </blockquote>
 <p>Depending on the performance of your machine, you may have time for a cup of tea or perhaps another biscuit while the download and compilation are completed. Afterward, the resulting files will be located in the <code>output/images</code> directory. Checking with the <code>ls</code> command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls -lh output/images
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -lh output/images
 </span></span></code></pre></div><p>The output will resemble the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>total 252M
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang 119K Mar  4 02:58 fw_dynamic.bin
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang 1.1M Mar  4 02:58 fw_dynamic.elf
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang 119K Mar  4 02:58 fw_jump.bin
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang 1.1M Mar  4 02:58 fw_jump.elf
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang  19M Mar  4 02:59 Image
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang 2.0G Mar  4 03:01 rootfs.ext2
-</span></span><span style="display:flex;"><span>lrwxrwxrwx 1 yang yang   11 Mar  4 02:59 rootfs.ext4 -&gt; rootfs.ext2
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang  86M Mar  4 02:59 rootfs.tar
-</span></span><span style="display:flex;"><span>-rwxr-xr-x 1 yang yang  499 Mar  4 02:59 start-qemu.sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">total 252M
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang 119K Mar  4 02:58 fw_dynamic.bin
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang 1.1M Mar  4 02:58 fw_dynamic.elf
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang 119K Mar  4 02:58 fw_jump.bin
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang 1.1M Mar  4 02:58 fw_jump.elf
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang  19M Mar  4 02:59 Image
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang 2.0G Mar  4 03:01 rootfs.ext2
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 yang yang   11 Mar  4 02:59 rootfs.ext4 -&gt; rootfs.ext2
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang  86M Mar  4 02:59 rootfs.tar
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 yang yang  499 Mar  4 02:59 start-qemu.sh
 </span></span></code></pre></div><h2 id="5-boot-the-system">5. Boot the system</h2>
 <p>To boot the target system, use the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>qemu-system-riscv64 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -machine virt <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -m 1G <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios ./buildroot/output/images/fw_jump.elf <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel ./buildroot/output/images/Image <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -append <span style="color:#e6db74">&#34;rootwait root=/dev/vda ro&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -drive file<span style="color:#f92672">=</span>./buildroot/output/images/rootfs.ext2,format<span style="color:#f92672">=</span>raw,id<span style="color:#f92672">=</span>hd0 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -device virtio-blk-device,drive<span style="color:#f92672">=</span>hd0 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -netdev user,id<span style="color:#f92672">=</span>net0,hostfwd<span style="color:#f92672">=</span>tcp::10022-:22 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -device virtio-net-device,netdev<span style="color:#f92672">=</span>net0 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qemu-system-riscv64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -machine virt <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -m 1G <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -bios ./buildroot/output/images/fw_jump.elf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -kernel ./buildroot/output/images/Image <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -append <span class="s2">&#34;rootwait root=/dev/vda ro&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -drive <span class="nv">file</span><span class="o">=</span>./buildroot/output/images/rootfs.ext2,format<span class="o">=</span>raw,id<span class="o">=</span>hd0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -device virtio-blk-device,drive<span class="o">=</span>hd0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -netdev user,id<span class="o">=</span>net0,hostfwd<span class="o">=</span>tcp::10022-:22 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -device virtio-net-device,netdev<span class="o">=</span>net0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -nographic
 </span></span></code></pre></div><p>Compare to the previous chapter, there are three new QEMU parameters:</p>
 <ul>
 <li><code>-bios ./buildroot/output/images/fw_jump.elf</code>: This specifies the BIOS firmware. The <code>fw_jump.elf</code> is actually the OpenSBI, which is generated by <em>Buildroot</em>. Note that when omitting the <code>-bios</code> parameter, the QEMU builtin one will be loaded. In this case, we should use the <em>Buildroot</em> version.</li>
@@ -328,61 +328,61 @@ Filesystem images ---&gt;
 </blockquote>
 <p>Once the command is executed, many message will be shown, generated by <em>OpenSBI</em>, kernel and the <code>init</code> process. You can safely ignore them if there is no error message.</p>
 <p>The message will be ended with two lines: <code>Welcome to Buildroot</code> and <code>buildroot login</code>, enter the user name <code>root</code> without password to log in.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>buildroot login: root
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">buildroot login: root
 </span></span></code></pre></div><h2 id="6-check-the-system">6. Check the system</h2>
 <p>You can do a quick check to validate whether the cpu module, memory size, kernel version and storage space match what you configured:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># uname -a</span>
-</span></span><span style="display:flex;"><span>Linux buildroot 5.15.43 <span style="color:#75715e">#1 SMP Tue Mar 4 07:31:21 CST 2023 riscv64 GNU/Linux</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># free -h</span>
-</span></span><span style="display:flex;"><span>              total        used        free      shared  buff/cache   available
-</span></span><span style="display:flex;"><span>Mem:         988.5M       19.4M      961.0M       48.0K        8.0M      959.1M
-</span></span><span style="display:flex;"><span>Swap:             <span style="color:#ae81ff">0</span>           <span style="color:#ae81ff">0</span>           <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># df -h</span>
-</span></span><span style="display:flex;"><span>Filesystem      Size  Used Avail Use% Mounted on
-</span></span><span style="display:flex;"><span>/dev/root       2.0G  151M  1.7G   9% /
-</span></span><span style="display:flex;"><span>devtmpfs        494M     <span style="color:#ae81ff">0</span>  494M   0% /dev
-</span></span><span style="display:flex;"><span>tmpfs           495M     <span style="color:#ae81ff">0</span>  495M   0% /dev/shm
-</span></span><span style="display:flex;"><span>tmpfs           495M   24K  495M   1% /tmp
-</span></span><span style="display:flex;"><span>tmpfs           495M   24K  495M   1% /run
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># cat /proc/cpuinfo</span>
-</span></span><span style="display:flex;"><span>processor       : <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>hart            : <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>isa             : rv64imafdch_zicsr_zifencei_zihintpause_zba_zbb_zbc_zbs_sstc
-</span></span><span style="display:flex;"><span>mmu             : sv48
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># uname -a</span>
+</span></span><span class="line"><span class="cl">Linux buildroot 5.15.43 <span class="c1">#1 SMP Tue Mar 4 07:31:21 CST 2023 riscv64 GNU/Linux</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># free -h</span>
+</span></span><span class="line"><span class="cl">              total        used        free      shared  buff/cache   available
+</span></span><span class="line"><span class="cl">Mem:         988.5M       19.4M      961.0M       48.0K        8.0M      959.1M
+</span></span><span class="line"><span class="cl">Swap:             <span class="m">0</span>           <span class="m">0</span>           <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># df -h</span>
+</span></span><span class="line"><span class="cl">Filesystem      Size  Used Avail Use% Mounted on
+</span></span><span class="line"><span class="cl">/dev/root       2.0G  151M  1.7G   9% /
+</span></span><span class="line"><span class="cl">devtmpfs        494M     <span class="m">0</span>  494M   0% /dev
+</span></span><span class="line"><span class="cl">tmpfs           495M     <span class="m">0</span>  495M   0% /dev/shm
+</span></span><span class="line"><span class="cl">tmpfs           495M   24K  495M   1% /tmp
+</span></span><span class="line"><span class="cl">tmpfs           495M   24K  495M   1% /run
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cat /proc/cpuinfo</span>
+</span></span><span class="line"><span class="cl">processor       : <span class="m">0</span>
+</span></span><span class="line"><span class="cl">hart            : <span class="m">0</span>
+</span></span><span class="line"><span class="cl">isa             : rv64imafdch_zicsr_zifencei_zihintpause_zba_zbb_zbc_zbs_sstc
+</span></span><span class="line"><span class="cl">mmu             : sv48
 </span></span></code></pre></div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>Next, check the installed packages:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># python --version</span>
-</span></span><span style="display:flex;"><span>Python 3.11.2
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># git --version</span>
-</span></span><span style="display:flex;"><span>git version 2.40.0
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># wget --version | head -n 1</span>
-</span></span><span style="display:flex;"><span>GNU Wget 1.21.3 built on linux-gnu.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># vim --version | head -n 1</span>
-</span></span><span style="display:flex;"><span>VIM - Vi IMproved 9.0 <span style="color:#f92672">(</span><span style="color:#ae81ff">2022</span> Jun 28, compiled Mar <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">2023</span> 17:15:56<span style="color:#f92672">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># python --version</span>
+</span></span><span class="line"><span class="cl">Python 3.11.2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># git --version</span>
+</span></span><span class="line"><span class="cl">git version 2.40.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># wget --version | head -n 1</span>
+</span></span><span class="line"><span class="cl">GNU Wget 1.21.3 built on linux-gnu.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># vim --version | head -n 1</span>
+</span></span><span class="line"><span class="cl">VIM - Vi IMproved 9.0 <span class="o">(</span><span class="m">2022</span> Jun 28, compiled Mar <span class="m">12</span> <span class="m">2023</span> 17:15:56<span class="o">)</span>
 </span></span></code></pre></div><p>Note the output text may be slighty different from your guest machine.</p>
 <h2 id="7-create-a-non-privileged-user">7. Create a non-privileged user</h2>
 <p>It&rsquo;s easy to make mistakes when operating with the root user, so it&rsquo;s good practice to creat a non-privileged user after system is installed, and switch to it as soon as possible.</p>
 <p>To begin, create a user named <code>yang</code> (or the username you usually use) and set its password:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ useradd -m -s /bin/bash yang
-</span></span><span style="display:flex;"><span>$ passwd yang
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ useradd -m -s /bin/bash yang
+</span></span><span class="line"><span class="cl">$ passwd yang
 </span></span></code></pre></div><p>Next, add the user to the <code>sudo</code> group, which makes it possible to promote privileges when needed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ usermod -a -G sudo yang
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ usermod -a -G sudo yang
 </span></span></code></pre></div><blockquote>
 <p>Make sure the <code>shadow</code> package is selected in <em>Buildroot</em> package selecting step, as the <code>useradd</code> and <code>usermod</code> commands are provided by this package.</p>
 </blockquote>
 <p>Switch to the newly created user and check its privileges.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ su - yang
-</span></span><span style="display:flex;"><span>$ id
-</span></span><span style="display:flex;"><span>uid<span style="color:#f92672">=</span>1000<span style="color:#f92672">(</span>yang<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>1000<span style="color:#f92672">(</span>yang<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>1000<span style="color:#f92672">(</span>yang<span style="color:#f92672">)</span>,102<span style="color:#f92672">(</span>sudo<span style="color:#f92672">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ su - yang
+</span></span><span class="line"><span class="cl">$ id
+</span></span><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>yang<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>yang<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>1000<span class="o">(</span>yang<span class="o">)</span>,102<span class="o">(</span>sudo<span class="o">)</span>
 </span></span></code></pre></div><p>The above text <code>102(sudo)</code> indicates this account has been successfully added to the <code>sudo</code> group. Try running the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo cat /etc/sudoers
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo cat /etc/sudoers
 </span></span></code></pre></div><p>It should not produce any errors.</p>
 <p>Create a file <code>.bash_profile</code> in the home directory and add the following text to it to improve your experience:</p>
 <pre tabindex="0"><code class="language-conf" data-lang="conf">alias ls=&#39;ls --color=auto&#39;
@@ -390,49 +390,49 @@ PS1=&#39;[\u@\h \W]\$ &#39;
 </code></pre><p>Run the command <code>$ source ~/.bash_profile</code> to make it take effect. Your custom base Linux system is now fully set up.</p>
 <h2 id="8-log-in-to-the-guest-machine-via-ssh">8. Log in to the guest machine via SSH</h2>
 <p>Since there may be some minor text rendering defects in the QEMU terminal, it&rsquo;s better to access the guest machine via SSH. Make sure that the <code>openssh</code> package is selected in the <em>Buildroot</em> package selecting step, the SSH daemon (a background process) will start automatically. Open another Terminal window and run the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ssh -p <span style="color:#ae81ff">10022</span> yang@localhost
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh -p <span class="m">10022</span> yang@localhost
 </span></span></code></pre></div><h2 id="9-risc-v-assembly-development">9. RISC-V Assembly development</h2>
 <p>The GNU Assembler and Linker are included in the <code>binutils</code> package. You can write some assembly code and assemble it into an executable program file to run it in the guest machine.</p>
 <p>To do this, create a file named <code>hello.S</code> in the home directory, and add the following text:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-S" data-lang="S"><span style="display:flex;"><span>    .text
-</span></span><span style="display:flex;"><span>    .global _start
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>_start<span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># calling convention</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># a0-a2                     - parameters to Linux function</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># a7                        - Linux function number</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># call `write(int fd, char* s, int len)`</span>
-</span></span><span style="display:flex;"><span>    li      a0, <span style="color:#ae81ff">1</span>               <span style="color:#75715e"># file descriptor, 1 = stdout</span>
-</span></span><span style="display:flex;"><span>    la      a1, s               <span style="color:#75715e"># the address/pointer to `s` string</span>
-</span></span><span style="display:flex;"><span>                                <span style="color:#75715e"># `la a1, s` is equivalent to</span>
-</span></span><span style="display:flex;"><span>                                <span style="color:#75715e"># `lui a1, %hi(s)` and `addi a1, a1, %lo(s)`</span>
-</span></span><span style="display:flex;"><span>    li      a2, <span style="color:#ae81ff">13</span>              <span style="color:#75715e"># the length of string `s`</span>
-</span></span><span style="display:flex;"><span>    li      a7, <span style="color:#ae81ff">64</span>              <span style="color:#75715e"># the number of syscall `write`</span>
-</span></span><span style="display:flex;"><span>    ecall
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># call `exit(int)`</span>
-</span></span><span style="display:flex;"><span>    addi    a0, x0, <span style="color:#ae81ff">0</span>           <span style="color:#75715e"># return code must be from 0 to 255</span>
-</span></span><span style="display:flex;"><span>    addi    a7, x0, <span style="color:#ae81ff">93</span>          <span style="color:#75715e"># the number of syscall `exit`</span>
-</span></span><span style="display:flex;"><span>    ecall
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    .section .rodata
-</span></span><span style="display:flex;"><span>s<span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    .asciz  <span style="color:#e6db74">&#34;Hello World!\n&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-S" data-lang="S"><span class="line"><span class="cl">    <span class="n">.text</span>
+</span></span><span class="line"><span class="cl">    <span class="n">.global</span> <span class="n">_start</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">_start</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># calling convention</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># a0-a2                     - parameters to Linux function</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># a7                        - Linux function number</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># call `write(int fd, char* s, int len)`</span>
+</span></span><span class="line"><span class="cl">    <span class="n">li</span>      <span class="n">a0</span><span class="p">,</span> <span class="m">1</span>               <span class="c1"># file descriptor, 1 = stdout</span>
+</span></span><span class="line"><span class="cl">    <span class="n">la</span>      <span class="n">a1</span><span class="p">,</span> <span class="n">s</span>               <span class="c1"># the address/pointer to `s` string</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1"># `la a1, s` is equivalent to</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1"># `lui a1, %hi(s)` and `addi a1, a1, %lo(s)`</span>
+</span></span><span class="line"><span class="cl">    <span class="n">li</span>      <span class="n">a2</span><span class="p">,</span> <span class="m">13</span>              <span class="c1"># the length of string `s`</span>
+</span></span><span class="line"><span class="cl">    <span class="n">li</span>      <span class="n">a7</span><span class="p">,</span> <span class="m">64</span>              <span class="c1"># the number of syscall `write`</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ecall</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># call `exit(int)`</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addi</span>    <span class="n">a0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="m">0</span>           <span class="c1"># return code must be from 0 to 255</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addi</span>    <span class="n">a7</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="m">93</span>          <span class="c1"># the number of syscall `exit`</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ecall</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">.section</span> <span class="n">.rodata</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">.asciz</span>  <span class="s">&#34;Hello World!\n&#34;</span>
 </span></span></code></pre></div><blockquote>
 <p>If you are interested in the RISC-V assembly language, check out another series of my articles: <a href="../">Gentle RISC-V Assembly Language Tutorial</a>.</p>
 </blockquote>
 <p>Next, assemble and link the file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ as -g -o hello.o hello.S
-</span></span><span style="display:flex;"><span>$ ld -o hello.elf hello.o
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ as -g -o hello.o hello.S
+</span></span><span class="line"><span class="cl">$ ld -o hello.elf hello.o
 </span></span></code></pre></div><p>This will generate a file named <code>hello.elf</code>. Try running it, a line of text reading &ldquo;Hello World!&rdquo; will be displayed if there are no exceptions.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./hello.elf
-</span></span><span style="display:flex;"><span>Hello World!
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ./hello.elf
+</span></span><span class="line"><span class="cl">Hello World!
 </span></span></code></pre></div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h2 id="10-debug-program-by-gdb">10. Debug program by GDB</h2>
 <p>The <code>gdb</code> package has also been installed. Let&rsquo;s start debugging <code>main.elf</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gdb hello.elf
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ gdb hello.elf
 </span></span></code></pre></div><p>and run some GDB commands:</p>
 <pre tabindex="0"><code class="language-gdb" data-lang="gdb">(gdb) starti
 Starting program: /home/yang/hello.elf

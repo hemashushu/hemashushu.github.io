@@ -6,7 +6,7 @@
   <title>S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序 - 河马蜀黍的个人主页</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="河马蜀黍的个人主页和博客，分享一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
+<meta name="description" content="河马蜀黍的个人主页，分享一些计算机知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S01C02 什么是裸机程序？编写一个无需操作系统也可独自运行的 Hello World 程序" />
 <meta property="og:description" content="上一章 我们写了一个 &ldquo;Hello, World!&rdquo; 程序，然后用 GCC 交叉编译并使用 QEMU 模拟器成功运行。不过我们也发现程序的体积有几百KB，里面肯定有很多不是我们自己写的内容，而且它还依赖操作系统才能运行。这一章将会编写一个无需操作系统、无需任何库，即可独自运行的 &ldquo;Hello, World!&rdquo; 程序（这种程序叫 裸机程序），然后同样会使用 GCC 交叉编译并尝试使用 QEMU 运行。通过裸机程序，我们可以了解一个完整的程序是如何组成的，同时还会了解机器通电后如何执行程序。 1. 什么是裸机程序？ 2. 如何启动裸机程序 3. 制作裸机版的 &ldquo;Hello, World!&rdquo; 程序 3.1 如何直接访问硬件？ 3.2 通过串口发送字符 实现 print_string 函数 主程序 程序启" />
 <meta property="og:type" content="article" />
@@ -205,12 +205,12 @@
 <p>我们要实现是一个 &ldquo;裸机&rdquo; 版的 &ldquo;Hello, World!&rdquo; 程序，该程序将会在 <em>QEMU RISC-V 64-bit Virt</em> 的 <em>全系统模式</em> 里运行。</p>
 <h2 id="3-制作裸机版的-hello-world-程序">3. 制作裸机版的 &ldquo;Hello, World!&rdquo; 程序</h2>
 <p>先看看传统的 &ldquo;Hello, World!&rdquo; 程序的源代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>上面的程序非常简单，关键的只有一条语句：通过调用 <code>printf</code> 函数向屏幕输出 &ldquo;Hello, World!&rdquo; 字符串。通过调试程序逐步跟踪，或者查看 <a href="https://sourceware.org/git/?p=glibc.git">libc</a> 的源码，会发现 <code>printf</code> 函数（包括 <code>puts</code> 函数）会经历一系列过程，最后通过 <code>write</code> <em>系统调用</em> 实现字符串输出。这表明了这个程序需要在操作系统的环境里才能正常运行，因此无法成为裸机程序。</p>
 <p>如果要实现裸机版的 &ldquo;Hello, World!&rdquo; 程序，就必须自己实现向屏幕（硬件）显示字符的函数。</p>
 <h3 id="31-如何直接访问硬件">3.1 如何直接访问硬件？</h3>
@@ -224,28 +224,28 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 <p>NS16550 的寄存器空间之所以不是大小 <code>13 * 1 byte = 13 bytes</code> 的空间，是因为部分寄存器共用了同一个位置。比如 <code>RHR</code> 和 <code>THR</code> 的地址都是 0。</p>
 </blockquote>
 <p><a href="https://github.com/qemu/qemu/blob/master/hw/riscv/virt.c">QEMU RISC-V virt 的源代码</a> 有列出硬件外设（peripherals）的内存映射地址：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> MemMapEntry virt_memmap[] <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    [VIRT_MROM] <span style="color:#f92672">=</span>         {     <span style="color:#ae81ff">0x1000</span>,        <span style="color:#ae81ff">0xf000</span> },
-</span></span><span style="display:flex;"><span>    [VIRT_UART0] <span style="color:#f92672">=</span>        { <span style="color:#ae81ff">0x10000000</span>,         <span style="color:#ae81ff">0x100</span> },
-</span></span><span style="display:flex;"><span>    [VIRT_FLASH] <span style="color:#f92672">=</span>        { <span style="color:#ae81ff">0x20000000</span>,     <span style="color:#ae81ff">0x4000000</span> },
-</span></span><span style="display:flex;"><span>    [VIRT_DRAM] <span style="color:#f92672">=</span>         { <span style="color:#ae81ff">0x80000000</span>,           <span style="color:#ae81ff">0x0</span> },
-</span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>};
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">const</span> <span class="n">MemMapEntry</span> <span class="n">virt_memmap</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_MROM</span><span class="p">]</span> <span class="o">=</span>         <span class="p">{</span>     <span class="mh">0x1000</span><span class="p">,</span>        <span class="mh">0xf000</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_UART0</span><span class="p">]</span> <span class="o">=</span>        <span class="p">{</span> <span class="mh">0x10000000</span><span class="p">,</span>         <span class="mh">0x100</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_FLASH</span><span class="p">]</span> <span class="o">=</span>        <span class="p">{</span> <span class="mh">0x20000000</span><span class="p">,</span>     <span class="mh">0x4000000</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_DRAM</span><span class="p">]</span> <span class="o">=</span>         <span class="p">{</span> <span class="mh">0x80000000</span><span class="p">,</span>           <span class="mh">0x0</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p>其中 UART 表示串口设备，从上面的列表得知这台虚拟机的串口设备 NS16550 的内存地址为 <code>0x10000000</code>（某个外设的起始地址一般称为 <em>基址</em>）。结合数据手册可知，寄存器 <code>THR</code> 的地址是 <code>0x10000000 + 0 = 0x10000000</code>，寄存器 <code>LSR</code>（Line Status Register）的地址是 <code>0x10000000 + 0x5 = 0x10000005</code>，如此类推。</p>
 <p>如果要通过串口发送一个字符，只需向寄存器 <code>THR</code> 的地址 <code>0x1000_0000</code> 写入指定字符对应的 ASCII 数值（一个 uint8 类型整数），这个字符就会被重定向到正在运行 QEMU 程序的虚拟终端。</p>
 <p>所以要实现打印单个字符的函数是很简单的，在任意目录新建一个名 <code>put_char.S</code> 的文件, 内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-S" data-lang="S"><span style="display:flex;"><span>.equ VIRT_UART0, <span style="color:#ae81ff">0x10000000</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>.section .text.put_char
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>.globl put_char
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>put_char<span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    li s1, VIRT_UART0
-</span></span><span style="display:flex;"><span>    mv s2, a0
-</span></span><span style="display:flex;"><span>    sb s2, <span style="color:#ae81ff">0</span>(s1)
-</span></span><span style="display:flex;"><span>    ret
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-S" data-lang="S"><span class="line"><span class="cl"><span class="n">.equ</span> <span class="n">VIRT_UART0</span><span class="p">,</span> <span class="mh">0x10000000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">.section</span> <span class="n">.text.put_char</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">.globl</span> <span class="n">put_char</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">put_char</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">li</span> <span class="n">s1</span><span class="p">,</span> <span class="n">VIRT_UART0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mv</span> <span class="n">s2</span><span class="p">,</span> <span class="n">a0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sb</span> <span class="n">s2</span><span class="p">,</span> <span class="m">0</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ret</span>
 </span></span></code></pre></div><p>上面汇编源代码定义了一个名为 <code>put_char</code> 的 &ldquo;函数&rdquo;，其中的代码作用如下：</p>
 <ol>
 <li><code>.equ VIRT_UART0, 0x10000000</code>：定义了一个名字为 <code>VIRT_UART0</code> 的常量；</li>
@@ -270,14 +270,14 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 <p>RISC-V 汇编的内容会在后面的章节会详细讲解。</p>
 </blockquote>
 <p><code>put_char</code> 函数也可以用 C 语言实现，两个版本任意一个都可以正常工作。新建名为 <code>put_char.c</code> 的文件，其内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define VIRT_UART0 0x10000000
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">const</span> VIRT_UART0_PTR <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)VIRT_UART0;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put_char</span>(<span style="color:#66d9ef">char</span> c)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>VIRT_UART0_PTR <span style="color:#f92672">=</span> c;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define VIRT_UART0 0x10000000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">volatile</span> <span class="kt">char</span> <span class="o">*</span><span class="k">const</span> <span class="n">VIRT_UART0_PTR</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">VIRT_UART0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">put_char</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">VIRT_UART0_PTR</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>上面代码中关键字 <code>volatile</code> 用于标记该变量的值可能会在程序之外被改变，通常用于数值来自内存某个地址的变量。</p>
 <p>比如在源代码里有 <strong>连续多次读取</strong> 同一个变量的语句，如果没有标记为 <code>volatile</code>，编译器会把它优化为 <strong>只读取一次</strong>。因为显而易见后面的几次读取都是同样的值，所以生成汇编时只会生成 &ldquo;从内存读取&rdquo; 的指令一次。如果这语句用于读取 UART 的接收到的字符，那么就会出错，因为这个变量的值会在程序外部被改变的。这时就必须为变量加上 <code>volatile</code> 关键字，让编译器不要对它进行优化，而是原原本本地生成多条 &ldquo;从内存读取&rdquo; 的指令。</p>
 <blockquote>
@@ -285,37 +285,37 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 </blockquote>
 <h3 id="实现-print_string-函数">实现 print_string 函数</h3>
 <p>在函数 <code>put_char</code> 基础之上，可以实现打印字符串函数 <code>print_string</code>。新建名为 <code>libprint.c</code> 的文件，其内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;put_char.h&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print_string</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">*</span>str <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;\0&#39;</span>)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">put_char</span>(<span style="color:#f92672">*</span>str);
-</span></span><span style="display:flex;"><span>        str<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;put_char.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">print_string</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">put_char</span><span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">str</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h3 id="主程序">主程序</h3>
 <p>主程序很简单，新建名为 <code>app.c</code> 的文件，其内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;libprint.h&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bare_main</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">print_string</span>(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;libprint.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">bare_main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print_string</span><span class="p">(</span><span class="s">&#34;Hello, World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>因为这个是裸机程序，为了跟标准程序区分，这里把平常的主函数 <code>main</code> 命名为 <code>bare_main</code>（随意的取一个名字都可以）。</p>
 <h3 id="程序启动器">程序启动器</h3>
 <p>学习过 C 语言编程的大概都知道程序最先被执行的是 <code>main</code> 函数，可实际上程序的入口（即最先被开始执行的指令）是由编译器自动生成的 <code>_start</code> 过程，该过程会做一些初始化工作，比如设置栈顶地址等，然后才跳转到函数 <code>main</code>。不过仅在编译和链接为标准 Linux 的程序时，编译器才会自动添加 <code>_start</code> 过程，现在我们写的是裸机程序，所以需要自己手写类似的入口过程。新建名为 <code>startup.S</code> 的文件，其内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-S" data-lang="S"><span style="display:flex;"><span>.section .text.entry
-</span></span><span style="display:flex;"><span>.globl _start
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>_start<span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    la sp, stack_top
-</span></span><span style="display:flex;"><span>    call bare_main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>_loop<span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    nop
-</span></span><span style="display:flex;"><span>    j _loop
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-S" data-lang="S"><span class="line"><span class="cl"><span class="n">.section</span> <span class="n">.text.entry</span>
+</span></span><span class="line"><span class="cl"><span class="n">.globl</span> <span class="n">_start</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">_start</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">la</span> <span class="n">sp</span><span class="p">,</span> <span class="n">stack_top</span>
+</span></span><span class="line"><span class="cl">    <span class="n">call</span> <span class="n">bare_main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">_loop</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nop</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="n">_loop</span>
 </span></span></code></pre></div><p>其中的代码的大致作用如下：</p>
 <ol>
 <li><code>la sp, stack_top</code> 因为程序有嵌套的函数调用，所以需要用到 <em>栈</em>。在 RISC-V 体系里，通过向 <code>sp</code>（stack pointer）寄存器写入一个地址即可设置栈顶地址，这样就把 <em>栈</em> 搭建好了；（注意代码中的 <code>stack_top</code> 来自下面的链接脚本 <code>app.ld</code> 导出的符号）</li>
@@ -329,10 +329,10 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 </blockquote>
 <h2 id="编译">编译</h2>
 <p>编译各个源文件，但暂时不需要链接：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-elf-as -o startup.o startup.S
-</span></span><span style="display:flex;"><span>$ riscv64-elf-gcc -I . -Wall -fPIC -c -o app.o app.c
-</span></span><span style="display:flex;"><span>$ riscv64-elf-gcc -I . -Wall -fPIC -c -o libprint.o libprint.c
-</span></span><span style="display:flex;"><span>$ riscv64-elf-as -o put_char.o put_char.S
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ riscv64-elf-as -o startup.o startup.S
+</span></span><span class="line"><span class="cl">$ riscv64-elf-gcc -I . -Wall -fPIC -c -o app.o app.c
+</span></span><span class="line"><span class="cl">$ riscv64-elf-gcc -I . -Wall -fPIC -c -o libprint.o libprint.c
+</span></span><span class="line"><span class="cl">$ riscv64-elf-as -o put_char.o put_char.S
 </span></span></code></pre></div><p>在编译 <code>app.c</code> 时你可能会感到疑惑，在 <code>app.c</code> 里调用了函数 <code>print_string</code>，但这个函数却在后面才编译，那么为什么 <code>app.c</code> 在 &ldquo;引用了一个尚未编译的函数&rdquo; 的情况下也能成功编译呢？</p>
 <p>这正是 GCC 编译的工作原理，在编译一个源文件时，如果代码里有外部函数调用，编译器实际上是不管这个外部函数是否存在（是否已经编译），也不管它在哪里，你只需提供这个函数的签名给它即可（在当前的例子里，<code>print_string</code> 的函数签名位于头文件 <code>libprint.h</code> 里），这也是为什么各个源文件可以各自单独编译，甚至多个源文件可以并行编译的原因。</p>
 <blockquote>
@@ -346,38 +346,38 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 <li>当加载的是纯二进制数据是，可以通过参数 <code>-device loader,file=FILENAME,addr=0x80000000</code> 指定加载地址。</li>
 </ul>
 <p>下面采用的是第一种方法，只需在链接时指定一个链接脚本，就可以让链接器按照脚本的描述来组织和生成可执行文件。新建名为 <code>app.ld</code> 的文件，其内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>OUTPUT_ARCH(riscv)
-</span></span><span style="display:flex;"><span>ENTRY(_start)
-</span></span><span style="display:flex;"><span>BASE_ADDRESS = 0x80000000;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>SECTIONS
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  . = BASE_ADDRESS;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  .text : {
-</span></span><span style="display:flex;"><span>    *(.text.entry)
-</span></span><span style="display:flex;"><span>    *(.text .text.*)
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  .rodata : {
-</span></span><span style="display:flex;"><span>    *(.rodata .rodata.*)
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  .data : {
-</span></span><span style="display:flex;"><span>    *(.data .data.*)
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  .bss :{
-</span></span><span style="display:flex;"><span>    *(.bss .bss.*)
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  . = ALIGN(8);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  /* a 4KB stack */
-</span></span><span style="display:flex;"><span>  stack_bottom = .;
-</span></span><span style="display:flex;"><span>  . += 4096;
-</span></span><span style="display:flex;"><span>  stack_top = .;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">OUTPUT_ARCH(riscv)
+</span></span><span class="line"><span class="cl">ENTRY(_start)
+</span></span><span class="line"><span class="cl">BASE_ADDRESS = 0x80000000;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SECTIONS
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  . = BASE_ADDRESS;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  .text : {
+</span></span><span class="line"><span class="cl">    *(.text.entry)
+</span></span><span class="line"><span class="cl">    *(.text .text.*)
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  .rodata : {
+</span></span><span class="line"><span class="cl">    *(.rodata .rodata.*)
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  .data : {
+</span></span><span class="line"><span class="cl">    *(.data .data.*)
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  .bss :{
+</span></span><span class="line"><span class="cl">    *(.bss .bss.*)
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  . = ALIGN(8);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  /* a 4KB stack */
+</span></span><span class="line"><span class="cl">  stack_bottom = .;
+</span></span><span class="line"><span class="cl">  . += 4096;
+</span></span><span class="line"><span class="cl">  stack_top = .;
+</span></span><span class="line"><span class="cl">}
 </span></span></code></pre></div><p>其中 <code>. = BASE_ADDRESS</code> 语句用于指定程序的第一个段的加载地址，相当于指定了程序的加载位置。</p>
 <blockquote>
 <p>有关 <em>程序段</em> 以及链接脚本的详细内容，会在下一章讲解。</p>
@@ -392,15 +392,15 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 </ul>
 <p>命令运行之后将会得到 ELF 格式的可执行文件 <code>app.out</code>。</p>
 <p>当然上面的编译和链接过程也可以只用一个命令来完成：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>riscv64-elf-gcc <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -I . <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -Wall <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -fPIC <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -g <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -Wl,-T,app.ld <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nostdlib <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -o app.out <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    startup.S app.c libprint.c put_char.S
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">riscv64-elf-gcc <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -I . <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -Wall <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -fPIC <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -g <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -Wl,-T,app.ld <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -nostdlib <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -o app.out <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    startup.S app.c libprint.c put_char.S
 </span></span></code></pre></div><p>上面命令有两个新的参数：</p>
 <ul>
 <li><code>-Wl,-T,app.ld</code> 这个参数用于 &ldquo;传递参数给链接器 <code>ld</code>&quot;，相当于 <code>$ ld ... -T app.ld ...</code>。当需要把参数从 GCC 传递给链接器时，可以构造这种以逗号分隔的字符串。</li>
@@ -414,11 +414,11 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 </blockquote>
 <h2 id="运行">运行</h2>
 <p>下面使用 QEMU 的 <em>全系统模式</em> 程序 <code>qemu-system-riscv64</code> 运行该文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ qemu-system-riscv64 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -machine virt <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nographic <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -bios none <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -kernel app.out
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ qemu-system-riscv64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -machine virt <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -nographic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -bios none <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -kernel app.out
 </span></span></code></pre></div><p>如无意外，应该能看到正确的输出结果 &ldquo;Hello, World!&quot;。</p>
 <figure class="wide"><img src="./images/qemu-system.png"
          alt="QEMU 全系统模式"/><figcaption>
@@ -446,19 +446,19 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 <p>工具 <code>ar</code> 除了可以创建静态库，还可以用于查看或者修改，使用不同的操作码就能实现不同的功能。比如下面的命令可以查看静态库文件里含有哪些文件：</p>
 <p><code>$ riscv64-elf-ar t libbaremetal.a</code></p>
 <p>输出的结果如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>startup.o
-</span></span><span style="display:flex;"><span>libprint.o
-</span></span><span style="display:flex;"><span>put_char.o
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">startup.o
+</span></span><span class="line"><span class="cl">libprint.o
+</span></span><span class="line"><span class="cl">put_char.o
 </span></span></code></pre></div><p>由此可以确定已经正确打包所需的文件了。然后编译时就再也不需要 <code>startup.S</code>、<code>libprint.c</code> 和 <code>put_char.S</code>（当然头文件 <code>libprint.h</code> 仍需要），使用一个 <code>libbaremetal.a</code> 代替它们三个即可，编译命令也得到了简化：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>riscv64-elf-gcc <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -I . <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -Wall <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -fPIC <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -g <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -Wl,-T,app.ld <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -nostdlib <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -o app-one.out <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    app.c libbaremetal.a
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">riscv64-elf-gcc <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -I . <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -Wall <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -fPIC <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -g <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -Wl,-T,app.ld <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -nostdlib <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -o app-one.out <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    app.c libbaremetal.a
 </span></span></code></pre></div><p>运行之后将得到可执行文件 <code>app-one.out</code>，这个文件跟 <code>app.out</code> 是一模一样的。（可以使用命令 <code>$ diff app-one.out app.out</code> 验证）</p>
 <blockquote>
 <p>工具 <a href="https://en.wikipedia.org/wiki/Ar_(Unix)">ar</a> 实际上是一个通用的打包程序，只是后来被 <code>tar</code> 替换了，目前 <code>ar</code> 主要用于创建静态库。顺便一提，<em>Debian</em> 的包文件 <code>*.deb</code> 也是 ar 格式。</p>

@@ -58,32 +58,32 @@ If you are a beginner in XiaoXuan Programming Language, it is recommended to sta
 
 If you perfer to write programs that run locally, it is recommended to start with XiaoXuao Core, which makes it very easy to write utilities. Once you are familiar with XiaoXuan Core, it will be easier to move on to XiaoXuan Managed and XiaoXuan Native.
 
-## Recommended tutorials
-
 - {{< null-link "Get started with XiaoXuan Script in 5 minutes" >}}
 - {{< null-link "Get started with XiaoXuan Core in 5 minutes" >}}
 
-## Related documents
+## Manuals & Tutorials
 
 {{< html >}}
-<ul class="card wide">
+<ul class="card">
     <li>
         <div class="card-title">
             <h3><span class="null-link">The XiaoXuan Programming Language Reference</span></h3>
         </div>
         <div class="card-content">
-            <ol>
-                <li><span class="null-link">Data types</span></li>
-                <li><span class="null-link">Variables</span></li>
-                <li><span class="null-link">Functions</span></li>
-                <li><span class="null-link">Collection</span></li>
-                <li><span class="null-link">Control flow</span></li>
-                <li><span class="null-link">Method, generic and trait</span></li>
-                <li><span class="null-link">Pattern</span></li>
-                <li><span class="null-link">Chain</span></li>
-                <li><span class="null-link">Error handling</span></li>
-                <li><span class="null-link">Modules</span></li>
-            </ol>
+{{< /html >}}
+
+- {{< null-link "Data types" >}}
+- {{< null-link "Variables" >}}
+- {{< null-link "Functions" >}}
+- {{< null-link "Collection" >}}
+- {{< null-link "Control flow" >}}
+- {{< null-link "Method, generic and trait" >}}
+- {{< null-link "Pattern" >}}
+- {{< null-link "Chain" >}}
+- {{< null-link "Error handling" >}}
+- {{< null-link "Modules" >}}
+
+{{< html >}}
         </div>
     </li>
 
@@ -92,33 +92,37 @@ If you perfer to write programs that run locally, it is recommended to start wit
             <h3><span class="null-link">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</span></h3>
         </div>
         <div class="card-content">
-            <ol>
-                <li><span class="null-link">Set up a RISC-V virtual machine using QEMU.</span></li>
-                <li><span class="null-link">Write a minimal 'init' program.</span></li>
-                <li><span class="null-link">Write a minimal 'shell' program.</span></li>
-                <li><span class="null-link">Fundamentals of file system and processes,  implementing the `pwd` and `ls` commands.</span></li>
-                <li><span class="null-link">Implement the `mount` and `umount` commands.</span></li>
-                <li><span class="null-link">Principals of `redirect`, implementing the `echo` and `cat` commands.</span></li>
-                <li><span class="null-link">Principal of `pipe`, implementing the `tee` and `tr` commands.</span></li>
-                <li><span class="null-link">Session and process groups.</span></li>
-                <li><span class="null-link">The `root` privileges, users and groups, and the `setuid` bit.</span></li>
-                <li><span class="null-link">Add support for shell scripts.</span></li>
-            </ol>
+{{< /html >}}
+
+- {{< null-link "Set up a RISC-V virtual machine using QEMU" >}}
+- {{< null-link "Write a minimal `init` program" >}}
+- {{< null-link "Write a minimal `shell` program" >}}
+- {{< null-link "Fundamentals of file system and processes,  implementing the `pwd` and `ls` commands" >}}
+- {{< null-link "Implement the `mount` and `umount` commands" >}}
+- {{< null-link "Principals of `redirect`, implementing the `echo` and `cat` commands" >}}
+- {{< null-link "Principal of `pipe`, implementing the `tee` and `tr` commands" >}}
+- {{< null-link "Session and process groups" >}}
+- {{< null-link "The `root` privileges, users and groups, and the `setuid` bit" >}}
+- {{< null-link "Add support for shell scripts" >}}
+
+{{< html >}}
         </div>
     </li>
 
     <li>
         <div class="card-title">
-            <h3><span class="null-link">Build a Docker-like container manager from scratch using XiaoXuan Core</span></h3>
+            <h3><span class="null-link">Build a Docker-like container utility from scratch using XiaoXuan Core</span></h3>
         </div>
         <div class="card-content">
-            <ol>
-                <li><span class="null-link">The principal of Linux container</span></li>
-                <li><span class="null-link">Isolating the file system</span></li>
-                <li><span class="null-link">Isolating the process space</span></li>
-                <li><span class="null-link">Isolating the accounts</span></li>
-                <li><span class="null-link">The virtual networking devices and routeb  b 56rtn j </span></li>
-            </ol>
+{{< /html >}}
+
+- {{< null-link "The principal of Linux container" >}}
+- {{< null-link "Isolating the file system" >}}
+- {{< null-link "Isolating the process space" >}}
+- {{< null-link "Isolating the accounts" >}}
+- {{< null-link "The virtual networking devices and route" >}}
+
+{{< html >}}
         </div>
     </li>
 </ul>

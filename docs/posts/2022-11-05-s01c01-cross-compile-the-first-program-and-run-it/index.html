@@ -6,7 +6,7 @@
   <title>S01C01 Let&#39;s cross-compile the first program and run it - Hemashushu&#39;s Homepage</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S01C01 Let&#39;s cross-compile the first program and run it" />
 <meta property="og:description" content="This is the first chapter of series Dive into RISC-V system, step by step. In this series, we will learn the basic principles of programs, including how they are constructed, the structure of program files, how programs run, how software and hardware communicate, and how assembly language is converted into instructions. In the latter part of this series, we will implement a RISC-V assembler and linker, as well as a custom RISC-V assembly language and linker script language." />
 <meta property="og:type" content="article" />
@@ -271,12 +271,12 @@
 <p>The &ldquo;Hello, World!&rdquo; program is a staple of the programming world, and it is a natural first step for learning cross-compilation.</p>
 <h3 id="41-creating-the-hello-world-program">4.1 Creating the &ldquo;Hello, World!&rdquo; program</h3>
 <p>Create a file named <code>app.c</code> anywhere with the following contents:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>The program is very simple: print the text &ldquo;Hello, World!&rdquo; to the screen then exit the program with a return value of 0.</p>
 <blockquote>
 <p>After program exits, it returns an integer to the caller, which is called the <em>exit code</em>, It is a <code>uint32</code> number. It should be noted that in the Linux environment, only the least significant 8 bits of the number are valid. Therefore, the valid range of exit code is from 0 to 255. If a negative number is returned, it will be returned in <a href="https://en.wikipedia.org/wiki/Two%27s_complement">Two&rsquo;s complement</a> form. For example, <code>-10</code> is represented in binary as <code>0000,1010</code> and in Two&rsquo;s complement as <code>1111,0101 + 1 = 1111,0110</code>, which corresponds to decimal <code>246</code>.</p>
@@ -288,7 +288,7 @@
 <h3 id="42-cross-compiling">4.2 Cross-compiling</h3>
 <p>The programs for compiling, assembling, and linking in the GNU Toolchain are <code>gcc</code>, <code>as</code> and <code>ld</code>. If you are processing a native compile, simply enter the program names. When cross-compiling, you need to add a prefix to the program name. For example, the prefix is <code>riscv64-linux-gnu-</code> when the target envirtonment is RISC-V and Linux.</p>
 <p>To cross-compile the &ldquo;Hello, World!&rdquo; program, run the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-linux-gnu-gcc -g -Wall -o app.elf app.c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ riscv64-linux-gnu-gcc -g -Wall -o app.elf app.c
 </span></span></code></pre></div><p>The meanings of each parameters are:</p>
 <ul>
 <li>
@@ -315,7 +315,7 @@
 <p>The ELF (<em>Executable and Linkable Format</em>) format is one of the formats for binary executable files, and <code>app.elf</code> generated in the previous step is a file in ELF format. To check the format information of the output file, you can use the following command:</p>
 <p><code>$ file app.elf</code></p>
 <p>The output result is roughly as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app.elf: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=afe0994d7df77dc817058ae17e814d8f0a4163ed, for GNU/Linux 4.15.0, with debug_info, not stripped
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">app.elf: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=afe0994d7df77dc817058ae17e814d8f0a4163ed, for GNU/Linux 4.15.0, with debug_info, not stripped
 </span></span></code></pre></div><p>Here are the meanings of some of the content in the above text:</p>
 <ul>
 <li>
@@ -378,7 +378,7 @@
 <p>If you want to run the above &ldquo;Hello, World!&rdquo; program in QEMU full system mode, you need to configure a RISC-V system with bootloader, a virtual disk and install a Linux system, and copy the program into the virtual machine. for simplicity, we will run the program in the user mode:</p>
 <p><code>$ qemu-riscv64 app.elf</code></p>
 <p>The result of the command is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>qemu-riscv64: Could not open &#39;/lib/ld-linux-riscv64-lp64d.so.1&#39;: No such file or directory
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">qemu-riscv64: Could not open &#39;/lib/ld-linux-riscv64-lp64d.so.1&#39;: No such file or directory
 </span></span></code></pre></div><p>Obviously, the program did not run correctly. By default, GCC produces dynamically linked programs, which require a <em>runtime dynamic linker</em> to load the shared libraries required by the program. The runtime dynamic linker is the program <code>ld.so</code>, which is the <code>/lib/ld-linux-riscv64-lp64d.so.1</code> shown in the error message in this example.</p>
 <p>The program produced by GCC is assumed to run in a &ldquo;normal Linux system&rdquo;, while we are currently in a special environment called QEMU user mode. From the perspective of the &ldquo;Hello, World!&rdquo; program, it does not know that it is running in a specical environment and assumes that it is running in a Linux system based on the RISC-V architecture. Therefore, it searches for the dynamic linker <code>/lib/ld-linux-riscv64-lp64d.so.1</code> as usual. In reality, the current environment (the author&rsquo;s machine) is running the <em>x86_64</em> version of Linux, and the dynamic linker is <code>/lib/ld-linux-x86-64.so.2</code>. QEMU user mode only translates CPU instructions and does not convert other data such as file paths, so the program fails to run.</p>
 <blockquote>
@@ -408,17 +408,17 @@
 <p>Next, check the file format using the <code>file</code> command:</p>
 <p><code>$ file app-static.elf</code></p>
 <p>Part of the output is as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app-static.elf: ... statically linked ...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">app-static.elf: ... statically linked ...
 </span></span></code></pre></div><p>It shows that the original &ldquo;dynamically linked&rdquo; program has become &ldquo;statically linked&rdquo;.</p>
 <p>Then run this program with <code>qemu-riscv64</code>:</p>
 <p><code>$ qemu-riscv64 app-static.elf</code></p>
 <p>The program can run correctly without needing the <code>-L</code> option or setting the <code>QEMU_LD_PREFIX</code> environment variable. Actually the statically linked programs completely ignore the file system unless they need to read or write files.</p>
 <p>Since statically linked programs are so portable and convenient to use, why not compile all programs as statically linked? Let&rsquo;s compare the file sizes of the same &ldquo;Hello, World!&rdquo; program in dynamically linked and statically linked types:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ ls -lh
-</span></span><span style="display:flex;"><span>total 668K
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang   78 Nov 26 04:00 app.c
-</span></span><span style="display:flex;"><span>-rwxr-xr-x 1 yang yang 9.8K Nov 27 13:38 app.elf
-</span></span><span style="display:flex;"><span>-rwxr-xr-x 1 yang yang 645K Nov 27 21:40 app-static.elf
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ls -lh
+</span></span><span class="line"><span class="cl">total 668K
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang   78 Nov 26 04:00 app.c
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 yang yang 9.8K Nov 27 13:38 app.elf
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 yang yang 645K Nov 27 21:40 app-static.elf
 </span></span></code></pre></div><p>The result shows that the size of the dynamically linked program is <code>9.8K</code>, while the size of the statically linked program is <code>645K</code>, which is much larger than the former.  This is because the compiler copies all the binary code of the functions requried by the <code>printf</code> function directly or indirectly into the target executable file. Statically linked programs not only have a larger file size, but also take longer to load and occupy more memory at runtime. On the other hand, the shared libraries are only loaded once and shared with all applications using memory mapping. So the dynamically linked programs load faster and occupy less memory. When a program depends on more libraries, the difference between these two types will be more significant.</p>
 <blockquote>
 <p><em>Dynamically linking</em> is a good idea for systems, However it also brings some headaches. In daily use experience with Linux, few programs that can be downloaded and run directly. In most cases, errors such as missing or mismatched shared libraries will occur. If you want to install a program that does not exist in the package repository, you can only install it by compiling the source code. This is too difficult for non-professional users. The author believes that this problem is caused by an excessive use of shared libraries. Many small and non-essential libraries should not be global shared libraries.</p>
@@ -428,15 +428,15 @@
 </blockquote>
 <h3 id="55-modify-the-interpreter-of-program">5.5 Modify the interpreter of program</h3>
 <p>To make the &ldquo;Hello, World!&rdquo; program run correctly, you can also modify the dynamic linker of a program by passing the <code>--dynamic-linker</code> option to the GCC compiler, and the value of <code>interpreter</code> of the program will be updated. For example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-linux-gnu-gcc -g -Wall -Wl,--dynamic-linker,/usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 -o app-inter.elf app.c -L /usr/riscv64-linux-gnu/lib -lc
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ riscv64-linux-gnu-gcc -g -Wall -Wl,--dynamic-linker,/usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 -o app-inter.elf app.c -L /usr/riscv64-linux-gnu/lib -lc
 </span></span></code></pre></div><p>The <code>-Wl,--dynamic-linker,...</code> option in the command is used to pass parameters to the linker; the <code>-L</code> option is used to specify the path for the linker to search for shared libraries; the <code>-lc</code> option is used to specify the <code>libc.so</code> shared library to link. These options will be explained in detail in later sections.</p>
 <p>When compilation is completed, check the program using the <code>file</code> command:</p>
 <p><code>$ file app-inter.elf</code></p>
 <p>Part of the output is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app-inter.elf: ... interpreter /usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 ...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">app-inter.elf: ... interpreter /usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 ...
 </span></span></code></pre></div><p>It shows that the <code>interpreter</code> of the program has been changed to the specified path. However, when running this program, a new error message appears:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ qemu-riscv64 app-inter.elf
-</span></span><span style="display:flex;"><span>app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ qemu-riscv64 app-inter.elf
+</span></span><span class="line"><span class="cl">app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
 </span></span></code></pre></div><p>It seems that the RISC-V version of <code>ld.so</code> works, but the dynamic linker cannot find the RISC-V version of the shared library <code>libc.so.6</code>. This problem is easy to solve, just specify the path of the shared library that the program depends on through the <code>LD_LIBRARY_PATH</code> environment variable, for example:</p>
 <p><code>$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf</code></p>
 <figure class="wide"><img src="./images/interpreter-path.png"

@@ -6,7 +6,7 @@
   <title>XiaoXuan Script - Hemashushu&#39;s Homepage</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Hemashushu&#39;s homepage and blog, share some low level computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="XiaoXuan Script" />
 <meta property="og:description" content="The XiaoXuan Script Programming Language is suitable for building high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It is intended to be the next preferred programming language for web development.
 How does it work? Only 3 files are needed to give browsers the ability to develop web applications using a new language (the XiaoXuan Script):
@@ -178,55 +178,55 @@ ans_compiler.wasm, the compiler for XiaoXuan Script."/>
 <p>First create a folder named &ldquo;hello-ans&rdquo; in your home directory (or any directory), then download the XiaoXuan Script distribution package <span class="null-link">xiaoxuan_script_dist_1.0.1.tar.gz</span>, which is a compressed file containing <code>ans_compiler.wasm</code>, <code>ans_loader.js</code>, <code>ans_std.ans</code>, and some README etc. files, and then extract it to this folder.</p>
 <p>Then create files <em>main.ans</em> and <em>ans_package.json</em> in this folder.</p>
 <p>The file <em>main.ans</em> is the main module of our web application, which should contain the <code>main</code> function. The file content is as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;#title&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">set</span>(<span style="color:#a6e22e">title</span>.<span style="color:#a6e22e">textContent</span>, <span style="color:#e6db74">&#34;Hello World!&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">btn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;#like&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">like</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">like</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;#count&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">number</span><span style="color:#f92672">:</span><span style="color:#66d9ef">int</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">textContent</span>).<span style="color:#a6e22e">parse</span>().<span style="color:#a6e22e">unwrap</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">set</span>(<span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">textContent</span>, (<span style="color:#a6e22e">number</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>).<span style="color:#a6e22e">to_string</span>())
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">title</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#title&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">set</span><span class="p">(</span><span class="nx">title</span><span class="p">.</span><span class="nx">textContent</span><span class="p">,</span> <span class="s2">&#34;Hello World!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#like&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="nx">like</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">like</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#count&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">number</span><span class="o">:</span><span class="kr">int</span> <span class="o">=</span> <span class="nx">get</span><span class="p">(</span><span class="nx">count</span><span class="p">.</span><span class="nx">textContent</span><span class="p">).</span><span class="nx">parse</span><span class="p">().</span><span class="nx">unwrap</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">set</span><span class="p">(</span><span class="nx">count</span><span class="p">.</span><span class="nx">textContent</span><span class="p">,</span> <span class="p">(</span><span class="nx">number</span><span class="o">+</span><span class="mi">1</span><span class="p">).</span><span class="nx">to_string</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>You may have noticed that the above code looks similar to the JavaScript, this is the design of XiaoXuan Script, where the names of objects and functions are kept as close as possible to JavaScript, the similarity to an existing language reduces the difficulty of learning a new language.</p>
 <p>The file <em>ans_package.json</em> is the package description file, which contains information about the package name, version, compiler version, list of source files, and dependencies. <em>ans_package.json</em> has the following contents:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;hello_ans&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;compiler&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;modules&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;main&#34;</span>: <span style="color:#e6db74">&#34;./main.ans&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;hello_ans&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;compiler&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;modules&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="s2">&#34;./main.ans&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Next, create the web page file <em>index.html</em>, the content is as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Hello, XiaoXuan Script&lt;/<span style="color:#f92672">title</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;module&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./ans_loader.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span>&gt;title&lt;/<span style="color:#f92672">h1</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;like&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;+1&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;count&#34;</span>&gt;0&lt;/<span style="color:#f92672">span</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello, XiaoXuan Script<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;module&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./ans_loader.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span>title<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;like&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;+1&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;count&#34;</span><span class="p">&gt;</span>0<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>The content of <em>index.html</em> is quite simple, the key line is: <code>&lt;script type=&quot;module&quot; src=&quot;./ans_loader.js&quot;&gt;&lt;/script&gt;</code>, it loads the <em>XiaoXuan Script Loader</em> and the loader does all the rest.</p>
 <p>The structure of the folder &ldquo;hello-ans&rdquo; should look like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>hello_ans
-</span></span><span style="display:flex;"><span>├── ans_compiler.wasm
-</span></span><span style="display:flex;"><span>├── ans_loader.js
-</span></span><span style="display:flex;"><span>├── ans_module.json
-</span></span><span style="display:flex;"><span>├── ans_std.ans
-</span></span><span style="display:flex;"><span>├── index.html
-</span></span><span style="display:flex;"><span>└── main.ans
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">hello_ans
+</span></span><span class="line"><span class="cl">├── ans_compiler.wasm
+</span></span><span class="line"><span class="cl">├── ans_loader.js
+</span></span><span class="line"><span class="cl">├── ans_module.json
+</span></span><span class="line"><span class="cl">├── ans_std.ans
+</span></span><span class="line"><span class="cl">├── index.html
+</span></span><span class="line"><span class="cl">└── main.ans
 </span></span></code></pre></div><p>Finally, let&rsquo;s create a local HTTP server, which can be done by running the command <code>python -m http.server</code>.</p>
 <p>Now open any browser and visit <code>http://localhost:8000/</code>. You should see the text &ldquo;Hello World!&rdquo; and the number will increase when you click on the &ldquo;Like&rdquo; button.</p>
 <h2 id="q--a">Q &amp; A</h2>
@@ -247,12 +247,14 @@ ans_compiler.wasm, the compiler for XiaoXuan Script."/>
 <h3 id="why-on-the-fly-compilation">Why on-the-fly compilation?</h3>
 <p><em>XiaoXuan Script</em> actually supports pre-compilation mode, which is recommended for large-scale web applications that have a large amount of source code and dependencies.</p>
 <p>However, for most web applications, the code may not so large, and on-the-fly compilation mode is more convenient. It can simplify the developer&rsquo;s workflow, you can write, debug and run your code like you do with <em>JavaScript</em>, without the need for any build tools. In addition, XiaoXuan Script has a very fast compilation speed, and users can hardly notice the compilation process when they access your web application.</p>
-<h2 id="resources">Resources</h2>
+<h2 id="get-started">Get started</h2>
 <ul>
 <li><span class="null-link">XiaoXuan Script Playground</span></li>
 <li><span class="null-link">Get started with XiaoXuan Script in 5 minutes</span></li>
+</ul>
+<h2 id="manuals--tutorials">Manuals &amp; Tutorials</h2>
+<ul>
 <li><span class="null-link">Build a local TODO web application using XiaoXuan Script</span></li>
-<li><a href="/works/xiaoxuan-lang/">The XiaoXuan Programming Language Family</a></li>
 </ul>
 
 

@@ -1,6 +1,6 @@
 body {
-    color: #c8adb5;
-    background: #2A2829;
+    color: #bdc5c6;
+    background: #2E3139;
 }
 
 h1,
@@ -10,7 +10,7 @@ h4,
 h5,
 h6,
 time {
-    color: rosybrown;
+    color: #a1bcbd;
 }
 
 /* body header #overlay {
@@ -18,27 +18,27 @@ time {
 } */
 
 body header h1 a {
-    color: rosybrown;
+    color: #889e9f;
 }
 
 body header p {
-    color: rosybrown;
+    color: #889e9f;
 }
 
 body header ul li a {
-    color: rosybrown;
+    color: #889e9f;
 }
 
 #container nav {
-    border-bottom-color: #886767;
+    border-bottom-color: #6d8384;
 }
 
 #container nav a {
-    color: rosybrown;
+    color: #889e9f;
 }
 
 #container nav ul li a.active {
-    border-bottom-color: rosybrown;
+    border-bottom-color: #6d8384;
 }
 
 /* #container main section#home span {
@@ -46,37 +46,42 @@ body header ul li a {
 } */
 
 #container main section#home a {
-    color: #bd6f85;
+    color: #62a3a6;
 }
 
 #container main section#list ul li {
-    border-bottom-color: #715151;
+    border-bottom-color: #6d8384;
 }
 
 #container main section#list a {
-    color: #bd6f85;
+    color: #62a3a6;
 }
 
 #container main section.post-nav ul {
-    border-top-color: #714c4c;
+    border-top-color: #62a3a6;
 }
 
 #container main article a {
-    color: #d55494;
+    color: #62a3a6;
 }
 
-#container main article>pre {
-    background-color: #443b39;
-}
-
+/* highlight code block */
+/*
 #container main article .highlight pre {
     color: #e3dcd4 !important;
     background-color: #191a17 !important;
+} */
+
+/* for code blocks which start with 4-space or tab */
+#container main article>pre {
+    color: #e6edf3;
+    background-color: #0d1117;
 }
 
+/* inline code */
 #container main article p code,
 #container main article li code {
-    background-color: #f28fb13b;
+    background-color: #44788c;
 }
 
 #container main article p kbd {
@@ -87,12 +92,12 @@ body header ul li a {
 }
 
 #container footer {
-    border-top-color: #886767;
+    border-top-color: #6d8384;
 }
 
 #container footer ul li a {
     /* border-bottom-color: #ffffff; */
-    color: #bd6f85;
+    color: #62a3a6;
 }
 
 #container textarea,
@@ -115,7 +120,7 @@ input {
 .meta-aside,
 #container main section#home ul li aside,
 #container main article aside {
-    color: #909090;
+    color: #889e9f;
 }
 
 /* #container main article h1 {
@@ -123,7 +128,7 @@ input {
 } */
 
 #container main section.post-nav a {
-    color: #db98ab;
+    color: #62a3a6;
 }
 
 figure figcaption p {
@@ -139,17 +144,17 @@ table thead {
 }
 
 blockquote {
-    border-left-color: #715b54;
-    background-color: #3e3b3c;
+    border-left-color: #151d2238;
+    background-color: #575a5e;
 }
 
 blockquote::before {
-    color: rgba(213, 186, 186, 0.1);
+    color: #151d2238;
 }
 
-.work-content .work-entry .work-detail .null-link {
-    color: #bd6f85;
-    border-bottom: 1.5px dashed #bd6f85;
+.null-link {
+    color: #62a3a6;
+    border-bottom-color: #62a3a6;
 }
 
 
@@ -158,12 +163,12 @@ ul.card>li .card-book .background {
 }
 
 ul.card>li .card-book .frame {
-    background-color: #666;
+    background-color: #4e595b;
 }
 
 ul.card>li .card-book .frame .name {
     border: 1px solid rgba(255,255,255,.8);
-    filter: brightness(.9);
+    filter: grayscale(.4) brightness(.9);
 }
 
 ul.card>li .card-book .frame .date {

@@ -1,2 +1,4 @@
 @import url(./styles-light.css);
+@import url(./syntax-rose-pine-dawn.css);
 @import url(./styles-dark.css) (prefers-color-scheme: dark);
+@import url(./syntax-github-dark.css) (prefers-color-scheme: dark);

@@ -6,7 +6,7 @@
   <title>S01C01 什么是交叉编译？GCC 交叉编译第一个程序并运行它 - 河马蜀黍的个人主页</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="河马蜀黍的个人主页和博客，分享一些计算机基础知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
+<meta name="description" content="河马蜀黍的个人主页，分享一些计算机知识、编程技术、学习心得，发布一些自己制作的小软件和硬件" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S01C01 什么是交叉编译？GCC 交叉编译第一个程序并运行它" />
 <meta property="og:description" content="这是《一步一步深入 RISC-V 系统》系列文章的第一章。在这个系列里，我们将会了解程序是如何构建、程序文件本身是什么样的结构、程序是如何运行、软件和硬件之间是如何交流，以及汇编语言是怎样被转换为指令，等等有关程序的基本原理。在这个系列的后半阶段，我们会实现一个 RISC-V 汇编器和链接器，以及一门有特色的 RISC-V 汇编语言和链接器脚本语言。有了汇编器和链接器，我们就有能力生成程序（二进制可执行文件），这是我们制作自己的工具的基础。 在 John R. Levine 的《Linkers &amp; Loaders》第一章里提到：“大概一个房间就能装得下世上所有编写链接器的人” （" />
 <meta property="og:type" content="article" />
@@ -271,12 +271,12 @@
 <p>&ldquo;Hello, World!&rdquo; 程序就像编程世界里的史莱姆一般的存在，作为交叉编译的第一个实践对象当然不会放过它。</p>
 <h3 id="41-创建-hello-world-程序">4.1 创建 &ldquo;Hello, World!&rdquo; 程序</h3>
 <p>在任意位置新建一个名为 <code>app.c</code> 的文件，内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello, World!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>程序的功能非常简单：向屏幕打印一行文字 &ldquo;Hello, World!&quot;，然后结束程序，程序的返回值为 <code>0</code>。</p>
 <blockquote>
 <p>每个程序运行结束后，都会向调用者返回一个整数，此整数称为 <em>返回值</em>（<em>exit code</em>）。它是一个 <code>uint32</code> 数字，需注意的是在 Linux 环境里 <em>返回值</em> 只有其二进制的最小 8 位是有效的，因此有效值的范围是从 0 到 255。如果返回一个负数，则会以 <a href="https://en.wikipedia.org/wiki/Two%27s_complement">补码</a> 的形式返回，比如 <code>-10</code>，即二进制 <code>0000,1010</code> 补码为 <code>1111,0101 + 1</code> = <code>1111,0110</code>，对应的十进制为 <code>246</code>。</p>
@@ -287,7 +287,7 @@
 </blockquote>
 <h3 id="42-交叉编译">4.2 交叉编译</h3>
 <p>GNU Toolchain 当中的编译、汇编、链接的程序分别是 <code>gcc</code>，<code>as</code> 和 <code>ld</code>，如果需要本地编译，则直接输入这些程序名即可。在交叉编译时，则需要在对应的命令名称添加一个前缀。在当前的例子里，前缀是 <code>riscv64-linux-gnu-</code>，所以交叉编译的命令如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-linux-gnu-gcc -g -Wall -o app.elf app.c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ riscv64-linux-gnu-gcc -g -Wall -o app.elf app.c
 </span></span></code></pre></div><p>各个参数的含义如下：</p>
 <ul>
 <li>
@@ -314,7 +314,7 @@
 <p>ELF 是二进制可执行文件的一种格式，比如上一步得到的 <code>app.elf</code> 就是 ELF 格式的文件。下面使用 <code>file</code> 命令查看输出文件 <code>app.elf</code> 的格式信息：</p>
 <p><code>$ file app.elf</code></p>
 <p>输出结果大致如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app.elf: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=afe0994d7df77dc817058ae17e814d8f0a4163ed, for GNU/Linux 4.15.0, with debug_info, not stripped
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">app.elf: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=afe0994d7df77dc817058ae17e814d8f0a4163ed, for GNU/Linux 4.15.0, with debug_info, not stripped
 </span></span></code></pre></div><p>上面一段文本部分内容的含义是：</p>
 <ul>
 <li>
@@ -371,7 +371,7 @@
 <p>如果使用全系统模式运行我们的程序，还需要给虚拟机配置系统引导器、一个包含有 RISC-V 架构版本的 Linux 系统的虚拟磁盘，另外还需要把应用程序复制进虚拟系统等。所以为了快速把上面写的 &ldquo;Hello, World!&rdquo; 程序跑起来，下面使用用户模式来运行：</p>
 <p><code>$ qemu-riscv64 app.elf</code></p>
 <p>运行的结果是：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>qemu-riscv64: Could not open &#39;/lib/ld-linux-riscv64-lp64d.so.1&#39;: No such file or directory
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">qemu-riscv64: Could not open &#39;/lib/ld-linux-riscv64-lp64d.so.1&#39;: No such file or directory
 </span></span></code></pre></div><p>显然程序并没有正确地运行。GCC 默认产生动态链接类型的程序，这种程序在运行时需要一个 <em>运行时动态链接器</em> 来加载程序所需的共享库，以及进行一系列的初始化工作。运行时动态链接器即程序 <code>ld.so</code>，在当前的例子里，它就是错误信息里显示的那个 <code>/lib/ld-linux-riscv64-lp64d.so.1</code>。</p>
 <p>GCC 默认产生的程序是假定在 &ldquo;普通的 Linux 系统&rdquo; 里运行，而当前我们是在 <em>QEMU 用户模式</em> 这种特殊的环境里。从 &ldquo;Hello, World!&rdquo; 程序的角度来看，它并不知道自己运行在特殊的环境里，而以为运行在一个 RISC-V 架构的 Linux 系统里，所以就如同往常一样，寻找动态链接器 <code>/lib/ld-linux-riscv64-lp64d.so.1</code>。而实际上我们当前环境（作者的机器）的是 <em>x86_64</em> 版的 Linux 系统，动态链接器是 <code>/lib/ld-linux-x86-64.so.2</code>。QEMU 用户模式仅转换 CPU 指令，而不会转换其它数据比如文件路径，所以程序运行失败。</p>
 <blockquote>
@@ -401,17 +401,17 @@
 <p>先使用 <code>file</code> 命令查看文件的格式：</p>
 <p><code>$ file app-static.elf</code></p>
 <p>输出的部分结果如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app-static.elf: ... statically linked ...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">app-static.elf: ... statically linked ...
 </span></span></code></pre></div><p>可见原先的 &ldquo;dynamically linked&rdquo; 已经变为 &ldquo;statically linked&rdquo;。</p>
 <p>然后用 <code>qemu-riscv64</code> 运行这个程序：</p>
 <p><code>$ qemu-riscv64 app-static.elf</code></p>
 <p>这次不需要参数 <code>-L</code> 或者环境变量 <code>QEMU_LD_PREFIX</code> 就能正确运行 &ldquo;Hello, World!&rdquo; 程序了。这是因为，静态链接类型的程序不需要任何外界的共享库，程序自己负责实现所有的功能，自己实现不了的功能则通过 <em>系统调用</em> 向内核求助。换句话说，对于静态链接类型的程序，除非它需要读写硬盘上的文件，否则它完全无视当前的文件系统。</p>
 <p>既然静态类型的程序在使用时这么自由这么方便，为什么不把所有的程序都编译成静态链接类型的呢？让我们比较同一个 &ldquo;Hello, World!&rdquo; 程序的动态链接类型和静态链接类型的文件大小：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ ls -lh
-</span></span><span style="display:flex;"><span>total 668K
-</span></span><span style="display:flex;"><span>-rw-r--r-- 1 yang yang   78 Nov 26 04:00 app.c
-</span></span><span style="display:flex;"><span>-rwxr-xr-x 1 yang yang 9.8K Nov 27 13:38 app.elf
-</span></span><span style="display:flex;"><span>-rwxr-xr-x 1 yang yang 645K Nov 27 21:40 app-static.elf
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ls -lh
+</span></span><span class="line"><span class="cl">total 668K
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 yang yang   78 Nov 26 04:00 app.c
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 yang yang 9.8K Nov 27 13:38 app.elf
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 yang yang 645K Nov 27 21:40 app-static.elf
 </span></span></code></pre></div><p>结果显示动态类型的程序大小是 <code>9.8K</code>，而静态类型的程序是 <code>645K</code>，后者比前者大了许多，那是因为编译器把 <code>printf</code> 函数所需要的函数的代码（即二进制指令）都复制到目标可执行文件里头了。静态链接类型的程序不止体积大，加载时也会消耗更多的时间，在运行时也会占用更多的内存。而同一个动态共享库在一个系统里只需加载一次，然后通过内存映射的方式共享给所有应用程序使用。因此动态链接类型的程序加载速度快，占用内存少。当一个程序直接或间接引用很多库时，这两者的区别会更大。</p>
 <blockquote>
 <p><em>动态链接</em> 对系统来说是个不错的机制，但它带来的问题也相当令人头痛。在日常使用 Linux 经验里，很少有程序能下载即能运行，大部分情况都会出现共享库找不到或者版本不匹配等错误。如果要安装一个在软件包仓库里不存在的程序，则只能通过编译源代码的方式来安装了，这种方式对于普通用户（非专业用户）来说无疑难度太大。作者认为这个问题是因为过度使用共享库引起的，很多细小且不是很通用的库实际上没必要作为共享库。</p>
@@ -421,15 +421,15 @@
 </blockquote>
 <h3 id="55-改变程序的动态链接器">5.5 改变程序的动态链接器</h3>
 <p>除了上面的两种方法，还能通过修改程序的动态链接器来让程序运行起来。具体来说就是在编译时传入链接参数 <code>--dynamic-linker</code> 以更改程序的 <code>interpreter</code> 值，命令如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ riscv64-linux-gnu-gcc -g -Wall -Wl,--dynamic-linker,/usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 -o app-inter.elf app.c -L /usr/riscv64-linux-gnu/lib -lc
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ riscv64-linux-gnu-gcc -g -Wall -Wl,--dynamic-linker,/usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 -o app-inter.elf app.c -L /usr/riscv64-linux-gnu/lib -lc
 </span></span></code></pre></div><p>命令当中的参数 <code>-Wl,--dynamic-linker,...</code> 的作用是向链接器传递参数；参数 <code>-L ...</code> 用于指定链接器搜索共享库的路径；参数 <code>-lc</code> 用于指定链接共享库 <code>libc.so</code>。这些参数在后面的章节还会详细讲解。</p>
 <p>编译完毕之后，使用 <code>file</code> 命令检查程序：</p>
 <p><code>$ file app-inter.elf</code></p>
 <p>输出的部分结果如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>app-inter.elf: ... interpreter /usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 ...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">app-inter.elf: ... interpreter /usr/riscv64-linux-gnu/lib/ld-linux-riscv64-lp64d.so.1 ...
 </span></span></code></pre></div><p>可见程序的 <code>interpreter</code> 已经更改为指定的路径了。然而运行这程序时又有新的错误提示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ qemu-riscv64 app-inter.elf
-</span></span><span style="display:flex;"><span>app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ qemu-riscv64 app-inter.elf
+</span></span><span class="line"><span class="cl">app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
 </span></span></code></pre></div><p>看来 RISC-V 版的 <code>ld.so</code> 已经起作用了，但这个动态链接器找不到 RISC-V 版的共享库 <code>libc.so.6</code>。这个问题比较好解决，只要通过环境变量 <code>LD_LIBRARY_PATH</code> 就可以指定程序所依赖的共享库的路径，例如：</p>
 <p><code>$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf</code></p>
 <figure class="wide"><img src="./images/interpreter-path.png"
