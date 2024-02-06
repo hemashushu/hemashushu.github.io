@@ -163,19 +163,21 @@ blockquote::before {
 } */
 
 ul.card>li .card-book .frame {
-    background-color: #2E3139;
+    /* background-color: #2E3139; */
 }
 
-ul.card>li .card-book .frame .name {
+ul.card>li .card-book .frame .name h3 {
     /* border: 1px solid rgba(255,255,255,.8); */
     filter: grayscale(.1) brightness(.9);
 }
 
-/* ul.card>li .card-book .frame .name h3 a,
-ul.card>li .card-book .frame .name .separator,
+ul.card>li .card-book .frame .name .separator {
+    background-color: #62a3a6;
+}
+
 ul.card>li .card-book .frame .name .catalog {
-    color: rgba(255,255,255,.8);
-} */
+    color: rgba(255,255,255,.5);
+}
 
 ul.card>li .card-book .frame .date {
     color: rgba(255,255,255,.5);

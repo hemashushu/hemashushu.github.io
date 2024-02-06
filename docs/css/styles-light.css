@@ -506,6 +506,10 @@ blockquote::before {
     top: 0;
 }
 
+blockquote > p {
+    position: relative;
+}
+
 hr {
     height: 1px;
     border-style: none;
@@ -625,6 +629,9 @@ ul.card>li {
     flex-basis: min-content;
     flex-grow: 1;
     overflow-wrap: anywhere;
+
+    /* this is a deprecated value, but it can fix the align issue on flex cell */
+    word-break: break-word;
 }
 
 /* ul.card.wide>li {
@@ -697,39 +704,41 @@ ul.card>li .card-book .frame {
     height: 250px; */
     /* border-radius: 8px; */
     /* border: 1px solid #aaa; */
-    background-color: white;
+    /* background-color: white; */
 }
 
 ul.card>li .card-book .frame .name {
-    background-color: #f783ac;
     /* margin: 16px 20px 8px; */
-    margin-bottom: 8px;
-    padding: 16px;
-    filter: grayscale(.2) brightness(1.1);
+    /* margin-bottom: 8px; */
+    padding: 0 16px;
 }
 
 ul.card>li .card-book .frame .name h3 {
     font-size: 1em;
     overflow-wrap: break-word;
     margin: 0;
+    filter: grayscale(.2) brightness(1.1);
 }
 
 ul.card>li .card-book .frame .name h3 a {
+    background-color: #f783ac;
     color: white;
     text-decoration: none;
+    padding: 2px 0;
+    line-height: 1.7em;
 }
 
 ul.card>li .card-book .frame .name .separator {
     display: block;
     height: 1px;
-    background-color: white;
+    background-color: lightskyblue;
     margin: 8px 0;
 }
 
 ul.card>li .card-book .frame .name .catalog {
     font-size: .7em;
     font-style: italic;
-    color: white;
+    color: rgba(0, 0, 0, .5);
 }
 
 ul.card>li .card-book .frame .date {
@@ -739,50 +748,40 @@ ul.card>li .card-book .frame .date {
     color: rgba(0, 0, 0, .5);
 }
 
-/* book color alt 4 */
-ul.card>li .card-book.c4 .frame .name {
-    background-color: #3bc9db;
-}
-
-/* book color alt 5 */
-ul.card>li .card-book.c5 .frame .name {
-    background-color: #4dabf7;
-}
-
-/* book color alt 6 */
-ul.card>li .card-book.c6 .frame .name {
-    background-color: #9775fa;
-}
-
 /* book color alt 1 */
-ul.card>li .card-book.c1 .frame .name {
+ul.card>li .card-book.c1 .frame .name h3 a {
     background-color: #f783ac;
 }
 
-/* book color alt 3 */
-ul.card>li .card-book.c3 .frame .name {
-    background-color: #38d9a9;
-}
-
 /* book color alt 2 */
-ul.card>li .card-book.c2 .frame .name {
-    background-color: #ffa94d;
-}
-
-/* book color alt 7 */
-
-ul.card>li .card-book.c7 .background {
-    border-color: #ff8787;
-}
-
-ul.card>li .card-book.c7 .frame {
-    border-color: #ff8787;
-}
-
-ul.card>li .card-book.c7 .frame .name {
+ul.card>li .card-book.c2 .frame .name h3 a {
     background-color: #ff8787;
 }
 
+/* book color alt 3 */
+ul.card>li .card-book.c3 .frame .name h3 a {
+    background-color: #ffa94d;
+}
+
+/* book color alt 4 */
+ul.card>li .card-book.c4 .frame .name h3 a {
+    background-color: #38d9a9;
+}
+
+/* book color alt 5 */
+ul.card>li .card-book.c5 .frame .name h3 a {
+    background-color: #3bc9db;
+}
+
+/* book color alt 6 */
+ul.card>li .card-book.c6 .frame .name h3 a {
+    background-color: #4dabf7;
+}
+
+/* book color alt 7 */
+ul.card>li .card-book.c7 .frame .name h3 a {
+    background-color: #9775fa;
+}
 
 /* adjust the figure/image width */
 /* 1056 = 1024 + 32 (padding left+righ) */
