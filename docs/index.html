@@ -19,10 +19,13 @@
 <meta name="generator" content="Hugo 0.122.0">
     
     <script src="/js/mathjax-config.js" defer></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+    <script src="/js/polyfill.min.js"></script>
+    <script id="MathJax-script" async src="/js/tex-mml-chtml.js"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
   <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
   
 
@@ -179,7 +182,7 @@
                             <div class="card-title center">
                                 <h3><a href="/works/xiaoxuan-native">XiaoXuan Native</a></h3>
                             </div>
-                            <div class="card-content">A general-purpose programming language inspired by Rust but much
+                            <div class="card-content">A memory-safe, general-purpose programming language inspired by Rust but much
                                 simpler. It provides automatic memory management without garbage collection,
                                 and avoids complex concepts such as ownership, borrow checking, and lifetimes.
                                 It supports compiling to native code for architectures such as
@@ -344,13 +347,13 @@
     <div class="work-item">
         <div class="work-content">
             <div class="work-entry">
-                <h2 class="capital">Manuals & Tutorials</h2>
+                <h2 class="capital">Feature Manuals & Tutorials</h2>
                 <div class="work-detail">
-                    <ul class="card narrow">
+                    <ul class="card">
                         
                         <li>
-                            <div class="card-book">
-                                <div class="background"></div>
+                            <div class="card-book c1">
+                                
                                 <div class="frame">
                                     <div class="name">
                                         <h3><a href="" title="">The XiaoXuan Programming Language Reference</a></h3>
@@ -359,28 +362,27 @@
                                     </div>
                                     <div class="date">2023-04-16</div>
                                 </div>
-
                             </div>
                             <div class="card-content">
-                                <ol>
-                                    <li><span class="null-link">Data types</span></li>
+                                <ul>
+                                    <li><span class="null-link">Data types and Literals</span></li>
                                     <li><span class="null-link">Variables</span></li>
                                     <li><span class="null-link">Functions</span></li>
                                     <li><span class="null-link">Collection</span></li>
-                                    <li><span class="null-link">Control flow</span></li>
-                                    <li><span class="null-link">Method, generic and trait</span></li>
+                                    <li><span class="null-link">Control Flow</span></li>
+                                    <li><span class="null-link">Method, Generic and Trait</span></li>
                                     <li><span class="null-link">Pattern</span></li>
                                     <li><span class="null-link">Chain</span></li>
-                                    <li><span class="null-link">Error handling</span></li>
-                                    <li><span class="null-link">Modules</span></li>
-                                </ol>
+                                    <li><span class="null-link">Error Handling</span></li>
+                                    <li><span class="null-link">Package and Modules</span></li>
+                                </ul>
                             </div>
                         </li>
 
                         
                         <li>
-                            <div class="card-book c1">
-                                <div class="background"></div>
+                            <div class="card-book c5">
+                                
                                 <div class="frame">
                                     <div class="name">
                                         <h3><a href="" title="">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</a></h3>
@@ -392,41 +394,48 @@
 
                             </div>
                             <div class="card-content">
-                                <ol>
+                                <ul>
                                     <li><span class="null-link">Set up a RISC-V virtual machine using QEMU.</span></li>
-                                    <li><span class="null-link">Write a minimal 'init' program.</span></li>
-                                    <li><span class="null-link">Write a minimal 'shell' program.</span></li>
-                                    <li><span class="null-link">Fundamentals of file system and processes,  implementing the `pwd` and `ls` commands.</span></li>
-                                    <li><span class="null-link">Implement the `mount` and `umount` commands.</span></li>
-                                    <li><span class="null-link">Principals of `redirect`, implementing the `echo` and `cat` commands.</span></li>
-                                    <li><span class="null-link">Principal of `pipe`, implementing the `tee` and `tr` commands.</span></li>
+                                    <li><span class="null-link">Write a minimal <code>init</code> program.</span></li>
+                                    <li><span class="null-link">Write a minimal <code>shell</code> program.</span></li>
+                                    <li><span class="null-link">Fundamentals of file system and processes,  implementing the <code>pwd</code> and <code>ls</code> commands.</span></li>
+                                    <li><span class="null-link">Implement the <code>mount</code> and <code>umount</code> commands.</span></li>
+                                    <li><span class="null-link">Principals of <code>redirect</code>, implementing the <code>echo</code> and <code>cat</code> commands.</span></li>
+                                    <li><span class="null-link">Principal of <code>pipe</code>, implementing the <code>tee</code> and <code>tr</code> commands.</span></li>
                                     <li><span class="null-link">Session and process groups.</span></li>
-                                    <li><span class="null-link">The `root` privileges, users and groups, and the `setuid` bit.</span></li>
+                                    <li><span class="null-link">The <code>root</code> privileges, users and groups, and the <code>setuid</code> bit.</span></li>
                                     <li><span class="null-link">Add support for shell scripts.</span></li>
-                                </ol>
+                                </ul>
                             </div>
                         </li>
 
                         
                         <li>
-                            <div class="card-book c2">
-                                <div class="background"></div>
+                            <div class="card-book c4">
+                                
                                 <div class="frame">
                                     <div class="name">
-                                        <h3><a href="" title="">Design a Virtual Machine (VM) for System Programming</a></h3>
+                                        <h3><a href="" title="">Designing a Virtual Machine (VM) for Systems Programming</a></h3>
                                         <div class="separator"></div>
                                         <div class="catalog">XiaoXuan Core</div>
                                     </div>
-                                    <div class="date">2023-12-01</div>
+                                    <div class="date">2023-06-13</div>
                                 </div>
 
                             </div>
                             <div class="card-content">
-                                <ol>
-                                    <li><span class="null-link">...</span></li>
-                                    <li><span class="null-link">...</span></li>
-                                    <li><span class="null-link">...</span></li>
-                                </ol>
+                                <ul>
+                                    <li><span class="null-link">Data types and thoughts on floating-pointer numbers</span></li>
+                                    <li><span class="null-link">The triadic stack</span></li>
+                                    <li><span class="null-link">Using indexes instead of pointer</span></li>
+                                    <li><span class="null-link">The instruction set</span></li>
+                                    <li><span class="null-link">Using structured blocks instead of jumps for control flow</span></li>
+                                    <li><span class="null-link">Tail call optimization</span></li>
+                                    <li><span class="null-link">Environment calls</span></li>
+                                    <li><span class="null-link">System calls</span></li>
+                                    <li><span class="null-link">Bridge functions and external calls</span></li>
+                                    <li><span class="null-link">A Data-race-free parallel Model</span></li>
+                                </ul>
                             </div>
                         </li>
                     </ul>

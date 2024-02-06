@@ -169,7 +169,7 @@ body header p {
     }
 }
 
-#container main section#home a {
+a {
     color: hotpink;
 }
 
@@ -197,9 +197,9 @@ body header p {
     border-bottom: none;
 }
 
-#container main section#list a {
+/* #container main section#list a {
     color: hotpink;
-}
+} */
 
 #container main section.post-nav ul {
     margin: 0.5em 0;
@@ -215,9 +215,9 @@ body header p {
     text-align: right;
 }
 
-#container main section.post-nav a {
+/* #container main section.post-nav a {
     color: hotpink;
-}
+} */
 
 #container main article {
     overflow: hidden;
@@ -285,9 +285,9 @@ body header p {
     box-shadow: 0 -1px 0 #bbbbbb inset;
 }
 
-#container main article a {
+/* #container main article a {
     color: hotpink;
-}
+} */
 
 #container footer {
     border-top: solid 5px #c7ebf7;
@@ -316,9 +316,9 @@ body header p {
     margin-left: 1em;
 }
 
-#container footer ul li a {
+/* #container footer ul li a {
     color: hotpink;
-}
+} */
 
 /* #container footer ul li a.active {
     border-bottom: 0.2em solid #666666;
@@ -627,13 +627,13 @@ ul.card>li {
     overflow-wrap: anywhere;
 }
 
-ul.card.wide>li {
+/* ul.card.wide>li {
     min-width: 360px;
 }
 
 ul.card.narrow>li {
     max-width: 360px;
-}
+} */
 
 ul.card>li .card_cover {
     height: 160px;
@@ -654,20 +654,32 @@ ul.card>li .card-title h3  {
     margin: 0.2em 0;
 }
 
+/* ul.card>li .card-title.highlight h3  {
+    padding: 4px 6px;
+    background-color: lightpink;
+    font-size: 1em;
+    border-radius: 6px;
+}
+
+ul.card>li .card-title.highlight h3 .null-link  {
+    color: #fff;
+    border-bottom-style: none;
+} */
+
 ul.card>li .card-title.center {
     text-align: center;
 }
 
 ul.card>li .card-content ul {
-    padding-left: 0;
+    padding-left: 16px;
 }
 
 ul.card>li .card-book {
     position: relative;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 }
 
-ul.card>li .card-book .background {
+/* ul.card>li .card-book .background {
     position: absolute;
     top: 8px;
     left: 40px;
@@ -676,33 +688,35 @@ ul.card>li .card-book .background {
     border-radius: 8px;
     border: 1px solid #aaa;
     background-color: #eee;
-}
+} */
 
 ul.card>li .card-book .frame {
-    position: relative;
+    /* position: relative;
     left: 32px;
     width: 220px;
-    height: 250px;
-    border-radius: 8px;
-    border: 1px solid #aaa;
+    height: 250px; */
+    /* border-radius: 8px; */
+    /* border: 1px solid #aaa; */
     background-color: white;
 }
 
 ul.card>li .card-book .frame .name {
     background-color: #f783ac;
-    margin: 16px 20px 8px;
+    /* margin: 16px 20px 8px; */
+    margin-bottom: 8px;
     padding: 16px;
-    /* filter: grayscale(.4) brightness(1.1); */
+    filter: grayscale(.2) brightness(1.1);
 }
 
 ul.card>li .card-book .frame .name h3 {
-    font-size: .9em;
+    font-size: 1em;
     overflow-wrap: break-word;
     margin: 0;
 }
 
-#container main section#home ul.card>li .card-book .frame .name h3 a {
+ul.card>li .card-book .frame .name h3 a {
     color: white;
+    text-decoration: none;
 }
 
 ul.card>li .card-book .frame .name .separator {
@@ -719,38 +733,39 @@ ul.card>li .card-book .frame .name .catalog {
 }
 
 ul.card>li .card-book .frame .date {
-    margin: 0 34px;
+    /* margin: 0 34px; */
     font-size: .7em;
+    margin-left: 16px;
     color: rgba(0, 0, 0, .5);
-}
-
-/* book color alt 1 */
-ul.card>li .card-book.c1 .frame .name {
-    background-color: #3bc9db;
-}
-
-/* book color alt 2 */
-ul.card>li .card-book.c2 .frame .name {
-    background-color: #4dabf7;
-}
-
-/* book color alt 3 */
-ul.card>li .card-book.c3 .frame .name {
-    background-color: #9775fa;
 }
 
 /* book color alt 4 */
 ul.card>li .card-book.c4 .frame .name {
-    background-color: #f783ac;
+    background-color: #3bc9db;
 }
 
 /* book color alt 5 */
 ul.card>li .card-book.c5 .frame .name {
-    background-color: #38d9a9;
+    background-color: #4dabf7;
 }
 
 /* book color alt 6 */
 ul.card>li .card-book.c6 .frame .name {
+    background-color: #9775fa;
+}
+
+/* book color alt 1 */
+ul.card>li .card-book.c1 .frame .name {
+    background-color: #f783ac;
+}
+
+/* book color alt 3 */
+ul.card>li .card-book.c3 .frame .name {
+    background-color: #38d9a9;
+}
+
+/* book color alt 2 */
+ul.card>li .card-book.c2 .frame .name {
     background-color: #ffa94d;
 }
 

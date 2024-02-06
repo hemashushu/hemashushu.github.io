@@ -124,30 +124,120 @@ This feature improves application compatibility and stability, reduces dependenc
 {{< html >}}
 <ul class="card">
     <li>
-        <div class="card-title">
-            <h3><span class="null-link">The XiaoXuan Programming Language Reference</span></h3>
+        <div class="card-book c1">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">The XiaoXuan Programming Language Reference</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Lang</div>
+                </div>
+                <div class="date">2023-04-16</div>
+            </div>
         </div>
         <div class="card-content">
 {{< /html >}}
 
-- {{< null-link "Data types" >}}
+- {{< null-link "Data types and Literals" >}}
 - {{< null-link "Variables" >}}
 - {{< null-link "Functions" >}}
 - {{< null-link "Collection" >}}
-- {{< null-link "Control flow" >}}
-- {{< null-link "Method, generic and trait" >}}
+- {{< null-link "Control Flow" >}}
+- {{< null-link "Method, Generic and Trait" >}}
 - {{< null-link "Pattern" >}}
 - {{< null-link "Chain" >}}
-- {{< null-link "Error handling" >}}
-- {{< null-link "Modules" >}}
+- {{< null-link "Error Handling" >}}
+- {{< null-link "Package and Modules" >}}
 
 {{< html >}}
         </div>
     </li>
-
     <li>
-        <div class="card-title">
-            <h3><span class="null-link">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</span></h3>
+        <div class="card-book c2">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">The XiaoXuan Core Assembly</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Lang</div>
+                </div>
+                <div class="date">2023-09-10</div>
+            </div>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "Literals" >}}
+- {{< null-link "Module Nodes" >}}
+- {{< null-link "Instructions" >}}
+- {{< null-link "Control Flow" >}}
+- {{< null-link "Function Call" >}}
+- {{< null-link "System Call" >}}
+- {{< null-link "Environment Call" >}}
+- {{< null-link "Packages and Modules" >}}
+
+{{< html >}}
+        </div>
+    </li>
+    <li>
+        <div class="card-book c3">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">The XiaoXuan Core Intermediate Representation (IR)</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Lang</div>
+                </div>
+                <div class="date">2023-10-12</div>
+            </div>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "Data Types and Literals" >}}
+- {{< null-link "Functions" >}}
+- {{< null-link "Control Flow" >}}
+- {{< null-link "Struct and Array" >}}
+- {{< null-link "Packages and Modules" >}}
+
+{{< html >}}
+        </div>
+    </li>
+    <li>
+        <div class="card-book c4">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">Designing a Virtual Machine (VM) for Systems Programming</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Core</div>
+                </div>
+                <div class="date">2023-06-13</div>
+            </div>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "Data types and thoughts on floating-pointer numbers" >}}
+- {{< null-link "The triadic stack" >}}
+- {{< null-link "Using indexes instead of pointer" >}}
+- {{< null-link "The instruction set" >}}
+- {{< null-link "Using structured blocks instead of jumps for control flow" >}}
+- {{< null-link "Tail call optimization" >}}
+- {{< null-link "Environment calls" >}}
+- {{< null-link "System calls" >}}
+- {{< null-link "Bridge functions and external calls" >}}
+- {{< null-link "A Data-race-free parallel Model" >}}
+
+{{< html >}}
+        </div>
+    </li>
+    <li>
+        <div class="card-book c5">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Core</div>
+                </div>
+                <div class="date">2024-01-09</div>
+            </div>
         </div>
         <div class="card-content">
 {{< /html >}}
@@ -166,10 +256,16 @@ This feature improves application compatibility and stability, reduces dependenc
 {{< html >}}
         </div>
     </li>
-
     <li>
-        <div class="card-title">
-            <h3><span class="null-link">Build a Docker-like container utility from scratch using XiaoXuan Core</span></h3>
+        <div class="card-book c6">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">Build a Docker-like container utility from scratch using XiaoXuan Core</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Core</div>
+                </div>
+                <div class="date">2024-01-15</div>
+            </div>
         </div>
         <div class="card-content">
 {{< /html >}}
@@ -188,7 +284,9 @@ This feature improves application compatibility and stability, reduces dependenc
 
 ## Related documents
 
-
+- {{< null-link "An introduction to the XiaoXuan Core application image file format" >}}
+- {{< null-link "XiaoXuan Object Notation (ANON): a Human-readable object notation format" >}}
+- {{< null-link "XiaoXuan Allocator: a low-latency, scalable memory allocator" >}}
 
 ## Related projects
 
@@ -200,4 +298,6 @@ The source code repositories of related projects:
 - {{< null-link "XiaoXuan Core Compiler" >}}
 - {{< null-link "XiaoXuan Core Runtime" >}}
 - {{< null-link "XiaoXuan Core Launcher" >}}
+- {{< null-link "XiaoXuan Core Standard Library" >}}
 - {{< null-link "XiaoXuan Allocator" >}}
+- {{< null-link "XiaoXuan Object Notation (ANON)" >}}

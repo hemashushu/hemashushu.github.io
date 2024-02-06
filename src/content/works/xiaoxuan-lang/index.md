@@ -22,7 +22,7 @@ The implemented variants:
   Build secure, robust, low-latency and responsive cloud-native applications (such as microservices and serverless functions etc.), business systems, data science programs, A.I. programs and more. Each program runs in its own isolated environement, eliminating the need for containers. Applications do not need to be installed, they can be run with just a URL.
 
 - [XiaoXuan Native](/works/xiaoxuan-native)
-  A general-purpose programming language inspired by Rust but much simpler. It provides automatic memory management without garbage collection, and avoids complex concepts such as ownership, borrow checking, and lifetimes. It supports compiling to native code for architectures such as _x86-64_, _aarch64_ and _riscv64_.
+  A memory-safe, general-purpose programming language inspired by Rust but much simpler. It provides automatic memory management without garbage collection, and avoids complex concepts such as ownership, borrow checking, and lifetimes. It supports compiling to native code for architectures such as _x86-64_, _aarch64_ and _riscv64_.
 
 - [XiaoXuan Micro](/works/xiaoxuan-micro)
   Build high-performance firmware for microcontroller easily, the built-in micro VM makes it possible to "write once, run anywhere".
@@ -66,30 +66,43 @@ If you perfer to write programs that run locally, it is recommended to start wit
 {{< html >}}
 <ul class="card">
     <li>
-        <div class="card-title">
-            <h3><span class="null-link">The XiaoXuan Programming Language Reference</span></h3>
+        <div class="card-book c1">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">The XiaoXuan Programming Language Reference</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Lang</div>
+                </div>
+                <div class="date">2023-04-16</div>
+            </div>
         </div>
         <div class="card-content">
 {{< /html >}}
 
-- {{< null-link "Data types" >}}
+- {{< null-link "Data types and Literals" >}}
 - {{< null-link "Variables" >}}
 - {{< null-link "Functions" >}}
 - {{< null-link "Collection" >}}
-- {{< null-link "Control flow" >}}
-- {{< null-link "Method, generic and trait" >}}
+- {{< null-link "Control Flow" >}}
+- {{< null-link "Method, Generic and Trait" >}}
 - {{< null-link "Pattern" >}}
 - {{< null-link "Chain" >}}
-- {{< null-link "Error handling" >}}
-- {{< null-link "Modules" >}}
+- {{< null-link "Error Handling" >}}
+- {{< null-link "Packages and Modules" >}}
 
 {{< html >}}
         </div>
     </li>
-
     <li>
-        <div class="card-title">
-            <h3><span class="null-link">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</span></h3>
+        <div class="card-book c5">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Core</div>
+                </div>
+                <div class="date">2024-01-09</div>
+            </div>
         </div>
         <div class="card-content">
 {{< /html >}}
@@ -108,10 +121,16 @@ If you perfer to write programs that run locally, it is recommended to start wit
 {{< html >}}
         </div>
     </li>
-
     <li>
-        <div class="card-title">
-            <h3><span class="null-link">Build a Docker-like container utility from scratch using XiaoXuan Core</span></h3>
+        <div class="card-book c6">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">Build a Docker-like container utility from scratch using XiaoXuan Core</a></h3>
+                    <div class="separator"></div>
+                    <div class="catalog">XiaoXuan Core</div>
+                </div>
+                <div class="date">2024-01-15</div>
+            </div>
         </div>
         <div class="card-content">
 {{< /html >}}
