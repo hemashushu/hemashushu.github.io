@@ -163,12 +163,12 @@ ul.card>li .card-book .background {
 }
 
 ul.card>li .card-book .frame {
-    background-color: #4e595b;
+    background-color: #2E3139;
 }
 
 ul.card>li .card-book .frame .name {
     border: 1px solid rgba(255,255,255,.8);
-    filter: grayscale(.4) brightness(.9);
+    /* filter: grayscale(.4) brightness(.9); */
 }
 
 ul.card>li .card-book .frame .date {

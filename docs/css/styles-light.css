@@ -692,7 +692,7 @@ ul.card>li .card-book .frame .name {
     background-color: #f783ac;
     margin: 16px 20px 8px;
     padding: 16px;
-    filter: grayscale(.4) brightness(1.1);
+    /* filter: grayscale(.4) brightness(1.1); */
 }
 
 ul.card>li .card-book .frame .name h3 {
