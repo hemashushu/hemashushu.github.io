@@ -147,6 +147,7 @@ This feature improves application compatibility and stability, reduces dependenc
 - {{< null-link "Chain" >}}
 - {{< null-link "Error Handling" >}}
 - {{< null-link "Package and Modules" >}}
+- {{< null-link "Macro" >}}
 
 {{< html >}}
         </div>
@@ -204,7 +205,7 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c4">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Designing a Virtual Machine (VM) for Systems Programming</a></h3>
+                    <h3><a href="" title="">Designing a Runtime Virtual Machine (VM) for Systems Programming</a></h3>
                     <div class="separator"></div>
                     <div class="catalog">XiaoXuan Core</div>
                 </div>
@@ -232,7 +233,7 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c5">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Build a simple OS from scratch (based on Linux kernel) using XiaoXuan Core</a></h3>
+                    <h3><a href="" title="">Build a Simple OS (based on Linux kernel) from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
                     <div class="catalog">XiaoXuan Core</div>
                 </div>
@@ -245,7 +246,7 @@ This feature improves application compatibility and stability, reduces dependenc
 - {{< null-link "Set up a RISC-V virtual machine using QEMU" >}}
 - {{< null-link "Write a minimal `init` program" >}}
 - {{< null-link "Write a minimal `shell` program" >}}
-- {{< null-link "Fundamentals of file system and processes,  implementing the `pwd` and `ls` commands" >}}
+- {{< null-link "Fundamentals of file system and processes, implementing the `pwd` and `ls` commands" >}}
 - {{< null-link "Implement the `mount` and `umount` commands" >}}
 - {{< null-link "Principals of `redirect`, implementing the `echo` and `cat` commands" >}}
 - {{< null-link "Principal of `pipe`, implementing the `tee` and `tr` commands" >}}
@@ -260,7 +261,7 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c6">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Build a Docker-like container utility from scratch using XiaoXuan Core</a></h3>
+                    <h3><a href="" title="">Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
                     <div class="catalog">XiaoXuan Core</div>
                 </div>
