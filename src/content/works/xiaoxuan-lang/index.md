@@ -6,7 +6,7 @@ tags: ["xiaoxuan-lang"]
 categories: ["xiaoxuan-lang"]
 ---
 
-{{< figure class="wide" src="./images/banner_v2.png" >}}
+{{< figure class="wide" src="./images/banner_v2.webp" >}}
 
 _The XiaoXuan Programming Language_ is an elegant, full-stack programming language. It consists of several variants and can be used to develop a variety applications, including digital circuits and chips, microcontroller programs, GPU shaders, system programs, local native programs, cloud native programs, web applications and more. All variants use the same syntax and design philosophy, allowing you to learn one language for all sorts of development.
 
@@ -30,7 +30,7 @@ The implemented variants:
 - [XiaoXuan Logic](/works/xiaoxuan-logic)
   A brand new and modern hardware description language (HDL) that lets you design hardware and chips in the same ease and collaboration as open-source software. Its built-in GPU-accelerated simulator dramatically enhances test efficiency, saving you valuable time and resources.
 
-{{< figure class="wide" src="./images/variants.png" caption="The XiaoXuan Programming Language Family" >}}
+{{< figure class="wide" src="./images/variants.webp" caption="The XiaoXuan Programming Language Family" >}}
 
 _The XiaoXuan programming language_ supports writing code in local languages, such as Chinese, Japanese and French. In addition to keywords, the standard library and related documentation are also translated into local languages. Using local language programming is beneficial for children, beginners and non-computer majors who are not native English speakers.
 

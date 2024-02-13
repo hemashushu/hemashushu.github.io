@@ -223,7 +223,7 @@
 </li>
 </ul>
 <p>无论是_本地编译_（即普通的编译）还是_交叉编译_，其工作原理和过程是一模一样的，都是将高级语言翻译成目标环境的机器指令（汇编代码）。所以 &ldquo;交叉编译&rdquo; 这个名称并不是指某种功能，而是用于描述一种编译情况，即编译环境跟运行环境不同，仅此而已。</p>
-<figure class="mid white"><img src="./images/compilation-comparasion.png"
+<figure class="mid white"><img src="./images/compilation-comparasion.webp"
          alt="本地编译和交叉编译"/><figcaption>
             <p>本地编译和交叉编译</p>
         </figcaption>
@@ -388,7 +388,7 @@
 <li><code>$ QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/ qemu-riscv64 app.elf</code></li>
 </ul>
 <p>如无意外，上面两个命令都能正确运行，能看到程序输出的 &ldquo;Hello, World!&rdquo; 文本。</p>
-<figure class="wide"><img src="./images/qemu-user.png"
+<figure class="wide"><img src="./images/qemu-user.webp"
          alt="QEMU 用户模式"/><figcaption>
             <p>QEMU 用户模式</p>
         </figcaption>
@@ -435,7 +435,7 @@
 </span></span><span class="line"><span class="cl">app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
 </span></span></code></pre></div><p>看来 RISC-V 版的 <code>ld.so</code> 已经起作用了，但这个动态链接器找不到 RISC-V 版的共享库 <code>libc.so.6</code>。这个问题比较好解决，只要通过环境变量 <code>LD_LIBRARY_PATH</code> 就可以指定程序所依赖的共享库的路径，例如：</p>
 <p><code>$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf</code></p>
-<figure class="wide"><img src="./images/interpreter-path.png"
+<figure class="wide"><img src="./images/interpreter-path.webp"
          alt="解析器路径"/><figcaption>
             <p>解析器路径</p>
         </figcaption>
@@ -444,7 +444,7 @@
 <p>程序同样能正确运行。不过这种方法并没有太大用处，因为比前面两种方法复杂太多，而且生成的程序只适合在当前机器上 <em>QEMU 用户模式</em> 里运行，没法在标准的 RISC-V 架构的 Linux 环境里运行。这里主要是为了演示如何修改程序的 <code>interpreter</code>。有关动态链接器的详细资料可以通过命令 <code>$ man ld.so</code> 调出文档查看。</p>
 <h2 id="6-分阶段编译">6. 分阶段编译</h2>
 <p>当执行命令 <code>riscv64-linux-gnu-gcc</code> 将一个 C 源代码编译为一个可执行文件时，实际上 GCC 是分 4 个阶段（或者说步骤）来完成的：</p>
-<figure class="wide white"><img src="./images/gcc-compile-stage.png"
+<figure class="wide white"><img src="./images/gcc-compile-stage.webp"
          alt="GCC 各个编译阶段"/><figcaption>
             <p>GCC 各个编译阶段</p>
         </figcaption>

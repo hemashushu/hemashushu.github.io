@@ -60,7 +60,7 @@ categories: ["craft-system", "S01"]
 
 无论是_本地编译_（即普通的编译）还是_交叉编译_，其工作原理和过程是一模一样的，都是将高级语言翻译成目标环境的机器指令（汇编代码）。所以 "交叉编译" 这个名称并不是指某种功能，而是用于描述一种编译情况，即编译环境跟运行环境不同，仅此而已。
 
-{{< figure src="./images/compilation-comparasion.png" class="mid white" caption="本地编译和交叉编译" >}}
+{{< figure src="./images/compilation-comparasion.webp" class="mid white" caption="本地编译和交叉编译" >}}
 
 当然在开发程序时，除了需要考虑目标架构和目标平台，可能还得考虑更细致的一些信息，比如当你在开发 Linux 应用程序时，需要考虑不同发行版之间的细微差别。不过对于编译器来说，它的确只关心目标架构和目标平台。
 
@@ -245,7 +245,7 @@ GCC 默认产生的程序是假定在 "普通的 Linux 系统" 里运行，而�
 
 如无意外，上面两个命令都能正确运行，能看到程序输出的 "Hello, World!" 文本。
 
-{{< figure src="./images/qemu-user.png" class="wide" caption="QEMU 用户模式" >}}
+{{< figure src="./images/qemu-user.webp" class="wide" caption="QEMU 用户模式" >}}
 
 > 在 Linux 系统里，可以使用 `locate` 命令快速定位所需的文件，比如命令 `$ locate lp64d.so.1` 可以帮你找到动态链接器的路径。
 
@@ -322,7 +322,7 @@ app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shar
 
 `$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf`
 
-{{< figure src="./images/interpreter-path.png" class="wide" caption="解析器路径" >}}
+{{< figure src="./images/interpreter-path.webp" class="wide" caption="解析器路径" >}}
 
 程序同样能正确运行。不过这种方法并没有太大用处，因为比前面两种方法复杂太多，而且生成的程序只适合在当前机器上 _QEMU 用户模式_ 里运行，没法在标准的 RISC-V 架构的 Linux 环境里运行。这里主要是为了演示如何修改程序的 `interpreter`。有关动态链接器的详细资料可以通过命令 `$ man ld.so` 调出文档查看。
 
@@ -330,7 +330,7 @@ app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shar
 
 当执行命令 `riscv64-linux-gnu-gcc` 将一个 C 源代码编译为一个可执行文件时，实际上 GCC 是分 4 个阶段（或者说步骤）来完成的：
 
-{{< figure src="./images/gcc-compile-stage.png" class="wide white" caption="GCC 各个编译阶段" >}}
+{{< figure src="./images/gcc-compile-stage.webp" class="wide white" caption="GCC 各个编译阶段" >}}
 
 ### 6.1 预处理
 

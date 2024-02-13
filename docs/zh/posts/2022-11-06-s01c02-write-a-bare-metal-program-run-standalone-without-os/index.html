@@ -198,7 +198,7 @@
 </blockquote>
 <h2 id="2-如何启动裸机程序">2. 如何启动裸机程序</h2>
 <p>机器通电或者复位之后，CPU 会从某个约定的内存地址开始执行第一条指令，这个内存地址一般对应着一段固定在 ROM 芯片里的 <em>加载程序</em>（<em>loader</em>）或硬件初始化程序（比如 BIOS，UEFI 程序，有时也叫做 <em>固件</em>，<em>firmware</em>）。然后加载程序会尝试从约定的地方加载系统 <em>引导程序</em>（<em>boot loader</em>）并跳转到该引导程序的第一条指令（简称 <em>入口</em>），引导程序再加载 <em>内核</em> 并跳转到内核的入口。可见机器的启动过程就是连续的几个程序运行和跳转的过程。</p>
-<figure class="full white"><img src="./images/linux-boot-process.png"
+<figure class="full white"><img src="./images/linux-boot-process.webp"
          alt="Linux 在 x86_64 平台下的启动过程"/><figcaption>
             <p>Linux 在 x86_64 平台下的启动过程</p>
         </figcaption>
@@ -423,7 +423,7 @@ Register），它用于存放待发送的数据。同时，每个寄存器都有
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    -bios none <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    -kernel app.out
 </span></span></code></pre></div><p>如无意外，应该能看到正确的输出结果 &ldquo;Hello, World!&quot;。</p>
-<figure class="wide"><img src="./images/qemu-system.png"
+<figure class="wide"><img src="./images/qemu-system.webp"
          alt="QEMU 全系统模式"/><figcaption>
             <p>QEMU 全系统模式</p>
         </figcaption>

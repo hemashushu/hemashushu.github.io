@@ -6,7 +6,7 @@ tags: ["xiaoxuan-script", "xiaoxuan-lang"]
 categories: ["xiaoxuan-script"]
 ---
 
-{{< figure class="wide" src="./images/banner.png" >}}
+{{< figure class="wide" src="./images/banner.webp" >}}
 
 The _XiaoXuan Script Programming Language_ is suitable for building high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It is intended to be the next preferred programming language for web development.
 
@@ -18,7 +18,7 @@ Only 3 files are needed to give browsers the ability to develop web applications
 - `ans_loader.js`, the loader for the compiler, which also serves as the web application manager, as well as the bridge between the WebAssembly and the Web API.
 - `ans_std.ans`, the source code of the XiaoXuan Script standard library.
 
-{{< figure src="./images/compilation.png" class="mid white" caption="The Compilation Process" >}}
+{{< figure src="./images/compilation.webp" class="mid white" caption="The Compilation Process" >}}
 
 When a user accesses your web application (web page), the _compiler_ will compile all the source code (including the user code, standard library, and all dependencies) on-the-fly into a WebAssembly file, which is then cached in the user's browser to speed up the next load. The web page and WebAssembly will then interoperate via the _bridge_.
 

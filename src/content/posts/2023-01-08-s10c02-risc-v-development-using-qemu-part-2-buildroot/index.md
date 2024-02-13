@@ -264,7 +264,7 @@ mmu             : sv48
 ```
 
 <!--
-{{< figure src="./images/buildroot.png" class="wide" caption="Buildroot" >}}
+{{< figure src="./images/buildroot.webp" class="wide" caption="Buildroot" >}}
 -->
 
 Next, check the installed packages:
@@ -388,7 +388,7 @@ Hello World!
 ```
 
 <!--
-{{< figure src="./images/hello-world.png" class="wide" caption="Run the Hello World! program" >}}
+{{< figure src="./images/hello-world.webp" class="wide" caption="Run the Hello World! program" >}}
 -->
 
 ## 10. Debug program by GDB
@@ -438,7 +438,7 @@ A debugging session is active.
 Quit anyway? (y or n) y
 ```
 
-{{< figure src="./images/gdb.png" class="wide" caption="GDB Debugging" >}}
+{{< figure src="./images/gdb.webp" class="wide" caption="GDB Debugging" >}}
 
 As shown above, this Linux system already contains common tools and is capable of base assembly development and program debugging.
 

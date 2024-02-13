@@ -6,7 +6,7 @@ tags: ["xiaoxuan-core", "xiaoxuan-lang"]
 categories: ["xiaoxuan-core"]
 ---
 
-{{< figure class="wide" src="./images/banner.png" >}}
+{{< figure class="wide" src="./images/banner.webp" >}}
 
 The _XiaoXuan Core Programming Language_ is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call _syscall_ and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
 
@@ -78,7 +78,7 @@ Since this is the first time we are running an _XiaoXuan Core_ application, the 
 
 ## The XiaoXuan Core VM
 
-{{< figure class="wide white" src="./images/vm-model.png" caption="The XiaoXuan Core VM" >}}
+{{< figure class="wide white" src="./images/vm-model.webp" caption="The XiaoXuan Core VM" >}}
 
 _XiaoXuan Runtime_ is a self-contained, statically linked executable that combines a compiler and a virtual machine (VM) designed specifically for running system programs. It offers serveral key advantages:
 
@@ -92,7 +92,7 @@ _XiaoXuan Runtime_ is a self-contained, statically linked executable that combin
 
 _XiaoXiao Core_ applications can maintain correct operation even when the runtime environment changes (e.g., major version changes to the shared libraries in the system). This is achieved through the following two measures:
 
-{{< figure class="wide white" src="./images/version-model.png" caption="The XiaoXuan Core Applications Version Control" >}}
+{{< figure class="wide white" src="./images/version-model.webp" caption="The XiaoXuan Core Applications Version Control" >}}
 
 1. Runtime version specification
 

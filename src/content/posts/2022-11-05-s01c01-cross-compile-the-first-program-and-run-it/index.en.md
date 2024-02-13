@@ -60,7 +60,7 @@ In other word, cross-compilation occurs when "the environment in which the compi
 
 The working principles and processes of both _native compilation_ (ordinary compilation) and _cross-compilation_ are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term _cross-compilation_ does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.
 
-{{< figure src="./images/compilation-comparasion.png" class="mid white" caption="Compilation Comparation" >}}
+{{< figure src="./images/compilation-comparasion.webp" class="mid white" caption="Compilation Comparation" >}}
 
 Of course, when developing programs, in addition to considering the target architecture and target platform, more detailed information may need to be considered. For example, when developing Linux applications, subtle differences between different distributions need to be considered. However, for the compiler, it only cares about the target archiecture and target platform.
 
@@ -249,7 +249,7 @@ Therefore, you can run the `app.elf` program as follows:
 
 Both commands can run correctly, and you should see the "Hello, World!" text output by the program.
 
-{{< figure src="./images/qemu-user.png" class="wide" caption="QEMU User Mode" >}}
+{{< figure src="./images/qemu-user.webp" class="wide" caption="QEMU User Mode" >}}
 
 > On Linux, you can use the `locate` command to quickly find the location of files. For example, the command `$ locate lp64d.so.1` will show you the path to the dynamic linker.
 
@@ -326,7 +326,7 @@ It seems that the RISC-V version of `ld.so` works, but the dynamic linker cannot
 
 `$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf`
 
-{{< figure src="./images/interpreter-path.png" class="wide" caption="Interpreter Path" >}}
+{{< figure src="./images/interpreter-path.webp" class="wide" caption="Interpreter Path" >}}
 
 The program can also run correctly. However this method is not very useful because it is much more complicated than the first two methods, and the generated program is only suitable for running in the QEMU user mode, and cannot run in a standard RISC-V Linux system. The main purpose of this example is to demonstrate how to modify the `interpreter` of a program. For more information about dynamic linkers, you can use the command `$ man ld.so` to view the documentation.
 
@@ -334,7 +334,7 @@ The program can also run correctly. However this method is not very useful becau
 
 When the command `riscv64-linux-gnu-gcc` compiles a C source code into an executable file, GCC actually completes the process in four stages.
 
-{{< figure src="./images/gcc-compile-stage.png" class="wide white" caption="GCC compile stages" >}}
+{{< figure src="./images/gcc-compile-stage.webp" class="wide white" caption="GCC compile stages" >}}
 
 ### 6.1 Preprocessing
 

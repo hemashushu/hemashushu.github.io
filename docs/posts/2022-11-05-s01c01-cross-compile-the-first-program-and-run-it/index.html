@@ -223,7 +223,7 @@
 </li>
 </ul>
 <p>The working principles and processes of both <em>native compilation</em> (ordinary compilation) and <em>cross-compilation</em> are exactly the same. Both aim to translate high-level languages into machine instructions (assembly code) for the target environment. So the term <em>cross-compilation</em> does not refer to a specific function, but is just used to describe a situation where the compilation environment is different from the runtime environment.</p>
-<figure class="mid white"><img src="./images/compilation-comparasion.png"
+<figure class="mid white"><img src="./images/compilation-comparasion.webp"
          alt="Compilation Comparation"/><figcaption>
             <p>Compilation Comparation</p>
         </figcaption>
@@ -395,7 +395,7 @@
 <li><code>$ QEMU_LD_PREFIX=/usr/riscv64-linux-gnu/ qemu-riscv64 app.elf</code></li>
 </ul>
 <p>Both commands can run correctly, and you should see the &ldquo;Hello, World!&rdquo; text output by the program.</p>
-<figure class="wide"><img src="./images/qemu-user.png"
+<figure class="wide"><img src="./images/qemu-user.webp"
          alt="QEMU User Mode"/><figcaption>
             <p>QEMU User Mode</p>
         </figcaption>
@@ -442,7 +442,7 @@
 </span></span><span class="line"><span class="cl">app-inter.elf: error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory
 </span></span></code></pre></div><p>It seems that the RISC-V version of <code>ld.so</code> works, but the dynamic linker cannot find the RISC-V version of the shared library <code>libc.so.6</code>. This problem is easy to solve, just specify the path of the shared library that the program depends on through the <code>LD_LIBRARY_PATH</code> environment variable, for example:</p>
 <p><code>$ LD_LIBRARY_PATH=/usr/riscv64-linux-gnu/lib qemu-riscv64 app-inter.elf</code></p>
-<figure class="wide"><img src="./images/interpreter-path.png"
+<figure class="wide"><img src="./images/interpreter-path.webp"
          alt="Interpreter Path"/><figcaption>
             <p>Interpreter Path</p>
         </figcaption>
@@ -451,7 +451,7 @@
 <p>The program can also run correctly. However this method is not very useful because it is much more complicated than the first two methods, and the generated program is only suitable for running in the QEMU user mode, and cannot run in a standard RISC-V Linux system. The main purpose of this example is to demonstrate how to modify the <code>interpreter</code> of a program. For more information about dynamic linkers, you can use the command <code>$ man ld.so</code> to view the documentation.</p>
 <h2 id="6-phased-compilation">6. Phased compilation</h2>
 <p>When the command <code>riscv64-linux-gnu-gcc</code> compiles a C source code into an executable file, GCC actually completes the process in four stages.</p>
-<figure class="wide white"><img src="./images/gcc-compile-stage.png"
+<figure class="wide white"><img src="./images/gcc-compile-stage.webp"
          alt="GCC compile stages"/><figcaption>
             <p>GCC compile stages</p>
         </figcaption>
