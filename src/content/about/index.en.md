@@ -2,7 +2,8 @@
 title: "About"
 date: 2022-08-07T20:53:01+08:00
 draft: false
-menu: "main"
+menus: main
+weight: 50
 meta: "false"
 ---
 
@@ -42,3 +43,7 @@ Because I am a nobody, I don't want someone or a company to take my work and tur
 ### Are all these projects your personal work?
 
 Yes. And most of my work doesn't have "clients", which means that on one pays me and there is no project funding. I would greatly appreciate it if you could sponsor me!
+
+### What is your motivation?
+
+My goal is to be able to build a completely new computer system that I like all by myself, including hardware, instruction set, programming language, operating system, and applications. This is my greatest pleasure. At the same time, I will share my building process and results, hoping to help others.

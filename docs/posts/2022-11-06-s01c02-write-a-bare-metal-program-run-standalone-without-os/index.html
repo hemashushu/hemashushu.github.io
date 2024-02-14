@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="S01C02 Write a Hello World program that can run standalone without an OS" />
-<meta property="og:description" content=" " />
+<meta property="og:description" content="In the previous chapter we wrote a &ldquo;Hello, World!&rdquo; program, then cross-compiled it with GCC and ran it successfully using the QEMU emulator. However, we also found that the program was several hundred KiB in size, so we can conclude that it must contain a lot of content that we didn&rsquo;t write. In addition, it relies on the operating system to run, which as you know, is itself a vary large program." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-06T00:00:00+00:00" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="S01C02 Write a Hello World program that can run standalone without an OS"/>
-<meta name="twitter:description" content=" "/>
+<meta name="twitter:description" content="In the previous chapter we wrote a &ldquo;Hello, World!&rdquo; program, then cross-compiled it with GCC and ran it successfully using the QEMU emulator. However, we also found that the program was several hundred KiB in size, so we can conclude that it must contain a lot of content that we didn&rsquo;t write. In addition, it relies on the operating system to run, which as you know, is itself a vary large program."/>
 
 <meta name="generator" content="Hugo 0.122.0">
     
@@ -81,7 +81,13 @@
 <nav>
     <ul>
         <li>
-            <a href="/" title="Home">Home</a>
+            <a  href="/" title="Home">Home</a>
+        </li>
+        
+        <li>
+            <a class="" href="/download/">
+                <i class="fa-li fa  fa-lg"></i><span>Download</span>
+            </a>
         </li>
         
         <li>
@@ -93,6 +99,12 @@
         <li>
             <a class="active" href="/posts/">
                 <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books/">
+                <i class="fa-li fa  fa-lg"></i><span>Books</span>
             </a>
         </li>
         
@@ -152,7 +164,7 @@
         </li>
         
 
-        <li>0 minute read</li>
+        <li>9 minute read</li>
     </ul>
 </aside>
 
@@ -163,7 +175,74 @@
 
     
 
-    <figure class="mid"><img src="/images/subscribe-and-donate.en.png"/>
+    <p>In <a href="../2022-11-05-s01c01-cross-compile-and-run-the-first-program">the previous chapter</a> we wrote a &ldquo;Hello, World!&rdquo; program, then cross-compiled it with GCC and ran it successfully using the QEMU emulator. However, we also found that the program was several hundred KiB in size, so we can conclude that it must contain a lot of content that we didn&rsquo;t write. In addition, it relies on the operating system to run, which as you know, is itself a vary large program. In this chapter, we will write a &ldquo;Hello, World!&rdquo; program that runs on its own without an operating system and libraries (such a program called a <em>bare-metal program</em>), and then we will cross-compile it with GCC and try to run it with QEMU. Bare-metal programs give us an idea of how a complete program is made up, and also how it is executed when the machine is powered on.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#1-what-is-a-bare-metal-program">1. What is a bare-metal program?</a></li>
+<li><a href="#2-how-to-start-a-bare-metal-program">2. How to start a bare-metal program</a></li>
+<li><a href="#3-creating-a-bare-metal-version-of-hello-world">3. Creating a bare-metal version of &ldquo;Hello, World!&rdquo;</a>
+<ul>
+<li><a href="#31-how-to-access-the-hardware-directly">3.1 How to access the hardware directly?</a></li>
+<li><a href="#32-sending-characters-through-the-serial-port">3.2 Sending characters through the serial port</a></li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="1-what-is-a-bare-metal-program">1. What is a bare-metal program?</h2>
+<p>A bare-metal program is a program that runs in a &ldquo;non-OS&rdquo; environment, which may sound amazing at first: &ldquo;How can a program run in a machine without operating system? How do I type in the name of a program without a terminal?&rdquo; But if you think about it, the operating system&rsquo;s bootloader e.g., <a href="https://www.gnu.org/software/grub/">GRUB</a>, and the operating system kernel, they all run without an exists operating system. So surely a program can run without an OS, it just might use some magic that we don&rsquo;t yet know about.</p>
+<p>However, a bare-metal program doesn&rsquo;t have magic, in fact it&rsquo;s not much different from an ordinary program. The arithmetic operations, flow control, and the structure of the program, is the same as an ordinary program. The difference is that for some privileged operations or I/O operations on hardware devices, the program has to do it by itself and cannot ask the operating system for help. In addition, bare-metal programs are not started with a filename, because there is no file system in the environment. Bare-metal programs usually exist in binary form in ROM or in a fixed location on disk.</p>
+<p>If you want a bare-metal application to play music and access the internet, you need to write your own application and hardware drivers for sound card and the network interface; if you want two applications to run at the same time, you need to write a process scheduler; if you want to save a file to the hard disk (or to an SSD), you need to write a filesystem module; and if you want to make the application run safety, you need to implement a virual memory manager. As you can see, the more features you need, the closer the bare-metal program is to an operating system, and in fact the operating system kernel is a typical bare-metal program.</p>
+<p>Of course a bare-metal program can be extremely simple if you just want the machine to do something simple task, such as the &ldquo;Hello, World!&rdquo; program.</p>
+<blockquote>
+<p>In general, the CPU has two modes, The <em>Supervisor</em> and the <em>User</em> when executing instructions. The kernel runs in the supervisor mode and it can execute most of the instructions, as well as it can access any hardware resource. Applications running in the user mode and it can only execute a limited number of instructions, such as arithmetic operations, memory loads and stores. In other words, in the user mode, the application can not directly access to peripherals such as keyboards, mice, monitors and network interface. It seems the application in this mode is almost useless, so how is the rich function of the application implemented? The answer is that the CPU provides a <em>Trap</em> instruction for the user mode, which corresponds to the operating system&rsquo;s <em>syscall</em>. The application sends requests to the operating system (kernel) through the <em>syscall</em>, and the operating system accesses the privileged modules and the hardware resources on behalf of the application. It is worth mentioning that <em>syscall</em> is not the only way for user mode applications to communicate with the outside world. For example, the Linux kernel creates virtual filesystems such as <code>/dev</code>, <code>/sys</code>, etc., which can be read or written to by the user application to access the module or hardware. In addition, some hardware peripherals map their interfaces to a certain address in memory (called IOMMU), and the reading and writing of this memory data by the user application will be converted into access to the hardware.</p>
+</blockquote>
+<p>Programs that run in the microcontroller (MCU) (these programs are often called <em>firmware</em>) are also bare-metal programs, because the MCU has too few resources to run an operating system.</p>
+<blockquote>
+<p>There is a type of program called <em>Real Time Operating System (RTOS)</em>, usually in the form of libraries, which is a completely different concept from the operating system we usually take about.</p>
+</blockquote>
+<h2 id="2-how-to-start-a-bare-metal-program">2. How to start a bare-metal program</h2>
+<p>After the machine is powered on or reset, the CPU will start executing its first instruction from a specified memory address, which usually stores a <em>loader</em> or hardware initialization program (e.g. BIOS/UEFI programs, sometimes called <em>firmware</em>) fixed in the ROM chip. The loader then tries to load the system <em>boot loader</em> from a specified location and jumps to the first instruction (a.k.a. <em>entry</em>), which in turn loads the <em>kernel</em> and jumps to the entry point. The process of booting a machine is running serveral programs one by one.</p>
+<figure class="full white"><img src="./images/linux-boot-process.webp"
+         alt="The Linux boot process on x86_64 platform"/><figcaption>
+            <p>The Linux boot process on x86_64 platform</p>
+        </figcaption>
+</figure>
+
+<p>It is important to note that the boot process is not the same for all machines, some platforms may have only one or two steps, others may have more. But one thing is certain: the location (memory address) and the entry point of echo program is predefined. So the easiest way to get the machine to run our bare-metal program is to place the program in the location reserved for the <em>boot loader</em> or the <em>kernel</em>, so that it can &ldquo;pretend&rdquo; to be them, and the machine will execute our program when it is powered on (perhaps after a number of steps).</p>
+<p>We are going to implement a bare-metal version of the &ldquo;Hello, World!&rdquo; program, which will run in the <em>full system mode</em> of the <em>QEMU RISC-V 64-bit Virt</em> virtual machine.</p>
+<h2 id="3-creating-a-bare-metal-version-of-hello-world">3. Creating a bare-metal version of &ldquo;Hello, World!&rdquo;</h2>
+<p>Let&rsquo;s look at the source code of a traditional &ldquo;Hello, World!&rdquo; program:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The above program is very simple, with only one key statement: it outputs the &ldquo;Hello, World!&rdquo; string to the screen by calling the <code>printf</code> function. If you step through the debugger, or look at the source code for <a href="https://sourceware.org/git/?p=glibc.git">libc</a>, you&rsquo;ll see that the <code>printf</code> function (and the <code>puts</code> function as well) goes through a series of functions, ending with the <code>write</code> <em>syscall</em>. This indicates that the program requires an operating system to run properly, and therefor cannot be a bare-metal program.</p>
+<p>If you want to implement a bare-metal version of the &ldquo;Hello, World!&rdquo; program, you will have to implement your own functions for outputting characters to the screen hardware.</p>
+<h3 id="31-how-to-access-the-hardware-directly">3.1 How to access the hardware directly?</h3>
+<p>Thankfully, interacting with hardware is not too complicated. Computer hardware consists of digital circuits. From a programming point of view, there are many &ldquo;little switches&rdquo; in these circuits. Some of these switches are used to change the state of the circuit&rsquo;s components to perform specific functions, while others turn themselves on or off, like small light bulbs, to tell the state of the circuit.</p>
+<p>These &ldquo;switches&rdquo; actually correspond to <em>registers</em> in digital circuits, whose inputs or outputs are mapped to specified addresses in memory spece. So when we write a bit 0 or 1 to one of these memories, we can set the state of the corresponding register, and vice versa, by reading these memories, we can get the state of the corresponding register.</p>
+<p>So interacting with the hardware is simplified to <strong>writing or reading data to or from a specified address memory</strong></p>
+<h3 id="32-sending-characters-through-the-serial-port">3.2 Sending characters through the serial port</h3>
+<p>The virtual machine <em>QEMU RISC-V 64-bit Virt</em> contains a virtual hardware chip <a href="https://www.qemu.org/docs/master/system/riscv/virt.html">NS16550</a> which implements the <a href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART communication protocol</a>, which is often known as serial comminication. When data is written to this hardware, it is transferred via an RS-232 interface (in modern computers, this has been replaced by the USB interface) and a cable to a device on the other end, which in the <em>QEMU RISC-V 64-bit Virt</em> is the <em>virtual terminal</em> program running the QEMU program.</p>
+<p>By reading the <a href="http://caro.su/msx/ocm_de1/16550.pdf">NS16550 datasheet</a>, we can see that the chip has 13 registers, which are used to set the working conditions and to write or read communication data. Each register has a name according to its function. For example, the first register of NS16550 is <code>THR</code> (Transmitter Holding Register), which is used to hold the data to be sent. In addition, each register has its own data size, and in the NS16550, each register is exactly 8-bit. These registers are arranged together to form a data space. According to the datasheet, the NS16550&rsquo;s registers form a block of 8 bytes of data. This data will be mapped into memory, so this space will have an <em>address</em>, and the program can locate each register by using the address and offset.</p>
+<blockquote>
+<p>The reason why the register space of NS16550 is not <code>13 x 1 byte = 13 bytes</code> is bacause some of the registers share the same location, for example, the <code>RHR</code> and <code>THR</code> both have address 0.</p>
+</blockquote>
+<p>The <a href="https://github.com/qemu/qemu/blob/master/hw/riscv/virt.c">QEMU RISC-V Virt source code</a> lists the memory-mapped addresses of peripherals:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">const</span> <span class="n">MemMapEntry</span> <span class="n">virt_memmap</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_MROM</span><span class="p">]</span> <span class="o">=</span>         <span class="p">{</span>     <span class="mh">0x1000</span><span class="p">,</span>        <span class="mh">0xf000</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_UART0</span><span class="p">]</span> <span class="o">=</span>        <span class="p">{</span> <span class="mh">0x10000000</span><span class="p">,</span>         <span class="mh">0x100</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_FLASH</span><span class="p">]</span> <span class="o">=</span>        <span class="p">{</span> <span class="mh">0x20000000</span><span class="p">,</span>     <span class="mh">0x4000000</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">VIRT_DRAM</span><span class="p">]</span> <span class="o">=</span>         <span class="p">{</span> <span class="mh">0x80000000</span><span class="p">,</span>           <span class="mh">0x0</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>where UART stands for serial device. From the above list, we know that the memory address of the serial debice NS16550 of this VM is <code>0x10000000</code> (the starting address of a peripheral is generally referred to as the <em>base address</em>). According to the datasheet, the address of register <code>THR</code> should be <code>0x10000000 + 0 = 0x10000000</code>, the address of register <code>LSR</code> (Line Status Register) is <code>0x10000000 + 0x5 = 0x10000005</code> and so on.</p>
+<p>To send a character through the serial port, simply write the ASCII value (an integer of type <em>uint8</em>) to the address <code>0x10000000</code> (i.e. the register <code>THR</code>), and the character will be redirected to the virtual terminal program where the QEMU program is running.</p>
+<figure class="mid"><img src="/images/subscribe-and-donate.en.png"/>
 </figure>
 
 

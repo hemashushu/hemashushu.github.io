@@ -10,7 +10,7 @@ googleAnalytics = 'G-J7X4YJHXM9'
 defaultContentLanguage = "en"
 # Force to have /en/page and /zh/page routes, even for default language.
 # defaultContentLanguageInSubdir= true
-
+# sectionPagesMenu = 'main'
 paginate = 24
 
 [author]

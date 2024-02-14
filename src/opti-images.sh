@@ -12,6 +12,7 @@ for NAMEPATH in $FILES; do
 	NAMEPATH_WITHOUT_EXTENSION=${NAMEPATH%.*}
 	FROM="$NAMEPATH_WITHOUT_EXTENSION.png" 
         TO="$NAMEPATH_WITHOUT_EXTENSION.webp"
+	echo "---"
 	cwebp "$FROM" -o "$TO"
 done
 

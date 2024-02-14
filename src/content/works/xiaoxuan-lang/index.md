@@ -8,7 +8,7 @@ categories: ["xiaoxuan-lang"]
 
 {{< figure class="wide" src="./images/banner_v2.webp" >}}
 
-_The XiaoXuan Programming Language_ is an elegant, full-stack programming language. It consists of several variants and can be used to develop a variety applications, including digital circuits and chips, microcontroller programs, GPU shaders, system programs, local native programs, cloud native programs, web applications and more. All variants use the same syntax and design philosophy, allowing you to learn one language for all sorts of development.
+_The XiaoXuan Language_ is a full-stack programming language. It consists of several variants and can be used to develop a variety applications, including digital circuits and chips, microcontroller programs, GPU shaders, system programs, local native programs, cloud native programs, web applications and more. All variants use the same syntax and design philosophy, allowing you to learn one language for all sorts of development.
 
 The implemented variants:
 
