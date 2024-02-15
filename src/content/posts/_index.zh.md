@@ -1,5 +1,5 @@
 ---
-title : "文章"
+title : "日志"
 menu : "main"
-weight : "30"
+weight : "40"
 ---

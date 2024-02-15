@@ -2,7 +2,7 @@
 title: "About"
 date: 2022-08-07T20:53:01+08:00
 draft: false
-menus: main
+menus: "main"
 weight: 50
 meta: "false"
 ---

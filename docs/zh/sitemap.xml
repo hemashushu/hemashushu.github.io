@@ -15,7 +15,6 @@
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/posts/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -38,6 +37,45 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/about/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/books/</loc>
+    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/books/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/books/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/books/s10-mastering-cross-platform-development-with-qemu/</loc>
+    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/books/s10-mastering-cross-platform-development-with-qemu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/books/s10-mastering-cross-platform-development-with-qemu/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/</loc>
+    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/bare-metal/</loc>
@@ -105,17 +143,17 @@
                 href="https://hemashushu.github.io/zh/categories/s01/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/</loc>
+    <loc>https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch02-write-a-bare-metal-program-run-standalone-without-os/</loc>
     <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hemashushu.github.io/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/"
+                href="https://hemashushu.github.io/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch02-write-a-bare-metal-program-run-standalone-without-os/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://hemashushu.github.io/zh/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/"
+                href="https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch02-write-a-bare-metal-program-run-standalone-without-os/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/</loc>
@@ -129,19 +167,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/tags/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/gcc/</loc>
@@ -170,17 +195,30 @@
                 href="https://hemashushu.github.io/zh/tags/qemu/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/</loc>
+    <loc>https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/</loc>
     <lastmod>2022-11-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hemashushu.github.io/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/"
+                href="https://hemashushu.github.io/books/s01-xiaoxuan-adventures-in-riscv-wonderland/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://hemashushu.github.io/zh/posts/2022-11-05-s01c01-cross-compile-the-first-program-and-run-it/"
+                href="https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch01-cross-compile-the-first-program-and-run-it/</loc>
+    <lastmod>2022-11-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch01-cross-compile-the-first-program-and-run-it/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch01-cross-compile-the-first-program-and-run-it/"
                 />
   </url>
 </urlset>
