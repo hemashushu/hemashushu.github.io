@@ -38,7 +38,9 @@ body header ul li a {
 }
 
 #container nav ul li a.active {
-    border-bottom-color: #6d8384;
+    /* border-bottom-color: #6d8384; */
+    background-color: #889e9f;
+    color: #2E3139;
 }
 
 /* #container main section#home span {

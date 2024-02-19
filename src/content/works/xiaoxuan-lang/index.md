@@ -10,7 +10,7 @@ categories: ["xiaoxuan-lang"]
 
 _The XiaoXuan Language_ is a full-stack programming language. It consists of several variants and can be used to develop a variety applications, including digital circuits and chips, microcontroller programs, GPU shaders, system programs, local native programs, cloud native programs, web applications and more. All variants use the same syntax and design philosophy, allowing you to learn one language for all sorts of development.
 
-The implemented variants:
+The variants:
 
 - [XiaoXuan Core](/works/xiaoxuan-core)
   Build powerful user-space system programs that have extremely fast startup speed and small memory footprint, it can directly call _syscall_ and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
@@ -24,19 +24,24 @@ The implemented variants:
 - [XiaoXuan Native](/works/xiaoxuan-native)
   A memory-safe, general-purpose programming language inspired by Rust but much simpler. It provides automatic memory management without garbage collection, and avoids complex concepts such as ownership, borrow checking, and lifetimes. It supports compiling to native code for architectures such as _x86-64_, _aarch64_ and _riscv64_.
 
+- [XiaoXuan GPU](/works/xiaoxuan-gpu)
+  A modern shading language designed to facilitate the rapid development of high-performance programs such as game engines, AR, AI engines, data analysis, biocomputing, scientific computing, and more. It features the same elegant syntax and design philosophy as the _XiaoXuan Lang_, allowing you to develop in new domains without learning a new language.
+
 - [XiaoXuan Micro](/works/xiaoxuan-micro)
   Build high-performance firmware for microcontroller easily, the built-in micro VM makes it possible to "write once, run anywhere".
 
 - [XiaoXuan Logic](/works/xiaoxuan-logic)
   A brand new and modern hardware description language (HDL) that lets you design hardware and chips in the same ease and collaboration as open-source software. Its built-in GPU-accelerated simulator dramatically enhances test efficiency, saving you valuable time and resources.
 
-{{< figure class="wide" src="./images/variants.webp" caption="The XiaoXuan Programming Language Family" >}}
+{{< figure class="wide white" src="./images/variants.webp" caption="The XiaoXuan Programming Language Family" >}}
+
+## Localization
 
 _The XiaoXuan programming language_ supports writing code in local languages, such as Chinese, Japanese and French. In addition to keywords, the standard library and related documentation are also translated into local languages. Using local language programming is beneficial for children, beginners and non-computer majors who are not native English speakers.
 
-The implemented local language variants are as follows:
+The local language variants are as follows:
 
-- {{< null-link "XiaoXuan Core Hans" >}} - The Chinese edition (中文版)
+- [XiaoXuan Core Hans](/works/xiaoxuan-core-hans) - The simplified Chinese edition (简体中文版) of XiaoXuan Core.
 
 ## Which one should I choose?
 

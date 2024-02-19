@@ -6,7 +6,18 @@
 # however, a more efficient way to optimize PNG is
 # convert it to WEBP format.
 
-FILES=$(find ./content -type f -name "*.png")
+# usage:
+# ./opti-images.sh [PATH_TO_FOLDER]
+#
+# the default path is './content'
+
+DST_PATH=$1
+
+if [ -z "$DST_PATH" ]; then
+	DST_PATH="./content"
+fi
+
+FILES=$(find "$DST_PATH" -type f -name "*.png")
 for NAMEPATH in $FILES; do
 	#echo $NAMEPATH
 	NAMEPATH_WITHOUT_EXTENSION=${NAMEPATH%.*}

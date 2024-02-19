@@ -101,6 +101,12 @@
         </li>
         
         <li>
+            <a class="" href="/picture-books/">
+                <i class="fa-li fa  fa-lg"></i><span>Picture books</span>
+            </a>
+        </li>
+        
+        <li>
             <a class="" href="/posts/">
                 <i class="fa-li fa  fa-lg"></i><span>Blog</span>
             </a>
@@ -126,14 +132,15 @@
     
     <div class="work-item">
         <div class="work-banner">
-            <img src="/works/xiaoxuan-lang/images/banner_v2.webp" alt="banner">
+            
+            <h3>An overview of my software and hardware</h3>
         </div>
         <div class="work-content">
             
             <div class="work-entry">
                 <h2 class="capital">Programming Language</h2>
                 <div class="work-detail">
-                    <p><em>The XiaoXuan Language</em> is a full-stack programming language.
+                    <p><a href="/works/xiaoxuan-lang/">The XiaoXuan Language</a> is a full-stack programming language.
                         It consists of several variants and can be used to develop a variety applications,
                         including digital circuits and chips,
                         microcontroller firmware, GPU shaders, system programs, local native programs,
@@ -141,7 +148,7 @@
                         All variants use the same syntax and design philosophy, allowing you to learn
                         one language for all sorts of development.
                     </p>
-                    <p>The implemented variants:</p>
+                    <p>The variants:</p>
                     <ul class="card">
                         <li>
                             <div class="card_cover">
@@ -240,6 +247,11 @@
                             <p>The XiaoXuan Programming Language Family</p>
                         </figcaption>
                     </figure>
+                    <div class="work-more">
+                        <a href="/works/xiaoxuan-lang/" title="Read more">Read more about the XiaoXuan Programming
+                            Language Family...</a>
+                    </div>
+                    <h3 class="capital">Localization</h3>
                     <p>The <em>XiaoXuan programming language</em> supports writing code in local languages,
                         such as Chinese, Japanese and French. In addition to keywords, the standard library and
                         related documentation are also translated into local languages.
@@ -253,17 +265,15 @@
                         </figcaption>
                     </figure>
                     <p>
-                        The implemented local languages:
+                        The local languages:
                     </p>
                     <ul>
-                        <li><span class="null-link">XiaoXuan Local Hans</span> - The Simplified Chinese Edition (中文版)
+                        <li><a href="/works/xiaoxuan-core-hans">XiaoXuan Core Hans</a> - The simplified Chinese edition
+                            (简体中文版) of XiaoXuan Core.
                         </li>
                     </ul>
                 </div>
-                <div class="work-more">
-                    <a href="/works/xiaoxuan-lang/" title="Read more">Read more about the XiaoXuan Programming Language
-                        Family...</a>
-                </div>
+
             </div>
 
             
@@ -282,7 +292,7 @@
                                 </a>
                             </div>
                             <div class="card-title center">
-                                <h3><span class="null-link">XiaoYu OS</span></h3>
+                                <h3><a href="/works/xiaoyu-os">XiaoYu OS</a></h3>
                             </div>
                             <div class="card-content">A brand new operating system built for the modern engineer's daily
                                 workflow.
@@ -300,7 +310,7 @@
                                 </a>
                             </div>
                             <div class="card-title center">
-                                <h3><span class="null-link">XiaoYu Micro OS</span></h3>
+                                <h3><a href="/works/xiaoyu-micro-os">XiaoYu Micro OS</a></h3>
                             </div>
                             <div class="card-content">A true operating system (not RTOS) for microcontrollers (MCUs).
                                 Applications (firmware) can be run by simply downloading and configuring, without
@@ -326,7 +336,7 @@
                                 </a>
                             </div>
                             <div class="card-title center">
-                                <h3><span class="null-link">XiaoYu Debugger</span></h3>
+                                <h3><a href="/works/xiaoyu-debugger">XiaoYu Debugger</a></h3>
                             </div>
                             <div class="card-content">
                                 A very simple debugger (programmer) base on
@@ -342,7 +352,7 @@
                                 </a>
                             </div>
                             <div class="card-title center">
-                                <h3><span class="null-link">XiaoYu DevKit</span></h3>
+                                <h3><a href="/works/xiaoyu-devkit">XiaoYu DevKit</a></h3>
                             </div>
                             <div class="card-content">A reference board for <em>XiaoXuan Micro</em> development.
                                 It uses a low-cost MCU <em>STM32G070</em> in LQFP package, which is easy to make and
@@ -350,12 +360,12 @@
                         </li>
                         <li>
                             <div class="card_cover">
-                                <a href="/works/xiaoyu-edu-board" title="XiaoYu Edu Board">
-                                    <img src="/works/xiaoyu-edu-board/images/pcb3.jpg">
+                                <a href="/works/xiaoyu-devkit-pro" title="XiaoYu DevKit Pro">
+                                    <img src="/works/xiaoyu-devkit-pro/images/pcb3.jpg">
                                 </a>
                             </div>
                             <div class="card-title center">
-                                <h3><span class="null-link">XiaoYu Edu Board</span></h3>
+                                <h3><a href="/works/xiaoyu-devkit-pro">XiaoYu DevKit Pro</a></h3>
                             </div>
                             <div class="card-content">A reference board for <em>XiaoYu Micro OS</em> development.
                                 It integrates a debugger as well as numerous interfaces, buttons and LEDs using
@@ -473,7 +483,8 @@
                             <div class="card-book c2">
                                 <div class="frame">
                                     <div class="name">
-                                        <h3><a href="" title="">Building a KVM-based Virtual Machine Tool Using XiaoXuan Native</a></h3>
+                                        <h3><a href="" title="">Building a KVM-based Virtual Machine Tool Using XiaoXuan
+                                                Native</a></h3>
                                         <div class="separator"></div>
                                         <div class="catalog">XiaoXuan Native</div>
                                     </div>
@@ -482,11 +493,14 @@
                             </div>
                             <div class="card-content">
                                 <ul>
-                                    <li><span class="null-link">Comparison of CPU virtualization, simulators, and containers.</span></li>
-                                    <li><span class="null-link">Creating a minimal virtual machine using the KVM API</span></li>
+                                    <li><span class="null-link">Comparison of CPU virtualization, simulators, and
+                                            containers.</span></li>
+                                    <li><span class="null-link">Creating a minimal virtual machine using the KVM
+                                            API</span></li>
                                     <li><span class="null-link">Creating a virtual serial port device</span></li>
                                     <li><span class="null-link">Creating a virtual block device</span></li>
-                                    <li><span class="null-link">Building a minimal kernel and a simple userspace program</span></li>
+                                    <li><span class="null-link">Building a minimal kernel and a simple userspace
+                                            program</span></li>
                                     <li><span class="null-link">Guide to booting a Linux kernel</span></li>
                                 </ul>
                             </div>
@@ -497,7 +511,8 @@
                             <div class="card-book c3">
                                 <div class="frame">
                                     <div class="name">
-                                        <h3><a href="" title="">Building a Simple Kernel (RISC-V Edition) using XiaoXuan Native</a></h3>
+                                        <h3><a href="" title="">Building a Simple Kernel (RISC-V Edition) using XiaoXuan
+                                                Native</a></h3>
                                         <div class="separator"></div>
                                         <div class="catalog">XiaoXuan Native</div>
                                     </div>
@@ -506,7 +521,8 @@
                             </div>
                             <div class="card-content">
                                 <ul>
-                                    <li><span class="null-link">RISC-V QEMU boot process and basic input/ouput</span></li>
+                                    <li><span class="null-link">RISC-V QEMU boot process and basic input/ouput</span>
+                                    </li>
                                     <li><span class="null-link">Creating a bare-metal "Hello, World" program</span></li>
                                     <li><span class="null-link">CPU interrupts and task switching</span></li>
                                     <li><span class="null-link">Multi-level page tables</span></li>
@@ -522,7 +538,8 @@
                             <div class="card-book c6">
                                 <div class="frame">
                                     <div class="name">
-                                        <h3><a href="" title="">Designing a RISC-V CPU Core using XiaoXuan Logic</a></h3>
+                                        <h3><a href="" title="">Designing a RISC-V CPU Core using XiaoXuan Logic</a>
+                                        </h3>
                                         <div class="separator"></div>
                                         <div class="catalog">XiaoXuan Logic</div>
                                     </div>
@@ -531,20 +548,30 @@
                             </div>
                             <div class="card-content">
                                 <ul>
-                                    <li><span class="null-link">Digital circuit fundamentals: combinational and sequential circuits</span></li>
-                                    <li><span class="null-link">Building a Blinky circuit, and interacting with the visual simulator</span></li>
-                                    <li><span class="null-link">Synthesizing and downloading to FPGA hardware (Optional)</span></li>
-                                    <li><span class="null-link">Introduction to RISC-V Instruction Architecture</span></li>
+                                    <li><span class="null-link">Digital circuit fundamentals: combinational and
+                                            sequential circuits</span></li>
+                                    <li><span class="null-link">Building a Blinky circuit, and interacting with the
+                                            visual simulator</span></li>
+                                    <li><span class="null-link">Synthesizing and downloading to FPGA hardware
+                                            (Optional)</span></li>
+                                    <li><span class="null-link">Introduction to RISC-V Instruction Architecture</span>
+                                    </li>
                                     <li><span class="null-link">Instruction decoder</span></li>
-                                    <li><span class="null-link">Register File and Arithmetic Logic Unit (ALU) </span></li>
+                                    <li><span class="null-link">Register File and Arithmetic Logic Unit (ALU) </span>
+                                    </li>
                                     <li><span class="null-link">Jump and branch instructions</span></li>
                                     <li><span class="null-link">Memory and load/store instructions</span></li>
-                                    <li><span class="null-link">RISC-V calling convention ABI and implementing the functon calling</span></li>
-                                    <li><span class="null-link">Memory mapping and implementing the UART peripheral</span></li>
+                                    <li><span class="null-link">RISC-V calling convention ABI and implementing the
+                                            functon calling</span></li>
+                                    <li><span class="null-link">Memory mapping and implementing the UART
+                                            peripheral</span></li>
                                     <li><span class="null-link">ROM and Building a simple program (firmware)</span></li>
-                                    <li><span class="null-link">"Running" the CPU with XiaoXuan Logic visual simulator</span></li>
-                                    <li><span class="null-link">Synthesizing and downloading to FPGA hardware (Optional)</span></li>
-                                    <li><span class="null-link">Interacting via USB-UART and terminal on computer</span></li>
+                                    <li><span class="null-link">"Running" the CPU with XiaoXuan Logic visual
+                                            simulator</span></li>
+                                    <li><span class="null-link">Synthesizing and downloading to FPGA hardware
+                                            (Optional)</span></li>
+                                    <li><span class="null-link">Interacting via USB-UART and terminal on computer</span>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

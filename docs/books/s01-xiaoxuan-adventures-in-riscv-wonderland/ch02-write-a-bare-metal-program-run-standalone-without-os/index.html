@@ -103,6 +103,12 @@
         </li>
         
         <li>
+            <a class="" href="/picture-books/">
+                <i class="fa-li fa  fa-lg"></i><span>Picture books</span>
+            </a>
+        </li>
+        
+        <li>
             <a class="" href="/posts/">
                 <i class="fa-li fa  fa-lg"></i><span>Blog</span>
             </a>
@@ -242,6 +248,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div><p>where UART stands for serial device. From the above list, we know that the memory address of the serial debice NS16550 of this VM is <code>0x10000000</code> (the starting address of a peripheral is generally referred to as the <em>base address</em>). According to the datasheet, the address of register <code>THR</code> should be <code>0x10000000 + 0 = 0x10000000</code>, the address of register <code>LSR</code> (Line Status Register) is <code>0x10000000 + 0x5 = 0x10000005</code> and so on.</p>
 <p>To send a character through the serial port, simply write the ASCII value (an integer of type <em>uint8</em>) to the address <code>0x10000000</code> (i.e. the register <code>THR</code>), and the character will be redirected to the virtual terminal program where the QEMU program is running.</p>
+<p>TODO::</p>
 <figure class="mid"><img src="/images/subscribe-and-donate.en.png"/>
 </figure>
 

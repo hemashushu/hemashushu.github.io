@@ -97,4 +97,6 @@ where UART stands for serial device. From the above list, we know that the memor
 
 To send a character through the serial port, simply write the ASCII value (an integer of type _uint8_) to the address `0x10000000` (i.e. the register `THR`), and the character will be redirected to the virtual terminal program where the QEMU program is running.
 
+TODO::
+
 {{< figure src="/images/subscribe-and-donate.en.png" class="mid" >}}

@@ -40,7 +40,7 @@
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/books/</loc>
-    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -50,6 +50,71 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/books/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/books/s70-build-your-own-usable-programming-language-a-step-by-step-guide/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/books/s70-build-your-own-usable-programming-language-a-step-by-step-guide/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/books/s70-build-your-own-usable-programming-language-a-step-by-step-guide/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/books/s80-zero-to-os-building-your-own-usable-operating-system-volumn-1-the-user-space/</loc>
+    <lastmod>2024-02-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/books/s80-zero-to-os-building-your-own-usable-operating-system-volumn-1-the-user-space/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/books/s80-zero-to-os-building-your-own-usable-operating-system-volumn-1-the-user-space/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/books/s81-zero-to-os-building-your-own-usable-operating-system-volumn-1-the-kernel/</loc>
+    <lastmod>2024-02-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/books/s81-zero-to-os-building-your-own-usable-operating-system-volumn-1-the-kernel/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/books/s81-zero-to-os-building-your-own-usable-operating-system-volumn-1-the-kernel/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/books/s90-build-your-own-linux-capable-cpu-a-step-by-step-guide/</loc>
+    <lastmod>2024-02-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/books/s90-build-your-own-linux-capable-cpu-a-step-by-step-guide/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/books/s90-build-your-own-linux-capable-cpu-a-step-by-step-guide/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/books/s10-mastering-cross-platform-development-with-qemu/</loc>
@@ -63,19 +128,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/books/s10-mastering-cross-platform-development-with-qemu/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/</loc>
-    <lastmod>2023-01-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/bare-metal/</loc>
