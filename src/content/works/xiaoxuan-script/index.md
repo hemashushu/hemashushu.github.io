@@ -26,9 +26,13 @@ When a user accesses your web application (web page), the _compiler_ will compil
 
 Let's create a minimal "Hello World!" XiaoXuan Script application.
 
+### Download the compiler
+
 First create a folder named "hello-ans" in your home directory (or any directory), then download the XiaoXuan Script distribution package {{< null-link "xiaoxuan_script_dist_1.0.1.tar.gz">}}, which is a compressed file containing `ans_compiler.wasm`, `ans_loader.js`, `ans_std.ans`, and some README etc. files, and then extract it to this folder.
 
-Then create files _main.ans_ and _ans_package.json_ in this folder.
+### Writing the first application
+
+Then create files _main.ans_ and _ans_package.json_ in the "hello-ans" folder.
 
 The file _main.ans_ is the main module of our web application, which should contain the `main` function. The file content is as follows:
 
@@ -65,7 +69,9 @@ The file _ans_package.json_ is the package description file, which contains info
 }
 ```
 
-Next, create the web page file _index.html_, the content is as follows:
+### Add a web page
+
+Next, create the web page file _index.html_ in the “hello-ans” folder, the content is as follows:
 
 ```html
 <!DOCTYPE html>
@@ -99,6 +105,8 @@ hello_ans
 ├── index.html
 └── main.ans
 ```
+
+### Running the application
 
 Finally, let's create a local HTTP server, which can be done by running the command `python -m http.server`.
 

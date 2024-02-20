@@ -41,7 +41,6 @@ ans_compiler.wasm, the compiler for XiaoXuan Script."/>
 
 <body>
   <header>
-    
     <div id="content">
       <ul id="social-media">
         
@@ -196,8 +195,10 @@ ans_compiler.wasm, the compiler for XiaoXuan Script."/>
 <p>When a user accesses your web application (web page), the <em>compiler</em> will compile all the source code (including the user code, standard library, and all dependencies) on-the-fly into a WebAssembly file, which is then cached in the user&rsquo;s browser to speed up the next load. The web page and WebAssembly will then interoperate via the <em>bridge</em>.</p>
 <h2 id="quick-start">Quick start</h2>
 <p>Let&rsquo;s create a minimal &ldquo;Hello World!&rdquo; XiaoXuan Script application.</p>
+<h3 id="download-the-compiler">Download the compiler</h3>
 <p>First create a folder named &ldquo;hello-ans&rdquo; in your home directory (or any directory), then download the XiaoXuan Script distribution package <span class="null-link">xiaoxuan_script_dist_1.0.1.tar.gz</span>, which is a compressed file containing <code>ans_compiler.wasm</code>, <code>ans_loader.js</code>, <code>ans_std.ans</code>, and some README etc. files, and then extract it to this folder.</p>
-<p>Then create files <em>main.ans</em> and <em>ans_package.json</em> in this folder.</p>
+<h3 id="writing-the-first-application">Writing the first application</h3>
+<p>Then create files <em>main.ans</em> and <em>ans_package.json</em> in the &ldquo;hello-ans&rdquo; folder.</p>
 <p>The file <em>main.ans</em> is the main module of our web application, which should contain the <code>main</code> function. The file content is as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">title</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#title&#34;</span><span class="p">)</span>
@@ -223,7 +224,8 @@ ans_compiler.wasm, the compiler for XiaoXuan Script."/>
 </span></span><span class="line"><span class="cl">        <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="s2">&#34;./main.ans&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Next, create the web page file <em>index.html</em>, the content is as follows:</p>
+</span></span></code></pre></div><h3 id="add-a-web-page">Add a web page</h3>
+<p>Next, create the web page file <em>index.html</em> in the “hello-ans” folder, the content is as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
@@ -248,7 +250,8 @@ ans_compiler.wasm, the compiler for XiaoXuan Script."/>
 </span></span><span class="line"><span class="cl">├── ans_std.ans
 </span></span><span class="line"><span class="cl">├── index.html
 </span></span><span class="line"><span class="cl">└── main.ans
-</span></span></code></pre></div><p>Finally, let&rsquo;s create a local HTTP server, which can be done by running the command <code>python -m http.server</code>.</p>
+</span></span></code></pre></div><h3 id="running-the-application">Running the application</h3>
+<p>Finally, let&rsquo;s create a local HTTP server, which can be done by running the command <code>python -m http.server</code>.</p>
 <p>Now open any browser and visit <code>http://localhost:8000/</code>. You should see the text &ldquo;Hello World!&rdquo; and the number will increase when you click on the &ldquo;Like&rdquo; button.</p>
 <h2 id="q--a">Q &amp; A</h2>
 <h3 id="what-are-the-differences-between-_javascript_-and-_xiaoxuan-script_">What are the differences between <em>JavaScript</em> and <em>XiaoXuan Script</em>?</h3>
@@ -286,7 +289,7 @@ ans_compiler.wasm, the compiler for XiaoXuan Script."/>
     <ul>
         <li>
         
-            <a href="https://hemashushu.github.io/works/xiaoyu-debugger/"><i class="fa fa-chevron-circle-left"></i> XiaoYu Debugger</a>
+            <a href="https://hemashushu.github.io/works/xiaoyu-automata/"><i class="fa fa-chevron-circle-left"></i> XiaoYu Automatic</a>
         
         </li>
         <li>

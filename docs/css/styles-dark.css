@@ -13,10 +13,6 @@ time {
     color: #a1bcbd;
 }
 
-/* body header #overlay {
-    background-color: #332121;
-} */
-
 body header h1 a {
     color: #889e9f;
 }
@@ -43,10 +39,6 @@ body header ul li a {
     color: #2E3139;
 }
 
-/* #container main section#home span {
-    color: #666666;
-} */
-
 a {
     color: #62a3a6;
 }
@@ -62,17 +54,6 @@ a {
 #container main section.post-nav ul {
     border-top-color: #62a3a6;
 }
-
-/* #container main article a {
-    color: #62a3a6;
-} */
-
-/* highlight code block */
-/*
-#container main article .highlight pre {
-    color: #e3dcd4 !important;
-    background-color: #191a17 !important;
-} */
 
 /* for code blocks which start with 4-space or tab */
 #container main article>pre {
@@ -97,11 +78,6 @@ a {
     border-top-color: #6d8384;
 }
 
-/* border-bottom-color: #ffffff; */
-/* #container footer ul li a {
-    color: #62a3a6;
-} */
-
 #container textarea,
 input {
     background-color: #fff;
@@ -124,14 +100,6 @@ input {
 #container main article aside {
     color: #889e9f;
 }
-
-/* #container main article h1 {
-    color: #bf879f;
-} */
-
-/* #container main section.post-nav a {
-    color: #62a3a6;
-} */
 
 figure figcaption p {
     color: inherit;
@@ -159,17 +127,7 @@ blockquote::before {
     border-bottom-color: #62a3a6;
 }
 
-
-/* ul.card>li .card-book .background {
-    background-color: #666;
-} */
-
-ul.card>li .card-book .frame {
-    /* background-color: #2E3139; */
-}
-
 ul.card>li .card-book .frame .name h3 {
-    /* border: 1px solid rgba(255,255,255,.8); */
     filter: grayscale(.1) brightness(.9);
 }
 

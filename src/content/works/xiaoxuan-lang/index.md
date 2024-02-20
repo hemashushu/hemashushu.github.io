@@ -8,9 +8,9 @@ categories: ["xiaoxuan-lang"]
 
 {{< figure class="wide" src="./images/banner_v2.webp" >}}
 
-_The XiaoXuan Language_ is a full-stack programming language. It consists of several variants and can be used to develop a variety applications, including digital circuits and chips, microcontroller programs, GPU shaders, system programs, local native programs, cloud native programs, web applications and more. All variants use the same syntax and design philosophy, allowing you to learn one language for all sorts of development.
+_The XiaoXuan Language_ is a full-stack programming language. It can be used to develop a variety applications, including digital circuits and chips, microcontroller programs, GPU shaders, system programs, local native programs, cloud native programs, web applications and more. All variants use the same syntax and design philosophy, allowing you to learn one language for all sorts of development.
 
-The variants:
+_The XiaoXuan Language_ consists of several variants, each suited for different application scenarios and developing different type of applications:
 
 - [XiaoXuan Core](/works/xiaoxuan-core)
   Build powerful user-space system programs that have extremely fast startup speed and small memory footprint, it can directly call _syscall_ and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
@@ -28,7 +28,7 @@ The variants:
   A modern shading language designed to facilitate the rapid development of high-performance programs such as game engines, AR, AI engines, data analysis, biocomputing, scientific computing, and more. It features the same elegant syntax and design philosophy as the _XiaoXuan Lang_, allowing you to develop in new domains without learning a new language.
 
 - [XiaoXuan Micro](/works/xiaoxuan-micro)
-  Build high-performance firmware for microcontroller easily, the built-in micro VM makes it possible to "write once, run anywhere".
+  Build high-performance firmware for microcontroller (MCU) easily, the built-in micro VM makes it possible to "write once, run anywhere", build IoT applications in a more modern way.
 
 - [XiaoXuan Logic](/works/xiaoxuan-logic)
   A brand new and modern hardware description language (HDL) that lets you design hardware and chips in the same ease and collaboration as open-source software. Its built-in GPU-accelerated simulator dramatically enhances test efficiency, saving you valuable time and resources.
@@ -37,7 +37,7 @@ The variants:
 
 ## Localization
 
-_The XiaoXuan programming language_ supports writing code in local languages, such as Chinese, Japanese and French. In addition to keywords, the standard library and related documentation are also translated into local languages. Using local language programming is beneficial for children, beginners and non-computer majors who are not native English speakers.
+_The XiaoXuan Language_ supports writing code in local languages, such as Chinese, Japanese and French. In addition to keywords, the standard library and related documentation are also translated into local languages. Using local language programming is beneficial for children, beginners and non-computer majors who are not native English speakers.
 
 The local language variants are as follows:
 
@@ -65,6 +65,14 @@ If you perfer to write programs that run locally, it is recommended to start wit
 
 - {{< null-link "Get started with XiaoXuan Script in 5 minutes" >}}
 - {{< null-link "Get started with XiaoXuan Core in 5 minutes" >}}
+
+## Language features
+
+TODO
+
+## Example program
+
+TODO
 
 ## Manuals & Tutorials
 

@@ -32,9 +32,9 @@ loved watching me draw simple illustrations, so I added these illustrations to t
 
 ### Why do some projects only have documentation but no released code or binary packages?
 
-Developing a programming language is a huge undertaking, so many projects are still in heavy development. This means that they are currently just a collection of scattered code, and while they can implement basic functions, they are not ready for release, I will release them when they are ready.
+Developing a programming language is a huge undertaking, so many projects are still in heavy development. Most of them are currently just a collection of scattered code, and while they can implement basic functions, they are not ready for release, I will release them when they are ready.
 
-For now, only _XiaoXuan Core_ is complete, you can download it and try it out. I will then release _XiaoXuan Script_, _XiaoXuan Native_, _XiaoXuan Managed_ and other projects.
+For now, only _XiaoXuan Core_ is complete, you can download it and try it out. I will then release _XiaoXuan Native_, _XiaoXuan Script_, _XiaoXuan Managed_ and other projects.
 
 ### Why use the MPL open source license and additional terms instead of other permissive licenses?
 
@@ -46,4 +46,4 @@ Yes. And most of my work doesn't have "clients", which means that on one pays me
 
 ### What is your motivation?
 
-My goal is to be able to build a completely new computer system that I like all by myself, including hardware, instruction set, programming language, operating system, and applications. This is my greatest pleasure. At the same time, I will share my building process and results, hoping to help others.
+I am passionate about building new computer and robotic systems from the ground up. I enjoy all aspects of the process, from designing the mechanics and hardware to developing the instruction set, programming language, operating system, artificial intelligence engine, and applications. I also enjoy sharing my work and hoping to help others.
