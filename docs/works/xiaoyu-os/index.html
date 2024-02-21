@@ -9,7 +9,7 @@
 <meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="XiaoYu OS" />
 <meta property="og:description" content="XiaoYu OS is a brand new operating system built for the modern engineer&rsquo;s daily workflow. Every application runs in secure, isolated environement with minimal privileges, requesting permissions only when needed. This also ensures a pristine system, even after years of use, free from accumulated clutter or hidden processes. XiaoYu OS empowers developers to directly maintain their applications, eliminating the need for dedicated package maintainers.
-What makes XiaoYu OS unique? 严格的安全 除了 “系统初始化程序”、“图形 compositor” 以及 “消息总线” 等少数几个程序，其余的应用程序都运行于各自的容器（即：隔离的环境）当中。应用程序只有最小的权限，你可以运行任意应用程序而无需担心它会修改系统或者访问你的个人数据和文件。" />
+What makes XiaoYu OS unique? The XiaoYu OS is the result of the author&rsquo;s long-term thinking about operating system and human-computer interaction." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/works/xiaoyu-os/" /><meta property="article:section" content="works" />
 <meta property="article:published_time" content="2024-01-19T00:00:00+00:00" />
@@ -18,7 +18,7 @@ What makes XiaoYu OS unique? 严格的安全 除了 “系统初始化程序”�
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="XiaoYu OS"/>
 <meta name="twitter:description" content="XiaoYu OS is a brand new operating system built for the modern engineer&rsquo;s daily workflow. Every application runs in secure, isolated environement with minimal privileges, requesting permissions only when needed. This also ensures a pristine system, even after years of use, free from accumulated clutter or hidden processes. XiaoYu OS empowers developers to directly maintain their applications, eliminating the need for dedicated package maintainers.
-What makes XiaoYu OS unique? 严格的安全 除了 “系统初始化程序”、“图形 compositor” 以及 “消息总线” 等少数几个程序，其余的应用程序都运行于各自的容器（即：隔离的环境）当中。应用程序只有最小的权限，你可以运行任意应用程序而无需担心它会修改系统或者访问你的个人数据和文件。"/>
+What makes XiaoYu OS unique? The XiaoYu OS is the result of the author&rsquo;s long-term thinking about operating system and human-computer interaction."/>
 
 <meta name="generator" content="Hugo 0.122.0">
     
@@ -159,7 +159,7 @@ What makes XiaoYu OS unique? 严格的安全 除了 “系统初始化程序”�
         </li>
         
 
-        <li>One minute read</li>
+        <li>3 minute read</li>
     </ul>
 </aside>
 
@@ -181,30 +181,55 @@ years of use, free from accumulated clutter or hidden processes.
 XiaoYu OS empowers developers to directly maintain their applications, eliminating the
 need for dedicated package maintainers.</p>
 <h2 id="what-makes-_xiaoyu-os_-unique">What makes <em>XiaoYu OS</em> unique?</h2>
-<ol>
-<li>严格的安全</li>
-</ol>
-<p>除了 “系统初始化程序”、“图形 compositor” 以及 “消息总线” 等少数几个程序，其余的应用程序都运行于各自的容器（即：隔离的环境）当中。应用程序只有最小的权限，你可以运行任意应用程序而无需担心它会修改系统或者访问你的个人数据和文件。</p>
-<ol start="2">
-<li>干净整洁</li>
-</ol>
-<p>应用程序所产生的临时数据和文件均被限制在其所在的隔离环境中，当一个应用程序被删除时，不会留下任何垃圾在系统里。除此之外，应用程序甚至不需要安装，只需一个 URL 即可运行，运行完之后不留任何痕迹，实现“即用即弃”。</p>
-<ol start="3">
-<li>高可用性</li>
-</ol>
-<p>系统没有全局的动态共享库，每个应用程序自带其运行所需的共享库以及资源，因此即使系统进行了重大的更新或者修改，应用程序仍然能正常运行。</p>
-<p>注：为减少冗余，那些非常通用的共享库被打包成一个叫做 “Core” 的组件，其组成以及共享库的版本是固定的，一个应用程序只能依赖一个指定版本的 “Core”。</p>
-<ol start="4">
+<p>The <em>XiaoYu OS</em> is the result of the author&rsquo;s long-term thinking about operating system and human-computer interaction. It is a completely new design, from its visual appearance to its internal workings. The system includes many innovative features that make it unique.</p>
+<ul>
 <li>
-<p>全新的 UI</p>
+<p><strong>Strict security</strong></p>
+<p>Except for a few programs such as the system initializer, graphic compositor and message bus, all applications run in their own containers. Applications are granted minimal permissions, so you can run any application without worrying about it modifying your system or accessing your private data and files.</p>
 </li>
 <li>
-<p>全新的交互方式</p>
+<p><strong>Clean and tidy</strong></p>
+<p>Temporary data and files generated by applications are limited to their own containers. When an application is removed, all associated cache and temporary files are automatically removed, ensuring no garbage is left in the system.</p>
 </li>
 <li>
-<p>兼容 Linux 应用</p>
+<p><strong>High availability</strong></p>
+<p>The system avoids the use of global dynamic shared libraries. Instead, each application bundles its own required libraries and resources, ensuring uninterrupted operation even in the face of major system updates or modifications.</p>
+<p>To minimize file redundancy, commonly used shared libraries are packaged into a component called &ldquo;Core.&rdquo; A system can simultaneously support multiple versions of &ldquo;Core,&rdquo; while each application can only depend on a specific version. This approach achieves a balance between reducing application size and avoiding version compatibility and conflict issues with shared libraries.</p>
 </li>
-</ol>
+</ul>
+<figure class="wide white"><img src="./images/system-arch.webp"
+         alt="An overview of the system architecture"/><figcaption>
+            <p>An overview of the system architecture</p>
+        </figcaption>
+</figure>
+
+<ul>
+<li>
+<p><strong>High portability</strong></p>
+<p>Unlike traditional applications that require installation and often system modifications, <em>XiaoYu OS</em> applications are entirely portable. Simply copy the application to your system and run it immediately. Even the copying step can be bypassed; a URL representing the application suffices, and the system will automatically download and cache the necessary code and data from the internet. <em>XiaoYu OS</em> revolutionizes not only the user experience of launching applications but also the developer workflow for application distribution.</p>
+</li>
+</ul>
+<blockquote>
+<p>Even <em>XiaoYu OS</em> itself does not require installation. Booting xyOS is as simple as copying its image to a USB Flash Disk.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Brand new UI</strong></p>
+<p><em>XiaoYu OS</em> has a brilliant, dynamic UI that prioritizes efficiency. The new UI steers clear of the shortcomings of traditional UIs, such as rigidity, monotony, and operational inconvenience. It offers a user-friendly and flexible experience that is visually appealing and consistently refreshing. (For details, please refer to the following chapters.)</p>
+</li>
+<li>
+<p><strong>New interaction mode</strong></p>
+<p><em>XiaoYu OS</em> introduces a new approach to human-computer interaction by integrating CLI, GUI, dataset workbench and large language model (LLM) assistance.This integration empowers advanced users and engineers with an exceptionally flexible and efficient work environment. (For details, please refer to the following chapters)</p>
+</li>
+<li>
+<p><strong>Seamless Linux application compatibility</strong></p>
+<p>While <em>XiaoYu OS</em> is base on Linux kernel, all system programs and foundational applications are newly built with <em>XiaoXuan Native</em> and <em>XiaoXuan Core</em>. In addition, <em>XiaoYu OS</em> discards many outdated Linux features while incorporating more modern ones, so <em>XiaoYu OS</em> is not a Linux distribution.</p>
+<p>Nevertheless, <em>XiaoYu OS</em> provides a Linux compatibility layer, which allows traditional Linux applications (including CLI programs) to run seamlessly with near-zero performance loss. As a result, <em>XiaoYu OS</em> boasts a large number of high-quality, mature and professional application from the very outset.</p>
+</li>
+</ul>
+<blockquote>
+<p><em>XiaoYu OS</em> also supports <a href="https://flatpak.org/">Flatpak</a>, you can still use the familiar way to add or remove applications for the system.</p>
+</blockquote>
 
 
 </article>

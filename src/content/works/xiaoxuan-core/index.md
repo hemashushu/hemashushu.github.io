@@ -129,7 +129,7 @@ This feature improves application compatibility and stability, reduces dependenc
                 <div class="name">
                     <h3><a href="" title="">The XiaoXuan Programming Language Reference</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Lang</div>
+                    <div class="subheading">XiaoXuan Lang</div>
                 </div>
                 <div class="date">2023-04-16</div>
             </div>
@@ -158,7 +158,7 @@ This feature improves application compatibility and stability, reduces dependenc
                 <div class="name">
                     <h3><a href="" title="">The XiaoXuan Core Assembly</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Lang</div>
+                    <div class="subheading">XiaoXuan Lang</div>
                 </div>
                 <div class="date">2023-09-10</div>
             </div>
@@ -184,7 +184,7 @@ This feature improves application compatibility and stability, reduces dependenc
                 <div class="name">
                     <h3><a href="" title="">The XiaoXuan Core Intermediate Representation (IR)</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Lang</div>
+                    <div class="subheading">XiaoXuan Lang</div>
                 </div>
                 <div class="date">2023-10-12</div>
             </div>
@@ -207,7 +207,7 @@ This feature improves application compatibility and stability, reduces dependenc
                 <div class="name">
                     <h3><a href="" title="">Designing a Runtime Virtual Machine (VM) for Systems Programming</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Core</div>
+                    <div class="subheading">XiaoXuan Core</div>
                 </div>
                 <div class="date">2023-06-13</div>
             </div>
@@ -235,7 +235,7 @@ This feature improves application compatibility and stability, reduces dependenc
                 <div class="name">
                     <h3><a href="" title="">Build a Simple OS (based on Linux kernel) from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Core</div>
+                    <div class="subheading">XiaoXuan Core</div>
                 </div>
                 <div class="date">2024-01-09</div>
             </div>
@@ -263,7 +263,7 @@ This feature improves application compatibility and stability, reduces dependenc
                 <div class="name">
                     <h3><a href="" title="">Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Core</div>
+                    <div class="subheading">XiaoXuan Core</div>
                 </div>
                 <div class="date">2024-01-15</div>
             </div>

@@ -603,7 +603,7 @@ ul.card>li .card-book .frame .name .separator {
     margin: 8px 0;
 }
 
-ul.card>li .card-book .frame .name .catalog {
+ul.card>li .card-book .frame .name .subheading {
     font-size: .7em;
     font-style: italic;
     color: rgba(0, 0, 0, .5);

@@ -6,7 +6,7 @@ tags: ["xiaoxuan-lang"]
 categories: ["xiaoxuan-lang"]
 ---
 
-{{< figure class="wide" src="./images/banner_v2.webp" >}}
+{{< figure class="wide" src="./images/banner.webp" >}}
 
 _The XiaoXuan Language_ is a full-stack programming language. It can be used to develop a variety applications, including digital circuits and chips, microcontroller programs, GPU shaders, system programs, local native programs, cloud native programs, web applications and more. All variants use the same syntax and design philosophy, allowing you to learn one language for all sorts of development.
 
@@ -84,7 +84,7 @@ TODO
                 <div class="name">
                     <h3><a href="" title="">The XiaoXuan Programming Language Reference</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Lang</div>
+                    <div class="subheading">XiaoXuan Lang</div>
                 </div>
                 <div class="date">2023-04-16</div>
             </div>
@@ -113,7 +113,7 @@ TODO
                 <div class="name">
                     <h3><a href="" title="">Build a Simple OS (based on Linux kernel) from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Core</div>
+                    <div class="subheading">XiaoXuan Core</div>
                 </div>
                 <div class="date">2024-01-09</div>
             </div>
@@ -141,7 +141,7 @@ TODO
                 <div class="name">
                     <h3><a href="" title="">Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
-                    <div class="catalog">XiaoXuan Core</div>
+                    <div class="subheading">XiaoXuan Core</div>
                 </div>
                 <div class="date">2024-01-15</div>
             </div>
