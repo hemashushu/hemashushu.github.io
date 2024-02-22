@@ -1,5 +1,5 @@
 ---
-title: "S10C02 RISC-V development using QEMU - Part 2 Build a base Linux system using Buildroot"
+title: "S10C02 Build a base Linux system using Buildroot"
 date: 2023-01-08
 # images: ["/posts/2022-11-06-s01c02-write-a-bare-metal-program-run-standalone-without-os/images/bare-metal.png"]
 draft: false
@@ -11,7 +11,7 @@ In the previous section, we built a minimal Linux system by compiling the _Linux
 
 In this chapter, we will use a tool called [Buildroot](https://buildroot.org/) to download and compile software automatically, resulting in the creation of an image file. `Buildroot` is free and open-source, so you can check its source code if you want to know how it works.
 
-The series includes four parts:
+The series includes four chapters:
 
 [Part 1](../2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/). Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 

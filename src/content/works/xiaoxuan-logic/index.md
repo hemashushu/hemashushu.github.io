@@ -40,4 +40,45 @@ TODO
 
 ## Manuals and tutorials
 
-TODO
+<!-- book list start -->
+{{< html >}} <ul class="card"> {{< /html >}}
+
+<!-- book item start -->
+{{< html >}}
+    <li>
+        <div class="card-book c5">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">S90 - Build Your Own Linux-Capable CPU: A Step-by-Step Guide</a></h3>
+                    <div class="separator"></div>
+                    <div class="subheading">Designing a RISC-V CPU Core using XiaoXuan Logic</div>
+                </div>
+                <div class="date">2024-01-15</div>
+            </div>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "Digital circuit fundamentals: combinational and sequential circuits" >}}
+- {{< null-link "Building a Blinky circuit, and interacting with the visual simulator" >}}
+- {{< null-link "Synthesizing and downloading to FPGA hardware (Optional)" >}}
+- {{< null-link "Introduction to RISC-V Instruction Architecture" >}}
+- {{< null-link "Instruction decoder" >}}
+- {{< null-link "Register File and Arithmetic Logic Unit (ALU) " >}}
+- {{< null-link "Jump and branch instructions" >}}
+- {{< null-link "Memory and load/store instructions" >}}
+- {{< null-link "RISC-V calling convention ABI and implementing the functon calling" >}}
+- {{< null-link "Memory mapping and implementing the UART peripheral" >}}
+- {{< null-link "ROM and Building a simple program (firmware)" >}}
+- {{< null-link ""Running" the CPU with XiaoXuan Logic visual simulator" >}}
+- {{< null-link "Synthesizing and downloading to FPGA hardware (Optional)" >}}
+- {{< null-link "Interacting via USB-UART and terminal on computer" >}}
+
+{{< html >}}
+        </div>
+    </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book list end -->
+{{< html >}} </ul> {{< /html >}}

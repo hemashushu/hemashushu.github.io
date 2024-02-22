@@ -76,15 +76,18 @@ TODO
 
 ## Manuals & Tutorials
 
+<!-- book list start -->
+{{< html >}} <ul class="card"> {{< /html >}}
+
+<!-- book item start -->
 {{< html >}}
-<ul class="card">
     <li>
         <div class="card-book c1">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">The XiaoXuan Programming Language Reference</a></h3>
+                    <h3><a href="" title="">M01 - The XiaoXuan Programming Language Reference</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Lang</div>
+                    <div class="subheading">Syntax, fundamental, and the standard library</div>
                 </div>
                 <div class="date">2023-04-16</div>
             </div>
@@ -97,23 +100,29 @@ TODO
 - {{< null-link "Functions" >}}
 - {{< null-link "Collection" >}}
 - {{< null-link "Control Flow" >}}
+- {{< null-link "Error Handling" >}}
 - {{< null-link "Method, Generic and Trait" >}}
 - {{< null-link "Pattern" >}}
 - {{< null-link "Chain" >}}
-- {{< null-link "Error Handling" >}}
 - {{< null-link "Packages and Modules" >}}
+- {{< null-link "Interface and IoC" >}}
 - {{< null-link "Macro" >}}
 
 {{< html >}}
         </div>
     </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book item start -->
+{{< html >}}
     <li>
         <div class="card-book c5">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Build a Simple OS (based on Linux kernel) from Scratch using XiaoXuan Core</a></h3>
+                    <h3><a href="" title="">S80 - Zero to OS: Building Your Own Usable Operating System, Volumn 1: The User Space</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Core</div>
+                    <div class="subheading">Build the OS user-space part from scratch on RISC-V platform using XiaoXuan Core</div>
                 </div>
                 <div class="date">2024-01-09</div>
             </div>
@@ -135,13 +144,18 @@ TODO
 {{< html >}}
         </div>
     </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book item start -->
+{{< html >}}
     <li>
         <div class="card-book c6">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
+                    <h3><a href="" title="">S82 - Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Core</div>
+                    <div class="subheading">Linux namespaces, capabilities, seccomp and virtual networking</div>
                 </div>
                 <div class="date">2024-01-15</div>
             </div>
@@ -158,5 +172,8 @@ TODO
 {{< html >}}
         </div>
     </li>
-</ul>
 {{< /html >}}
+<!-- book item end -->
+
+<!-- book list end -->
+{{< html >}} </ul> {{< /html >}}

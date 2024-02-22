@@ -534,11 +534,13 @@ ul.card {
 
 ul.card>li {
     display: block;
-    margin: 0 32px 32px 0;
+    margin: 0 16px 32px 16px;
     min-width: 300px;
     flex-basis: min-content;
     flex-grow: 1;
     overflow-wrap: anywhere;
+
+    max-width: 480px;
 
     /* this is a deprecated value, but it can fix the align issue on flex cell */
     word-break: break-word;
@@ -568,6 +570,7 @@ ul.card>li .card-title.center {
 
 ul.card>li .card-content ul {
     padding-left: 16px;
+    /* margin-left: -16px; */
 }
 
 ul.card>li .card-book {
@@ -576,7 +579,7 @@ ul.card>li .card-book {
 }
 
 ul.card>li .card-book .frame .name {
-    padding: 0 16px;
+    /* padding: 0 16px; */
 }
 
 ul.card>li .card-book .frame .name h3 {
@@ -611,7 +614,7 @@ ul.card>li .card-book .frame .name .subheading {
 
 ul.card>li .card-book .frame .date {
     font-size: .7em;
-    margin-left: 16px;
+    /* margin-left: 16px; */
     color: rgba(0, 0, 0, .5);
 }
 

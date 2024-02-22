@@ -1,5 +1,5 @@
 ---
-title: "S10C01 RISC-V development using QEMU - Part 1 Build a minimal Linux system"
+title: "S10C01 Build a minimal Linux system"
 date: 2023-01-06
 draft: false
 tags: ["risc-v", "qemu"]
@@ -8,7 +8,7 @@ categories: ["development", "S10"]
 
 This series of articles will guide you setting up a RISC-V development environment using QEMU.
 
-The series includes four parts:
+The series includes four chapters:
 
 [Part 1](../2023-01-06-s10c01-risc-v-development-using-qemu-part-1-minimal-linux/). Building a minimal RISC-V Linux system with only Linux kernel and BusyBox, and runs on the QEMU emulator.
 

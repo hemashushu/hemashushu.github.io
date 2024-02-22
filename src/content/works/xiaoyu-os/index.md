@@ -48,7 +48,7 @@ The _XiaoYu OS_ is the result of the author's long-term thinking about operating
 
 - **New interaction mode**
 
-  _XiaoYu OS_ introduces a new approach to human-computer interaction by integrating CLI, GUI, dataset workbench and large language model (LLM) assistance.This integration empowers advanced users and engineers with an exceptionally flexible and efficient work environment. (For details, please refer to the following chapters)
+  _XiaoYu OS_ introduces a new approach to human-computer interaction called _XiaoYu Terminal_, which integrating CLI, GUI, dataset workbench and large language model (LLM) assistance. _XiaoYu Terminal_ empowers advanced users and engineers with an exceptionally flexible and efficient work environment. (For details, please refer to the following chapters)
 
 - **Seamless Linux application compatibility**
 
@@ -57,3 +57,20 @@ The _XiaoYu OS_ is the result of the author's long-term thinking about operating
   Nevertheless, _XiaoYu OS_ provides a Linux compatibility layer, which allows traditional Linux applications (including CLI programs) to run seamlessly with near-zero performance loss. As a result, _XiaoYu OS_ boasts a large number of high-quality, mature and professional application from the very outset.
 
 > _XiaoYu OS_ also supports [Flatpak](https://flatpak.org/), you can still use the familiar way to add or remove applications for the system.
+
+## An overview of the UI
+
+TODO
+
+## An overview of the _XiaoYu Terminal_
+
+TODO
+
+## Get started
+
+TODO
+
+## Resources
+
+TODO
+

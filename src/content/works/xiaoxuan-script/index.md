@@ -143,4 +143,39 @@ However, for most web applications, the code may not so large, and on-the-fly co
 
 ## Manuals & Tutorials
 
-- {{< null-link "Build a local TODO web application using XiaoXuan Script" >}}
+<!-- book list start -->
+{{< html >}} <ul class="card"> {{< /html >}}
+
+<!-- book item start -->
+{{< html >}}
+    <li>
+        <div class="card-book c1">
+            <div class="frame">
+                <div class="name">
+                    <h3><a href="" title="">S20 - Building a task list organizer web application with XiaoXuan Script</a></h3>
+                    <div class="separator"></div>
+                    <div class="subheading">
+                    Build local web application with Web IndexedDB, Web Storage, and XiaoXuan Script
+                    </div>
+                </div>
+                <div class="date">2024-02-21</div>
+            </div>
+        </div>
+        <div class="card-content">
+{{< /html >}}
+
+- {{< null-link "Setting up the XiaoXuan Script development environment" >}}
+- {{< null-link "Analyzing and designing the application's workflow" >}}
+- {{< null-link "Writing basic pages" >}}
+- {{< null-link "Introduction to the Web IndexedDB API" >}}
+- {{< null-link "Writing basic XiaoXuan Script code for CRUD functionality" >}}
+- {{< null-link "Introduction to the Web Storage API and adding attachment functionality" >}}
+
+{{< html >}}
+        </div>
+    </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book list end -->
+{{< html >}} </ul> {{< /html >}}

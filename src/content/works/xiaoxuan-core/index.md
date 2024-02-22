@@ -121,15 +121,18 @@ This feature improves application compatibility and stability, reduces dependenc
 
 ## Manuals & Tutorials
 
+<!-- book list start -->
+{{< html >}} <ul class="card"> {{< /html >}}
+
+<!-- book item start -->
 {{< html >}}
-<ul class="card">
     <li>
         <div class="card-book c1">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">The XiaoXuan Programming Language Reference</a></h3>
+                    <h3><a href="" title="">M01 - The XiaoXuan Programming Language Reference</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Lang</div>
+                    <div class="subheading">Syntax, fundamental, and the standard library</div>
                 </div>
                 <div class="date">2023-04-16</div>
             </div>
@@ -142,23 +145,29 @@ This feature improves application compatibility and stability, reduces dependenc
 - {{< null-link "Functions" >}}
 - {{< null-link "Collection" >}}
 - {{< null-link "Control Flow" >}}
+- {{< null-link "Error Handling" >}}
 - {{< null-link "Method, Generic and Trait" >}}
 - {{< null-link "Pattern" >}}
 - {{< null-link "Chain" >}}
-- {{< null-link "Error Handling" >}}
-- {{< null-link "Package and Modules" >}}
+- {{< null-link "Packages and Modules" >}}
+- {{< null-link "Interface and IoC" >}}
 - {{< null-link "Macro" >}}
 
 {{< html >}}
         </div>
     </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book item start -->
+{{< html >}}
     <li>
         <div class="card-book c2">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">The XiaoXuan Core Assembly</a></h3>
+                    <h3><a href="" title="">M02 - An introduction to the XiaoXuan Core Assembly</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Lang</div>
+                    <div class="subheading">The syntax, structure, and the VM instructions</div>
                 </div>
                 <div class="date">2023-09-10</div>
             </div>
@@ -178,13 +187,18 @@ This feature improves application compatibility and stability, reduces dependenc
 {{< html >}}
         </div>
     </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book item start -->
+{{< html >}}
     <li>
         <div class="card-book c3">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">The XiaoXuan Core Intermediate Representation (IR)</a></h3>
+                    <h3><a href="" title="">M03 - An introduction to the XiaoXuan Core Intermediate Representation (IR)</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Lang</div>
+                    <div class="subheading">The syntax, structure and modules</div>
                 </div>
                 <div class="date">2023-10-12</div>
             </div>
@@ -201,13 +215,18 @@ This feature improves application compatibility and stability, reduces dependenc
 {{< html >}}
         </div>
     </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book item start -->
+{{< html >}}
     <li>
         <div class="card-book c4">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Designing a Runtime Virtual Machine (VM) for Systems Programming</a></h3>
+                    <h3><a href="" title="">S71 - Designing a Runtime Virtual Machine (VM) for Systems Programming</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Core</div>
+                    <div class="subheading">The memory model, the stack machine and the concurrency model of XiaoXuan Core VM</div>
                 </div>
                 <div class="date">2023-06-13</div>
             </div>
@@ -229,13 +248,18 @@ This feature improves application compatibility and stability, reduces dependenc
 {{< html >}}
         </div>
     </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book item start -->
+{{< html >}}
     <li>
         <div class="card-book c5">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Build a Simple OS (based on Linux kernel) from Scratch using XiaoXuan Core</a></h3>
+                    <h3><a href="" title="">S80 - Zero to OS: Building Your Own Usable Operating System, Volumn 1: The User Space</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Core</div>
+                    <div class="subheading">Build the OS user-space part from scratch using XiaoXuan Core</div>
                 </div>
                 <div class="date">2024-01-09</div>
             </div>
@@ -257,13 +281,18 @@ This feature improves application compatibility and stability, reduces dependenc
 {{< html >}}
         </div>
     </li>
+{{< /html >}}
+<!-- book item end -->
+
+<!-- book item start -->
+{{< html >}}
     <li>
         <div class="card-book c6">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
+                    <h3><a href="" title="">S82 - Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
                     <div class="separator"></div>
-                    <div class="subheading">XiaoXuan Core</div>
+                    <div class="subheading">Linux namespaces, capabilities, seccomp and virtual networking</div>
                 </div>
                 <div class="date">2024-01-15</div>
             </div>
@@ -280,8 +309,11 @@ This feature improves application compatibility and stability, reduces dependenc
 {{< html >}}
         </div>
     </li>
-</ul>
 {{< /html >}}
+<!-- book item end -->
+
+<!-- book list end -->
+{{< html >}} </ul> {{< /html >}}
 
 ## Related documents
 
