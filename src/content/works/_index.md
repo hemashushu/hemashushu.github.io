@@ -10,7 +10,7 @@ A list of my projects.
 
 > Note that this list is not exhaustive. There are many other libraries and programs, such as memory allocators, standard libraries, file systems, assemblers, system infrastructures. For more information, please refer to the relevant projects.
 
-### Programming language
+## Programming language
 
 - [XiaoXuan Language](/works/xiaoxuan-lang) a full-stack programming language.
 
@@ -34,13 +34,13 @@ Localization:
 
 - [XiaoXuan Core Hans](/works/xiaoxuan-core-hans) the simplified Chinese edition (简体中文版) of XiaoXuan Core.
 
-### Operating System
+## Operating System
 
 - [XiaoYu OS](/works/xiaoyu-os) a brand new operating system built for the modern engineer's daily workflow.
 
 - [XiaoYu Micro OS](/works/xiaoyu-micro-os) a true operating system (not RTOS) for microcontrollers (MCUs).
 
-### Hardware
+## Hardware
 
 - [XiaoYu Debugger](/works/xiaoyu-debugger) a debugger (programmer) for ARM MCUs.
 

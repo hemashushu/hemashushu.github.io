@@ -130,7 +130,7 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c1">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">M01 - The XiaoXuan Programming Language Reference</a></h3>
+                    <h3><span class="null-link">M01 - The XiaoXuan Programming Language Reference</span></h3>
                     <div class="separator"></div>
                     <div class="subheading">Syntax, fundamental, and the standard library</div>
                 </div>
@@ -165,7 +165,7 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c2">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">M02 - An introduction to the XiaoXuan Core Assembly</a></h3>
+                    <h3><span class="null-link">M02 - An introduction to the XiaoXuan Core Assembly</span></h3>
                     <div class="separator"></div>
                     <div class="subheading">The syntax, structure, and the VM instructions</div>
                 </div>
@@ -196,7 +196,7 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c3">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">M03 - An introduction to the XiaoXuan Core Intermediate Representation (IR)</a></h3>
+                    <h3><span class="null-link">M03 - An introduction to the XiaoXuan Core Intermediate Representation (IR)</span></h3>
                     <div class="separator"></div>
                     <div class="subheading">The syntax, structure and modules</div>
                 </div>
@@ -224,9 +224,9 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c4">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">S71 - Designing a Runtime Virtual Machine (VM) for Systems Programming</a></h3>
+                    <h3><span class="null-link">S71 - Designing a Runtime Virtual Machine (VM) for Systems Programming</span></h3>
                     <div class="separator"></div>
-                    <div class="subheading">The memory model, the stack machine and the concurrency model of XiaoXuan Core VM</div>
+                    <div class="subheading">The memory, stack and the concurrency model of XiaoXuan Core VM</div>
                 </div>
                 <div class="date">2023-06-13</div>
             </div>
@@ -257,9 +257,9 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c5">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">S80 - Zero to OS: Building Your Own Usable Operating System, Volumn 1: The User Space</a></h3>
+                    <h3><span class="null-link">S80 - Zero to OS: Building Your Own Usable Operating System, Volumn 1: The User Space</span></h3>
                     <div class="separator"></div>
-                    <div class="subheading">Build the OS user-space part from scratch using XiaoXuan Core</div>
+                    <div class="subheading">Build the user-space part of an OS for RISC-V platform from scratch in XiaoXuan Core</div>
                 </div>
                 <div class="date">2024-01-09</div>
             </div>
@@ -290,7 +290,7 @@ This feature improves application compatibility and stability, reduces dependenc
         <div class="card-book c6">
             <div class="frame">
                 <div class="name">
-                    <h3><a href="" title="">S82 - Build a Docker-like Container Utility from Scratch using XiaoXuan Core</a></h3>
+                    <h3><span class="null-link">S82 - Building a Docker-like Container Utility from Scratch using XiaoXuan Core</span></h3>
                     <div class="separator"></div>
                     <div class="subheading">Linux namespaces, capabilities, seccomp and virtual networking</div>
                 </div>
