@@ -11,11 +11,19 @@ meta: "false"
 
 <!-- code_chunk_output -->
 
-- [XiaoXuan Core](#xiaoxuan-core)
-- [XiaoXuan Native](#xiaoxuan-native)
-- [XiaoXuan Script](#xiaoxuan-script)
+- [XiaoXuan Programming Language](#xiaoxuan-programming-language)
+  - [XiaoXuan Core](#xiaoxuan-core)
+  - [XiaoXuan Native](#xiaoxuan-native)
+  - [XiaoXuan Script](#xiaoxuan-script)
+- [Operating System](#operating-system)
+- [Hardware](#hardware)
+  - [XiaoYu Debugger](#xiaoyu-debugger)
+  - [XiaoYu DevKit](#xiaoyu-devkit)
+  - [XiaoYu DevKit Pro](#xiaoyu-devkit-pro)
 
 <!-- /code_chunk_output -->
+
+## XiaoXuan Programming Language
 
 ### XiaoXuan Core
 
@@ -67,6 +75,12 @@ If you want to develop with a mix of XiaoXuan Script and JavaScript/TypeScript/N
 - XiaoXuan Script Node.js Module
 
   {{< null-link "xiaoxuan_script_npm_1.0.1.tar.gz" >}}
+
+## Operating System
+
+TODO
+
+## Hardware
 
 ### XiaoYu Debugger
 
