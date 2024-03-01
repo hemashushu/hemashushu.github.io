@@ -1,4 +1,5 @@
 TODO/
+REF/
 
 *.o
 *.out
@@ -8,4 +9,4 @@ TODO/
 *.so
 *.so.1
 
-#*.excalidraw
+*.excalidraw

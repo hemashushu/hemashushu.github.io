@@ -10,5 +10,5 @@ categories: ["os"]
 
 _XiaoYu Micro OS_ is a true operating system (not RTOS) for microcontrollers (MCUs).
 Applications (firmware) can be run by simply downloading and configuring, without
-the need to install cumbersome development tools and debuggers, and compiling from
-source code. It completely changes the way firmware is developed and deployed.
+the need to install development tools or compilation. Applications even run in a micro container.
+It completely changes the way firmware is developed and deployed.

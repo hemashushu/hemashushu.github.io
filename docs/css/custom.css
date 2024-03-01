@@ -1,14 +1,2 @@
-/* .block-image {
-    box-shadow: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.image-200px {
-    max-width: 200px;
-}
-
-.image-480px {
-    max-width: 480px;
-} */
+@import url(./custom-light.css);
+@import url(./custom-dark.css) (prefers-color-scheme: dark);

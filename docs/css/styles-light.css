@@ -521,10 +521,7 @@ h3.capital {
     text-transform: uppercase;
 }
 
-.null-link {
-    color: hotpink;
-    border-bottom: 1.5px dashed hotpink;
-}
+
 
 ul.card {
     padding: 0;
@@ -590,11 +587,6 @@ ul.card>li .card-book .frame .name h3 {
     overflow-wrap: break-word;
     margin: 0;
     filter: grayscale(.2) brightness(1.1);
-}
-
-ul.card>li .card-book .frame .name h3 .null-link {
-    color: white;
-    border-bottom-color: white;
 }
 
 ul.card>li .card-book .frame .name h3 a {
@@ -672,5 +664,47 @@ ul.card>li .card-book.c7 .frame .name h3 {
 
     .work-banner img {
         width: 100%;
+    }
+}
+
+.gallery .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery .items .item figure{
+    flex-grow: 1;
+}
+
+.gallery .items .item figure img {
+    max-width: 100%;
+}
+
+.gallery .caption {
+  color: rgba(0, 0, 0, .5);
+  text-align: center;
+  font-size: .9em;
+  font-style: italic;
+}
+
+.gallery.cols-2 .items .item {
+    width: 25%;
+}
+
+.gallery.cols-3 .items .item {
+    width: 33%;
+}
+
+.gallery.cols-4 .items .item {
+    width: 25%;
+}
+
+/* adjust the gallery item width */
+@media only screen and (max-width: 800px) {
+    .gallery.cols-2 .items .item,
+    .gallery.cols-3 .items .item,
+    .gallery.cols-4 .items .item {
+        width: 75%;
     }
 }

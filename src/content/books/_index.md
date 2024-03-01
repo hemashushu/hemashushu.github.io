@@ -50,9 +50,9 @@ Many of the books and articles below only have titles and no content yet, this i
 
 ## Articles
 
+- {{< null-link "XiaoXuan Object Notation (ANON): a new easy-to-read and write data representation format" >}}
 - {{< null-link "XiaoXuan Allocator: an efficient memory allocator for automatic memory management programming language" >}}
-
-- {{< null-link "XiaoYu Flash FileSystem: a fail-safe filesystem designed for SPI flash chip" >}}
+- {{< null-link "XiaoYu SPI Flash FileSystem: a fail-safe filesystem designed for SPI flash chip" >}}
 
 ## TOC
 
@@ -470,11 +470,11 @@ Many of the books and articles below only have titles and no content yet, this i
 - {{< null-link "Collection" >}}
 - {{< null-link "Control Flow" >}}
 - {{< null-link "Error Handling" >}}
-- {{< null-link "Method, Generic and Trait" >}}
+- {{< null-link "Method, Generic and Interface" >}}
 - {{< null-link "Pattern" >}}
 - {{< null-link "Chain" >}}
-- {{< null-link "Packages and Modules" >}}
-- {{< null-link "Interface and IoC" >}}
+- {{< null-link "Modules, Packages and Properties" >}}
+- {{< null-link "Annotations and IoC" >}}
 - {{< null-link "Macro" >}}
 
 {{< html >}}

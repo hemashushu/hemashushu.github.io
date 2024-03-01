@@ -114,7 +114,7 @@ Now open any browser and visit `http://localhost:8000/`. You should see the text
 
 ## Q & A
 
-### What are the differences between _JavaScript_ and _XiaoXuan Script_?
+**What are the differences between _JavaScript_ and _XiaoXuan Script_?**
 
 _JavaScript_ is the default programming language supported by browsers. It is easy to learn and use, and its syntax is flexible. Compared to _JavaScript_, _XiaoXuan Script_ has the following advantages:
 
@@ -122,15 +122,15 @@ _JavaScript_ is the default programming language supported by browsers. It is ea
 
 - It is compiled to WebAssembly before running, and WebAssembly is widely considered to have higher performance than _JavaScript_. Therefore, _XiaoXuan Script_ has better performance in computationally intensive scenarios (such as data processing, audio or image processing).
 
-### What are the differences between _TypeScript_ and _XiaoXuan Script_?
+**What are the differences between _TypeScript_ and _XiaoXuan Script_?**
 
 _XiaoXuan Script_ has some syntactic similarities to TypeScript. If you are familiar with TypeScript, it means that you can easily learn _XiaoXuan Script_. The difference is that _TypeScript_ is compiled to _JavaScript_, while _XiaoXuan Script_ is compiled to WebAssembly, which means that _XiaoXuan Script_ will have better performance.
 
-### Rust/C/C++ can also be compiled to WebAssembly, so what are the differences between _XiaoXuan Script_ and them?
+**Rust/C/C++ can also be compiled to WebAssembly, so what are the differences between _XiaoXuan Script_ and them?**
 
 Rust/C/C++ are mainly used to build parts of a web application, such as data processing libraries, rather than building the entire web application. On the other hand, _XiaoXuan Script_ is used to build the entire application. Using _XiaoXuan Script_ means that you only need to learn one language to  develop a variety of applications, which reduces the learning burden on developers.
 
-### Why on-the-fly compilation?
+**Why on-the-fly compilation?**
 
 _XiaoXuan Script_ actually supports pre-compilation mode, which is recommended for large-scale web applications that have a large amount of source code and dependencies.
 

@@ -1,0 +1,17 @@
+/**
+ * Copyright (c) 2024 Hemashushu <hippospark@gmail.com>, All rights reserved.
+ *
+ * This Source Code Form is subject to the terms of
+ * the Mozilla Public License version 2.0 and additional exceptions,
+ * more details in file LICENSE, LICENSE.additional and CONTRIBUTING.
+ */
+
+.null-link {
+    color: hotpink;
+    border-bottom: 1.5px dashed hotpink;
+}
+
+ul.card>li .card-book .frame .name h3 .null-link {
+    color: white;
+    border-bottom-color: white;
+}

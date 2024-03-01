@@ -122,11 +122,6 @@ blockquote::before {
     color: #151d2238;
 }
 
-.null-link {
-    color: #62a3a6;
-    border-bottom-color: #62a3a6;
-}
-
 ul.card>li .card-book .frame .name h3 {
     filter: grayscale(.1) brightness(.9);
 }

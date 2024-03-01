@@ -146,11 +146,11 @@ This feature improves application compatibility and stability, reduces dependenc
 - {{< null-link "Collection" >}}
 - {{< null-link "Control Flow" >}}
 - {{< null-link "Error Handling" >}}
-- {{< null-link "Method, Generic and Trait" >}}
+- {{< null-link "Method, Generic and Interface" >}}
 - {{< null-link "Pattern" >}}
 - {{< null-link "Chain" >}}
-- {{< null-link "Packages and Modules" >}}
-- {{< null-link "Interface and IoC" >}}
+- {{< null-link "Modules, Packages and Properties" >}}
+- {{< null-link "Annotations and IoC" >}}
 - {{< null-link "Macro" >}}
 
 {{< html >}}

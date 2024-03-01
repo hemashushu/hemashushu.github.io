@@ -22,7 +22,7 @@ _The XiaoXuan Language_ consists of several variants, each suited for different 
   Build secure, robust, low-latency and responsive cloud-native applications (such as microservices and serverless functions etc.), business systems, data science programs, A.I. programs and more. Each program runs in its own isolated environement, eliminating the need for containers. Applications do not need to be installed, they can be run with just a URL.
 
 - [XiaoXuan Native](/works/xiaoxuan-native)
-  A memory-safe, general-purpose programming language inspired by Rust but much simpler. It provides automatic memory management without garbage collection, and avoids complex concepts such as ownership, borrow checking, and lifetimes. It supports compiling to native code for architectures such as _x86-64_, _aarch64_ and _riscv64_.
+  A memory-safe, general-purpose programming language inspired by Rust. It is designed to be simpler than Rust while it still provides automatic memory management without garbage collection, and avoids complex concepts such as ownership, borrow checking, and lifetimes. It aims to replace Rust in certain non-critical scenarios. It currently supports compiling to native code for architectures such as _x86-64_, _aarch64_ and _riscv64_.
 
 - [XiaoXuan GPU](/works/xiaoxuan-gpu)
   A modern shading language designed to facilitate the rapid development of high-performance programs such as game engines, AR, AI engines, data analysis, biocomputing, scientific computing, and more. It features the same elegant syntax and design philosophy as the _XiaoXuan Lang_, allowing you to develop in new domains without learning a new language.
@@ -101,11 +101,11 @@ TODO
 - {{< null-link "Collection" >}}
 - {{< null-link "Control Flow" >}}
 - {{< null-link "Error Handling" >}}
-- {{< null-link "Method, Generic and Trait" >}}
+- {{< null-link "Method, Generic and Interface" >}}
 - {{< null-link "Pattern" >}}
 - {{< null-link "Chain" >}}
-- {{< null-link "Packages and Modules" >}}
-- {{< null-link "Interface and IoC" >}}
+- {{< null-link "Modules, Packages and Properties" >}}
+- {{< null-link "Annotations and IoC" >}}
 - {{< null-link "Macro" >}}
 
 {{< html >}}

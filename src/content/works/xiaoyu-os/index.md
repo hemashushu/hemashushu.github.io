@@ -32,15 +32,15 @@ The _XiaoYu OS_ is the result of the author's long-term thinking about operating
 
   The system avoids the use of global dynamic shared libraries. Instead, each application bundles its own required libraries and resources, ensuring uninterrupted operation even in the face of major system updates or modifications.
 
-  To minimize file redundancy, commonly used shared libraries are packaged into a component called "Core." A system can simultaneously support multiple versions of "Core," while each application can only depend on a specific version. This approach achieves a balance between reducing application size and avoiding version compatibility and conflict issues with shared libraries.
-
 {{< figure class="wide white" src="./images/system-arch.webp" caption="An overview of the system architecture" >}}
+
+> To minimize file redundancy, commonly used shared libraries are packaged into a component called "Core." A system can simultaneously support multiple versions of "Core," while each application can only depend on a specific version. This approach achieves a balance between reducing application size and avoiding shared libraries version compatibility and conflict issues.
 
 - **High portability**
 
-  Unlike traditional applications that require installation and often system modifications, _XiaoYu OS_ applications are entirely portable. Simply copy the application to your system and run it immediately. Even the copying step can be bypassed; a URL representing the application suffices, and the system will automatically download and cache the necessary code and data from the internet. _XiaoYu OS_ revolutionizes not only the user experience of launching applications but also the developer workflow for application distribution.
+  Unlike traditional applications that require installation and often system modifications, _XiaoYu OS_ applications are entirely portable. Simply copy the application to your system and run it immediately. Even the copying step can be bypassed; a URL representing the application suffices, and the system will automatically download and cache the necessary code and data from the internet. _XiaoYu OS_ revolutionizes not only the user experience of obtaining applications but also the developer workflow for application distribution.
 
-> Even _XiaoYu OS_ itself does not require installation. Booting xyOS is as simple as copying its image to a USB Flash Disk.
+> Even _XiaoYu OS_ itself does not require installation. Booting _XiaoYu OS_ is as simple as copying its image to a USB Flash Disk.
 
 - **Brand new UI**
 
@@ -52,19 +52,97 @@ The _XiaoYu OS_ is the result of the author's long-term thinking about operating
 
 - **Seamless Linux application compatibility**
 
-  While _XiaoYu OS_ is base on Linux kernel, all system programs and foundational applications are newly built with _XiaoXuan Native_ and _XiaoXuan Core_. In addition, _XiaoYu OS_ discards many outdated Linux features while incorporating more modern ones, so _XiaoYu OS_ is not a Linux distribution.
-
-  Nevertheless, _XiaoYu OS_ provides a Linux compatibility layer, which allows traditional Linux applications (including CLI programs) to run seamlessly with near-zero performance loss. As a result, _XiaoYu OS_ boasts a large number of high-quality, mature and professional application from the very outset.
-
-> _XiaoYu OS_ also supports [Flatpak](https://flatpak.org/), you can still use the familiar way to add or remove applications for the system.
+  _XiaoYu OS_ provides a Linux compatibility layer, which allows traditional Linux applications (including CLI programs and GUI applications) to run seamlessly with near-zero performance loss. As a result, _XiaoYu OS_ boasts a large number of high-quality, mature and professional application from the very outset.
 
 ## An overview of the UI
 
-TODO
+1. 色彩丰富的窗口
+
+应用程序不再只有 “明亮” 和 “灰暗” 两种风格可选，每个应用程序都可以选择自己喜欢的色彩。当然用户也可以为不同的程序指定不同的色调。从此你的桌面不再单调。
+
+{{< figure class="mid white" src="./images/ui/colourful.png" caption="Colourful application apperance" >}}
+
+2. 整洁的桌面
+
+
+3. 效率优先的启动器（launcher）
+
+启动器（launcher）简单直接，所有应用程序直接列出，不设二级菜单。对于常用的应用程序可以添加到 “喜欢的（Favorites）”，确保可以快速找到你需要的应用程序。
+
+{{< figure class="mid white" src="./images/ui/launcher-apps.png" caption="Launcher - Applications" >}}
+
+启动器同时注重效率，对于常用的功能，比如管理文档，听音乐以及浏览照片，无需打开其它应用程序，在启动器里就可以直接实现。
+
+{{< gallery class="cols-3" >}}
+    {{< gallery-item src="./images/ui/launcher-documents.png" title="Documents" >}}
+    {{< gallery-item src="./images/ui/launcher-music.png" title="Music" >}}
+    {{< gallery-item src="./images/ui/launcher-photos.png" title="Photos" >}}
+{{< /gallery >}}
 
 ## An overview of the _XiaoYu Terminal_
 
 TODO
+
+## Q & A
+
+**Is _XiaoYu OS_ a toy operating system?**
+
+No, _XiaoYu OS_ is not designed for educational purposes or as a hobby project. It aims to be fully functional operating system for daily use.
+
+**Is _XiaoYu OS_ a Linux distribution?**
+
+No, _XiaoYu OS_ is not a Linux distribution in the traditional sense. While it is based on the Linux kernel for hardware compatibility, all user-space programs are developed from scratch using _XiaoXuan Native_, _XiaoXuan Core_, and _Rust_. This means that _XiaoYu OS_ does not include common Linux software packages such as _Glibc_, _Systemd_, _Coreutils_, _Binutils_, and _GCC_, nor does it have package managers like _APT_, _RPM_, _DNF_, or _Pacman_. As a result, regular Linux programs cannot run directly on _XiaoYu OS_.
+
+However, _XiaoYu OS_ includes a built-in "Linux compatibility layer" that allows most Linux applications to run seamlessly. You can also create _Arch_, _Ubuntu_, and _Fedora_-like Linux environments within _XiaoYu OS_, allowing you to add or remove applications using familiar methods. This is similar to WSL in Windows and Linux in ChromeOS, but with significant improvements.
+
+**Why not make _XiaoYu OS_ a Linux distribution?**
+
+There are already many excellent and mature Liunx distributions available, such as _Arch_, _Ubuntu_, _Debian_, and _Fedora_. I believe there is no need to create "yet another Linux distribution". Additionaly, maintaining a distribution's software repository requires a significant amount of effort, which is beyond my personal capabilities. I am more passionate about creating a new operating system that can attract both application developers and users while reducing the burden on system developers.
+
+> While the Linux world offers a vast collection of libraries and programs, it also carries a significant historical burden. These legacy issues can complicate simple tasks and discourage new developers and users. _XiaoYu OS_, drawing lessons from these challenges, aims to liberate system developers, application developers, and users from these burdens by providing a completely new environment.
+
+**How does _XiaoYu OS_ differ from "Immutable Linux"**
+
+_XiaoYu OS_ and "Immutable Linux" share a similar architecture, but _XiaoYu OS_ provides a completely new runtime environment, including libraries, tools, and languages.
+
+**Which desktop environment does _XiaoYu OS_ use?**
+
+_XiaoYu OS_ uses a custom desktop environemnt developed by me. It has its own unique look and feel, following its own UI design guidelines, and offers a more intuitive user experience.
+
+The desktop environment (graphic server) is based on the Wayland display server protocal, so traditional Linux GUI programs can still run on _XiaoYu OS_.
+
+**Can you briefly describe the system architecture of _XiaoYu OS_?**
+
+The system architecture of _XiaoYu OS_ is very simple and straightforward. It consists of four layers:
+
+1. Base System
+2. Core/Runtime (providing common libraries, GUI libraries, etc.)
+3. Containers
+4. Applications
+
+**How do Linux applications run on _XiaoYu OS_?**
+
+_XiaoYu OS_ has a lightweight "Linux Compatibility layer" that create a classic Linux file hierarchy structure, maps the user directory, and launches Linux applications through containers. From the perspective of the Linux application, it is running on a regular Linux system.
+
+**Can all Linux applications run normally on _XiaoYu OS_?**
+
+Almost all Linux applications can run on _XiaoYu OS_, except for those that modify the system or hardware. Some system programs may run but not produce correct results. For example, a program that displays network interface IP addresses will show a virtual IP address instead of the host's real address.
+
+**Can _XiaoYu OS_ native applications communicate with Linux applications?**
+
+Yes, they can. For example, you can use _XiaoYu Terminal_ to edit a text file by calling _Vim_. You will need to "install" a pre-packaged version of _Vim_ using _XiaoYu OS_'s application manager.
+
+**Can you show me the disk partition layout of _XiaoYu OS_?**
+
+Sure, here is a typical _XiaoYu OS_ disk parition layout. Users can customize the layout according to their needs.
+
+TODO::
+
+**What is "Base System B"?**
+
+_XiaoYu OS_'s "Base System" is a tiny, immutable, atomically updated base system. It contains the Linux kernel, system initializer, message bus, and other basic programs. The base system is read-only. To update the base system, you can only update from "Base System A" to "Base System B" (or vice versa). When the update is complete, the system bootloader will choose the newer version from partitions A and B when the machine boots next. The A/B system ensures that the system can always boot correctly and will not be damaged due to a half-completed update.
+
+****
 
 ## Get started
 
