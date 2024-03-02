@@ -46,7 +46,4 @@ Localization:
 
 - [XiaoYu DevKit](/works/xiaoyu-devkit) a reference board for _XiaoXuan Micro_ development.
 
-- [XiaoYu DevKit Pro](/works/xiaoyu-devkit-pro) a reference board for _XiaoYu Micro OS_ development.
-
-- [XiaoYu Automata](/works/xiaoyu-automata) a development board that uses _XiaoYu Micro OS_ and is designed for teaching and automation.
-
+- [XiaoYu Automata](/works/xiaoyu-automata) a development board that uses _XiaoYu Micro OS_ and is designed for education and automation.
