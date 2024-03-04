@@ -50,9 +50,9 @@ TODO
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S90 - Building Your Own Linux-Capable CPU: A Step-by-Step Guide</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Design a RISC-V CPU core using XiaoXuan Logic</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Design a RISC-V CPU core using XiaoXuan Logic</div>
                 <div class="date">2024-01-15</div>
             </div>
         </div>

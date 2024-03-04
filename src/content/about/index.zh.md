@@ -3,7 +3,7 @@ title: "关于"
 date: 2022-08-07T20:53:01+08:00
 draft: false
 menus: "main"
-weight: 50
+weight: 100
 meta: "false"
 ---
 

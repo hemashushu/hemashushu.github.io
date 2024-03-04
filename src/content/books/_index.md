@@ -54,7 +54,7 @@ Many of the books and articles below only have titles and no content yet, this i
 - {{< null-link "XiaoXuan Allocator: an efficient memory allocator for automatic memory management programming language" >}}
 - {{< null-link "XiaoYu SPI Flash FileSystem: a fail-safe filesystem designed for SPI flash chip" >}}
 
-## TOC
+## Table of content
 
 <!-- book list start -->
 {{< html >}} <ul class="card"> {{< /html >}}
@@ -66,9 +66,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S01 - XiaoXuan's Adventures in RISC-V Wonderland</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Walkthrough the RISC-V platform with XiaoXuan Native: compilation, assembly, instructions, processes and memory</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Walkthrough the RISC-V platform with XiaoXuan Native: compilation, assembly, instructions, processes and memory</div>
                 <div class="date">2024-02-17</div>
             </div>
         </div>
@@ -98,10 +98,10 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S20 - Building a Task List Organizer Web Application with XiaoXuan Script</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">
-                    Build a local web application with IndexedDB, Web Storage API, and XiaoXuan Script
-                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="subheading">
+                Build a local web application with IndexedDB, Web Storage API, and XiaoXuan Script
                 </div>
                 <div class="date">2024-02-21</div>
             </div>
@@ -129,10 +129,10 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S30 - Mastering MCU Hardware Programming with XiaoXuan Micro</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">
-                    A step-by-step guide to writing programs (firmware) for ARM Cortex-M chips
-                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="subheading">
+                A step-by-step guide to writing programs (firmware) for ARM Cortex-M chips
                 </div>
                 <div class="date">2024-02-22</div>
             </div>
@@ -169,10 +169,10 @@ Many of the books and articles below only have titles and no content yet, this i
                 <div class="name">
                     <h3><span class="null-link">S40 - Zero to AI: Building a Deep Learning Framework
                     from Scratch with XiaoXuan Lang, Volumn 1</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Hands-on deep learning theory and practice, without any
-                    third-party libraries</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Hands-on deep learning theory and practice, without any
+                    third-party libraries</div>
                 <div class="date">2024-02-17</div>
             </div>
         </div>
@@ -200,9 +200,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S70 - Building Your Own Usable Programming Language: A Step-by-Step Guide</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Implement a programming language using XiaoXuan Lang: the lexer, parser, and interpreter</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Implement a programming language using XiaoXuan Lang: the lexer, parser, and interpreter</div>
                 <div class="date">2024-02-17</div>
             </div>
         </div>
@@ -237,9 +237,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S71 - Designing a Runtime Virtual Machine (VM) for Systems Programming</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">The memory, stack and the concurrency model of XiaoXuan Core VM</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">The memory, stack and the concurrency model of XiaoXuan Core VM</div>
                 <div class="date">2023-06-13</div>
             </div>
         </div>
@@ -270,9 +270,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S80 - Zero to OS: Building Your Own Usable Operating System, Volumn 1: The User Space</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Build the user-space part of an OS for RISC-V platform from scratch in XiaoXuan Core</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Build the user-space part of an OS for RISC-V platform from scratch in XiaoXuan Core</div>
                 <div class="date">2024-01-09</div>
             </div>
         </div>
@@ -303,9 +303,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S81 - Zero to OS: Building Your Own Usable Operating System, Volumn 2: The Kernel</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Write a simple kernel in XiaoXuan Native for RISC-V platform</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Write a simple kernel in XiaoXuan Native for RISC-V platform</div>
                 <div class="date">2024-02-06</div>
             </div>
         </div>
@@ -333,9 +333,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S82 - Building a Docker-like Container Utility from Scratch using XiaoXuan Core</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Linux namespaces, capabilities, seccomp and virtual networking</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Linux namespaces, capabilities, seccomp and virtual networking</div>
                 <div class="date">2024-01-15</div>
             </div>
         </div>
@@ -362,9 +362,9 @@ Many of the books and articles below only have titles and no content yet, this i
                 <div class="name">
                     <h3><span class="null-link">S83 - Building a KVM-based Virtual Machine Tool Using XiaoXuan
                                                 Native</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Linux KVM, kernel, and virtual device I/O</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Linux KVM, kernel, and virtual device I/O</div>
                 <div class="date">2024-02-01</div>
             </div>
         </div>
@@ -391,9 +391,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S90 - Building Your Own Linux-Capable CPU: A Step-by-Step Guide</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Design a RISC-V CPU core using XiaoXuan Logic</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Design a RISC-V CPU core using XiaoXuan Logic</div>
                 <div class="date">2024-01-15</div>
             </div>
         </div>
@@ -428,9 +428,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S10 - Mastering Cross-Platform Development with QEMU</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Set up linux system and development environment in QEMU</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Set up linux system and development environment in QEMU</div>
                 <div class="date">2024-02-17</div>
             </div>
         </div>
@@ -455,9 +455,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">M01 - The XiaoXuan Programming Language Reference</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Syntax, fundamental, and the standard library</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Syntax, fundamental, and the standard library</div>
                 <div class="date">2023-04-16</div>
             </div>
         </div>
@@ -490,9 +490,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">M02 - An introduction to the XiaoXuan Core Assembly</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">The syntax, structure, and the VM instructions</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">The syntax, structure, and the VM instructions</div>
                 <div class="date">2023-09-10</div>
             </div>
         </div>
@@ -521,9 +521,9 @@ Many of the books and articles below only have titles and no content yet, this i
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">M03 - An introduction to the XiaoXuan Core Intermediate Representation (IR)</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">The syntax, structure and modules</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">The syntax, structure and modules</div>
                 <div class="date">2023-10-12</div>
             </div>
         </div>
@@ -544,4 +544,3 @@ Many of the books and articles below only have titles and no content yet, this i
 
 <!-- book list end -->
 {{< html >}} </ul> {{< /html >}}
-

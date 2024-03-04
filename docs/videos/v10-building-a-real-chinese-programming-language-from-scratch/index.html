@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>V01 - 来真的！从零开始构建一门真正中文编程语言 第一季 - Hemashushu&#39;s Homepage</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta name="author" content="hemashushu" /><link rel="alternate" type="application/rss+xml" href="https://hemashushu.github.io/videos/v10-building-a-real-chinese-programming-language-from-scratch/index.xml" title="Hemashushu's Homepage" /><meta property="og:title" content="V01 - 来真的！从零开始构建一门真正中文编程语言 第一季" />
+<meta property="og:description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hemashushu.github.io/videos/v10-building-a-real-chinese-programming-language-from-scratch/" />
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="V01 - 来真的！从零开始构建一门真正中文编程语言 第一季"/>
+<meta name="twitter:description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares"/>
+
+<meta name="generator" content="Hugo 0.122.0">
+    
+    <script src="/js/mathjax-config.js" defer></script>
+    
+    
+    <script src="/js/polyfill.min.js"></script>
+    <script id="MathJax-script" async src="/js/tex-mml-chtml.js"></script>
+
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
+  
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
+
+<body>
+  <header>
+    <div id="content">
+      <ul id="social-media">
+        
+                <li>
+                <a href="https://github.com/hemashushu" title="GitHub">
+                <i class="fab fa-github fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://twitter.com/hemashushu" title="Twitter">
+                <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://www.youtube.com/@hemashushu" title="Youtube">
+                <i class="fab fa-youtube fa-lg"></i>
+                </a>
+                </li>
+      </ul>
+
+      
+      <h1>
+      <a href="/">Hemashushu&rsquo;s Homepage</a>
+      </h1>
+
+      
+      <p><em>Curiosity, exploration and creation</em></p>
+      
+    </div>
+  </header>
+  <div id="container">
+
+
+    
+<nav>
+    <ul>
+        <li>
+            <a  href="/" title="Home">Home</a>
+        </li>
+        
+        <li>
+            <a class="" href="/download/">
+                <i class="fa-li fa  fa-lg"></i><span>Download</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/works/">
+                <i class="fa-li fa  fa-lg"></i><span>Works</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books/">
+                <i class="fa-li fa  fa-lg"></i><span>Books</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="active" href="/videos/">
+                <i class="fa-li fa  fa-lg"></i><span>Videos</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Blog</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<section id="list">
+
+    
+        <h1>V01 - 来真的！从零开始构建一门真正中文编程语言 第一季</h1>
+    
+
+    <p>本系列视频主要讲解如何从零开始，不依赖任何第三方库和框架，用最基本的方法实现一门真正能用的全中文编程语言，该语言有现代的语法和特性，具有强类型、静态编译型、内存安全、无 GC 的内存自动管理等特点。</p>
+<p>该语言可以视为简化版的 XiaoXuan Native，实际上这系列的视频就是分享我在开发 XiaoXuan Lang 时的过程和经验。</p>
+<p>该系列视频内容包括设计中文的汇编语言、中文的中间语言、中文的标准库，以及实现相关的虚拟机、汇编器、和编译器。该系列内容比较多，但会尽量让每一节的内容尽量简单易懂，避免高深和晦涩的概念和理论，只需一般的编程概念就能听懂。该系列视频大致会分为三季：</p>
+<ul>
+<li>第一季主要讲解汇编器、中间语言和虚拟机的实现；</li>
+<li>第二季讲高级语言（即中文语法）的设计并介绍如何转译成中间语言；</li>
+<li>第三季会把虚拟机替换成二进制代码生成器（codegen），从而实现真正编译型的语言；</li>
+</ul>
+<h2 id="分集内容介绍">分集内容介绍</h2>
+<p><strong>第1集：有多真？</strong></p>
+<p><a href="#"><i class="fa-brands fa-bilibili"></i></a> | <a href="#"><i class="fa-brands fa-tiktok"></i></a> | <a href="#"><i class="fa-brands fa-youtube"></i></a> | <a href="#"><i class="fa-brands fa-github"></i></a></p>
+<p>第2集：CPU 是干嘛的？
+第3集：一个只懂得加减乘除的 CPU
+第4集：开始创造中文汇编语言
+第5集：给 CPU 加一点儿记性，“栈虚拟机” 登场
+第6集：还记得先乘除、后加减吗？
+第7集：将一段代码封装起来，就是函数啦
+第8集：给函数也加一点儿记性，“局部变量” 登场
+第9集：让函数调动起来
+第10集：四则运算之外，还有位运算和比较运算呢
+第11集：让代码更条理，“代码块” 登场
+第12集：“条件分支” 姗姗来迟，但它带来了图灵完备</p>
+<p>TODO</p>
+
+
+    
+
+</section>
+
+
+
+
+
+</main>
+    <footer>
+        <ul>
+            <li>
+                <span>Copyright © 2023 - Hippospark Young | 
+                    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"><img alt="cc by-nc-nd" class="license" src="/images/cc-by-nc-nd.png" /></a> |
+                    Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+                    Theme <a href="https://github.com/hemashushu/hugo-selina" title="Selina">Selina</a> |
+                    <a href="https://hemashushu.github.io/index.xml">Subscribe </a></span>
+            </li>
+            
+            
+        </ul>
+        
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7X4YJHXM9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-J7X4YJHXM9', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+</body>
+
+</html>
+

@@ -527,6 +527,7 @@ ul.card {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 ul.card>li {
@@ -537,7 +538,7 @@ ul.card>li {
     flex-grow: 1;
     overflow-wrap: anywhere;
 
-    max-width: 480px;
+    /* max-width: 480px; */
 
     /* this is a deprecated value, but it can fix the align issue on flex cell */
     word-break: break-word;
@@ -576,13 +577,13 @@ ul.card>li .card-book {
 }
 
 ul.card>li .card-book .frame .name {
-    /* padding: 0 16px; */
+    border-radius: 6px;
+    background-color: #f783ac;
+    overflow: hidden;
 }
 
 ul.card>li .card-book .frame .name h3 {
-    background-color: #f783ac;
     padding: 4px 8px 8px;
-    border-radius: 6px;
     font-size: 1em;
     overflow-wrap: break-word;
     margin: 0;
@@ -596,14 +597,14 @@ ul.card>li .card-book .frame .name h3 a {
     line-height: 1.7em; */
 }
 
-ul.card>li .card-book .frame .name .separator {
+ul.card>li .card-book .frame .separator {
     display: block;
     height: 1px;
     background-color: lightskyblue;
     margin: 8px 0;
 }
 
-ul.card>li .card-book .frame .name .subheading {
+ul.card>li .card-book .frame .subheading {
     font-size: .8em;
     font-style: italic;
     color: rgba(0, 0, 0, .5);
@@ -615,38 +616,48 @@ ul.card>li .card-book .frame .date {
     color: rgba(0, 0, 0, .5);
 }
 
+ul.card>li .card-book.video .frame .name {
+    background-image: url("/images/movie-bg.png");
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+}
+
+ul.card>li .card-book.video .frame .name h3 {
+    padding: 32px 12px 36px;
+}
+
 /* book color alt 1 */
-ul.card>li .card-book.c1 .frame .name h3 {
+ul.card>li .card-book.c1 .frame .name {
     background-color: #f783ac;
 }
 
 /* book color alt 2 */
-ul.card>li .card-book.c2 .frame .name h3 {
+ul.card>li .card-book.c2 .frame .name {
     background-color: #ff8787;
 }
 
 /* book color alt 3 */
-ul.card>li .card-book.c3 .frame .name h3 {
+ul.card>li .card-book.c3 .frame .name {
     background-color: #ffa94d;
 }
 
 /* book color alt 4 */
-ul.card>li .card-book.c4 .frame .name h3 {
+ul.card>li .card-book.c4 .frame .name {
     background-color: #38d9a9;
 }
 
 /* book color alt 5 */
-ul.card>li .card-book.c5 .frame .name h3 {
+ul.card>li .card-book.c5 .frame .name {
     background-color: #3bc9db;
 }
 
 /* book color alt 6 */
-ul.card>li .card-book.c6 .frame .name h3 {
+ul.card>li .card-book.c6 .frame .name {
     background-color: #4dabf7;
 }
 
 /* book color alt 7 */
-ul.card>li .card-book.c7 .frame .name h3 {
+ul.card>li .card-book.c7 .frame .name {
     background-color: #9775fa;
 }
 
@@ -705,6 +716,6 @@ ul.card>li .card-book.c7 .frame .name h3 {
     .gallery.cols-2 .items .item,
     .gallery.cols-3 .items .item,
     .gallery.cols-4 .items .item {
-        width: 75%;
+        width: 50%;
     }
 }

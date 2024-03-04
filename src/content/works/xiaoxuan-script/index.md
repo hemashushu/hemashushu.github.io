@@ -153,10 +153,10 @@ However, for most web applications, the code may not so large, and on-the-fly co
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S20 - Building a Task List Organizer Web Application with XiaoXuan Script</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">
-                    Build a local web application with IndexedDB, Web Storage API, and XiaoXuan Script
-                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="subheading">
+                Build a local web application with IndexedDB, Web Storage API, and XiaoXuan Script
                 </div>
                 <div class="date">2024-02-21</div>
             </div>

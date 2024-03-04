@@ -60,26 +60,26 @@ The _XiaoYu OS_ is the result of the author's long-term thinking about operating
 
 Applications can now ditch the standard "light" and "dark" themes and choose their own unique color schemes. You can even personalize your desktop further by assigning different colors to different apps, making your workspace truly your own.
 
-{{< figure class="wide white" src="./images/ui/colourful.png" caption="Colourful application apperance" >}}
+{{< figure class="wide white" src="./images/ui/colourful.webp" caption="Colourful application apperance" >}}
 
 **Clean and uncluttered**
 
 Forget the space-wasting status bar and rarely used search bar. The XiaoYu OS desktop is all about minimalism, featuring only the essentials: a _Launcher Button_, _Task Manager Bar_, and _Status Controller_. This clutter-free environment keeps your desktop looking fresh and organized.
 
-{{< figure class="wide white" src="./images/ui/desktop.png" caption="XiaoYu OS Desktop" >}}
+{{< figure class="wide white" src="./images/ui/desktop.webp" caption="XiaoYu OS Desktop" >}}
 
 **Efficiency at your fingertips**
 
 The Launcher is designed for simplicity and speed. All your applications are listed directly, eliminating the need to navigate through submenus. Frequently used apps can be added to the "Favorites" list for even faster access.
 
-{{< figure class="mid white" src="./images/ui/launcher-apps.png" caption="The application list" >}}
+{{< figure class="mid white" src="./images/ui/launcher-apps.webp" caption="The application list" >}}
 
 And for common tasks like document management, music playback, and photo viewing, the launcher provides built-in functionality, saving you the hassle of switching between multiple applications.
 
 {{< gallery class="cols-3" >}}
-    {{< gallery-item src="./images/ui/launcher-documents.png" title="Document management" >}}
-    {{< gallery-item src="./images/ui/launcher-music.png" title="Music playback" >}}
-    {{< gallery-item src="./images/ui/launcher-photos.png" title="Photo viewing" >}}
+    {{< gallery-item src="./images/ui/launcher-documents.webp" title="Document management" >}}
+    {{< gallery-item src="./images/ui/launcher-music.webp" title="Music playback" >}}
+    {{< gallery-item src="./images/ui/launcher-photos.webp" title="Photo viewing" >}}
 {{< /gallery >}}
 
 **Smart status control**
@@ -87,9 +87,9 @@ And for common tasks like document management, music playback, and photo viewing
 The status controller displays only the most essential information and controls, adapting to your current activity. For instance, playing music reveals additional "Now Playing" controls.
 
 {{< gallery class="cols-3" >}}
-    {{< gallery-item src="./images/ui/statusbar-now-playing.png" title="Now Playing" >}}
-    {{< gallery-item src="./images/ui/statusbar-notifications.png" title="Notifications" >}}
-    {{< gallery-item src="./images/ui/statusbar-calendar.png" title="Calendar and schedule" >}}
+    {{< gallery-item src="./images/ui/statusbar-now-playing.webp" title="Now Playing" >}}
+    {{< gallery-item src="./images/ui/statusbar-notifications.webp" title="Notifications" >}}
+    {{< gallery-item src="./images/ui/statusbar-calendar.webp" title="Calendar and schedule" >}}
 {{< /gallery >}}
 
 It also offers quick access to features like calendar, schedule, and message notifications through a convenient pop-up.
@@ -98,13 +98,13 @@ It also offers quick access to features like calendar, schedule, and message not
 
 The XiaoYu OS taskbar is dynamic, displaying only currently running applications without any grouping or hiding. This ensures you can easily find the window you need with just a single click.
 
-{{< figure class="wide white" src="./images/ui/taskbar.png" caption="Different styles of taskbar when windows increases" >}}
+{{< figure class="wide white" src="./images/ui/taskbar.webp" caption="Different styles of taskbar when windows increases" >}}
 
 **Familiar Look and Feel**
 
 XiaoYu OS's UI uses window components that are similar to the web, making it easy for both developers and designers to design application interfaces.
 
-{{< figure class="wide white" src="./images/ui/component.png" caption="Web style look-and-fell" >}}
+{{< figure class="wide white" src="./images/ui/component.webp" caption="Web style look-and-fell" >}}
 
 ## An overview of the _XiaoYu Terminal_
 
@@ -163,7 +163,7 @@ Yes, they can. For example, you can use _XiaoYu Terminal_ to edit a text file by
 
 Sure, here is a typical _XiaoYu OS_ disk parition layout. Users can customize the layout according to their needs.
 
-{{< figure class="wide white" src="./images/ui/disk-partition-layout.png" caption="Disk partition layout" >}}
+{{< figure class="wide white" src="./images/ui/disk-partition-layout.webp" caption="Disk partition layout" >}}
 
 **What is "Base System B"?**
 
@@ -179,7 +179,7 @@ It didn't take long for me to implement a system initializer, a container servic
 
 During this time, I began to have second thoughts about my original idea. I realized that it is not enough to just solve user-side problems. In the Linux environment, application (mainly desktop application) developers and system maintainers also encounter many frustrating problems, and creating a "special Linux distribution" will not change that.
 
-Therefore, I believe that we should rethink the design of the entire system. The new system should absorb the advantages of other modern systems, provide a new and simple program runtime environment, reduce the burden on developers, and reduce the problems encountered by users. At the same time, it should use certain mechanisms to allow traditional Linux applications to run normally. Just as Android and ChromeOS, which are also based on the Linux kernel, have been successful on mobile devices and netbooks, I believe that the new system has the potential to succeed on the desktop.
+Therefore, I believe that we should rethink the design of the entire system. The new system should absorb the advantages of other modern systems, provide new development tools (programming languages) and libraries, reduce the burden on developers, and reduce the problems encountered by users. At the same time, it should use certain mechanisms to allow traditional Linux applications to run normally. Just as Android and ChromeOS, which are also based on the Linux kernel, have been successful on mobile devices and netbooks, I believe that the new system has the potential to succeed on the desktop.
 
 This is the origin of the _XiaoYu OS_ project.
 

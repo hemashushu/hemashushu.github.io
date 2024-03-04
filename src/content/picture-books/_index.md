@@ -1,7 +1,7 @@
 ---
 title: "Picture books"
 menus: "main"
-weight: 35
+weight: 40
 meta: "false"
 type: "custom"
 draft: true

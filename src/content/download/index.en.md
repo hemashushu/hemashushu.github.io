@@ -19,7 +19,7 @@ meta: "false"
 - [Hardware](#hardware)
   - [XiaoYu Debugger](#xiaoyu-debugger)
   - [XiaoYu DevKit](#xiaoyu-devkit)
-  - [XiaoYu DevKit Pro](#xiaoyu-devkit-pro)
+  - [XiaoYu Automata](#xiaoyu-automata)
 
 <!-- /code_chunk_output -->
 
@@ -93,7 +93,7 @@ TODO
 - {{< null-link "Schematic and PCB Rev 1.0 (KiCad project)" >}}
 - {{< null-link "Manual" >}}
 
-### XiaoYu DevKit Pro
+### XiaoYu Automata
 
 - {{< null-link "Schematic and PCB Rev 1.0 (KiCad project)" >}}
 - {{< null-link "Manual" >}}

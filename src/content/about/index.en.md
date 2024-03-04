@@ -3,11 +3,11 @@ title: "About"
 date: 2022-08-07T20:53:01+08:00
 draft: false
 menus: "main"
-weight: 50
+weight: 100
 meta: "false"
 ---
 
-Hi! I'm _Hemashushu_, and I'm a freelancer.
+Hi! I'm _Hemashushu_.
 
 In this website I will share some interesting computer technologies, programming skills and learning notes, and also post some of my software and hardware. Follow me on Twitter [@hemashushu](https://twitter.com/hemashushu) or Github [Hema Shushu](https://github.com/hemashushu) for updates. Please consider donating to me if you find my articles or work helpful. 😋
 
@@ -17,7 +17,7 @@ Note: Most of my software and hardware are **open source and free**, please do n
 
 Or donate via Paypal [paypal.me/hippospark](https://paypal.me/hippospark)
 
-Feel free to share my software, hardware and articles, just cite the source.
+Feel free to share my software, hardware, articles, and videos, just cite the source.
 
 ## Q & A
 

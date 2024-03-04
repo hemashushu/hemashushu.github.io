@@ -86,9 +86,9 @@ TODO
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">M01 - The XiaoXuan Programming Language Reference</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Syntax, fundamental, and the standard library</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Syntax, fundamental, and the standard library</div>
                 <div class="date">2023-04-16</div>
             </div>
         </div>
@@ -121,9 +121,9 @@ TODO
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S80 - Zero to OS: Building Your Own Usable Operating System, Volumn 1: The User Space</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Build the user-space part of an OS for RISC-V platform from scratch in XiaoXuan Core</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Build the user-space part of an OS for RISC-V platform from scratch in XiaoXuan Core</div>
                 <div class="date">2024-01-09</div>
             </div>
         </div>
@@ -154,9 +154,9 @@ TODO
             <div class="frame">
                 <div class="name">
                     <h3><span class="null-link">S82 - Building a Docker-like Container Utility from Scratch using XiaoXuan Core</span></h3>
-                    <div class="separator"></div>
-                    <div class="subheading">Linux namespaces, capabilities, seccomp and virtual networking</div>
                 </div>
+                <div class="separator"></div>
+                <div class="subheading">Linux namespaces, capabilities, seccomp and virtual networking</div>
                 <div class="date">2024-01-15</div>
             </div>
         </div>
