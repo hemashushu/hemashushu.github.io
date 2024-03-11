@@ -4,7 +4,7 @@ menus: "main"
 weight: 50
 meta: "false"
 type: "custom"
-draft: false
+draft: true
 ---
 
 ## Tutorials

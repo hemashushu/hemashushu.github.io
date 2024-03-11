@@ -1,5 +1,5 @@
 ---
-title: "Picture books"
+title: "Kids"
 menus: "main"
 weight: 40
 meta: "false"

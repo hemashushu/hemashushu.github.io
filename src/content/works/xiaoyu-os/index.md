@@ -169,6 +169,18 @@ Sure, here is a typical _XiaoYu OS_ disk parition layout. Users can customize th
 
 _XiaoYu OS_'s "Base System" is a tiny, immutable, atomically updated base system. It contains the Linux kernel, system initializer, message bus, and other basic programs. The base system is read-only. To update the base system, you can only update from "Base System A" to "Base System B" (or vice versa). When the update is complete, the system bootloader will choose the newer version from partitions A and B when the machine boots next. The A/B system ensures that the system can always boot correctly and will not be damaged due to a half-completed update.
 
+**What happens if I run the command `sudo rm -rf /`?**
+
+On traditional Linux systems, running this command will delete all the files on the system, including the operating system and user data. This is a classic and dangerous command to misuse.
+
+On immutable Linux systems, the base system is "read-only" and is therefore preserved. The machine can still be booted, but user-installed software, configurations, and data will still be lost, and the system will be restored to its inital state.
+
+With _XiaoYu OS_, the situation is different. The `rm` command is not granted permission to delete the base system or application software, nor is it granted permission to delete the entire user data directory. Therefore, running the command `sudo rm -rf /` will do nothing by default. If it is run in Linux compatibility mode, the command can only delete virtual files in the container, and has no effect on other containers or the host system.
+
+In short, in _XiaoYu OS_, even if you are not familiar with the system, no wrong operation will cause serious consequences.
+
+> It is worth mentioning that the `rm` command in _XiaoYu OS_ has been rewritten. Delteted files will be put in the "Recycle Bin" instead of disappearing directly, so even if you delete the wrong file, you can still recover it.
+
 ## Motivation
 
 Linux is my primary desktop operaing system. The more I learn about it, the more I appreciate its power and greatness. I am also grateful to the hundreds of developers and maintainers who have contributed to this system. However, like many Linux fans, I have encountered countless confusing problems over the years, each of which has cost me several nights of sleep. I have also tried dozens of distributions and switched between GNOME and KDE countless times.
@@ -177,7 +189,7 @@ As as result, an immature idea gradually emerged: I want to create a different L
 
 It didn't take long for me to implement a system initializer, a container service, and other basic programs in the C language, completing a simple prototype. Later, after learning the Rust language, I rewrote these programs in Rust. Now that I have my own progamming language and compiler, I am ready to switch to the XiaoXuan Lang.
 
-During this time, I began to have second thoughts about my original idea. I realized that it is not enough to just solve user-side problems. In the Linux environment, application (mainly desktop application) developers and system maintainers also encounter many frustrating problems, and creating a "special Linux distribution" will not change that.
+During this time, I began to have second thoughts about my original idea. I realized that it is not enough to just solve user-side problems. In the Linux environment, application (mainly desktop application) developers and system maintainers also encounter many frustrating problems, and creating a "special Linux distribution" or a "immutable Linux" will not change that.
 
 Therefore, I believe that we should rethink the design of the entire system. The new system should absorb the advantages of other modern systems, provide new development tools (programming languages) and libraries, reduce the burden on developers, and reduce the problems encountered by users. At the same time, it should use certain mechanisms to allow traditional Linux applications to run normally. Just as Android and ChromeOS, which are also based on the Linux kernel, have been successful on mobile devices and netbooks, I believe that the new system has the potential to succeed on the desktop.
 
