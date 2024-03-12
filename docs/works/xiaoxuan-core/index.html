@@ -9,7 +9,8 @@
 <meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="XiaoXuan Core" />
 <meta property="og:description" content="The XiaoXuan Core Programming Language is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call syscall and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
-Motivation Availability and portability Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:" />
+Quick start The following code demostrates how to call syscalls and external functions (from shared libraries). The code prints the current working directory.
+Create a file named pwd.anc in any directory with the following content: config(runtime, &#34;1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/works/xiaoxuan-core/" /><meta property="article:section" content="works" />
 <meta property="article:published_time" content="2023-12-25T00:00:00+00:00" />
@@ -18,7 +19,8 @@ Motivation Availability and portability Traditional system programs, as well as 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="XiaoXuan Core"/>
 <meta name="twitter:description" content="The XiaoXuan Core Programming Language is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call syscall and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
-Motivation Availability and portability Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:"/>
+Quick start The following code demostrates how to call syscalls and external functions (from shared libraries). The code prints the current working directory.
+Create a file named pwd.anc in any directory with the following content: config(runtime, &#34;1."/>
 
 <meta name="generator" content="Hugo 0.122.0">
     
@@ -171,39 +173,8 @@ Motivation Availability and portability Traditional system programs, as well as 
 </figure>
 
 <p>The <em>XiaoXuan Core Programming Language</em> is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call <em>syscall</em> and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.</p>
-<h2 id="motivation">Motivation</h2>
-<h3 id="availability-and-portability">Availability and portability</h3>
-<p>Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:</p>
-<ul>
-<li>
-<p>For applications built with compiled languages:</p>
-<ul>
-<li>May encounter excessive dependencies that require manual compilation during the build process.</li>
-<li>Compilation may fail due to changes in shared library version.</li>
-</ul>
-</li>
-<li>
-<p>For applications built with script languages:</p>
-<ul>
-<li>May encounter version incompatibility issues</li>
-<li>May encounter dependency version conflict issues</li>
-</ul>
-</li>
-</ul>
-<p><em>XiaoXuan Core</em> has learned from these lessons and is designed to ensure that once an application is created and can run, it will continue to run correctly even if it is not maintained and after a long period of time.</p>
-<h3 id="ease-of-development-maintaince-and-high-performance">Ease of development, maintaince, and high performance</h3>
-<p>The <em>XiaoXuan Core</em> language strikes a good balance between &ldquo;ease of development&rdquo; and &ldquo;high performance&rdquo;. The <em>XiaoXuan Core</em> language has the following features:</p>
-<ul>
-<li>Data-race-free concurrency model</li>
-<li>GC-free automatic memory management</li>
-<li>Discards difficult-to-master concepts such as pointers, ownership, borrow checking and lifetimes.</li>
-</ul>
-<p>These features make it easy for developers to develop safe, stable and high-performance applications.</p>
 <h2 id="quick-start">Quick start</h2>
 <p>The following code demostrates how to call syscalls and external functions (from shared libraries). The code prints the current working directory.</p>
-<blockquote>
-<p>The <em>XiaoXuan Core</em> standard library provides simpler ways to get the current working directory or print strings. The code below is written for demostration purposes only. Additionally, the following steps assume a Linux operation system. If you are using other platform or want to try a simpler &ldquo;Hello, World!&rdquo; program, please refer to the <span class="null-link">XiaoXuan Code Documentation</span>.</p>
-</blockquote>
 <ol>
 <li>Create a file named <code>pwd.anc</code> in any directory with the following content:</li>
 </ol>
@@ -237,6 +208,9 @@ Motivation Availability and portability Traditional system programs, as well as 
 <p><code>$ ancl pwd.anc</code></p>
 <p>The launcher will first check the version of the runtime required by the application and then start the corresponding runtime to execute it.</p>
 <p>Since this is the first time we are running an <em>XiaoXuan Core</em> application, the launcher will download the runtime from the internet. Then the runtime will compile and cache the application on-the-fly. Finally, you should see the application output a line of text, which is the current working directory.</p>
+<blockquote>
+<p>The <em>XiaoXuan Core</em> standard library provides simpler ways to get the current working directory or print strings. The code below is written for demostration purposes only. Additionally, the following steps assume a Linux operation system. If you are using other platform or want to try a simpler &ldquo;Hello, World!&rdquo; program, please refer to the <span class="null-link">XiaoXuan Code Documentation</span>.</p>
+</blockquote>
 <h2 id="the-xiaoxuan-core-vm">The XiaoXuan Core VM</h2>
 <figure class="wide white"><img src="./images/vm-model.webp"
          alt="The XiaoXuan Core VM"/><figcaption>
@@ -252,6 +226,20 @@ Motivation Availability and portability Traditional system programs, as well as 
 <li><strong>Data-race-free parallelism model:</strong> The <em>XiaoXuan Core VM</em> has no &ldquo;global data&rdquo;, and threads are only allowed to communicate by passing copies of data through <em>channels</em>. This prevent data races and ensures thread safety.</li>
 <li><strong>Embeddable in Rust applications:</strong> <em>XiaoXuan Core</em> programs and the VM can be embedded as a library in Rust applications. Rust can then call VM functions just like regular functions (using a JIT generated &ldquo;bridge function&rdquo;).</li>
 </ul>
+<h2 id="motivation">Motivation</h2>
+<p><strong>Availability and portability</strong></p>
+<p>Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:</p>
+<p>For applications built with compiled languages, may encounter excessive dependencies that require manual compilation during the build process, or compilation may fail due to changes in shared library version.</p>
+<p>For applications built with script languages, may encounter version incompatibility issues, or may encounter dependency version conflict issues.</p>
+<p><em>XiaoXuan Core</em> has learned from these lessons and is designed to ensure that once an application is created and can run, it will continue to run correctly even if it is not maintained and after a long period of time.</p>
+<p><strong>Ease of development, maintaince, and high performance</strong></p>
+<p>The <em>XiaoXuan Core</em> language strikes a good balance between &ldquo;ease of development&rdquo; and &ldquo;high performance&rdquo;. The <em>XiaoXuan Core</em> language has the following features:</p>
+<ul>
+<li>Data-race-free concurrency model</li>
+<li>GC-free automatic memory management</li>
+<li>Discards difficult-to-master concepts such as pointers, ownership, borrow checking and lifetimes.</li>
+</ul>
+<p>These features make it easy for developers to develop safe, stable and high-performance applications.</p>
 <h2 id="how-xiaoxuan-core-solves-verison-compatibility-issues">How XiaoXuan Core solves verison compatibility issues?</h2>
 <p><em>XiaoXiao Core</em> applications can maintain correct operation even when the runtime environment changes (e.g., major version changes to the shared libraries in the system). This is achieved through the following two measures:</p>
 <figure class="wide white"><img src="./images/version-model.webp"

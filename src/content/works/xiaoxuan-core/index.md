@@ -10,37 +10,9 @@ categories: ["xiaoxuan-core"]
 
 The _XiaoXuan Core Programming Language_ is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call _syscall_ and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
 
-## Motivation
-
-### Availability and portability
-
-Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:
-
-- For applications built with compiled languages:
-  - May encounter excessive dependencies that require manual compilation during the build process.
-  - Compilation may fail due to changes in shared library version.
-
-- For applications built with script languages:
-  - May encounter version incompatibility issues
-  - May encounter dependency version conflict issues
-
-_XiaoXuan Core_ has learned from these lessons and is designed to ensure that once an application is created and can run, it will continue to run correctly even if it is not maintained and after a long period of time.
-
-### Ease of development, maintaince, and high performance
-
-The _XiaoXuan Core_ language strikes a good balance between "ease of development" and "high performance". The _XiaoXuan Core_ language has the following features:
-
-- Data-race-free concurrency model
-- GC-free automatic memory management
-- Discards difficult-to-master concepts such as pointers, ownership, borrow checking and lifetimes.
-
-These features make it easy for developers to develop safe, stable and high-performance applications.
-
 ## Quick start
 
 The following code demostrates how to call syscalls and external functions (from shared libraries). The code prints the current working directory.
-
-> The _XiaoXuan Core_ standard library provides simpler ways to get the current working directory or print strings. The code below is written for demostration purposes only. Additionally, the following steps assume a Linux operation system. If you are using other platform or want to try a simpler "Hello, World!" program, please refer to the {{< null-link "XiaoXuan Code Documentation">}}.
 
 1. Create a file named `pwd.anc` in any directory with the following content:
 
@@ -76,6 +48,8 @@ The launcher will first check the version of the runtime required by the applica
 
 Since this is the first time we are running an _XiaoXuan Core_ application, the launcher will download the runtime from the internet. Then the runtime will compile and cache the application on-the-fly. Finally, you should see the application output a line of text, which is the current working directory.
 
+> The _XiaoXuan Core_ standard library provides simpler ways to get the current working directory or print strings. The code below is written for demostration purposes only. Additionally, the following steps assume a Linux operation system. If you are using other platform or want to try a simpler "Hello, World!" program, please refer to the {{< null-link "XiaoXuan Code Documentation">}}.
+
 ## The XiaoXuan Core VM
 
 {{< figure class="wide white" src="./images/vm-model.webp" caption="The XiaoXuan Core VM" >}}
@@ -87,6 +61,28 @@ _XiaoXuan Runtime_ is a self-contained, statically linked executable that combin
 - **Seamless interoperability with C/C++/Rust shared libraries:** The VM's memory model closely resembles that of the local native machine, allowing VM functions to directly call shared libraries built in C/C++/Rust. Additionally, VM functions can be also passed to shared libraries as callback functions (enabling shared libraries to call back into the VM). This feature allows _XiaoXuan Core_ to take full advantage of the rich ecosystem of existing shared libraries.
 - **Data-race-free parallelism model:** The _XiaoXuan Core VM_ has no "global data", and threads are only allowed to communicate by passing copies of data through _channels_. This prevent data races and ensures thread safety.
 - **Embeddable in Rust applications:** _XiaoXuan Core_ programs and the VM can be embedded as a library in Rust applications. Rust can then call VM functions just like regular functions (using a JIT generated "bridge function").
+
+## Motivation
+
+**Availability and portability**
+
+Traditional system programs, as well as command-line utilities, can be difficult for ordinary users to set up and run if they are not maintained by a distribution and have not been updated for a while, this is because:
+
+For applications built with compiled languages, may encounter excessive dependencies that require manual compilation during the build process, or compilation may fail due to changes in shared library version.
+
+For applications built with script languages, may encounter version incompatibility issues, or may encounter dependency version conflict issues.
+
+_XiaoXuan Core_ has learned from these lessons and is designed to ensure that once an application is created and can run, it will continue to run correctly even if it is not maintained and after a long period of time.
+
+**Ease of development, maintaince, and high performance**
+
+The _XiaoXuan Core_ language strikes a good balance between "ease of development" and "high performance". The _XiaoXuan Core_ language has the following features:
+
+- Data-race-free concurrency model
+- GC-free automatic memory management
+- Discards difficult-to-master concepts such as pointers, ownership, borrow checking and lifetimes.
+
+These features make it easy for developers to develop safe, stable and high-performance applications.
 
 ## How XiaoXuan Core solves verison compatibility issues?
 

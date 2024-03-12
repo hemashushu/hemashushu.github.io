@@ -12,7 +12,7 @@ A list of my projects.
 
 ## Programming language
 
-- [XiaoXuan Language](/works/xiaoxuan-lang) a full-stack programming language that allows you to learn one language to develop all kinds of programs.
+- [XiaoXuan Programming Language](/works/xiaoxuan-lang) a full-stack programming language that allows you to learn one language to develop all kinds of programs.
 
 _The XiaoXuan Language_ variants:
 
