@@ -6,7 +6,7 @@ tags: ["xiaoxuan-lang"]
 categories: ["xiaoxuan-gpu"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 _XiaoXuan GPU_ is a modern shading language designed to facilitate the rapid development of high-performance programs such as game engines, AR, AI engines, data analysis, biocomputing, scientific computing, and more. It features the same elegant syntax and design philosophy as the _XiaoXuan Lang_, allowing you to develop in new domains without learning a new language.
 

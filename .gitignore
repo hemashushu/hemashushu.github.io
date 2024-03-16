@@ -9,4 +9,4 @@ REF/
 *.so
 *.so.1
 
-*.excalidraw
+# *.excalidraw

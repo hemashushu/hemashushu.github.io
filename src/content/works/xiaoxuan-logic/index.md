@@ -6,7 +6,7 @@ tags: ["xiaoxuan-lang"]
 categories: ["xiaoxuan-logic"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 _XiaoXuan Logic_ is a brand new and modern hardware description language (HDL) that lets you design hardware and chips in the same ease and collaboration as open-source software. Its built-in GPU-accelerated simulator dramatically enhances test efficiency, saving you valuable time and resources.
 

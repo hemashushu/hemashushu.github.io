@@ -6,6 +6,6 @@ tags: ["xiaoxuan-lang"]
 categories: ["xiaoxuan-core"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 _XiaoXuan Core Hans_ is the simplified Chinese edition (简体中文版) of XiaoXuan Core

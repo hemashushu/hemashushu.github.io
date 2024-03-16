@@ -6,7 +6,7 @@ tags: ["os", "embed"]
 categories: ["os"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 _XiaoYu Micro OS_ is a true operating system (not RTOS) for microcontrollers (MCUs).
 Applications (firmware) can be run by simply downloading and configuring, without

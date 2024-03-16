@@ -6,7 +6,7 @@ tags: ["xiaoxuan-lang"]
 categories: ["xiaoxuan-lang"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 _XiaoXuan Language_ is a full-stack programming language that allows you to learn one language to develop all kinds of programs.
 
@@ -14,7 +14,7 @@ Currently, it can be used to develop a variety applications, including digital c
 
 _XiaoXuan Language_ achieves this by providing multiple backends and variants, all of which follow the same syntax and design philosophy. This frees developers from the burden of learning multiple programming languages and tools.
 
-{{< figure class="mid" src="./images/title.png" >}}
+{{< figure class="mid" src="./images/title.webp" >}}
 
 _XiaoXuan Language_ consists of the following variants:
 

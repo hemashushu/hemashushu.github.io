@@ -6,7 +6,7 @@ tags: ["xiaoyu-os"]
 categories: ["os"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 _XiaoYu OS_ is a brand new operating system built for the modern engineer's daily
 workflow.
@@ -130,7 +130,7 @@ There are already many excellent and mature Liunx distributions available, such 
 
 **How does _XiaoYu OS_ differ from "Immutable Linux"**
 
-_XiaoYu OS_ and "Immutable Linux" share a similar architecture, but _XiaoYu OS_ provides a completely new runtime environment, including libraries, tools, and languages.
+_XiaoYu OS_ and "Immutable Linux" (e.g. NixOS, Fedora Silverblue) share a similar architecture, but _XiaoYu OS_ provides a completely new runtime environment, including libraries, tools, and languages.
 
 **Which desktop environment does _XiaoYu OS_ use?**
 

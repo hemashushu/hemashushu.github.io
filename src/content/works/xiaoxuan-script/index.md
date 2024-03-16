@@ -6,7 +6,7 @@ tags: ["xiaoxuan-script", "xiaoxuan-lang"]
 categories: ["xiaoxuan-script"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 The _XiaoXuan Script Programming Language_ is suitable for building high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It is intended to be the next preferred programming language for web development.
 

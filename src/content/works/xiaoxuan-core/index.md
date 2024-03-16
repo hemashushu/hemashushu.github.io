@@ -6,7 +6,7 @@ tags: ["xiaoxuan-core", "xiaoxuan-lang"]
 categories: ["xiaoxuan-core"]
 ---
 
-{{< figure class="wide" src="./images/banner.webp" >}}
+{{< figure class="mid" src="./images/banner.webp" >}}
 
 The _XiaoXuan Core Programming Language_ is used to build powerful user-space system programs with extremely fast startup speed and small footprint, it can directly call _syscall_ and interoperate with C shared libraries. Single-file, statically linked runtime make applications highly portable.
 
