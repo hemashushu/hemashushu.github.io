@@ -1,0 +1,365 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Platform Support - Hemashushu&#39;s Homepage</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="Platform Support" />
+<meta property="og:description" content="XiaoXuan Lang and XiaoYu OS are newly designed software that have good support for various mainstream platforms. At the same time, because XiaoXuan Lang has its own IR add assembly language and does not rely on traditional compilation tools and shared libraries, such as GCC and LLVM. it has faster support for newer platforms such as RISC-V and LoongArch.
+The following are tables of the support status of XiaoXuan Lang, XiaoYu OS and other software for various platforms." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hemashushu.github.io/works/platform-support/" /><meta property="article:section" content="works" />
+<meta property="article:published_time" content="2024-03-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-20T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Platform Support"/>
+<meta name="twitter:description" content="XiaoXuan Lang and XiaoYu OS are newly designed software that have good support for various mainstream platforms. At the same time, because XiaoXuan Lang has its own IR add assembly language and does not rely on traditional compilation tools and shared libraries, such as GCC and LLVM. it has faster support for newer platforms such as RISC-V and LoongArch.
+The following are tables of the support status of XiaoXuan Lang, XiaoYu OS and other software for various platforms."/>
+
+<meta name="generator" content="Hugo 0.122.0">
+    
+    <script src="/js/mathjax-config.js" defer></script>
+    
+    
+    <script src="/js/polyfill.min.js"></script>
+    <script id="MathJax-script" async src="/js/tex-mml-chtml.js"></script>
+
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
+  
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
+
+<body>
+  <header>
+    <div id="content">
+      <ul id="social-media">
+        
+                <li>
+                <a href="https://github.com/hemashushu" title="GitHub">
+                <i class="fab fa-github fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://twitter.com/hemashushu" title="Twitter">
+                <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://www.youtube.com/@hemashushu" title="Youtube">
+                <i class="fab fa-youtube fa-lg"></i>
+                </a>
+                </li>
+      </ul>
+
+      
+      <h1>
+      <a href="/">Hemashushu&rsquo;s Homepage</a>
+      </h1>
+
+      
+      <p><em>Curiosity, exploration and creation</em></p>
+      
+    </div>
+  </header>
+  <div id="container">
+
+
+    
+<nav>
+    <ul>
+        <li>
+            <a  href="/" title="Home">Home</a>
+        </li>
+        
+        <li>
+            <a class="" href="/download/">
+                <i class="fa-li fa  fa-lg"></i><span>Download</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="active" href="/works/">
+                <i class="fa-li fa  fa-lg"></i><span>Works</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books/">
+                <i class="fa-li fa  fa-lg"></i><span>Books</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Blog</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Platform Support</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2024-03-20T00:00:00Z">Mar 20, 2024</time>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/xiaoxuan-lang">#xiaoxuan-lang</a>
+                
+                    , 
+                    <a href="/tags/xiaoyu-os">#xiaoyu-os</a>
+                
+            </em>
+        </li>
+        
+
+        <li>3 minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+      
+
+    
+
+    <figure class="mid"><img src="./images/banner.webp"/>
+</figure>
+
+<p><em>XiaoXuan Lang</em> and <em>XiaoYu OS</em> are newly designed software that have good support for various mainstream platforms. At the same time, because <em>XiaoXuan Lang</em> has its own IR add assembly language and does not rely on traditional compilation tools and shared libraries, such as GCC and LLVM. it has faster support for newer platforms such as RISC-V and LoongArch.</p>
+<p>The following are tables of the support status of <em>XiaoXuan Lang</em>, <em>XiaoYu OS</em> and other software for various platforms.</p>
+<h2 id="programming-language">Programming Language</h2>
+<h3 id="desktop-and-server">Desktop and Server</h3>
+<p><strong>XiaoXuan Core (and XiaoXuan Managed)</strong></p>
+<p>The runtime includes a compiler and a virtual machine. Applications are compiled into bytecode and then run in the virtual machine. Therefore, applications are almost unaffected by the host platform. The XiaoXuan Core runtime itself is developed in Rust, so it supports most platforms.</p>
+<p><strong>XiaoXuan Native</strong></p>
+<p>It is a compiled languaged. The compiler itself is developed in Rust, so it also supports most platforms. However, the compilation target (i.e., native binary code) is determined by the compiler&rsquo;s capabilities. Currently, XiaoXuan Native&rsquo;s compilation targets cover most platforms, but the code generator for LoongArch64 is still under development.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th style="text-align:center">x86_64</th>
+<th style="text-align:center">aarch64</th>
+<th style="text-align:center">riscv64</th>
+<th style="text-align:center">s390x</th>
+<th style="text-align:center">loongarch64</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XiaoXuan Core</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>XiaoXuan Managed</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>XiaoXuan Native Host</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>XiaoXuan Native Target</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">In development</td>
+</tr>
+</tbody>
+</table>
+<h3 id="browser">Browser</h3>
+<p><strong>XiaoXuan Script</strong></p>
+<p>It consists of a compiler, a standard library, and a piece of JavaScript glue code. The compiler and standard library are distributed in WebAssembly binary format. Applications are compiled by the compiler to WebAssembly binary and then run by the browser. In summary, as long as the browser supports JavaScript and WebAssembly, XiaoXuan Script and applications can be run.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th style="text-align:center">Chrome</th>
+<th style="text-align:center">Firefox</th>
+<th style="text-align:center">Edge</th>
+<th style="text-align:center">Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XiaoXuan Script</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+</tbody>
+</table>
+<h3 id="embediot">Embed/IoT</h3>
+<p><strong>XiaoXuan Micro</strong></p>
+<p>It includes a compiler and a virtual machine. Applications will be compiled into bytecode and merged with the virtual machine in the form of a payload. Then they will be burned into the MCU&rsquo;s Flash and run. Currently, the XiaoXuan Micro virtual machine supports ARM M series architechture, such as the common Cortex-M0/M0+/M1/M3/M4/M7/M23/M33 cores. It also supports the RISC-V 32 architecture.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th style="text-align:center">ARM Cortex-M</th>
+<th style="text-align:center">riscv32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XiaoXuan Micro</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+</tbody>
+</table>
+<h2 id="operating-system">Operating System</h2>
+<p><strong>XiaoYu OS</strong></p>
+<p><em>XiaoYu OS</em> is based on the Linux kernel. Its userspace programs are mainly developed by XiaoXuan Core, XiaoXuan Native and Rust, so its platform support is limited by various software. However, for mainstream platforms, it can basically be well supported.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th style="text-align:center">x86_64</th>
+<th style="text-align:center">aarch64</th>
+<th style="text-align:center">riscv64</th>
+<th style="text-align:center">s390x</th>
+<th style="text-align:center">loongarch64</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XiaoYu OS</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>XiaoYu Micro OS</strong></p>
+<p><em>XiaoYu Micro OS</em> is a micro operating system that adds modules such as file system, hardware abstraction layer, and serial port communication on the basis of <em>XiaoXuan Micro</em>. Therefore, its platform support is the same as <em>XiaoXuan Micro</em>. Of course, you need to download the corresponding ported version for different chips (and boards). The specific chip list can be found in the project&rsquo;s documentation.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th style="text-align:center">ARM Cortex-M</th>
+<th style="text-align:center">riscv32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XiaoYu Micro OS</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+</tbody>
+</table>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        <li>
+        
+            <a href="https://hemashushu.github.io/works/xiaoxuan-gpu/"><i class="fa fa-chevron-circle-left"></i> XiaoXuan GPU</a>
+        
+        </li>
+        <li>
+        
+        </li>
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <ul>
+            <li>
+                <span>Copyright © 2023 - Hippospark Young | 
+                    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"><img alt="cc by-nc-nd" class="license" src="/images/cc-by-nc-nd.png" /></a> |
+                    Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+                    Theme <a href="https://github.com/hemashushu/hugo-selina" title="Selina">Selina</a> |
+                    <a href="https://hemashushu.github.io/index.xml">Subscribe </a></span>
+            </li>
+            
+            
+        </ul>
+        
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7X4YJHXM9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-J7X4YJHXM9', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+</body>
+
+</html>
+

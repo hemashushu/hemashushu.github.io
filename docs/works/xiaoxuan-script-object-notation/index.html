@@ -1,0 +1,547 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Hemashushu&#39;s Homepage</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
+<meta name="author" content="hemashushu" /><meta property="og:title" content="" />
+<meta property="og:description" content="XiaoXuan Object Notation Syntax Values Number Integer Number Floating Pointer Number Hexadecimal Floating Point Number Number data types String Long String Multi-line String Raw String Raw String Variant Auto-trimmed String Byte Data Boolean Date time array Tuple Object Object keys Commas Nested Mixed Comments Line Comment Block Comment Document Comment Mix Comments A XiaoXuan Object Notation document is consist of values.
+Values Number XiaoXuan Object Notation supports integer numbers and floating-point numbers." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hemashushu.github.io/works/xiaoxuan-script-object-notation/" /><meta property="article:section" content="works" />
+
+
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="XiaoXuan Object Notation Syntax Values Number Integer Number Floating Pointer Number Hexadecimal Floating Point Number Number data types String Long String Multi-line String Raw String Raw String Variant Auto-trimmed String Byte Data Boolean Date time array Tuple Object Object keys Commas Nested Mixed Comments Line Comment Block Comment Document Comment Mix Comments A XiaoXuan Object Notation document is consist of values.
+Values Number XiaoXuan Object Notation supports integer numbers and floating-point numbers."/>
+
+<meta name="generator" content="Hugo 0.122.0">
+    
+    <script src="/js/mathjax-config.js" defer></script>
+    
+    
+    <script src="/js/polyfill.min.js"></script>
+    <script id="MathJax-script" async src="/js/tex-mml-chtml.js"></script>
+
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="https://hemashushu.github.io/fontawesome/css/all.min.css" />
+  
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel='stylesheet' href='https://hemashushu.github.io/css/custom.css'></head>
+
+<body>
+  <header>
+    <div id="content">
+      <ul id="social-media">
+        
+                <li>
+                <a href="https://github.com/hemashushu" title="GitHub">
+                <i class="fab fa-github fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://twitter.com/hemashushu" title="Twitter">
+                <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                </li>
+                <li>
+                <a href="https://www.youtube.com/@hemashushu" title="Youtube">
+                <i class="fab fa-youtube fa-lg"></i>
+                </a>
+                </li>
+      </ul>
+
+      
+      <h1>
+      <a href="/">Hemashushu&rsquo;s Homepage</a>
+      </h1>
+
+      
+      <p><em>Curiosity, exploration and creation</em></p>
+      
+    </div>
+  </header>
+  <div id="container">
+
+
+    
+<nav>
+    <ul>
+        <li>
+            <a  href="/" title="Home">Home</a>
+        </li>
+        
+        <li>
+            <a class="" href="/download/">
+                <i class="fa-li fa  fa-lg"></i><span>Download</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="active" href="/works/">
+                <i class="fa-li fa  fa-lg"></i><span>Works</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books/">
+                <i class="fa-li fa  fa-lg"></i><span>Books</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Blog</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1></h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="0001-01-01T00:00:00Z">Jan 1, 0001</time>
+        </li>
+        
+
+        
+
+        
+
+        <li>7 minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+      
+
+    
+
+    <h1 id="xiaoxuan-object-notation-syntax">XiaoXuan Object Notation Syntax</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#values">Values</a>
+<ul>
+<li><a href="#number">Number</a>
+<ul>
+<li><a href="#integer-number">Integer Number</a></li>
+<li><a href="#floating-pointer-number">Floating Pointer Number</a></li>
+<li><a href="#hexadecimal-floating-point-number">Hexadecimal Floating Point Number</a></li>
+<li><a href="#number-data-types">Number data types</a></li>
+</ul>
+</li>
+<li><a href="#string">String</a>
+<ul>
+<li><a href="#long-string">Long String</a></li>
+<li><a href="#multi-line-string">Multi-line String</a></li>
+<li><a href="#raw-string">Raw String</a></li>
+<li><a href="#raw-string-variant">Raw String Variant</a></li>
+<li><a href="#auto-trimmed-string">Auto-trimmed String</a></li>
+</ul>
+</li>
+<li><a href="#byte-data">Byte Data</a></li>
+<li><a href="#boolean">Boolean</a></li>
+<li><a href="#date-time">Date time</a></li>
+<li><a href="#array">array</a></li>
+<li><a href="#tuple">Tuple</a></li>
+<li><a href="#object">Object</a>
+<ul>
+<li><a href="#object-keys">Object keys</a></li>
+<li><a href="#commas">Commas</a></li>
+<li><a href="#nested">Nested</a></li>
+<li><a href="#mixed">Mixed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#comments">Comments</a>
+<ul>
+<li><a href="#line-comment">Line Comment</a></li>
+<li><a href="#block-comment">Block Comment</a></li>
+<li><a href="#document-comment">Document Comment</a></li>
+<li><a href="#mix-comments">Mix Comments</a></li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>A <em>XiaoXuan Object Notation</em> document is consist of values.</p>
+<h2 id="values">Values</h2>
+<h3 id="number">Number</h3>
+<p><em>XiaoXuan Object Notation</em> supports integer numbers and floating-point numbers.</p>
+<h4 id="integer-number">Integer Number</h4>
+<p>Three types of integer number representation are supported: decimal, hexadecimal and binary. An addition of plus or minus sign is supported. In addition, arbitrary underscores can be added between digits.</p>
+<p>Example of integer numbers:</p>
+<ul>
+<li><code>211</code>, <code>223_211</code>, <code>-2027</code></li>
+<li><code>0x1113</code>, <code>0x1719_abcd</code>, <code>-0xaabb</code></li>
+<li><code>0b1100</code>, <code>0b1010_0001</code>, <code>-0b1100</code></li>
+</ul>
+<h4 id="floating-pointer-number">Floating Pointer Number</h4>
+<p>Floating point numbers can be represented in decimal.</p>
+<p>Example of floating point numbers:</p>
+<p><code>3.14</code>, <code>2.998e8</code>, <code>123.</code>,  <code>6.626e-34</code>, <code>-1.7588e11</code>, <code>-1.7588e+11</code></p>
+<p>Example of invalid numbers:</p>
+<p><code>0x3.14</code>, <code>0b11.10</code>, <code>.123</code>, <code>123e</code></p>
+<h4 id="hexadecimal-floating-point-number">Hexadecimal Floating Point Number</h4>
+<p>Floating point numbers can be represented in hexadecimal also, the format of <a href="https://en.cppreference.com/w/c/language/floating_constant">hexadecimal floating pointer literals</a> is <code>0xh.hhhp±d</code>, which is the same as it is in C/C++.</p>
+<p>e.g., <code>0x1.23p4</code> means <code>(1x16^0 + 2x16^-1 + 3x16^-2) x 2^4 = (1.13671875 x 16)</code>, its value is <code>18.1875</code>.</p>
+<p>Example of hexadecimal floating point number:</p>
+<p><code>0x1.921fb6p1</code>, <code>0x1.5bf0a8b145769p+1</code>, <code>0x1.23p-4</code></p>
+<p><em>XiaoXuan Object Notation</em> does not support <code>-0.0</code>, <code>+inf</code>, <code>-inf</code>, <code>nan</code>.</p>
+<h4 id="number-data-types">Number data types</h4>
+<p>// default integer numbers: int(i32)
+// default floating-point numbers: float(f32)
+//
+// data type names:
+// - int, uint          (i32/u32)
+// - long, ulong        (i64/u64)
+// - byte, ubyte        (i8/u8)
+// - short, ushort      (i16/u16)
+// - float, double      (f32/f64)</p>
+<p>// 123@long     // with data type suffix</p>
+<h3 id="metric-prefix">Metric prefix</h3>
+<p><a href="https://en.wikipedia.org/wiki/Metric_prefix">https://en.wikipedia.org/wiki/Metric_prefix</a>
+<a href="https://en.wikipedia.org/wiki/Binary_prefix">https://en.wikipedia.org/wiki/Binary_prefix</a>
+<a href="https://en.wikipedia.org/wiki/Unit_prefix">https://en.wikipedia.org/wiki/Unit_prefix</a></p>
+<p>E,P,T,G,M,K     &lt;&ndash; ulong(default)/long
+m,u,n,p,f,a     &lt;&ndash; float(default)/double</p>
+<p>Binary prefixes
+Zi,Ei,Pi,Ti,Gi,Mi,Ki</p>
+<p>// 123u  //  fractional</p>
+<blockquote>
+<p>only available for decimal numbers and the data type must be &ldquo;unsign long, long&rdquo; or &ldquo;float, double&rdquo;.</p>
+</blockquote>
+<h3 id="string">String</h3>
+<p>A string is a sequence of characters surrounded by a pair of quotes. Strings support any Unicode character (including emojis), and also support the following escape characters:</p>
+<ul>
+<li><code>\t</code>: Horizontal tabulation</li>
+<li><code>\r</code>: Carriage return (CR)</li>
+<li><code>\n</code>: New line character (line feed, LF)</li>
+<li><code>\0</code>: Null character</li>
+<li><code>\u{...}</code>, Unicode code point, e.g. <code>\u{2d}</code>, <code>\u{6587}</code></li>
+<li><code>\&quot;</code>: Doube quote</li>
+<li><code>\'</code>: Single quote</li>
+<li><code>\\</code>: Escape character itself</li>
+</ul>
+<p>The following escape characters are used in other language, but they are not supported in the <em>XiaoXuan Object Notation</em>:</p>
+<ul>
+<li><code>\v</code>: Vertical tabulation</li>
+<li><code>\f</code>: Page breaking control character</li>
+<li><code>\x..</code>: ASCII code</li>
+</ul>
+<p>Example of strings:</p>
+<p><code>&quot;abc文字😊&quot;</code>, <code>&quot;\u{2d}\u{6587}\0&quot;</code>, <code>&quot;foo\nbar&quot;</code></p>
+<blockquote>
+<p>Strings are encoded using UTF-8.</p>
+</blockquote>
+<h4 id="long-string">Long String</h4>
+<p>Sometimes the contents of a string may be too long to fit on one line. <em>XiaoXuan Object Notation</em> supports spliting long string into multiple lines by inserting a backslash and a line break in the middle of the string. e.g.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;Hel\
+</span></span><span class="line"><span class="cl">    lo, \
+</span></span><span class="line"><span class="cl">    World!&#34;
+</span></span></code></pre></div><p>The above string is equivalent to <code>&quot;Hello, World!&quot;</code>. Note that the leading whitespace is automatically trimmed from each line.</p>
+<h4 id="multi-line-string">Multi-line String</h4>
+<p>String also support multiple lines, simply insert line breaks into the string as usual, e.g.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;Hello,
+</span></span><span class="line"><span class="cl">    World! I&#39;m XiaoXuan
+</span></span><span class="line"><span class="cl">    Core Assembly.&#34;
+</span></span></code></pre></div><p>The above string is equivalent to <code>&quot;Hello,\n    World! I'm XiaoXuan\n    Core Assembly.&quot;</code>.</p>
+<p>Note that leading whitespace is not automatically removed with this format.</p>
+<h4 id="raw-string">Raw String</h4>
+<p>Adding a letter `r`` before the first quote to indicate a string is a <em>raw string</em>.</p>
+<p>The raw strings do not escape any characters, all content will be output as is, e.g.</p>
+<p><code>r&quot;Hello\nWorld!&quot;</code> is equivalent to <code>&quot;Hello\\nWorld!&quot;</code></p>
+<h4 id="raw-string-variant">Raw String Variant</h4>
+<p>Since raw strings don&rsquo;t support escaping characters, if you need to output the &ldquo;double quote&rdquo;, you can use the variant of raw strings, i.e. use <code>r#&quot;...&quot;#</code> to enclose the string, e.g.</p>
+<p><code>r#&quot;One &quot;two&quot; three&quot;#</code> is equivalent to <code>&quot;One \&quot;two\&quot; three&quot;</code>.</p>
+<h4 id="auto-trimmed-string">Auto-trimmed String</h4>
+<p>Auto-trimmed strings are used to write long text, it&rsquo;s similar to the raw string, where characters are not escaped, but the leading whitespace on each line is automatically trimmed based on the number of leading spaces in the first line.</p>
+<p>Auto-trimmed string starts with <code>r|&quot;</code>, and then the content start in a new line, and ends with <code>&quot;|</code> which is in <strong>a separate line</strong> (leading whitespaces are staill allowed), for example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">r|&#34;
+</span></span><span class="line"><span class="cl">    id:
+</span></span><span class="line"><span class="cl">      123
+</span></span><span class="line"><span class="cl">    name:
+</span></span><span class="line"><span class="cl">      foo
+</span></span><span class="line"><span class="cl">&#34;|
+</span></span></code></pre></div><p>In the above example, since there are 4 leading space characters in the first line, so each line truncates max 4 leading spaces. The string is equivalent to <code>&quot;id:\n  123\nname:  foo&quot;</code>. Note that the last new-line symbol <code>\n</code> of the string is removed automatically.</p>
+<h3 id="byte-data">Byte Data</h3>
+<p>Byte data is used to represent a piece of binary data in memory or on the storage, starting with the letter <code>h</code> followed by a pair of double quotes. Inside the quotes is the content of the data, which uses two letters <code>[0-9a-zA-Z]</code> to represent a byte, and the characters <code>[ -:\t\r\n]</code> are ignored in the content. For example, the following represents the same 4-byte data:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">h&#34;0011aabb&#34;,
+</span></span><span class="line"><span class="cl">h&#34;0011AABB&#34;,
+</span></span><span class="line"><span class="cl">h&#34;00 11 aa bb&#34;,
+</span></span><span class="line"><span class="cl">h&#34;00-11-aa-bb&#34;,
+</span></span><span class="line"><span class="cl">h&#34;00:11:aa:bb&#34;,
+</span></span><span class="line"><span class="cl">h&#34;00 11
+</span></span><span class="line"><span class="cl">  aa bb&#34;
+</span></span></code></pre></div><h3 id="boolean">Boolean</h3>
+<p><code>true</code>, <code>false</code></p>
+<h3 id="date-time">Date time</h3>
+<p>rfc3339</p>
+<p><code>d&quot;2023-03-24&quot;</code>
+<code>d&quot;10:15:00&quot;</code>
+<code>d&quot;2023-03-24 10:15:00&quot;</code>
+<code>d&quot;2023-03-24 10:15:00z&quot;</code> (z or Z)
+<code>d&quot;2023-03-24T10:15:00&quot;</code> (t or T)
+<code>d&quot;2023-03-24 10:15:00+08:00&quot;</code>
+<code>d&quot;2023-03-24 10:15:00-01:00&quot;</code></p>
+<h3 id="array">array</h3>
+<p>TODO</p>
+<p><code>[1,2,3]</code>
+or
+<code>[1,2,3,]</code></p>
+<p>Array requires all elements to be of the same datatype.</p>
+<p>multiline</p>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">
+[
+    1
+    2
+    3
+]
+</code></pre><p>or</p>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">[
+    1,
+    2,
+    3,
+]
+</code></pre><h3 id="tuple">Tuple</h3>
+<p><code>(1, &quot;foo&quot;, true)</code>
+or
+<code>(1, &quot;foo&quot;, true,)</code></p>
+<p>Tuple does NOT require all elements to be of the same datatype.</p>
+<p>multiline</p>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">(
+1
+&#34;foo&#34;
+true
+)
+</code></pre><p>or</p>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">(
+1,
+&#34;foo&#34;,
+true,
+)
+</code></pre><h3 id="object">Object</h3>
+<p>name-value pair</p>
+<h4 id="object-names">Object names</h4>
+<p>TODO::</p>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">{
+    name1: value1
+    name2: value2
+}
+</code></pre><p>Object names are the names of members.</p>
+<p>Object names consist of characters <code>[a-zA-Z0-9_]</code>, and cannot start with a number.</p>
+<p>Example of valid object names:</p>
+<p><code>user</code>, <code>id</code>, <code>name</code>, <code>address</code>, <code>main_number</code></p>
+<h4 id="commas">Commas</h4>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">{
+    key1: value1,
+    key2: value2,
+}
+</code></pre><pre tabindex="0"><code class="language-json5" data-lang="json5">{
+    key1: value1, key2: value2,
+}
+</code></pre><h4 id="nested">Nested</h4>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">{
+    key1: value1
+    key2: {
+        key21: value21
+        key22: value22
+    }
+}
+</code></pre><h4 id="mixed">Mixed</h4>
+<pre tabindex="0"><code class="language-json5" data-lang="json5">{
+    key1: value1
+    key2: [value21, value22]
+}
+</code></pre><pre tabindex="0"><code class="language-json5" data-lang="json5">{
+    key1: value1
+    key2: [
+        {key21: value21}
+        {key22: value22}
+    ]
+}
+</code></pre><h2 id="comments">Comments</h2>
+<p><em>XiaoXuan Object Notation</em> supports 3 styles of comments: line comments, block comments and document comments.</p>
+<h3 id="line-comment">Line Comment</h3>
+<p>Line comments start with symbol <code>//</code> and continue until the end of the line, e.g.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">module</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">//</span> <span class="nv">this</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">comment</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">function</span> <span class="nv">$test</span>   <span class="nv">//</span> <span class="nv">this</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nb">comment </span><span class="nv">also</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h3 id="block-comment">Block Comment</h3>
+<p>Block comments start with the symbol <code>/*</code> and end with the symbol <code>*/</code>, and nested block comments are supported, for example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">module</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">function</span> <span class="nv">$test</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">/*</span> <span class="nv">this</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">block</span> <span class="nb">comment </span><span class="nv">*/</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">/*</span> <span class="nv">level</span> <span class="nv">one</span> <span class="nv">/*</span> <span class="nv">level</span> <span class="nv">two</span> <span class="nv">*/*/</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h3 id="document-comment">Document Comment</h3>
+<p>Document comments are used to write long text related to modules, structures, functions and so on.</p>
+<p>Document comments starts with <code>&quot;&quot;&quot;</code>, and then the content start in a new line, and ends with <code>&quot;&quot;&quot;</code> which is occured a separate line, for example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">NAME
+</span></span><span class="line"><span class="cl">    ls - list directory contents
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">DESCRIPTION
+</span></span><span class="line"><span class="cl">    List information about the FILEs (the current directory by default).
+</span></span><span class="line"><span class="cl">    Sort entries alphabetically if none of -cftuvSUX nor --sort is
+</span></span><span class="line"><span class="cl">    specified.
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span></code></pre></div><p>leading spaces are allowed, for example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">(function $add (param $left i32) (param $right i32) (result i32)
+</span></span><span class="line"><span class="cl">    &#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">    Add two integer numbers.
+</span></span><span class="line"><span class="cl">    &#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    (code
+</span></span><span class="line"><span class="cl">        ...
+</span></span><span class="line"><span class="cl">    )
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></div><h3 id="mix-comments">Mix Comments</h3>
+<p>Line comment symbol <code>//</code> and document comment symbol <code>&quot;&quot;&quot;</code> within valid block comments are ignored, e.g.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">module</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">/*</span> <span class="nv">block</span> <span class="nb">comment </span><span class="nv">//</span> <span class="nv">still</span> <span class="nv">block</span> <span class="nb">comment </span><span class="nv">*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">module</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">/*</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">block</span> <span class="nb">comment </span><span class="nv">part</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">//</span> <span class="nv">/*</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">block</span> <span class="nb">comment </span><span class="nv">part</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">*/</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">block</span> <span class="nb">comment </span><span class="nv">part</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">module</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">/*</span> <span class="nv">block</span> <span class="nv">comment</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        still block comment
+</span></span></span><span class="line"><span class="cl"><span class="s">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Practically any type of comment symbol is ignored in other types of valid comments, i.e.,:</p>
+<ul>
+<li>Block comment symbol <code>/*</code> and document comment symbol <code>&quot;&quot;&quot;</code> within valid line comments</li>
+<li>Block comment symbol <code>/*</code> and line comment symbol <code>//</code> within valid document comments</li>
+</ul>
+<h2 id="tailing-commas">tailing commas</h2>
+<pre><code>x:&quot;x&quot;,
+y:&quot;y&quot;,
+z:&quot;z&quot;,
+</code></pre>
+<p>// inline commas
+a:&ldquo;a&rdquo;, b:&ldquo;b&rdquo;, c:&ldquo;c&rdquo;,</p>
+<h2 id="comparing-with-_json_">Comparing with <em>JSON</em></h2>
+<p><em>ASON</em> is similar in appearance to JSON, but with the following differences:</p>
+<ul>
+<li>Numbers have an explicit datatype.</li>
+<li><em>null</em> value is not allowed.</li>
+<li>Floating point number do not support <code>Inf</code>, <code>-Inf</code>, <code>-0</code> and <code>NaN</code>.</li>
+<li>Single-quoted strings are not supported.</li>
+<li>Comments are supported.</li>
+<li><em>Array</em> requires all elements to be of the same datatype.</li>
+<li>Added <em>Date</em> datatype.</li>
+<li>Added <em>Tuple</em> datatype.</li>
+<li>Double quotes can be omitted from key names.</li>
+<li>Commas can be ommitted between items.</li>
+</ul>
+<p>unsupport:
+{
+&ldquo;name&rdquo;: &ldquo;value&rdquo;    // key with quotes
+}</p>
+<p><a href="https://bsonspec.org/">https://bsonspec.org/</a>
+<a href="https://json5.org/">https://json5.org/</a></p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        <li>
+        
+        </li>
+        <li>
+        
+            <a href="https://hemashushu.github.io/works/xiaoxuan-lang/">XiaoXuan Programming Language <i class="fa fa-chevron-circle-right"></i> </a>
+        
+        </li>
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <ul>
+            <li>
+                <span>Copyright © 2023 - Hippospark Young | 
+                    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"><img alt="cc by-nc-nd" class="license" src="/images/cc-by-nc-nd.png" /></a> |
+                    Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+                    Theme <a href="https://github.com/hemashushu/hugo-selina" title="Selina">Selina</a> |
+                    <a href="https://hemashushu.github.io/index.xml">Subscribe </a></span>
+            </li>
+            
+            
+        </ul>
+        
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J7X4YJHXM9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-J7X4YJHXM9', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+</body>
+
+</html>
+

@@ -106,11 +106,15 @@ figure figcaption p {
 }
 
 table {
-    border-bottom-color: #cecece;
+    border-color: #6a7475;
 }
 
 table thead {
-    background-color: #cecece;
+    background-color: #565962;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #3D414A;
 }
 
 blockquote {
