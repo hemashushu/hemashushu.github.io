@@ -25,7 +25,7 @@ _XiaoXuan Language_ consists of the following variants:
   Build high-performance, solid web applications. It can be compiled to WebAssembly on-the-fly without the need for any build tools. It aims to be the next programming language for web development.
 
 - [XiaoXuan Managed](/works/xiaoxuan-managed)
-  Build secure, robust, low-latency and responsive desktop applications, cloud-native applications (such as microservices and serverless functions etc.), business systems, data science programs, A.I. programs and more. Each program runs in its own isolated environement, eliminating the need for containers. Applications do not need to be installed, they can be run with just a URL.
+  Build extreme secure, robust, low-latency and responsive desktop applications, cloud-native applications (such as microservices and serverless functions etc.), business systems, data science programs, A.I. programs and more. Each program runs in its own isolated environement, eliminating the need for containers. Applications do not need to be installed, they can be run with just a URL.
 
 - [XiaoXuan Native](/works/xiaoxuan-native)
   A memory-safe, general-purpose programming language inspired by Rust. It is designed to be simpler than Rust while it still provides automatic memory management without garbage collection, and avoids complex concepts such as ownership, borrow checking, and lifetimes. It aims to replace Rust in certain non-critical scenarios. It currently supports compiling to native code for architectures _x86-64_, _aarch64 (ARM64)_, _riscv64_ and _s390x (IBM Z)_, and will supports _loongarch64_ in the future.

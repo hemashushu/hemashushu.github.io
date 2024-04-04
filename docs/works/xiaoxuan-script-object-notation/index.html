@@ -8,8 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="" />
-<meta property="og:description" content="XiaoXuan Object Notation Syntax Values Number Integer Number Floating Pointer Number Hexadecimal Floating Point Number Number data types String Long String Multi-line String Raw String Raw String Variant Auto-trimmed String Byte Data Boolean Date time array Tuple Object Object keys Commas Nested Mixed Comments Line Comment Block Comment Document Comment Mix Comments A XiaoXuan Object Notation document is consist of values.
-Values Number XiaoXuan Object Notation supports integer numbers and floating-point numbers." />
+<meta property="og:description" content="XiaoXuan Script Object Notation XiaoXuan Script Object Notation (ANON) is a data format designed to be easy for humans to read and write. It is similar to JSON, but with many improvements and enhancements. ANON is mainly used as a configuration file for applications, but can also be used for data transmission.
+Features
+Compatible with most of the syntax of JSON and JSON5. If you are already familiar with JSON, you may not need to learn anything new to read and write ASON." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hemashushu.github.io/works/xiaoxuan-script-object-notation/" /><meta property="article:section" content="works" />
 
@@ -17,8 +18,9 @@ Values Number XiaoXuan Object Notation supports integer numbers and floating-poi
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="XiaoXuan Object Notation Syntax Values Number Integer Number Floating Pointer Number Hexadecimal Floating Point Number Number data types String Long String Multi-line String Raw String Raw String Variant Auto-trimmed String Byte Data Boolean Date time array Tuple Object Object keys Commas Nested Mixed Comments Line Comment Block Comment Document Comment Mix Comments A XiaoXuan Object Notation document is consist of values.
-Values Number XiaoXuan Object Notation supports integer numbers and floating-point numbers."/>
+<meta name="twitter:description" content="XiaoXuan Script Object Notation XiaoXuan Script Object Notation (ANON) is a data format designed to be easy for humans to read and write. It is similar to JSON, but with many improvements and enhancements. ANON is mainly used as a configuration file for applications, but can also be used for data transmission.
+Features
+Compatible with most of the syntax of JSON and JSON5. If you are already familiar with JSON, you may not need to learn anything new to read and write ASON."/>
 
 <meta name="generator" content="Hugo 0.122.0">
     
@@ -134,7 +136,7 @@ Values Number XiaoXuan Object Notation supports integer numbers and floating-poi
 
         
 
-        <li>7 minute read</li>
+        <li>8 minute read</li>
     </ul>
 </aside>
 
@@ -145,7 +147,17 @@ Values Number XiaoXuan Object Notation supports integer numbers and floating-poi
 
     
 
-    <h1 id="xiaoxuan-object-notation-syntax">XiaoXuan Object Notation Syntax</h1>
+    <h1 id="xiaoxuan-script-object-notation">XiaoXuan Script Object Notation</h1>
+<p><em>XiaoXuan Script Object Notation</em> (<em>ANON</em>) is a data format designed to be easy for humans to read and write. It is similar to <em>JSON</em>, but with many improvements and enhancements. <em>ANON</em> is mainly used as a configuration file for applications, but can also be used for data transmission.</p>
+<p><strong>Features</strong></p>
+<ul>
+<li>
+<p><strong>Compatible with most of the syntax of <em>JSON</em> and <em>JSON5</em>.</strong> If you are already familiar with <em>JSON</em>, you may not need to learn anything new to read and write <em>ASON</em>.</p>
+</li>
+<li>
+<p><strong>Simple, rigorous and consistent syntax.</strong> The syntax style of <em>ASON</em> is close to that of programming languages. For example, numbers have data types, multiple types comments and strings are supported, key names do not require double quotes, and so on. These features make it easy for users to write accurate <em>ASON</em> documents, and are also beneficial for modification and maintenance.</p>
+</li>
+</ul>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
@@ -208,15 +220,19 @@ Values Number XiaoXuan Object Notation supports integer numbers and floating-poi
 <h4 id="floating-pointer-number">Floating Pointer Number</h4>
 <p>Floating point numbers can be represented in decimal.</p>
 <p>Example of floating point numbers:</p>
-<p><code>3.14</code>, <code>2.998e8</code>, <code>123.</code>,  <code>6.626e-34</code>, <code>-1.7588e11</code>, <code>-1.7588e+11</code></p>
+<p><code>3.14</code>, <code>-2.718</code>, <code>123.</code>, <code>2.998e8</code>, <code>6.626e-34</code>, <code>-1.7588e+11</code></p>
 <p>Example of invalid numbers:</p>
-<p><code>0x3.14</code>, <code>0b11.10</code>, <code>.123</code>, <code>123e</code></p>
+<p><code>.123</code>, <code>123e</code></p>
 <h4 id="hexadecimal-floating-point-number">Hexadecimal Floating Point Number</h4>
 <p>Floating point numbers can be represented in hexadecimal also, the format of <a href="https://en.cppreference.com/w/c/language/floating_constant">hexadecimal floating pointer literals</a> is <code>0xh.hhhp±d</code>, which is the same as it is in C/C++.</p>
 <p>e.g., <code>0x1.23p4</code> means <code>(1x16^0 + 2x16^-1 + 3x16^-2) x 2^4 = (1.13671875 x 16)</code>, its value is <code>18.1875</code>.</p>
 <p>Example of hexadecimal floating point number:</p>
 <p><code>0x1.921fb6p1</code>, <code>0x1.5bf0a8b145769p+1</code>, <code>0x1.23p-4</code></p>
 <p><em>XiaoXuan Object Notation</em> does not support <code>-0.0</code>, <code>+inf</code>, <code>-inf</code>, <code>nan</code>.</p>
+<p>invalid <code>0x3.14</code>,</p>
+<blockquote>
+<p>unsupported <code>0b11.10</code>,</p>
+</blockquote>
 <h4 id="number-data-types">Number data types</h4>
 <p>// default integer numbers: int(i32)
 // default floating-point numbers: float(f32)
@@ -306,13 +322,12 @@ Zi,Ei,Pi,Ti,Gi,Mi,Ki</p>
 <p><code>true</code>, <code>false</code></p>
 <h3 id="date-time">Date time</h3>
 <p>rfc3339</p>
-<p><code>d&quot;2023-03-24&quot;</code>
-<code>d&quot;10:15:00&quot;</code>
-<code>d&quot;2023-03-24 10:15:00&quot;</code>
-<code>d&quot;2023-03-24 10:15:00z&quot;</code> (z or Z)
+<p>“YYYY-MM-DD HH:mm:ss&quot;</p>
+<p><code>d&quot;2023-03-24 10:15:00&quot;</code>
 <code>d&quot;2023-03-24T10:15:00&quot;</code> (t or T)
 <code>d&quot;2023-03-24 10:15:00+08:00&quot;</code>
-<code>d&quot;2023-03-24 10:15:00-01:00&quot;</code></p>
+<code>d&quot;2023-03-24 10:15:00-01:00&quot;</code>
+<code>d&quot;2023-03-24 10:15:00z&quot;</code> (z or Z)</p>
 <h3 id="array">array</h3>
 <p>TODO</p>
 <p><code>[1,2,3]</code>
@@ -403,10 +418,15 @@ true,
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">module</span>
 </span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">function</span> <span class="nv">$test</span>
 </span></span><span class="line"><span class="cl">        <span class="nv">/*</span> <span class="nv">this</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">block</span> <span class="nb">comment </span><span class="nv">*/</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">/*</span> <span class="nv">level</span> <span class="nv">one</span> <span class="nv">/*</span> <span class="nv">level</span> <span class="nv">two</span> <span class="nv">*/*/</span>
 </span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div><h3 id="document-comment">Document Comment</h3>
+</span></span></code></pre></div><p>nested block comments</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">module</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">function</span> <span class="nv">$test</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">/*</span> <span class="nv">level</span> <span class="nv">one</span> <span class="nv">/*</span> <span class="nv">level</span> <span class="nv">two</span> <span class="nv">*/</span> <span class="nv">level</span> <span class="nv">one</span> <span class="nv">again</span> <span class="nv">*/</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h3 id="documentation-comment">Documentation Comment</h3>
 <p>Document comments are used to write long text related to modules, structures, functions and so on.</p>
 <p>Document comments starts with <code>&quot;&quot;&quot;</code>, and then the content start in a new line, and ends with <code>&quot;&quot;&quot;</code> which is occured a separate line, for example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;&#34;&#34;
@@ -419,7 +439,13 @@ true,
 </span></span><span class="line"><span class="cl">    specified.
 </span></span><span class="line"><span class="cl">&#34;&#34;&#34;
 </span></span></code></pre></div><p>leading spaces are allowed, for example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">(function $add (param $left i32) (param $right i32) (result i32)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">asdfasdf
+</span></span><span class="line"><span class="cl">qwerqwer
+</span></span><span class="line"><span class="cl">zxcvzxcv
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">(function $add (param $left i32) (param $right i32) (result i32)
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    &#34;&#34;&#34;
 </span></span><span class="line"><span class="cl">    Add two integer numbers.
 </span></span><span class="line"><span class="cl">    &#34;&#34;&#34;

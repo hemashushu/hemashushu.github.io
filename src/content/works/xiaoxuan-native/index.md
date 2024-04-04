@@ -15,3 +15,9 @@ _XiaoXuan Native_ is a memory-safe, general-purpose programming language inspire
 ## Features
 
 TODO
+
+## Related projects
+
+- {{< null-link "XiaoXuan Assembly LoongArch" >}} Assembler for LoongArch (la64).
+- {{< null-link "XiaoXuan Assembly RISC-V" >}} Assembler for RISC-V (rv64gc).
+- {{< null-link "XiaoXuan Assembly ARM" >}} Assembler for ARM (aarch64).

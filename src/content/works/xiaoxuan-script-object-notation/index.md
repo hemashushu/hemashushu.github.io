@@ -1,4 +1,12 @@
-# XiaoXuan Object Notation Syntax
+# XiaoXuan Script Object Notation
+
+_XiaoXuan Script Object Notation_ (_ANON_) is a data format designed to be easy for humans to read and write. It is similar to _JSON_, but with many improvements and enhancements. _ANON_ is mainly used as a configuration file for applications, but can also be used for data transmission.
+
+**Features**
+
+- **Compatible with most of the syntax of _JSON_ and _JSON5_.** If you are already familiar with _JSON_, you may not need to learn anything new to read and write _ASON_.
+
+- **Simple, rigorous and consistent syntax.** The syntax style of _ASON_ is close to that of programming languages. For example, numbers have data types, multiple types comments and strings are supported, key names do not require double quotes, and so on. These features make it easy for users to write accurate _ASON_ documents, and are also beneficial for modification and maintenance.
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 
@@ -58,11 +66,11 @@ Floating point numbers can be represented in decimal.
 
 Example of floating point numbers:
 
-`3.14`, `2.998e8`, `123.`,  `6.626e-34`, `-1.7588e11`, `-1.7588e+11`
+`3.14`, `-2.718`, `123.`, `2.998e8`, `6.626e-34`, `-1.7588e+11`
 
 Example of invalid numbers:
 
-`0x3.14`, `0b11.10`, `.123`, `123e`
+`.123`, `123e`
 
 #### Hexadecimal Floating Point Number
 
@@ -75,6 +83,10 @@ Example of hexadecimal floating point number:
 `0x1.921fb6p1`, `0x1.5bf0a8b145769p+1`, `0x1.23p-4`
 
 _XiaoXuan Object Notation_ does not support `-0.0`, `+inf`, `-inf`, `nan`.
+
+invalid `0x3.14`,
+
+> unsupported `0b11.10`,
 
 #### Number data types
 
@@ -210,13 +222,15 @@ h"00 11
 
 rfc3339
 
-`d"2023-03-24"`
-`d"10:15:00"`
+“YYYY-MM-DD HH:mm:ss"
+
 `d"2023-03-24 10:15:00"`
-`d"2023-03-24 10:15:00z"` (z or Z)
 `d"2023-03-24T10:15:00"` (t or T)
 `d"2023-03-24 10:15:00+08:00"`
 `d"2023-03-24 10:15:00-01:00"`
+`d"2023-03-24 10:15:00z"` (z or Z)
+
+
 
 ### array
 
@@ -370,12 +384,21 @@ Block comments start with the symbol `/*` and end with the symbol `*/`, and nest
 (module
     (function $test
         /* this is a block comment */
-        /* level one /* level two */*/
     )
 )
 ```
 
-### Document Comment
+nested block comments
+
+```clojure
+(module
+    (function $test
+        /* level one /* level two */ level one again */
+    )
+)
+```
+
+### Documentation Comment
 
 Document comments are used to write long text related to modules, structures, functions and so on.
 
@@ -396,7 +419,13 @@ DESCRIPTION
 leading spaces are allowed, for example:
 
 ```text
+"""
+asdfasdf
+qwerqwer
+zxcvzxcv
+"""
 (function $add (param $left i32) (param $right i32) (result i32)
+
     """
     Add two integer numbers.
     """

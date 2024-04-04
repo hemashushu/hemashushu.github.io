@@ -68,3 +68,9 @@ _XiaoYu Micro OS_ is a micro operating system that adds modules such as file sys
 | Software        | ARM Cortex-M | riscv32 |
 |-----------------|:------------:|:-------:|
 | XiaoYu Micro OS | ✓            | ✓       |
+
+## Related projects
+
+- [XiaoXuan Language Family](/works/xiaoxuan-lang)
+- [XiaoYu OS](/works/xiaoyu-os)
+- [XiaoYu Micro OS](/works/xiaoyu-micro-os)
