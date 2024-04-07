@@ -8,11 +8,13 @@ categories: []
 
 {{< figure class="mid" src="./images/banner.webp" >}}
 
-_XiaoXuan Lang_ and _XiaoYu OS_ are newly designed software that have good support for various mainstream platforms. At the same time, because _XiaoXuan Lang_ has its own IR add assembly language and does not rely on traditional compilation tools and shared libraries, such as GCC and LLVM. it has faster support for newer platforms such as RISC-V and LoongArch.
+_XiaoXuan Lang_ and _XiaoYu OS_ are newly designed software that have good support for various mainstream platforms. At the same time, because _XiaoXuan Lang_ has its own IR add assembly language and does not rely on traditional compilation tools and shared libraries, such as GCC and LLVM. it has faster support for newer platforms such as [RISC-V](https://en.wikipedia.org/wiki/RISC-V) and [LoongArch](https://en.wikipedia.org/wiki/Loongson#LoongArch).
+
+_XiaoXuan Lang_ and _XiaoYu OS_ hope to become the preferred programming language and operating system for new platforms.
 
 The following are tables of the support status of _XiaoXuan Lang_, _XiaoYu OS_ and other software for various platforms.
 
-## Programming Language
+## XiaoXuan Programming Language
 
 ### Desktop and Server
 
@@ -51,7 +53,7 @@ It includes a compiler and a virtual machine. Applications will be compiled into
 |----------------|:------------:|:-------:|
 | XiaoXuan Micro | ✓            | ✓       |
 
-## Operating System
+## XiaoYu Operating System
 
 **XiaoYu OS**
 
