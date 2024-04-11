@@ -426,7 +426,7 @@ figure.mid img {
 }
 
 table {
-    width: 100%;
+    min-width: 25%;
     border: 1px solid #ccc;
     border-radius: 12px;
     overflow: hidden;

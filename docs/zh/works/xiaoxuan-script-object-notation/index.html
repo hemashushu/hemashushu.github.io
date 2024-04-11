@@ -200,14 +200,14 @@
 <li><a href="#%E5%AF%B9%E8%B1%A1%E5%AD%97%E6%AE%B5%E7%9A%84%E7%BC%BA%E7%9C%81%E5%80%BC">对象字段的缺省值</a></li>
 </ul>
 </li>
-</ul>
-</li>
 <li><a href="#%E6%B3%A8%E9%87%8A">注释</a>
 <ul>
 <li><a href="#%E8%A1%8C%E6%B3%A8%E9%87%8A">行注释</a></li>
 <li><a href="#%E5%9D%97%E6%B3%A8%E9%87%8A">块注释</a></li>
 <li><a href="#%E6%96%87%E6%A1%A3%E6%B3%A8%E9%87%8A">文档注释</a></li>
 <li><a href="#%E6%B7%B7%E5%90%88%E6%B3%A8%E9%87%8A">混合注释</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -724,16 +724,16 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">name:</span> <span class="nt">&#34;ason&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="注释">注释</h2>
+</span></span></code></pre></div><h3 id="注释">注释</h3>
 <p><em>ASON</em> 支持 3 种格式的注释：行注释，块注释以及文档注释。</p>
 <p><em>ASON</em> 文档里的注释仅供人类阅读，对于 <em>ASON</em> 解析器来说，注释会完全被忽略。</p>
-<h3 id="行注释">行注释</h3>
+<h4 id="行注释">行注释</h4>
 <p>行注释由标记 <code>//</code> 开始，直至行的末尾，比如：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// this is a line comment
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="err">id:</span> <span class="err">123</span>   <span class="c1">// this is a line comment also
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><h3 id="块注释">块注释</h3>
+</span></span></code></pre></div><h4 id="块注释">块注释</h4>
 <p>块注释由标记 <code>/*</code> 开始，直至标记 <code>*/</code> 为止，比如：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">/*</span> <span class="err">this</span> <span class="err">is</span> <span class="err">a</span> <span class="err">block</span> <span class="err">comment</span> <span class="err">*/</span>
@@ -754,7 +754,7 @@
 </span></span></code></pre></div><blockquote>
 <p>在嵌套的块注释里，开始标记和结束标记必须成对出现。</p>
 </blockquote>
-<h3 id="文档注释">文档注释</h3>
+<h4 id="文档注释">文档注释</h4>
 <p>文档注释（<em>Document Comment</em>）用于书写长篇的文本。文档注释以独占一行的 <code>&quot;&quot;&quot;</code> 标记开始，再以独占一行的 <code>&quot;&quot;&quot;</code> 标记结束，比如：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;&#34;</span><span class="s2">&#34;
@@ -768,7 +768,7 @@
 </span></span></code></pre></div><blockquote>
 <p>注意虽然开始标记和结束标记必须独占一行，但标记的前导空白是允许的。</p>
 </blockquote>
-<h3 id="混合注释">混合注释</h3>
+<h4 id="混合注释">混合注释</h4>
 <p>行注释、块注释、文档注释可以混合使用，但要注意在一个注释里的 <strong>其它注释标记</strong> 只会被当作普通的文本，而不会解析成另一个注释，比如：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// this is a line comment, /* this is still a line comment. */

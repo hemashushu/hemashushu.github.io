@@ -217,14 +217,14 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 <li><a href="#default-value-of-object-fields">Default Value of Object Fields</a></li>
 </ul>
 </li>
-</ul>
-</li>
 <li><a href="#comments">Comments</a>
 <ul>
 <li><a href="#line-comments">Line Comments</a></li>
 <li><a href="#block-comments">Block Comments</a></li>
 <li><a href="#documentation-comments">Documentation Comments</a></li>
 <li><a href="#mixed-comments">Mixed Comments</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -741,16 +741,16 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">name:</span> <span class="nt">&#34;ason&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="comments">Comments</h2>
+</span></span></code></pre></div><h3 id="comments">Comments</h3>
 <p>ASON supports 3 formats of comments: line comments, block comments, and documentation comments.</p>
 <p>Comments in <em>ASON</em> documents are for human consumption only, and they are completely ignored by <em>ASON</em> parsers.</p>
-<h3 id="line-comments">Line Comments</h3>
+<h4 id="line-comments">Line Comments</h4>
 <p>Line comments start with the <code>//</code> marker and continue to the end of the line, for example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// this is a line comment
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="err">id:</span> <span class="err">123</span>   <span class="c1">// this is a line comment also
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><h3 id="block-comments">Block Comments</h3>
+</span></span></code></pre></div><h4 id="block-comments">Block Comments</h4>
 <p>Block comments start with the <code>/*</code> marker and end with the <code>*/</code> marker, for example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">/*</span> <span class="err">this</span> <span class="err">is</span> <span class="err">a</span> <span class="err">block</span> <span class="err">comment</span> <span class="err">*/</span>
@@ -769,7 +769,7 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 </span></span><span class="line"><span class="cl">    <span class="err">id:</span> <span class="err">123</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>In nested block comments, the start and end markers must appear in pairs.</p>
-<h3 id="documentation-comments">Documentation Comments</h3>
+<h4 id="documentation-comments">Documentation Comments</h4>
 <p>Documentation comments are used to write long texts. A documentation comment starts with a <code>&quot;&quot;&quot;</code> marker on a line by itself and ends with a <code>&quot;&quot;&quot;</code> marker on a line by itself, for example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;&#34;</span><span class="s2">&#34;
@@ -783,7 +783,7 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 </span></span></code></pre></div><blockquote>
 <p>Note that although the start and end markers must be on a line by themselves, leading whitespace on the markers is allowed.</p>
 </blockquote>
-<h3 id="mixed-comments">Mixed Comments</h3>
+<h4 id="mixed-comments">Mixed Comments</h4>
 <p>Line comments, block comments, and documentation comments can be mixed, but note that <strong>other comment markers</strong> within a comment will be treated as plain text and will not be parsed as another comment, for example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// this is a line comment, /* this is still a line comment. */

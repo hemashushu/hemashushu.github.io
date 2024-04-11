@@ -45,11 +45,11 @@ _ANON_ is mainly used as a configuration file for applications, but can also be 
   - [Variants](#variants)
     - [Using Variants to Replace `null`](#using-variants-to-replace-null)
     - [Default Value of Object Fields](#default-value-of-object-fields)
-- [Comments](#comments)
-  - [Line Comments](#line-comments)
-  - [Block Comments](#block-comments)
-  - [Documentation Comments](#documentation-comments)
-  - [Mixed Comments](#mixed-comments)
+  - [Comments](#comments)
+    - [Line Comments](#line-comments)
+    - [Block Comments](#block-comments)
+    - [Documentation Comments](#documentation-comments)
+    - [Mixed Comments](#mixed-comments)
 
 <!-- /code_chunk_output -->
 
@@ -672,13 +672,13 @@ Can be written as:
 }
 ```
 
-## Comments
+### Comments
 
 ASON supports 3 formats of comments: line comments, block comments, and documentation comments.
 
 Comments in _ASON_ documents are for human consumption only, and they are completely ignored by _ASON_ parsers.
 
-### Line Comments
+#### Line Comments
 
 Line comments start with the `//` marker and continue to the end of the line, for example:
 
@@ -689,7 +689,7 @@ Line comments start with the `//` marker and continue to the end of the line, fo
 }
 ```
 
-### Block Comments
+#### Block Comments
 
 Block comments start with the `/*` marker and end with the `*/` marker, for example:
 
@@ -718,7 +718,7 @@ Block comments support nesting, for example:
 
 In nested block comments, the start and end markers must appear in pairs.
 
-### Documentation Comments
+#### Documentation Comments
 
 Documentation comments are used to write long texts. A documentation comment starts with a `"""` marker on a line by itself and ends with a `"""` marker on a line by itself, for example:
 
@@ -736,7 +736,7 @@ Documentation comments are used to write long texts. A documentation comment sta
 
 > Note that although the start and end markers must be on a line by themselves, leading whitespace on the markers is allowed.
 
-### Mixed Comments
+#### Mixed Comments
 
 Line comments, block comments, and documentation comments can be mixed, but note that **other comment markers** within a comment will be treated as plain text and will not be parsed as another comment, for example:
 
