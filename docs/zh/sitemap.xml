@@ -272,5 +272,17 @@
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch01-cross-compile-the-first-program-and-run-it/"
                 />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/works/xiaoxuan-script-object-notation/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/works/xiaoxuan-script-object-notation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/works/xiaoxuan-script-object-notation/"
+                />
   </url>
 </urlset>
