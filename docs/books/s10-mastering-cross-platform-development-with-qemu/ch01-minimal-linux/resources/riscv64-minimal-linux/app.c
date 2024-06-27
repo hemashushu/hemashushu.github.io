@@ -12,6 +12,7 @@ int main(void)
 {
     printf("Hello, world!\n");
     printf("Press Ctrl+a, then press x to exit QEMU.\n");
+    fflush(stdout);
     while (1)
     {
         int c = getchar();

@@ -50,7 +50,7 @@ Many of the books and articles below only have titles and no content yet, this i
 
 ## Articles
 
-- {{< null-link "XiaoXuan Object Notation (ANON): a new easy-to-read and write data representation format" >}}
+- {{< null-link "XiaoXuan Script Object Notation (ASON): a new easy-to-read and write data representation format" >}}
 - {{< null-link "XiaoXuan Allocator: an efficient memory allocator for automatic memory management programming language" >}}
 - {{< null-link "XiaoYu SPI Flash FileSystem: a fail-safe filesystem designed for SPI flash chip" >}}
 

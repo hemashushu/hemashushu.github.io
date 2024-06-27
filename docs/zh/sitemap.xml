@@ -15,6 +15,7 @@
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/posts/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -37,6 +38,97 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/about/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/tags/abi/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/abi/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/abi/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/categories/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/categories/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/tags/syscall/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/syscall/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/syscall/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/categories/system/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/categories/system/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/categories/system/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/tags/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/tags/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/"
+                />
+  </url><url>
+    <loc>https://hemashushu.github.io/zh/posts/2024-04-16-all-about-system-abi-and-syscall-part1/</loc>
+    <lastmod>2024-04-16T19:00:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hemashushu.github.io/posts/2024-04-16-all-about-system-abi-and-syscall-part1/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://hemashushu.github.io/zh/posts/2024-04-16-all-about-system-abi-and-syscall-part1/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/books/</loc>
@@ -63,19 +155,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/books/s70-build-your-own-usable-programming-language-a-step-by-step-guide/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/</loc>
-    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/books/s80-zero-to-os-building-your-own-usable-operating-system-volumn-1-the-user-space/</loc>
@@ -143,19 +222,6 @@
                 href="https://hemashushu.github.io/zh/tags/bare-metal/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/categories/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/categories/"
-                />
-  </url><url>
     <loc>https://hemashushu.github.io/zh/categories/craft-system/</loc>
     <lastmod>2022-11-06T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -206,19 +272,6 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch02-write-a-bare-metal-program-run-standalone-without-os/"
-                />
-  </url><url>
-    <loc>https://hemashushu.github.io/zh/tags/</loc>
-    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://hemashushu.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://hemashushu.github.io/zh/tags/"
                 />
   </url><url>
     <loc>https://hemashushu.github.io/zh/tags/gcc/</loc>
@@ -273,16 +326,16 @@
                 href="https://hemashushu.github.io/zh/books/s01-xiaoxuan-adventures-in-riscv-wonderland/ch01-cross-compile-the-first-program-and-run-it/"
                 />
   </url><url>
-    <loc>https://hemashushu.github.io/zh/works/xiaoxuan-script-object-notation/</loc>
+    <loc>https://hemashushu.github.io/zh/works/ason/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hemashushu.github.io/works/xiaoxuan-script-object-notation/"
+                href="https://hemashushu.github.io/works/ason/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://hemashushu.github.io/zh/works/xiaoxuan-script-object-notation/"
+                href="https://hemashushu.github.io/zh/works/ason/"
                 />
   </url>
 </urlset>

@@ -269,6 +269,8 @@ $ sudo losetup -P /dev/loop0 vda.img
 
 The image file is treated as a hard disk. The device file `/dev/loop0` refers to the hard disk, and `/dev/loop0p1` refers to the first partition (the `/dev/loop0p2` is the second partition and so on).
 
+> If you get a "failed to set up loop device: Device or resource busy" message, it's probably because `loop0` is occupied, so try another device id, such as `loop1` or `loop2` and so on. You can list the used loop devices by running the command `losetup` alone.
+
 Format the first partition with the `ext2` file system:
 
 ```bash
@@ -531,10 +533,13 @@ Next we will create a _Hello World_ program, and use it to replace the Busybox. 
 Navigate back to the `~/riscv64-minimal-linux` folder, create file `app.c` with the following code:
 
 ```c
+#include <stdio.h>
+
 int main(void)
 {
     printf("Hello, world!\n");
     printf("Press Ctrl+a, then press x to exit QEMU.\n");
+    fflush(stdout);
     while (1)
     {
         int c = getchar();

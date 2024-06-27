@@ -8,18 +8,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Hemashushu&#39;s homepage, sharing some computer technology, programming skills, learning notes, some home-brew softwares and hardwares" />
 <meta name="author" content="hemashushu" /><meta property="og:title" content="" />
-<meta property="og:description" content="XiaoXuan Script Object Notation XiaoXuan Script Object Notation (ANON) is a data format that is easy for humans to read and write. It is similar to JSON, but has many improvements and enhancements.
+<meta property="og:description" content="ASON ANON (stands for XiaoXuan Script Object Notation) is a data format that is easy for humans to read and write. It is similar to JSON, but has many improvements and enhancements.
 ANON is mainly used as a configuration file for applications, but can also be used for data transmission.
 Features
 Compatible with most of the syntax of JSON and JSON5. If you are already familiar with JSON, you do not need to learn a new data format." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hemashushu.github.io/works/xiaoxuan-script-object-notation/" /><meta property="article:section" content="works" />
+<meta property="og:url" content="https://hemashushu.github.io/works/ason/" /><meta property="article:section" content="works" />
 
 
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="XiaoXuan Script Object Notation XiaoXuan Script Object Notation (ANON) is a data format that is easy for humans to read and write. It is similar to JSON, but has many improvements and enhancements.
+<meta name="twitter:description" content="ASON ANON (stands for XiaoXuan Script Object Notation) is a data format that is easy for humans to read and write. It is similar to JSON, but has many improvements and enhancements.
 ANON is mainly used as a configuration file for applications, but can also be used for data transmission.
 Features
 Compatible with most of the syntax of JSON and JSON5. If you are already familiar with JSON, you do not need to learn a new data format."/>
@@ -138,7 +138,7 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 
         
 
-        <li>19 minute read</li>
+        <li>20 minute read</li>
     </ul>
 </aside>
 
@@ -149,8 +149,8 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 
     
 
-    <h1 id="xiaoxuan-script-object-notation">XiaoXuan Script Object Notation</h1>
-<p><em>XiaoXuan Script Object Notation</em> (<em>ANON</em>) is a data format that is easy for humans to read and write. It is similar to <em>JSON</em>, but has many improvements and enhancements.</p>
+    <h1 id="ason">ASON</h1>
+<p><em>ANON</em> (stands for <em>XiaoXuan Script Object Notation</em>) is a data format that is easy for humans to read and write. It is similar to <em>JSON</em>, but has many improvements and enhancements.</p>
 <p><em>ANON</em> is mainly used as a configuration file for applications, but can also be used for data transmission.</p>
 <p><strong>Features</strong></p>
 <ul>
@@ -268,14 +268,14 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 <h2 id="file-extension">File Extension</h2>
 <p>The file extension for <em>ASON</em> document is <code>*.ason</code>. Filename example:</p>
 <p><code>sample.ason</code>, <code>package.ason</code></p>
-<h2 id="shared-library-and-api">Shared Library and API</h2>
+<h2 id="library-and-api">Library and API</h2>
 <p>Currently, only the Rust implementation of <em>ASON</em> serialization and deserialization library is provided.</p>
-<h3 id="rust-ason-shared-library">Rust ASON Shared Library</h3>
+<h3 id="rust-ason-library">Rust ASON Library</h3>
 <p>Run the command <code>cargo add ason</code> in your project directory to add the <em>ASON</em> library to your project.</p>
 <p>This library provides two functions:</p>
 <ul>
 <li><code>fn parse(s: &amp;str) -&gt; Result&lt;AsonNode, ParseError&gt;</code> for deserialization;</li>
-<li><code>fn format(n: &amp;AsonNode) -&gt; String</code> for serialization.</li>
+<li><code>fn write(n: &amp;AsonNode) -&gt; String</code> for serialization.</li>
 </ul>
 <p><strong>Deserialization</strong></p>
 <p>Suppose you have the following <em>ASON</em> text, which may come from a file or from the internet:</p>
@@ -323,21 +323,35 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">},</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">]);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">text</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div><p>The output text should be:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">name:</span> <span class="nt">&#34;foo&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="err">version</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="err">dependencies</span><span class="p">:</span> <span class="p">[{</span>
-</span></span><span class="line"><span class="cl">        <span class="err">name:</span> <span class="nt">&#34;random&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="err">version</span><span class="p">:</span> <span class="err">Option</span><span class="p">::</span><span class="err">None</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},{</span>
-</span></span><span class="line"><span class="cl">        <span class="err">name:</span> <span class="nt">&#34;regex&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="err">version</span><span class="p">:</span> <span class="err">Option</span><span class="p">::</span><span class="err">Some(</span><span class="s2">&#34;1.0.1&#34;</span><span class="err">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">    <span class="err">dependencies</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="err">name:</span> <span class="nt">&#34;random&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="err">version</span><span class="p">:</span> <span class="err">Option</span><span class="p">::</span><span class="err">None</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="err">name:</span> <span class="nt">&#34;regex&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="err">version</span><span class="p">:</span> <span class="err">Option</span><span class="p">::</span><span class="err">Some(</span><span class="s2">&#34;1.0.1&#34;</span><span class="err">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="specification">Specification</h2>
+</span></span></code></pre></div><h2 id="utilities">Utilities</h2>
+<p>The Rust ASON library also provides a utility &ldquo;ason&rdquo; which can be used to read and validate, or format an ASON document.</p>
+<p>First install the utility with the following command:</p>
+<p><code>$ cargo install ason</code></p>
+<p>This command will add the executable <code>ason</code> to the <code>~/.cargo/bin</code> directory.</p>
+<p>This usage of utility is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ason &lt;file_name&gt;
+</span></span></code></pre></div><p>For example:</p>
+<p><code>$ ason test.ason</code></p>
+<p>If the document &ldquo;test.ason&rdquo; has no errors, the program prints the formatted document to the terminal. The output can be redirected to a new file, e.g.:</p>
+<p><code>$ ason test.ason &gt; new.ason</code></p>
+<h2 id="specification">Specification</h2>
 <p>An <em>ASON</em> document can only have one <em>ASON</em> value.</p>
 <p>An <em>ASON</em> value can be either simple data, such as a number, a date, or a string. It can also be complex data composed of multiple simple <em>ASON</em> values, such as an <code>Object</code>, an <code>Array</code>, a <code>Tuple</code>, or a <code>Variant</code>.</p>
 <h3 id="numbers">Numbers</h3>
@@ -524,8 +538,8 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 <li><code>'\r'</code>: Carriage return (CR)</li>
 <li><code>'\n'</code>: New line character (also called line feed, or LF)</li>
 <li><code>'\0'</code>: Null character</li>
-<li><code>'\&quot;'</code>: Doube quote</li>
 <li><code>'\''</code>: Single quote</li>
+<li><code>'\&quot;'</code>: Double quote</li>
 <li><code>'\\'</code>: Backslash itself</li>
 </ul>
 <p><em>ASON</em> does not support the following escape characters:</p>
@@ -542,6 +556,7 @@ Compatible with most of the syntax of JSON and JSON5. If you are already familia
 <h3 id="strings">Strings</h3>
 <p>A string consists of a pair of double quotes and a series of characters, such as <code>&quot;abc&quot;</code>, <code>&quot;文字&quot;</code>, <code>&quot;😊🍍&quot;</code>.</p>
 <p>Any valid character can be used to form a string, including the escaped characters, such as <code>&quot;foo\nbar&quot;</code>, <code>&quot;\u{2d}\u{6587}\0&quot;</code>.</p>
+<p>The escaped character <code>\&quot;</code> should be used when representing the double quote in a string.</p>
 <h4 id="long-strings">Long Strings</h4>
 <p><em>ASON</em> supports writing long strings on multiple lines. Just add a backslash <code>\</code> and a newline character at the end of the line, for example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;Hello, \

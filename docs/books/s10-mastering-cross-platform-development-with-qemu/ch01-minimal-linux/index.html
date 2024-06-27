@@ -352,6 +352,9 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 </span></span></code></pre></div><p>Then attach this image file to the current system:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo losetup -P /dev/loop0 vda.img
 </span></span></code></pre></div><p>The image file is treated as a hard disk. The device file <code>/dev/loop0</code> refers to the hard disk, and <code>/dev/loop0p1</code> refers to the first partition (the <code>/dev/loop0p2</code> is the second partition and so on).</p>
+<blockquote>
+<p>If you get a &ldquo;failed to set up loop device: Device or resource busy&rdquo; message, it&rsquo;s probably because <code>loop0</code> is occupied, so try another device id, such as <code>loop1</code> or <code>loop2</code> and so on. You can list the used loop devices by running the command <code>losetup</code> alone.</p>
+</blockquote>
 <p>Format the first partition with the <code>ext2</code> file system:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo mkfs.ext2 /dev/loop0p1
 </span></span></code></pre></div><blockquote>
@@ -543,10 +546,13 @@ Part 3. Setting up a complete Debian RISC-V Linux system in QEMU, and do C langu
 <p>Next we will create a <em>Hello World</em> program, and use it to replace the Busybox. Thus the system only consist of Linux kernel and one <em>Hello World</em> program.</p>
 <h3 id="61-create-_hello-world_-program">6.1 Create <em>Hello World</em> program</h3>
 <p>Navigate back to the <code>~/riscv64-minimal-linux</code> folder, create file <code>app.c</code> with the following code:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Press Ctrl+a, then press x to exit QEMU.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">();</span>

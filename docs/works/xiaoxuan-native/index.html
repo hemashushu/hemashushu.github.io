@@ -151,7 +151,7 @@
         </li>
         
 
-        <li>One minute read</li>
+        <li>2 minute read</li>
     </ul>
 </aside>
 
@@ -171,6 +171,15 @@
 </blockquote>
 <h2 id="features">Features</h2>
 <p>TODO</p>
+<h2 id="comparison-with-rust">Comparison with Rust</h2>
+<p><em>XiaoXuan Native</em> and <em>Rust</em> are both compiled, memory-safe, and GC-free general-purpose programming languages with similar user experiences, but they are very different internally:</p>
+<p><strong>Memory mamangement implementation principles</strong></p>
+<p>Rust&rsquo;s memory management uses a strict set of &ldquo;rules&rdquo; to constrain the writing of user code, including concepts such as ownership, borrow checking, and lifetimes, which are &ldquo;hard&rdquo; embedded in the Rust compiler. If the user code passes compilation, it can be roughly determined that the code is memory safe. However, because these rules are checked during compilation, it is possible to write syntactically correct Rust code that fails to compile.</p>
+<p><em>XiaoXuan Native</em>&rsquo;s memory management implementation is much simpler, using &ldquo;data immutability + reference counting&rdquo; internally, which is reflected in the syntax. That is, as long as you write syntactically correct <em>XiaoXuan Native</em> code, you can be sure that the code is memory safe even without compiling it.</p>
+<p>Although <em>XiaoXuan Native</em>&rsquo;s memory management method is slightly less performant than Rust&rsquo;s is some cases, it is more intuitive and simpler, and you can write memory-safe programs with performance comparable to Rust&rsquo;s without having to learn new concepts or constantly remember rules.</p>
+<p><strong>Compiler implementation</strong></p>
+<p>The syntax design of the <em>XiaoXuan Native</em> is not only easy for humans to read and understand, but also makes the implementation of the language&rsquo;s lexer and parser very simple. And because there is no extra &ldquo;rules&rdquo; checking, the compiler is also very simple. In additional, <em>XiaoXuan Native</em> has its own IR and code generator, and does not rely on any traditional compiler (such as GCC and LLVM) or library. These features make <em>XiaoXuan Native</em> language easy to implement, and any engineer can understand the source code of the <em>XiaoXuan Native</em> compiler, find bugs, and make improvements.</p>
+<p>In contrast, the Rust compiler is not so easy to understand, and you need a lot of knowledge and experience to participate.</p>
 <h2 id="related-projects">Related projects</h2>
 <ul>
 <li><span class="null-link">XiaoXuan Assembly LoongArch</span> Assembler for LoongArch (la64).</li>

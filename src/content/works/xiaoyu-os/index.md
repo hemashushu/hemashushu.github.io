@@ -82,6 +82,10 @@ And for common tasks like document management, music playback, and photo viewing
     {{< gallery-item src="./images/ui/launcher-photos.webp" title="Photo viewing" >}}
 {{< /gallery >}}
 
+**Windows as tabs"
+
+Any two or more windows can be merged into a single window and the original windows can be managed as tabs.
+
 **Smart status control**
 
 The status controller displays only the most essential information and controls, adapting to your current activity. For instance, playing music reveals additional "Now Playing" controls.
@@ -106,9 +110,13 @@ XiaoYu OS's UI uses window components that are similar to the web, making it eas
 
 {{< figure class="wide white" src="./images/ui/component.webp" caption="Web style look-and-fell" >}}
 
+**Accessibility**
+
+TODO ('zoom', 'command palette', 'middle button as drag scroll' ... are available on every application)
+
 ## An overview of the _XiaoYu Terminal_
 
-TODO
+TODO, e.g. application as component (embeds another application as a component)
 
 ## Q & A
 
